@@ -7,8 +7,13 @@ import {
   Download, Reply, ExternalLink, UploadCloud, CheckCircle2, Loader2
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import type { University } from '@/lib/types';
+import dynamic from 'next/dynamic';
+
+const AnalyticsTab = dynamic(() => import('./PartnerAnalyticsTab'), {
+  ssr: false,
+  loading: () => <div style={{ padding: 48, textAlign: 'center', color: 'var(--text-tertiary)' }}><Loader2 size={24} className="animate-spin mx-auto" /></div>
+});
 
 // Fallback Mock Data in case DB is empty
 const MOCK_LEADS = [
@@ -25,13 +30,7 @@ const MOCK_REVIEWS = [
   { initials: 'BN', name: 'Brian N.', type: 'Student', rating: 5, body: 'The innovation hub gave me access to equipment and mentors I wouldn\'t have found elsewhere. 10/10.' },
 ];
 
-const CHART_DATA = [
-  { name: 'Below 25', interest: 20 },
-  { name: '25-30', interest: 45 },
-  { name: '30-35', interest: 85 },
-  { name: '35-40', interest: 100 },
-  { name: '40-48', interest: 60 },
-];
+
 
 type Tab = 'overview' | 'analytics' | 'leads' | 'profile' | 'reviews';
 
@@ -123,57 +122,7 @@ function OverviewTab() {
   );
 }
 
-function AnalyticsTab() {
-  return (
-    <div>
-      <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--navy-deep)', marginBottom: 24, fontSize: '1.5rem' }}>
-        Audience Analytics
-      </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-        <div style={{ background: 'white', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
-          <div style={{ fontWeight: 700, color: 'var(--navy-deep)', marginBottom: 20 }}>Interest by KCSE Cluster Points</div>
-          <div style={{ height: 260, width: '100%' }}>
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={CHART_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
-                <Tooltip 
-                  cursor={{ fill: 'rgba(26, 35, 56, 0.04)' }} 
-                  contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
-                />
-                <Bar dataKey="interest" fill="var(--navy-deep)" radius={[4, 4, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: 16 }}>
-            <Star size={14} style={{ color: 'var(--gold-primary)' }} /> Highest interest from students scoring 35-40 cluster points
-          </div>
-        </div>
-
-        <div style={{ background: 'white', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
-          <div style={{ fontWeight: 700, color: 'var(--navy-deep)', marginBottom: 20 }}>Visitor Breakdown</div>
-          {[
-            { label: 'Students (KCSE Leavers)', pct: 68, color: 'var(--navy-deep)' },
-            { label: 'Parents / Guardians', pct: 22, color: 'var(--gold-primary)' },
-            { label: 'School Counsellors', pct: 10, color: '#10B981' },
-          ].map(item => (
-            <div key={item.label} style={{ marginBottom: 18 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
-                <span style={{ color: 'var(--text-secondary)' }}>{item.label}</span>
-                <span style={{ fontWeight: 700, color: 'var(--navy-deep)', fontFamily: 'JetBrains Mono, monospace' }}>{item.pct}%</span>
-              </div>
-              <div style={{ height: 8, background: 'var(--bg-tertiary)', borderRadius: 4, overflow: 'hidden' }}>
-                <div style={{ height: '100%', width: `${item.pct}%`, background: item.color, borderRadius: 4 }} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 function LeadsTab({ uniId }: { uniId: string }) {
   const [leads, setLeads] = useState<any[]>(MOCK_LEADS);
@@ -294,6 +243,7 @@ function ProfileEditorTab({ uni }: { uni: University }) {
           onClick={handleSave}
           disabled={loading || saved}
           style={{ width: 160, justifyContent: 'center' }}
+          aria-live="polite"
         >
           {loading ? <Loader2 size={16} className="animate-spin" /> : saved ? <><CheckCircle2 size={16} /> Published!</> : 'Publish Changes'}
         </button>
@@ -305,17 +255,17 @@ function ProfileEditorTab({ uni }: { uni: University }) {
           <h3 style={{ color: 'var(--navy-deep)', fontWeight: 600, marginBottom: 18, paddingBottom: 12, borderBottom: '1px solid var(--border-light)' }}>Core Details</h3>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
             <div className="form-group">
-              <label className="form-label">Student Population</label>
-              <input className="form-input" value={formData.students} onChange={e => setFormData({...formData, students: e.target.value})} />
+              <label className="form-label" htmlFor="students">Student Population</label>
+              <input id="students" className="form-input" value={formData.students} onChange={e => setFormData({...formData, students: e.target.value})} />
             </div>
             <div className="form-group">
-              <label className="form-label">Estimated Fees per Year</label>
-              <input className="form-input" value={formData.fees} onChange={e => setFormData({...formData, fees: e.target.value})} />
+              <label className="form-label" htmlFor="fees">Estimated Fees per Year</label>
+              <input id="fees" className="form-input" value={formData.fees} onChange={e => setFormData({...formData, fees: e.target.value})} />
             </div>
           </div>
           <div className="form-group" style={{ marginTop: 16 }}>
-            <label className="form-label">Accommodation Description</label>
-            <textarea className="form-textarea" value={formData.accommodation} onChange={e => setFormData({...formData, accommodation: e.target.value})} rows={3} />
+            <label className="form-label" htmlFor="accommodation">Accommodation Description</label>
+            <textarea id="accommodation" className="form-textarea" value={formData.accommodation} onChange={e => setFormData({...formData, accommodation: e.target.value})} rows={3} />
           </div>
         </div>
 
@@ -323,12 +273,12 @@ function ProfileEditorTab({ uni }: { uni: University }) {
         <div style={{ background: 'white', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
           <h3 style={{ color: 'var(--navy-deep)', fontWeight: 600, marginBottom: 18, paddingBottom: 12, borderBottom: '1px solid var(--border-light)' }}>Media & Links</h3>
           <div className="form-group" style={{ marginBottom: 16 }}>
-            <label className="form-label">Virtual Tour URL</label>
-            <input className="form-input" value={formData.virtualTourUrl} onChange={e => setFormData({...formData, virtualTourUrl: e.target.value})} placeholder="https://youruniversity.edu/virtual-tour" />
+            <label className="form-label" htmlFor="virtualTourUrl">Virtual Tour URL</label>
+            <input id="virtualTourUrl" className="form-input" value={formData.virtualTourUrl} onChange={e => setFormData({...formData, virtualTourUrl: e.target.value})} placeholder="https://youruniversity.edu/virtual-tour" />
           </div>
           <div className="form-group">
-            <label className="form-label">University Website</label>
-            <input className="form-input" value={formData.website} onChange={e => setFormData({...formData, website: e.target.value})} placeholder="https://youruniversity.ac.ke" />
+            <label className="form-label" htmlFor="website">University Website</label>
+            <input id="website" className="form-input" value={formData.website} onChange={e => setFormData({...formData, website: e.target.value})} placeholder="https://youruniversity.ac.ke" />
           </div>
           <div style={{ marginTop: 16 }}>
             <label className="form-label" style={{ display: 'block', marginBottom: 8 }}>Gallery Images</label>

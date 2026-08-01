@@ -71,21 +71,22 @@ export default function GlobalSearch() {
             boxShadow: 'var(--shadow-xl)', overflow: 'hidden',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 20px', borderBottom: '1px solid var(--border-light)' }}>
-              <Search size={20} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+              <Search size={20} aria-hidden="true" style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
               <input
                 ref={inputRef}
                 value={query}
                 onChange={e => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Search universities, courses, counties, career fields…"
+                aria-label="Search query"
                 style={{
                   flex: 1, border: 'none', outline: 'none', fontSize: '1rem',
                   color: 'var(--text-primary)', background: 'transparent',
                 }}
               />
               {query && (
-                <button onClick={() => setQuery('')} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)' }}>
-                  <X size={16} />
+                <button onClick={() => setQuery('')} aria-label="Clear search" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)' }}>
+                  <X size={16} aria-hidden="true" />
                 </button>
               )}
             </div>
@@ -131,8 +132,8 @@ export default function GlobalSearch() {
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-tertiary)', marginBottom: 4 }}>Quick Filters</div>
                 {['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru'].map(c => (
                   <button key={c} onClick={() => handleSelect({ type: 'county', id: c, label: c })}
-                    style={{ textAlign: 'left', padding: '8px 12px', borderRadius: 'var(--radius-md)', background: 'var(--bg-secondary)', border: 'none', cursor: 'pointer', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><MapPin size={14} /> {c} County</div>
+                    style={{ textAlign: 'left', padding: '12px 16px', minHeight: '48px', borderRadius: 'var(--radius-md)', background: 'var(--bg-secondary)', border: 'none', cursor: 'pointer', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><MapPin size={14} aria-hidden="true" /> {c} County</div>
                   </button>
                 ))}
               </div>

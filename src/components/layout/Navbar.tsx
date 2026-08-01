@@ -163,7 +163,7 @@ export default function Navbar({ user }: { user: any }) {
                               onMouseEnter={e => { if (!pathname.startsWith(child.href)) { (e.currentTarget as HTMLElement).style.background = 'var(--bg-secondary)'; (e.currentTarget as HTMLElement).style.color = 'var(--navy-deep)'; } }}
                               onMouseLeave={e => { if (!pathname.startsWith(child.href)) { (e.currentTarget as HTMLElement).style.background = 'transparent'; (e.currentTarget as HTMLElement).style.color = 'var(--text-secondary)'; } }}
                             >
-                              {child.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex' }}>{child.icon}</span>}
+                              {child.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex' }} aria-hidden="true">{child.icon}</span>}
                               {child.label}
                             </Link>
                           ))}
@@ -194,7 +194,7 @@ export default function Navbar({ user }: { user: any }) {
                       }
                     }}
                   >
-                    {link.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex', opacity: 0.8 }}>{link.icon}</span>}
+                    {link.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex', opacity: 0.8 }} aria-hidden="true">{link.icon}</span>}
                     {link.label}
                   </Link>
                 )}
@@ -225,13 +225,15 @@ export default function Navbar({ user }: { user: any }) {
             <button
               className="mobile-nav-btn"
               aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
               onClick={() => setMobileOpen(!mobileOpen)}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer',
-                color: 'var(--navy-deep)', display: 'none', padding: '4px'
+                color: 'var(--navy-deep)', display: 'none', padding: '12px'
               }}
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -241,6 +243,7 @@ export default function Navbar({ user }: { user: any }) {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div 
+            id="mobile-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -261,9 +264,9 @@ export default function Navbar({ user }: { user: any }) {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                     {link.children.map(child => (
                       <Link key={child.href} href={child.href}
-                        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', borderRadius: '10px', fontWeight: 600, fontSize: '14px', color: pathname.startsWith(child.href) ? 'var(--navy-deep)' : 'var(--text-secondary)', background: pathname.startsWith(child.href) ? 'var(--gold-glow)' : 'transparent', textDecoration: 'none' }}
+                        style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '14px 16px', minHeight: '48px', borderRadius: '10px', fontWeight: 600, fontSize: '14px', color: pathname.startsWith(child.href) ? 'var(--navy-deep)' : 'var(--text-secondary)', background: pathname.startsWith(child.href) ? 'var(--gold-glow)' : 'transparent', textDecoration: 'none' }}
                         onClick={() => setMobileOpen(false)}>
-                        {child.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex' }}>{child.icon}</span>}
+                        {child.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex' }} aria-hidden="true">{child.icon}</span>}
                         {child.label}
                       </Link>
                     ))}
@@ -271,9 +274,9 @@ export default function Navbar({ user }: { user: any }) {
                 </div>
               ) : (
                 <Link key={link.href} href={link.href!}
-                  style={{ padding: '12px 16px', borderRadius: '10px', fontWeight: 600, fontSize: '15px', color: pathname.startsWith(link.href!) ? 'var(--navy-deep)' : 'var(--text-secondary)', background: pathname.startsWith(link.href!) ? 'var(--gold-glow)' : 'transparent', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, marginBottom: '4px' }}
+                  style={{ padding: '14px 16px', minHeight: '48px', borderRadius: '10px', fontWeight: 600, fontSize: '15px', color: pathname.startsWith(link.href!) ? 'var(--navy-deep)' : 'var(--text-secondary)', background: pathname.startsWith(link.href!) ? 'var(--gold-glow)' : 'transparent', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 8, marginBottom: '4px' }}
                   onClick={() => setMobileOpen(false)}>
-                  {link.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex' }}>{link.icon}</span>}
+                  {link.icon && <span style={{ color: 'var(--gold-primary)', display: 'flex' }} aria-hidden="true">{link.icon}</span>}
                   {link.label}
                 </Link>
               )

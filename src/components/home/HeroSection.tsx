@@ -216,7 +216,7 @@ export default function HeroSection() {
                 }}
               >
                 Explore Universities
-                <ArrowRight size={16} />
+                <ArrowRight size={16} aria-hidden="true" />
               </Link>
               <Link
                 href="/calculator"
@@ -227,7 +227,7 @@ export default function HeroSection() {
                   borderRadius: 14,
                 }}
               >
-                <GraduationCap size={16} />
+                <GraduationCap size={16} aria-hidden="true" />
                 Check My Points
               </Link>
             </motion.div>
@@ -310,6 +310,7 @@ export default function HeroSection() {
                 alt="Modern university campus"
                 fill
                 priority
+                fetchPriority="high"
                 sizes="(max-width: 768px) 100vw, 40vw"
                 style={{ objectFit: 'cover' }}
               />
@@ -410,7 +411,7 @@ export default function HeroSection() {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-                <TrendingUp size={14} style={{ color: 'var(--gold-primary)' }} />
+                <TrendingUp size={14} aria-hidden="true" style={{ color: 'var(--gold-primary)' }} />
                 <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--navy-deep)' }}>Trending Now</span>
               </div>
               <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', lineHeight: 1.4 }}>
@@ -441,7 +442,7 @@ export default function HeroSection() {
                 gap: 4,
               }}
             >
-              <MapPin size={12} style={{ color: 'var(--navy-deep)' }} />
+              <MapPin size={12} aria-hidden="true" style={{ color: 'var(--navy-deep)' }} />
               <span style={{ fontSize: '0.68rem', fontWeight: 800, color: 'var(--navy-deep)', letterSpacing: '0.02em' }}>
                 47 Counties
               </span>
@@ -475,7 +476,7 @@ export default function HeroSection() {
               fontWeight: 600,
             }}
           >
-            <CheckCircle size={14} style={{ color: 'var(--gold-primary)' }} />
+            <CheckCircle size={14} aria-hidden="true" style={{ color: 'var(--gold-primary)' }} />
             {badge}
           </div>
         ))}
@@ -485,8 +486,8 @@ export default function HeroSection() {
         @media (max-width: 900px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
-            padding: 60px 20px 40px !important;
-            gap: 40px !important;
+            padding: 40px 16px 32px !important;
+            gap: 32px !important;
           }
           .hero-image-grid {
             min-height: 320px !important;

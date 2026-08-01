@@ -18,37 +18,37 @@ export const metadata: Metadata = {
 
 const FEATURES = [
   {
-    icon: <Search size={22} />,
+    icon: <Search size={22} aria-hidden="true" />,
     title: 'Deep Campus Profiles',
     desc: 'Accommodation, labs, clubs, sports, fees, virtual tours, and interactive campus maps — all in one profile.',
     href: '/universities'
   },
   {
-    icon: <Scale size={22} />,
+    icon: <Scale size={22} aria-hidden="true" />,
     title: 'Side-by-Side Comparison',
     desc: 'Evaluate institutions side-by-side across tuition fees, programmes, facilities, ratings, and student life.',
     href: '/compare'
   },
   {
-    icon: <Star size={22} />,
+    icon: <Star size={22} aria-hidden="true" />,
     title: 'Dual Review Engine',
     desc: 'Separate, verified ratings from current students and parents across 9 distinct criteria for honest insights.',
     href: '/universities'
   },
   {
-    icon: <Award size={22} />,
+    icon: <Award size={22} aria-hidden="true" />,
     title: 'Funding & Scholarships',
     desc: 'Discover government bursaries, private scholarships, and international funding to support your education.',
     href: '/scholarships'
   },
   {
-    icon: <Home size={22} />,
+    icon: <Home size={22} aria-hidden="true" />,
     title: 'Student Housing',
     desc: 'Find affordable accommodation and hostels near campuses. Compare rooms, amenities, and prices easily.',
     href: '/housing'
   },
   {
-    icon: <Calendar size={22} />,
+    icon: <Calendar size={22} aria-hidden="true" />,
     title: 'Campus Events',
     desc: 'Discover upcoming campus events, open days, career fairs, and student activities across Kenya.',
     href: '/events'
@@ -94,7 +94,7 @@ export default async function HomePage() {
             <StaggerContainer
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
                 gap: 24,
                 maxWidth: 1000,
                 margin: '0 auto'
@@ -173,7 +173,7 @@ export default async function HomePage() {
               </div>
               <HoverScale>
                 <Link href="/universities" className="btn btn-outline" style={{ display: 'flex', gap: 8 }}>
-                  View All <ArrowRight size={16} />
+                  View All <ArrowRight size={16} aria-hidden="true" />
                 </Link>
               </HoverScale>
             </div>
@@ -217,7 +217,7 @@ export default async function HomePage() {
                           color: 'var(--navy-deep)'
                         }}
                       >
-                        <Star size={14} style={{ color: 'var(--gold-primary)', fill: 'var(--gold-primary)' }} />
+                        <Star size={14} aria-hidden="true" style={{ color: 'var(--gold-primary)', fill: 'var(--gold-primary)' }} />
                         {uni.rating?.toFixed(1) || 'N/A'}
                       </div>
                     </div>
@@ -253,7 +253,7 @@ export default async function HomePage() {
                       
                       <div style={{ paddingTop: 16, borderTop: '2px solid var(--navy-deep)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                         <span style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', gap: 4 }}>
-                          <MapPin size={14} /> {uni.county}
+                          <MapPin size={14} aria-hidden="true" /> {uni.county}
                         </span>
                         <span style={{ color: 'var(--gold-primary)', fontWeight: 700, fontSize: '0.9rem' }}>
                           View Profile →

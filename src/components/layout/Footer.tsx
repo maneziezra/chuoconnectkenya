@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="brand-logo">
               <Link href="/">
                 {/* SVG Logo matching the requested CC format */}
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ marginBottom: '16px' }}>
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ marginBottom: '16px' }}>
                   <path d="M22 8C14.268 8 8 14.268 8 22C8 29.732 14.268 36 22 36" stroke="var(--moss)" strokeWidth="4" strokeLinecap="round" />
                   <path d="M18 14C11.3726 14 6 19.3726 6 26C6 32.6274 11.3726 38 18 38" stroke="var(--citrus)" strokeWidth="4" strokeLinecap="round" />
                 </svg>
@@ -224,6 +224,10 @@ export default function Footer() {
             grid-template-columns: 1fr;
             gap: 2rem;
           }
+          .link-list a {
+            display: inline-block;
+            padding: 8px 0;
+          }
           .footer-bottom {
             flex-direction: column;
             gap: 1.5rem;
@@ -232,6 +236,10 @@ export default function Footer() {
           .legal-links {
             flex-direction: column;
             gap: 1rem;
+          }
+          .legal-links a {
+            display: inline-block;
+            padding: 8px 0;
           }
         }
       `}</style>
