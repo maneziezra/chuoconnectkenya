@@ -17,6 +17,12 @@
 <br>
 
 <div align="center">
+  <img src="public/hero-screenshot.png" alt="Chuo Connect Live Preview" width="850" style="border-radius: 12px; border: 1px solid #e2e8f0;"/>
+</div>
+
+<br>
+
+<div align="center">
 
 <a href="#overview"><kbd> <br> Overview <br> </kbd></a>&ensp;&ensp;
 <a href="#features"><kbd> <br> Features <br> </kbd></a>&ensp;&ensp;
