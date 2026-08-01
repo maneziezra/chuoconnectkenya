@@ -174,7 +174,7 @@ export default function ProfilePage() {
 
         <div
           style={{
-            background: 'white',
+            background: 'var(--bg-primary)',
             borderRadius: 20,
             border: '2px solid var(--navy-deep)',
             boxShadow: '4px 4px 0px var(--navy-deep)',
@@ -215,13 +215,13 @@ export default function ProfilePage() {
 
           <form onSubmit={handleSave} style={{ padding: '32px' }}>
             {error && (
-              <div style={{ padding: 16, background: '#fee2e2', color: '#b91c1c', borderRadius: 8, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ padding: 16, background: 'var(--danger-bg)', color: 'var(--danger-text)', borderRadius: 8, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <AlertCircle size={18} /> {error}
               </div>
             )}
             
             {success && (
-              <div style={{ padding: 16, background: '#dcfce7', color: '#15803d', borderRadius: 8, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ padding: 16, background: 'var(--success-bg)', color: 'var(--success-text)', borderRadius: 8, marginBottom: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
                 <CheckCircle2 size={18} /> {success}
               </div>
             )}

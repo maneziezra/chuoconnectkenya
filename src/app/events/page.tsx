@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 const CATEGORY_CONFIG: Record<string, { label: string; color: string; bg: string; icon: React.ReactNode }> = {
   academic: { label: 'Academic', color: '#1D4ED8', bg: '#DBEAFE', icon: <BookOpen size={14} /> },
-  sports: { label: 'Sports', color: '#15803D', bg: '#DCFCE7', icon: <Trophy size={14} /> },
+  sports: { label: 'Sports', color: 'var(--success-text)', bg: 'var(--success-bg)', icon: <Trophy size={14} /> },
   cultural: { label: 'Cultural', color: '#7C3AED', bg: '#EDE9FE', icon: <Globe size={14} /> },
-  career: { label: 'Career', color: '#B45309', bg: '#FEF3C7', icon: <Briefcase size={14} /> },
+  career: { label: 'Career', color: '#B45309', bg: 'var(--warning-bg)', icon: <Briefcase size={14} /> },
   social: { label: 'Social', color: '#DB2777', bg: '#FCE7F3', icon: <PartyPopper size={14} /> },
   admission: { label: 'Open Day', color: '#C79B37', bg: 'rgba(199,155,55,0.15)', icon: <GraduationCap size={14} /> }};
 
@@ -37,7 +37,7 @@ export default async function EventsPage() {
   return (
     <>
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: '#FAFAF8', padding: '48px 40px', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span style={{ display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 8, boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--navy-deep)', marginBottom: 16 }}>
@@ -55,8 +55,8 @@ export default async function EventsPage() {
         <div className="container">
           
           {isError ? (
-             <div style={{ padding: '60px 20px', textAlign: 'center', background: '#FEE2E2', borderRadius: 'var(--radius-lg)' }}>
-               <p style={{ color: '#991B1B' }}>Failed to load events. Please try again later.</p>
+             <div style={{ padding: '60px 20px', textAlign: 'center', background: 'var(--danger-bg)', borderRadius: 'var(--radius-lg)' }}>
+               <p style={{ color: 'var(--danger-text)' }}>Failed to load events. Please try again later.</p>
              </div>
           ) : events.length === 0 ? (
              <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
@@ -92,7 +92,7 @@ export default async function EventsPage() {
                             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: 800 }}>{e.description}</p>
                           </div>
                           
-                          <div style={{ border: '2px solid var(--navy-deep)', background: '#FAFAF8', padding: '16px 24px', borderRadius: 10, textAlign: 'center', minWidth: 140 }}>
+                          <div style={{ border: '2px solid var(--navy-deep)', background: 'var(--bg-secondary)', padding: '16px 24px', borderRadius: 10, textAlign: 'center', minWidth: 140 }}>
                             <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', textTransform: 'uppercase' as const, fontWeight: 700, letterSpacing: '0.05em', marginBottom: 4 }}>Date</div>
                             <div style={{ color: 'var(--navy-deep)', fontWeight: 600 }}>{formatDate(e.date)}</div>
                           </div>

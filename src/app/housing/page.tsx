@@ -2467,7 +2467,7 @@ export default async function HousingPage({ searchParams }: Props) {
     <>
       {/* Hero Section */}
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: '#FAFAF8', padding: '48px 40px', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 8, boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--navy-deep)', marginBottom: 16 }}>
@@ -2487,7 +2487,7 @@ export default async function HousingPage({ searchParams }: Props) {
       <section className="section" style={{ background: 'var(--bg-secondary)', minHeight: '60vh' }}>
         <div className="container" style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
           {/* Filters Sidebar */}
-          <aside style={{ width: 280, flexShrink: 0, background: 'white', borderRadius: 'var(--radius-lg)', padding: 24, border: '1px solid var(--border-light)', position: 'sticky', top: 100 }}>
+          <aside style={{ width: 280, flexShrink: 0, background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', padding: 24, border: '1px solid var(--border-light)', position: 'sticky', top: 100 }}>
             <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--navy-deep)', marginBottom: 20 }}>Filters</h3>
             
             <form action="/housing" method="GET">
@@ -2532,11 +2532,11 @@ export default async function HousingPage({ searchParams }: Props) {
           {/* Listings Grid */}
           <div style={{ flex: 1 }}>
             {isError ? (
-              <div style={{ padding: '60px 20px', textAlign: 'center', background: '#FEE2E2', borderRadius: 'var(--radius-lg)' }}>
-                <p style={{ color: '#991B1B' }}>Failed to load housing. Please try again later.</p>
+              <div style={{ padding: '60px 20px', textAlign: 'center', background: 'var(--danger-bg)', borderRadius: 'var(--radius-lg)' }}>
+                <p style={{ color: 'var(--danger-text)' }}>Failed to load housing. Please try again later.</p>
               </div>
             ) : housingListings.length === 0 ? (
-              <div style={{ padding: '80px 20px', textAlign: 'center', background: 'white', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
+              <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
                 <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
                 <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--navy-deep)', marginBottom: 8 }}>No housing found</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>Try adjusting your filters to see more results.</p>
@@ -2544,7 +2544,7 @@ export default async function HousingPage({ searchParams }: Props) {
             ) : (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
                 {housingListings.map(h => (
-                  <div key={h.id} className="card" style={{ display: 'flex', flexDirection: 'column', background: 'white' }}>
+                  <div key={h.id} className="card" style={{ display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)' }}>
                     <div style={{ height: 160, background: 'var(--navy-light)', position: 'relative', overflow: 'hidden' }}>
                       {h.image ? (
                         <img src={h.image} alt={h.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
@@ -2553,7 +2553,7 @@ export default async function HousingPage({ searchParams }: Props) {
                           <Home size={32} />
                         </div>
                       )}
-                      <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, background: 'white', color: 'var(--navy-deep)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                      <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, background: 'var(--bg-primary)', color: 'var(--navy-deep)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
                         {TYPE_LABELS[h.type]}
                       </div>
                     </div>

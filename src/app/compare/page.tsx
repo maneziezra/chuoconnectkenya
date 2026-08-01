@@ -34,7 +34,7 @@ export default async function ComparePage({ searchParams }: Props) {
           border: '2px solid var(--navy-deep)',
           borderRadius: 20,
           boxShadow: '4px 4px 0px var(--navy-deep)',
-          background: '#FAFAF8',
+          background: 'var(--bg-secondary)',
           padding: '48px 40px',
           overflow: 'hidden'
         }}>

@@ -76,7 +76,7 @@ export default async function HomePage() {
               border: '2px solid var(--navy-deep)',
               borderRadius: 20,
               boxShadow: '6px 6px 0px var(--navy-deep)',
-              background: '#FAFAF8',
+              background: 'var(--bg-secondary)',
               padding: '64px 20px',
               maxWidth: 1200,
               margin: '0 auto'
@@ -204,7 +204,7 @@ export default async function HomePage() {
                           position: 'absolute',
                           top: 16,
                           right: 16,
-                          background: '#FFFFFF',
+                          background: 'var(--bg-primary)',
                           padding: '4px 10px',
                           border: '2px solid var(--navy-deep)',
                           borderRadius: 8,
@@ -269,7 +269,7 @@ export default async function HomePage() {
                   gridColumn: '1 / -1',
                   padding: '60px',
                   textAlign: 'center',
-                  background: '#FAFAF8',
+                  background: 'var(--bg-secondary)',
                   border: '2px solid var(--navy-deep)',
                   borderRadius: 20,
                   boxShadow: '6px 6px 0px var(--navy-deep)'
@@ -287,10 +287,10 @@ export default async function HomePage() {
         <div className="container" style={{ padding: '0 20px', maxWidth: 1240 }}>
           <div
             style={{
-              background: 'var(--navy-deep)',
-              border: '2px solid var(--navy-deep)',
+              background: 'var(--bg-tertiary)',
+              border: '2px solid var(--border-light)',
               borderRadius: 20,
-              boxShadow: '6px 6px 0px var(--navy-deep)',
+              boxShadow: '6px 6px 0px var(--border-medium)',
               padding: '64px',
               display: 'flex',
               alignItems: 'center',
@@ -317,14 +317,14 @@ export default async function HomePage() {
                 style={{
                   fontFamily: 'Playfair Display, serif',
                   fontSize: '2.5rem',
-                  color: 'white',
+                  color: 'var(--text-primary)',
                   marginBottom: 16}}
               >
                 Are you a University Admin?
               </h2>
               <p
                 style={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: 'var(--text-secondary)',
                   fontSize: '1.1rem',
                   lineHeight: 1.7,
                   marginBottom: 32,

@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 
 import { createClient } from '@/lib/supabase/server';
 
+import { ThemeProvider } from '@/components/ThemeProvider';
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -30,11 +32,13 @@ export default async function RootLayout({
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} ${instrument.variable} ${jetbrains.variable}`}>
-        <Navbar user={user} />
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Navbar user={user} />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

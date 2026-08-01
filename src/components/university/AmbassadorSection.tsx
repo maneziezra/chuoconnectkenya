@@ -83,7 +83,7 @@ export default function AmbassadorSection({ initialAmbassadors }: Props) {
                     <span style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', gap: 4 }}><Zap size={10} style={{ color: 'var(--gold-primary)' }} /> {amb.responseTime}</span>
                   )}
                   {sent === amb.id ? (
-                    <span style={{ fontSize: '0.8rem', color: '#16a34a', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}><Check size={14} /> Message sent!</span>
+                    <span style={{ fontSize: '0.8rem', color: 'var(--success-text)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}><Check size={14} /> Message sent!</span>
                   ) : (
                     <button
                       onClick={() => setSelectedAmbassador(selectedAmbassador?.id === amb.id ? null : amb)}
@@ -106,7 +106,7 @@ export default function AmbassadorSection({ initialAmbassadors }: Props) {
                     rows={3}
                     style={{
                       width: '100%', padding: '12px 14px', border: '1.5px solid var(--border-light)',
-                      borderRadius: 'var(--radius-md)', fontSize: '0.875rem', background: 'white',
+                      borderRadius: 'var(--radius-md)', fontSize: '0.875rem', background: 'var(--bg-primary)',
                       outline: 'none', resize: 'vertical' as const,
                     }}
                   />

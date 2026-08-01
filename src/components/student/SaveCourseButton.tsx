@@ -87,7 +87,7 @@ export default function SaveCourseButton({ courseId, isSavedInitial, user, profi
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               style={{ 
-                background: 'white', padding: 24, borderRadius: 20, 
+                background: 'var(--bg-primary)', padding: 24, borderRadius: 20, 
                 width: '100%', maxWidth: 400, position: 'relative', zIndex: 10,
                 boxShadow: '6px 6px 0px var(--navy-deep)', border: '2px solid var(--navy-deep)'
               }}

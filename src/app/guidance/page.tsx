@@ -51,7 +51,7 @@ export default function GuidancePage() {
     <>
       {/* Hero Section */}
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: '#FAFAF8', padding: '48px 40px', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 8, boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--navy-deep)', marginBottom: 16 }}>
@@ -112,7 +112,7 @@ export default function GuidancePage() {
             
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-                <div style={{ padding: 8, background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', borderRadius: '50%' }}>
+                <div style={{ padding: 8, background: 'rgba(16, 185, 129, 0.1)', color: 'var(--success-text)', borderRadius: '50%' }}>
                   <CheckCircle2 size={24} />
                 </div>
                 <h3 className="text-h3" style={{ color: 'var(--navy-deep)' }}>Our Solution</h3>

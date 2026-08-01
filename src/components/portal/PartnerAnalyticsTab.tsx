@@ -18,15 +18,15 @@ export default function PartnerAnalyticsTab() {
         Audience Analytics
       </h2>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
-        <div style={{ background: 'white', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
+        <div style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
           <div style={{ fontWeight: 700, color: 'var(--navy-deep)', marginBottom: 20 }}>Interest by KCSE Cluster Points</div>
           <div style={{ height: 260, width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={CHART_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E5E7EB" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#6B7280' }} />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--border-medium)" />
+                <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--text-secondary)' }} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: 'var(--text-secondary)' }} />
                 <Tooltip 
                   cursor={{ fill: 'rgba(26, 35, 56, 0.04)' }} 
                   contentStyle={{ borderRadius: 8, border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
@@ -40,12 +40,12 @@ export default function PartnerAnalyticsTab() {
           </div>
         </div>
 
-        <div style={{ background: 'white', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
+        <div style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
           <div style={{ fontWeight: 700, color: 'var(--navy-deep)', marginBottom: 20 }}>Visitor Breakdown</div>
           {[
             { label: 'Students (KCSE Leavers)', pct: 68, color: 'var(--navy-deep)' },
             { label: 'Parents / Guardians', pct: 22, color: 'var(--gold-primary)' },
-            { label: 'School Counsellors', pct: 10, color: '#10B981' },
+            { label: 'School Counsellors', pct: 10, color: 'var(--success-text)' },
           ].map(item => (
             <div key={item.label} style={{ marginBottom: 18 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>

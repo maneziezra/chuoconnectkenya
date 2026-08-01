@@ -127,7 +127,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
       <div style={{ display: 'grid', gridTemplateColumns: `180px repeat(${universities.length}, 1fr) ${universities.length < 3 ? '1fr' : ''}`, gap: 16, marginBottom: 32 }}>
         <div /> {/* Empty corner */}
         {universities.map(uni => (
-          <div key={uni.id} style={{ background: 'white', borderRadius: 'var(--radius-xl)', border: '1.5px solid var(--border-light)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
+          <div key={uni.id} style={{ background: 'var(--bg-primary)', borderRadius: 'var(--radius-xl)', border: '1.5px solid var(--border-light)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
             <img src={uni.image} alt={uni.name} style={{ width: '100%', height: 140, objectFit: 'cover' }} />
             <div style={{ padding: 16 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
@@ -159,7 +159,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
               style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--border-light)', fontSize: '0.8rem', outline: 'none' }}
             />
             {searchResults.length > 0 && (
-              <div style={{ width: '100%', marginTop: 8, background: 'white', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
+              <div style={{ width: '100%', marginTop: 8, background: 'var(--bg-primary)', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)', boxShadow: 'var(--shadow-md)', overflow: 'hidden' }}>
                 {searchResults.filter(r => !universities.find(u => u.id === r.id)).slice(0, 4).map(r => (
                   <button key={r.id} onClick={() => addUniversity(r)} style={{ width: '100%', textAlign: 'left', padding: '10px 14px', background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--text-primary)', borderBottom: '1px solid var(--border-light)' }}
                     onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-secondary)')}
@@ -174,7 +174,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
       </div>
 
       {/* Comparison Table */}
-      <div style={{ background: 'white', borderRadius: 'var(--radius-xl)', border: '1.5px solid var(--border-light)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
+      <div style={{ background: 'var(--bg-primary)', borderRadius: 'var(--radius-xl)', border: '1.5px solid var(--border-light)', overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
         {COMPARE_ROWS.map((row, i) => (
           <div key={row.key} style={{
             display: 'grid',

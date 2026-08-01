@@ -108,7 +108,7 @@ export default function Footer() {
         .footer-island {
           background-color: var(--footer-bg);
           border-radius: 20px;
-          border: 2px solid rgba(255,255,255,0.1);
+          border: 2px solid var(--border-light);
           margin: 20px;
           padding: 4rem 3rem 2rem;
         }

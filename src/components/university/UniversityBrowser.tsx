@@ -51,7 +51,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
         
         {/* Sidebar Filter */}
         <aside style={{
-          background: 'white', borderRadius: 'var(--radius-xl)', border: '1.5px solid var(--border-light)',
+          background: 'var(--bg-primary)', borderRadius: 'var(--radius-xl)', border: '1.5px solid var(--border-light)',
           boxShadow: 'var(--shadow-sm)', padding: 24, position: 'sticky', top: 'calc(var(--nav-height) + 16px)',
           overflow: 'hidden', opacity: sidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease',
         }}>
@@ -65,7 +65,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
           </div>
 
           <FilterSection title="County">
-            <select value={county} onChange={e => setCounty(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--border-light)', fontSize: '0.875rem', color: 'var(--text-primary)', background: 'white', cursor: 'pointer' }}>
+            <select value={county} onChange={e => setCounty(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--border-light)', fontSize: '0.875rem', color: 'var(--text-primary)', background: 'var(--bg-primary)', cursor: 'pointer' }}>
               {COUNTIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </FilterSection>
@@ -90,7 +90,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
                     background: facilities.includes(f) ? 'var(--navy-deep)' : 'white',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, cursor: 'pointer',
                   }} onClick={() => toggleFacility(f)}>
-                    {facilities.includes(f) && <Check size={11} style={{ color: 'white' }} />}
+                    {facilities.includes(f) && <Check size={11} style={{ color: 'var(--text-inverse)' }} />}
                   </div>
                   {f}
                 </label>
@@ -119,7 +119,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
                 style={{
                   width: '100%', padding: '10px 16px', borderRadius: 'var(--radius-full)',
                   border: '1.5px solid var(--border-light)', fontSize: '0.875rem',
-                  outline: 'none', background: 'white',
+                  outline: 'none', background: 'var(--bg-primary)',
                 }}
               />
             </div>
@@ -160,7 +160,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}
                   >
-                    {isInCompare ? <Check size={14} style={{ color: 'white' }} /> : <Scale size={14} style={{ color: 'var(--text-tertiary)' }} />}
+                    {isInCompare ? <Check size={14} style={{ color: 'var(--text-inverse)' }} /> : <Scale size={14} style={{ color: 'var(--text-tertiary)' }} />}
                   </button>
 
                   <Link href={`/universities/${uni.id}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -226,12 +226,12 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
           boxShadow: 'var(--shadow-xl)', zIndex: 100, border: '1px solid rgba(199,155,55,0.3)',
         }}>
           <Scale size={18} style={{ color: 'var(--gold-primary)' }} />
-          <span style={{ color: 'white', fontSize: '0.875rem' }}>
+          <span style={{ color: 'var(--text-inverse)', fontSize: '0.875rem' }}>
             <strong style={{ color: 'var(--gold-primary)' }}>{compareList.length}</strong> campus{compareList.length > 1 ? 'es' : ''} selected for comparison
           </span>
           {compareList.map(u => (
             <span key={u.id} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-full)', padding: '4px 12px' }}>
-              <span style={{ fontSize: '0.78rem', color: 'white' }}>{u.abbrev}</span>
+              <span style={{ fontSize: '0.78rem', color: 'var(--text-inverse)' }}>{u.abbrev}</span>
               <button onClick={() => toggleCompare(u)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.6)', display: 'flex', padding: 0 }}>
                 <X size={12} />
               </button>

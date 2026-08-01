@@ -80,7 +80,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
       {isEditingGrades ? (
         <div
           style={{
-            background: 'white',
+            background: 'var(--bg-primary)',
             border: '1px solid var(--border-light)',
             borderRadius: 'var(--radius-lg)',
             padding: 28,
@@ -204,7 +204,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
               <span style={{ color: 'var(--gold-primary)', fontSize: '2rem', fontWeight: 700, lineHeight: 1 }}>
                 {overallGrade}
               </span>
-              <span style={{ color: 'white', fontSize: '1rem', fontWeight: 500 }}>
+              <span style={{ color: 'var(--text-inverse)', fontSize: '1rem', fontWeight: 500 }}>
                 Mean Grade
               </span>
             </div>
@@ -215,7 +215,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
           </div>
           <button 
             className="btn btn-outline" 
-            style={{ color: 'white', borderColor: 'rgba(255,255,255,0.2)' }}
+            style={{ color: 'var(--text-inverse)', borderColor: 'rgba(255,255,255,0.2)' }}
             onClick={() => setIsEditingGrades(true)}
           >
             <Edit3 size={16} /> Edit Grades
@@ -246,7 +246,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
               <div
                 key={cluster}
                 style={{
-                  background: 'white',
+                  background: 'var(--bg-primary)',
                   border: '1px solid var(--border-light)',
                   borderRadius: 'var(--radius-lg)',
                   overflow: 'hidden',
@@ -262,7 +262,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
                     alignItems: 'center',
                   }}
                 >
-                  <span style={{ color: 'white', fontWeight: 600, fontSize: '0.9rem' }}>
+                  <span style={{ color: 'var(--text-inverse)', fontWeight: 600, fontSize: '0.9rem' }}>
                     {cluster}
                   </span>
                   <span

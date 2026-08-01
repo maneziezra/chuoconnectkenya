@@ -76,9 +76,9 @@ export default async function CampusProfilePage({ params }: Props) {
               <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
                 <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
                 <span className="badge badge-green">Rank #{uni.ranking}</span>
-                {uni.virtualTourUrl && <span className="badge" style={{ background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: 6 }}><Play size={12} /> Virtual Tour</span>}
+                {uni.virtualTourUrl && <span className="badge" style={{ background: 'rgba(255,255,255,0.15)', color: 'var(--text-inverse)', border: '1px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: 6 }}><Play size={12} /> Virtual Tour</span>}
               </div>
-              <h1 className="text-h1" style={{ color: 'white' }}>{uni.name}</h1>
+              <h1 className="text-h1" style={{ color: 'var(--text-inverse)' }}>{uni.name}</h1>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10, color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', flexWrap: 'wrap' }}>
                 <span><MapPin size={14} style={{ display: 'inline' }} /> {uni.county}</span>
                 <span><Calendar size={14} style={{ display: 'inline' }} /> Est. {uni.established}</span>
@@ -107,7 +107,7 @@ export default async function CampusProfilePage({ params }: Props) {
       </div>
 
       {/* Tab Navigation */}
-      <div style={{ background: 'white', borderBottom: '2px solid var(--border-light)', position: 'sticky', top: 'var(--nav-height)', zIndex: 40 }}>
+      <div style={{ background: 'var(--bg-primary)', borderBottom: '2px solid var(--border-light)', position: 'sticky', top: 'var(--nav-height)', zIndex: 40 }}>
         <div className="container">
           <nav style={{ display: 'flex', gap: 0 }}>
             {TAB_SECTIONS.map(tab => (
@@ -256,7 +256,7 @@ export default async function CampusProfilePage({ params }: Props) {
             {/* Right: Sidebar */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
               {/* Fee Card */}
-              <div className="card card-body" style={{ background: 'var(--navy-deep)', color: 'white' }}>
+              <div className="card card-body" style={{ background: 'var(--navy-deep)', color: 'var(--text-inverse)' }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--gold-primary)', marginBottom: 8 }}>Tuition Fees</div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', color: 'var(--gold-primary)' }}>{uni.fees}</div>
                 <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)', marginTop: 8 }}>Fees vary by programme. Contact admissions for exact figures.</p>

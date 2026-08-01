@@ -67,7 +67,7 @@ export default function GlobalSearch() {
           <div style={{
             position: 'fixed', top: '12vh', left: '50%', transform: 'translateX(-50%)',
             width: '100%', maxWidth: 580, zIndex: 1000,
-            background: 'white', borderRadius: 'var(--radius-xl)',
+            background: 'var(--bg-primary)', borderRadius: 'var(--radius-xl)',
             boxShadow: 'var(--shadow-xl)', overflow: 'hidden',
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 20px', borderBottom: '1px solid var(--border-light)' }}>
@@ -109,8 +109,8 @@ export default function GlobalSearch() {
                       <span style={{
                         padding: '3px 8px', borderRadius: 'var(--radius-sm)', fontSize: '0.7rem',
                         fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
-                        background: r.type === 'university' ? 'var(--navy-light)' : r.type === 'course' ? 'var(--gold-glow)' : '#F0FDF4',
-                        color: r.type === 'university' ? 'var(--navy-deep)' : r.type === 'course' ? 'var(--gold-primary)' : '#16a34a',
+                        background: r.type === 'university' ? 'var(--navy-light)' : r.type === 'course' ? 'var(--gold-glow)' : 'var(--bg-secondary)',
+                        color: r.type === 'university' ? 'var(--navy-deep)' : r.type === 'course' ? 'var(--gold-primary)' : 'var(--text-secondary)',
                         flexShrink: 0,
                       }}>
                         {r.type}

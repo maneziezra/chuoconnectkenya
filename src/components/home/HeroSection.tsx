@@ -54,18 +54,19 @@ const imageReveal: Variants = {
 
 export default function HeroSection() {
   return (
-    <section style={{ padding: '0 20px 20px', background: '#FFFFFF' }}>
+    <section style={{ padding: '0 20px 20px', background: 'var(--bg-primary)' }}>
       <div
+        className="hero-container"
         style={{
           position: 'relative',
           minHeight: 'calc(100vh - 84px)',
           display: 'flex',
           alignItems: 'center',
-          overflow: 'clip',
+          overflow: 'hidden',
           borderRadius: 20,
           border: '2px solid var(--navy-deep)',
           boxShadow: '6px 6px 0px var(--navy-deep)',
-          background: '#FAFAF8',
+          background: 'var(--bg-secondary)',
         }}
       >
         {/* Dot grid texture */}
@@ -113,7 +114,7 @@ export default function HeroSection() {
                   padding: '5px 14px 5px 6px',
                   borderRadius: 10,
                   border: '2px solid var(--navy-deep)',
-                  background: '#FFF',
+                  background: 'var(--bg-primary)',
                   boxShadow: '2px 2px 0px var(--navy-deep)',
                   marginBottom: 28,
                 }}
@@ -292,6 +293,7 @@ export default function HeroSection() {
           >
             {/* Main large image */}
             <div
+              className="hero-main-img"
               style={{
                 position: 'absolute',
                 top: 0,
@@ -311,13 +313,14 @@ export default function HeroSection() {
                 fill
                 priority
                 fetchPriority="high"
-                sizes="(max-width: 768px) 100vw, 40vw"
+                sizes="(max-width: 900px) 100vw, 40vw"
                 style={{ objectFit: 'cover' }}
               />
             </div>
 
             {/* Stacked side images */}
             <motion.div
+              className="hero-collage-item"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -346,7 +349,7 @@ export default function HeroSection() {
                 padding: '8px 10px',
                 background: 'linear-gradient(transparent, rgba(26,35,56,0.85))',
               }}>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#fff', letterSpacing: '0.03em' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-inverse)', letterSpacing: '0.03em' }}>
                   Strathmore
                 </span>
               </div>
@@ -354,6 +357,7 @@ export default function HeroSection() {
 
             {/* Bottom wide image */}
             <motion.div
+              className="hero-collage-item"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
@@ -382,7 +386,7 @@ export default function HeroSection() {
                 padding: '8px 12px',
                 background: 'linear-gradient(transparent, rgba(26,35,56,0.85))',
               }}>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#fff', letterSpacing: '0.03em' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-inverse)', letterSpacing: '0.03em' }}>
                   University of Nairobi
                 </span>
               </div>
@@ -390,6 +394,7 @@ export default function HeroSection() {
 
             {/* Floating review card */}
             <motion.div
+              className="hero-collage-item"
               initial={{ opacity: 0, scale: 0.8, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
@@ -401,7 +406,7 @@ export default function HeroSection() {
                 position: 'absolute',
                 bottom: '35%',
                 right: '-5%',
-                background: '#fff',
+                background: 'var(--bg-primary)',
                 border: '2px solid var(--navy-deep)',
                 boxShadow: '4px 4px 0px var(--navy-deep)',
                 borderRadius: 14,
@@ -421,6 +426,7 @@ export default function HeroSection() {
 
             {/* Location pin */}
             <motion.div
+              className="hero-collage-item"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
@@ -484,18 +490,32 @@ export default function HeroSection() {
 
       <style>{`
         @media (max-width: 900px) {
+          .hero-container {
+            align-items: flex-start !important;
+            height: auto !important;
+          }
           .hero-grid {
             grid-template-columns: 1fr !important;
             padding: 40px 16px 32px !important;
             gap: 32px !important;
           }
           .hero-image-grid {
-            min-height: 320px !important;
+            min-height: 280px !important;
+            height: 280px !important;
+          }
+          .hero-collage-item {
+            display: none !important;
+          }
+          .hero-main-img {
+            right: 0 !important;
+            bottom: 0 !important;
+            box-shadow: 2px 2px 0px var(--navy-deep) !important;
           }
         }
         @media (max-width: 600px) {
           .hero-image-grid {
-            min-height: 260px !important;
+            min-height: 240px !important;
+            height: 240px !important;
           }
         }
       `}</style>

@@ -88,7 +88,7 @@ export default function ReviewSection({ universityId, initialReviews }: Props) {
               value={form.authorName}
               onChange={e => setForm(f => ({ ...f, authorName: e.target.value }))}
               placeholder="e.g. John Kamau"
-              style={{ width: '100%', padding: '10px 14px', border: '1.5px solid var(--border-light)', borderRadius: 'var(--radius-md)', fontSize: '0.9rem', background: 'white', outline: 'none' }}
+              style={{ width: '100%', padding: '10px 14px', border: '1.5px solid var(--border-light)', borderRadius: 'var(--radius-md)', fontSize: '0.9rem', background: 'var(--bg-primary)', outline: 'none' }}
             />
           </div>
 
@@ -116,7 +116,7 @@ export default function ReviewSection({ universityId, initialReviews }: Props) {
               onChange={e => setForm(f => ({ ...f, body: e.target.value }))}
               placeholder="Share your experience at this campus — what you love, challenges you faced, tips for new students…"
               rows={5}
-              style={{ width: '100%', padding: '12px 14px', border: '1.5px solid var(--border-light)', borderRadius: 'var(--radius-md)', fontSize: '0.9rem', background: 'white', outline: 'none', resize: 'vertical' as const }}
+              style={{ width: '100%', padding: '12px 14px', border: '1.5px solid var(--border-light)', borderRadius: 'var(--radius-md)', fontSize: '0.9rem', background: 'var(--bg-primary)', outline: 'none', resize: 'vertical' as const }}
             />
           </div>
 
@@ -135,7 +135,7 @@ export default function ReviewSection({ universityId, initialReviews }: Props) {
                 <div>
                   <div style={{ fontWeight: 600, color: 'var(--navy-deep)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: 8 }}>
                     {r.authorName || 'Anonymous'}
-                    {r.verified && <span style={{ fontSize: '0.7rem', background: '#D1FAE5', color: '#065F46', padding: '2px 8px', borderRadius: 'var(--radius-full)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 2 }}><Check size={10} /> Verified</span>}
+                    {r.verified && <span style={{ fontSize: '0.7rem', background: 'var(--success-bg)', color: 'var(--success-text)', padding: '2px 8px', borderRadius: 'var(--radius-full)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 2 }}><Check size={10} /> Verified</span>}
                   </div>
                   <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: 2 }}>
                     {new Date(r.createdAt).toLocaleDateString('en-KE', { year: 'numeric', month: 'long' })}

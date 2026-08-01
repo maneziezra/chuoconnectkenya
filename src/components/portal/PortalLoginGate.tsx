@@ -77,7 +77,7 @@ export default function PortalLoginGate() {
     <section
       style={{
         minHeight: 'calc(100vh - var(--nav-height))',
-        background: 'var(--navy-deep)',
+        background: 'var(--bg-primary)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -91,7 +91,7 @@ export default function PortalLoginGate() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse at 50% 40%, rgba(199,155,55,0.12) 0%, transparent 65%)',
+          background: 'radial-gradient(ellipse at 50% 40%, var(--gold-glow) 0%, transparent 65%)',
           pointerEvents: 'none',
         }}
       />
@@ -103,8 +103,8 @@ export default function PortalLoginGate() {
             style={{
               width: 64,
               height: 64,
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(199,155,55,0.3)',
+              background: 'var(--bg-secondary)',
+              border: '1px solid var(--border-medium)',
               borderRadius: 16,
               display: 'flex',
               alignItems: 'center',
@@ -112,20 +112,20 @@ export default function PortalLoginGate() {
               margin: '0 auto 20px',
             }}
           >
-            <GraduationCap size={28} color="var(--gold-primary)" />
+            <GraduationCap size={28} color="var(--accent-gold)" />
           </div>
           <h1
             style={{
               fontFamily: 'Playfair Display, serif',
               fontSize: '1.8rem',
-              color: 'white',
+              color: 'var(--text-primary)',
               fontWeight: 700,
               marginBottom: 10,
             }}
           >
             University Partner Portal
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: '0.95rem' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
             Access your institution's analytics, leads, and profile management dashboard.
           </p>
         </div>
@@ -133,8 +133,8 @@ export default function PortalLoginGate() {
         {/* Login Card */}
         <div
           style={{
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            background: 'var(--bg-secondary)',
+            border: '1px solid var(--border-light)',
             borderRadius: 20,
             padding: 36,
             backdropFilter: 'blur(12px)',
@@ -142,9 +142,9 @@ export default function PortalLoginGate() {
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div className="form-group">
-              <label className="form-label" style={{ color: 'rgba(255,255,255,0.75)' }}>Work Email or Institution Code</label>
+              <label className="form-label" style={{ color: 'var(--text-secondary)' }}>Work Email or Institution Code</label>
               <div style={{ position: 'relative' }}>
-                <Mail size={18} color="rgba(255,255,255,0.4)" style={{ position: 'absolute', left: 16, top: 15 }} />
+                <Mail size={18} color="var(--text-tertiary)" style={{ position: 'absolute', left: 16, top: 15 }} />
                 <input
                   className="form-input"
                   type="text"
@@ -153,9 +153,6 @@ export default function PortalLoginGate() {
                   onKeyDown={e => e.key === 'Enter' && handleLogin()}
                   placeholder="admin@strathmore.edu"
                   style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: 'white',
                     paddingLeft: 46,
                   }}
                 />
@@ -163,9 +160,9 @@ export default function PortalLoginGate() {
             </div>
 
             <div className="form-group">
-              <label className="form-label" style={{ color: 'rgba(255,255,255,0.75)' }}>Password</label>
+              <label className="form-label" style={{ color: 'var(--text-secondary)' }}>Password</label>
               <div style={{ position: 'relative' }}>
-                <KeyRound size={18} color="rgba(255,255,255,0.4)" style={{ position: 'absolute', left: 16, top: 15 }} />
+                <KeyRound size={18} color="var(--text-tertiary)" style={{ position: 'absolute', left: 16, top: 15 }} />
                 <input
                   className="form-input"
                   type="password"
@@ -174,15 +171,12 @@ export default function PortalLoginGate() {
                   onKeyDown={e => e.key === 'Enter' && handleLogin()}
                   placeholder="••••••••"
                   style={{
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    color: 'white',
                     paddingLeft: 46,
                   }}
                 />
               </div>
               {error && (
-                <p style={{ fontSize: '0.8rem', color: '#FCA5A5', marginTop: 8 }}>{error}</p>
+                <p style={{ fontSize: '0.8rem', color: 'var(--danger-text)', marginTop: 8 }}>{error}</p>
               )}
             </div>
 
@@ -202,20 +196,20 @@ export default function PortalLoginGate() {
             style={{
               marginTop: 24,
               fontSize: '0.78rem',
-              color: 'rgba(255,255,255,0.35)',
+              color: 'var(--text-tertiary)',
               textAlign: 'center',
               lineHeight: 1.5,
             }}
           >
             Available demo credentials:<br/>
-            <span style={{ fontFamily: 'JetBrains Mono, monospace', color: 'rgba(255,255,255,0.55)' }}>Email: UON | Pass: demo</span>
+            <span style={{ fontFamily: 'var(--font-jetbrains), monospace', color: 'var(--text-secondary)', fontWeight: 600 }}>Email: UON | Pass: demo</span>
           </p>
         </div>
 
         {/* Bottom note */}
-        <p style={{ textAlign: 'center', marginTop: 24, fontSize: '0.85rem', color: 'rgba(255,255,255,0.35)' }}>
+        <p style={{ textAlign: 'center', marginTop: 24, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
           Not yet a partner?{' '}
-          <a href="mailto:partnerships@chuoconnect.co.ke" style={{ color: 'var(--gold-primary)', fontWeight: 600 }}>
+          <a href="mailto:partnerships@chuoconnect.co.ke" style={{ color: 'var(--accent-gold)', fontWeight: 600 }}>
             Contact our team
           </a>
         </p>

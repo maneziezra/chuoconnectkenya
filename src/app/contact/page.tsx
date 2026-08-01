@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <div style={{ padding: '40px 20px', background: '#FAFAF8' }}>
+      <div style={{ padding: '40px 20px', background: 'var(--bg-secondary)' }}>
         <div
           style={{
-            background: '#FFFFFF',
+            background: 'var(--text-inverse)',
             border: '2px solid var(--navy-deep)',
             borderRadius: 20,
             boxShadow: '6px 6px 0px var(--navy-deep)',
@@ -42,7 +42,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <section className="section" style={{ background: '#FAFAF8' }}>
+      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container" style={{ maxWidth: 1000 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 48 }}>
             {/* Contact Info */}
@@ -87,7 +87,7 @@ export default function ContactPage() {
               <div
                 style={{
                   padding: 32,
-                  background: '#FFFFFF',
+                  background: 'var(--text-inverse)',
                   borderRadius: 16,
                   border: '2px solid var(--navy-deep)',
                   boxShadow: '4px 4px 0px var(--navy-deep)'
@@ -104,7 +104,7 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div
               style={{
-                background: '#FFFFFF',
+                background: 'var(--text-inverse)',
                 borderRadius: 20,
                 padding: 40,
                 border: '2px solid var(--navy-deep)',
@@ -125,7 +125,7 @@ export default function ContactPage() {
                         borderRadius: 10,
                         fontSize: '1rem',
                         outline: 'none',
-                        background: '#FAFAF8'
+                        background: 'var(--bg-secondary)'
                       }}
                     />
                   </div>
@@ -140,7 +140,7 @@ export default function ContactPage() {
                         borderRadius: 10,
                         fontSize: '1rem',
                         outline: 'none',
-                        background: '#FAFAF8'
+                        background: 'var(--bg-secondary)'
                       }}
                     />
                   </div>
@@ -157,7 +157,7 @@ export default function ContactPage() {
                       borderRadius: 10,
                       fontSize: '1rem',
                       outline: 'none',
-                      background: '#FAFAF8'
+                      background: 'var(--bg-secondary)'
                     }}
                   />
                 </div>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                       borderRadius: 10,
                       fontSize: '1rem',
                       outline: 'none',
-                      background: '#FAFAF8',
+                      background: 'var(--bg-secondary)',
                       cursor: 'pointer'
                     }}
                   >
@@ -197,7 +197,7 @@ export default function ContactPage() {
                       fontSize: '1rem',
                       outline: 'none',
                       resize: 'vertical' as const,
-                      background: '#FAFAF8'
+                      background: 'var(--bg-secondary)'
                     }}
                   />
                 </div>

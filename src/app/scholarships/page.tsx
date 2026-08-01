@@ -15,8 +15,8 @@ const CATEGORY_LABELS: Record<string, string> = {
 const CATEGORY_COLORS: Record<string, { bg: string; color: string }> = {
   government: { bg: 'var(--navy-light)', color: 'var(--navy-deep)' },
   private: { bg: 'var(--gold-glow)', color: 'var(--gold-primary)' },
-  institutional: { bg: '#D1FAE5', color: '#065F46' },
-  international: { bg: '#FEF3C7', color: '#92400E' },
+  institutional: { bg: 'var(--success-bg)', color: 'var(--success-text)' },
+  international: { bg: 'var(--warning-bg)', color: 'var(--warning-text)' },
 };
 
 interface Props {
@@ -61,7 +61,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           border: '2px solid var(--navy-deep)',
           borderRadius: 20,
           boxShadow: '4px 4px 0px var(--navy-deep)',
-          background: '#FAFAF8',
+          background: 'var(--bg-secondary)',
           padding: '48px 40px',
           overflow: 'hidden'
         }}>
@@ -99,7 +99,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                     padding: '6px 16px', borderRadius: 8,
                     border: '2px solid var(--navy-deep)', fontSize: '0.85rem', fontWeight: 600,
                     textDecoration: 'none', transition: 'all 0.2s',
-                    background: isActive ? 'var(--gold-glow)' : '#FAFAF8',
+                    background: isActive ? 'var(--gold-glow)' : 'var(--bg-secondary)',
                     color: 'var(--navy-deep)',
                     boxShadow: isActive ? '2px 2px 0px var(--navy-deep)' : 'none',
                     transform: isActive ? 'translate(-2px, -2px)' : 'none',
@@ -153,8 +153,8 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           )}
 
           {isError ? (
-            <div style={{ padding: '60px 20px', textAlign: 'center', background: '#FEE2E2', borderRadius: 'var(--radius-lg)' }}>
-              <p style={{ color: '#991B1B' }}>Failed to load scholarships. Please try again later.</p>
+            <div style={{ padding: '60px 20px', textAlign: 'center', background: 'var(--danger-bg)', borderRadius: 'var(--radius-lg)' }}>
+              <p style={{ color: 'var(--danger-text)' }}>Failed to load scholarships. Please try again later.</p>
             </div>
           ) : scholarships.length === 0 ? (
             <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
@@ -200,7 +200,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           )}
 
           {/* CTA */}
-          <div style={{ marginTop: 60, padding: '40px', background: '#FAFAF8', borderRadius: 16, border: '2px solid var(--navy-deep)', boxShadow: '6px 6px 0px var(--navy-deep)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ marginTop: 60, padding: '40px', background: 'var(--bg-secondary)', borderRadius: 16, border: '2px solid var(--navy-deep)', boxShadow: '6px 6px 0px var(--navy-deep)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
             <div style={{
               backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
               backgroundSize: '28px 28px',

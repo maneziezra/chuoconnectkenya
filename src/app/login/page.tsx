@@ -54,9 +54,9 @@ export default function LoginPage() {
           <p style={{ color: 'var(--text-secondary)', marginTop: 8, fontSize: '0.95rem' }}>Log in to your account</p>
         </div>
 
-        <div style={{ background: 'white', borderRadius: 20, border: '2px solid var(--navy-deep)', padding: 36, boxShadow: '6px 6px 0px var(--navy-deep)' }}>
+        <div style={{ background: 'var(--bg-primary)', borderRadius: 20, border: '2px solid var(--navy-deep)', padding: 36, boxShadow: '6px 6px 0px var(--navy-deep)' }}>
           {error && (
-            <div style={{ padding: 12, background: '#fee2e2', color: '#b91c1c', borderRadius: 8, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.9rem' }}>
+            <div style={{ padding: 12, background: 'var(--danger-bg)', color: 'var(--danger-text)', borderRadius: 8, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.9rem' }}>
               <AlertCircle size={18} />
               {error}
             </div>

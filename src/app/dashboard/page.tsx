@@ -62,12 +62,12 @@ export default async function DashboardPage() {
     <>
       {/* Hero Header */}
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: '#FAFAF8', padding: '48px 40px', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
               {user ? (
-                <div style={{ display: 'flex', alignItems: 'center', gap: 24, width: '100%', background: 'white', padding: 24, borderRadius: 20, border: '2px solid var(--navy-deep)', boxShadow: '4px 4px 0px var(--navy-deep)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 24, width: '100%', background: 'var(--bg-primary)', padding: 24, borderRadius: 20, border: '2px solid var(--navy-deep)', boxShadow: '4px 4px 0px var(--navy-deep)' }}>
                   <div style={{ width: 88, height: 88, borderRadius: 10, background: 'var(--gold-glow)', overflow: 'hidden', flexShrink: 0, position: 'relative', border: '2px solid var(--navy-deep)' }}>
                     {profile?.avatar_url ? (
                       <Image src={profile.avatar_url} alt="Avatar" fill style={{ objectFit: 'cover' }} unoptimized />
@@ -284,7 +284,7 @@ export default async function DashboardPage() {
                     <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                       <div style={{ height: 160, position: 'relative' }}>
                         <Image src="/images/housing/qwetu-hurlingham.jpg" alt="Qwetu Hurlingham" fill style={{ objectFit: 'cover' }} />
-                        <div style={{ position: 'absolute', top: 12, right: 12, background: 'var(--gold-primary)', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>
+                        <div style={{ position: 'absolute', top: 12, right: 12, background: 'var(--gold-primary)', color: 'var(--text-inverse)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>
                           98% MATCH
                         </div>
                       </div>
@@ -301,7 +301,7 @@ export default async function DashboardPage() {
                     <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
                       <div style={{ height: 160, position: 'relative' }}>
                         <Image src="/images/housing/qejani-karen.jpg" alt="Qejani Karen" fill style={{ objectFit: 'cover' }} />
-                        <div style={{ position: 'absolute', top: 12, right: 12, background: 'var(--gold-primary)', color: 'white', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>
+                        <div style={{ position: 'absolute', top: 12, right: 12, background: 'var(--gold-primary)', color: 'var(--text-inverse)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>
                           94% MATCH
                         </div>
                       </div>
@@ -324,7 +324,7 @@ export default async function DashboardPage() {
               {/* Info card */}
               <div
                 style={{
-                  background: 'white',
+                  background: 'var(--bg-primary)',
                   border: '2px solid var(--navy-deep)',
                   boxShadow: '4px 4px 0px var(--navy-deep)',
                   padding: 24,
@@ -403,7 +403,7 @@ export default async function DashboardPage() {
               {/* Guidance Cards */}
               <div
                 style={{
-                  background: 'white',
+                  background: 'var(--bg-primary)',
                   border: '2px solid var(--navy-deep)',
                   borderRadius: 20,
                   boxShadow: '4px 4px 0px var(--navy-deep)',

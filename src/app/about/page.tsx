@@ -11,10 +11,10 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <div style={{ padding: '40px 20px', background: '#FAFAF8' }}>
+      <div style={{ padding: '40px 20px', background: 'var(--bg-secondary)' }}>
         <div
           style={{
-            background: '#FFFFFF',
+            background: 'var(--text-inverse)',
             border: '2px solid var(--navy-deep)',
             borderRadius: 20,
             boxShadow: '6px 6px 0px var(--navy-deep)',
@@ -66,12 +66,12 @@ export default function AboutPage() {
       </div>
 
       {/* Problem & Solution */}
-      <section className="section" style={{ background: '#FAFAF8' }}>
+      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 48, alignItems: 'start' }}>
             <div
               style={{
-                background: '#FFFFFF',
+                background: 'var(--text-inverse)',
                 border: '2px solid var(--navy-deep)',
                 borderRadius: 20,
                 boxShadow: '6px 6px 0px var(--navy-deep)',
@@ -104,7 +104,7 @@ export default function AboutPage() {
             
             <div
               style={{
-                background: '#FAFAF8',
+                background: 'var(--bg-secondary)',
                 border: '2px solid var(--navy-deep)',
                 borderRadius: 20,
                 boxShadow: '6px 6px 0px var(--navy-deep)',
@@ -152,12 +152,12 @@ export default function AboutPage() {
       </section>
 
       {/* Vision & Mission */}
-      <section style={{ background: '#FFFFFF', padding: '80px 0' }}>
+      <section style={{ background: 'var(--text-inverse)', padding: '80px 0' }}>
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 40 }}>
             <div
               style={{
-                background: '#FAFAF8',
+                background: 'var(--bg-secondary)',
                 borderRadius: 20,
                 padding: 40,
                 border: '2px solid var(--navy-deep)',
@@ -187,7 +187,7 @@ export default function AboutPage() {
             
             <div
               style={{
-                background: '#FAFAF8',
+                background: 'var(--bg-secondary)',
                 borderRadius: 20,
                 padding: 40,
                 border: '2px solid var(--navy-deep)',
@@ -219,7 +219,7 @@ export default function AboutPage() {
       </section>
 
       {/* Who We Serve */}
-      <section className="section" style={{ background: '#FAFAF8' }}>
+      <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2rem', color: 'var(--navy-deep)', marginBottom: 12 }}>Who We Serve</h2>
@@ -261,7 +261,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section style={{ padding: '80px 20px', background: '#FFFFFF' }}>
+      <section style={{ padding: '80px 20px', background: 'var(--text-inverse)' }}>
         <div
           style={{
             background: 'var(--navy-deep)',
@@ -274,7 +274,7 @@ export default function AboutPage() {
             margin: '0 auto'
           }}
         >
-          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2.5rem', color: 'white', marginBottom: 16 }}>
+          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2.5rem', color: 'var(--text-inverse)', marginBottom: 16 }}>
             Start Your Campus Journey Today
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: 32, maxWidth: 480, margin: '0 auto 32px', fontSize: '1.1rem' }}>
@@ -282,7 +282,7 @@ export default function AboutPage() {
           </p>
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/universities" className="btn btn-gold">Explore Campuses</Link>
-            <Link href="/signup" className="btn btn-outline" style={{ background: 'white' }}>Create Account</Link>
+            <Link href="/signup" className="btn btn-outline" style={{ background: 'var(--bg-primary)' }}>Create Account</Link>
           </div>
         </div>
       </section>
