@@ -49,13 +49,17 @@
   --shadow-md:  0 4px 16px rgba(26, 35, 56, 0.08);
   --shadow-lg:  0 8px 32px rgba(26, 35, 56, 0.12);
   --shadow-xl:  0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-neo: 4px 4px 0px var(--accent-main);
-  --shadow-neo-hover: 6px 6px 0px var(--accent-main);
-  --shadow-neo-active: 2px 2px 0px var(--accent-main);
+  --shadow-neo: var(--shadow-sm);
+  --shadow-neo-hover: var(--shadow-md);
+  --shadow-neo-active: var(--shadow-sm);
   
-  --shadow-neo-gold: 4px 4px 0px var(--accent-gold);
-  --shadow-neo-gold-hover: 6px 6px 0px var(--accent-gold);
-  --shadow-neo-gold-active: 2px 2px 0px var(--accent-gold);
+  --shadow-neo-gold: var(--shadow-sm);
+  --shadow-neo-gold-hover: var(--shadow-md);
+  --shadow-neo-gold-active: var(--shadow-sm);
+
+  /* Special Contrast Variables */
+  --gold-contrast-text: #0F172A;
+  --navy-contrast-text: #FFFFFF;
 
   /* Radii */
   --radius-sm:   6px;
@@ -111,13 +115,17 @@
   --shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.6);
   --shadow-xl:  0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
   
-  --shadow-neo: 4px 4px 0px var(--accent-main);
-  --shadow-neo-hover: 6px 6px 0px var(--accent-main);
-  --shadow-neo-active: 2px 2px 0px var(--accent-main);
+  --shadow-neo: var(--shadow-sm);
+  --shadow-neo-hover: var(--shadow-md);
+  --shadow-neo-active: var(--shadow-sm);
   
-  --shadow-neo-gold: 4px 4px 0px var(--accent-gold);
-  --shadow-neo-gold-hover: 6px 6px 0px var(--accent-gold);
-  --shadow-neo-gold-active: 2px 2px 0px var(--accent-gold);
+  --shadow-neo-gold: var(--shadow-sm);
+  --shadow-neo-gold-hover: var(--shadow-md);
+  --shadow-neo-gold-active: var(--shadow-sm);
+
+  /* Special Contrast Variables */
+  --gold-contrast-text: #0F172A;
+  --navy-contrast-text: #0F172A; /* Dark text on light blue bg in dark mode */
 }
 
 /* ============================================
@@ -258,12 +266,12 @@ img {
 
 .btn-gold {
   background: var(--accent-gold);
-  color: var(--text-inverse); /* Gold bg always needs dark text */
+  color: var(--gold-contrast-text);
   border-color: var(--accent-gold);
   box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 .dark .btn-gold {
-  color: #0F172A; /* Ensure dark text on bright gold in dark mode */
+  color: var(--gold-contrast-text);
 }
 .btn-gold:hover {
   filter: brightness(1.1);
@@ -276,13 +284,13 @@ img {
 
 .btn-navy {
   background: var(--brand-navy);
-  color: #FFFFFF;
+  color: var(--navy-contrast-text);
   border-color: var(--brand-navy);
   box-shadow: 0 4px 14px rgba(0,0,0,0.1);
 }
 .dark .btn-navy {
   background: #E2E8F0;
-  color: #0F172A;
+  color: var(--navy-contrast-text);
   border-color: #E2E8F0;
 }
 .btn-navy:hover {
@@ -293,15 +301,15 @@ img {
 .btn-outline {
   background: var(--bg-primary);
   color: var(--text-primary);
-  box-shadow: var(--shadow-neo);
+  box-shadow: var(--shadow-sm);
 }
 .btn-outline:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--shadow-neo-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 .btn-outline:active {
-  transform: translate(2px, 2px);
-  box-shadow: var(--shadow-neo-active);
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-ghost {
@@ -340,14 +348,15 @@ img {
 
 .card-neo {
   background: var(--bg-primary);
-  border: 2px solid var(--accent-main);
+  border: 2px solid var(--border-medium);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-neo);
+  box-shadow: var(--shadow-sm);
   transition: var(--transition);
 }
 .card-neo:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--shadow-neo-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-main);
 }
 
 /* ============================================
@@ -370,6 +379,18 @@ img {
   background: var(--gold-glow);
   color: var(--accent-gold);
   border-color: rgba(199, 155, 55, 0.3);
+}
+
+.badge-navy {
+  background: var(--bg-secondary);
+  color: var(--accent-main);
+  border-color: var(--border-medium);
+}
+
+.badge-green {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: rgba(21, 128, 61, 0.3);
 }
 
 /* ============================================

@@ -1,6 +1,7 @@
 <div align="center">
+  <img src="src/app/icon.svg" alt="Chuo Connect Favicon" width="64" height="64" style="margin-bottom: 20px;" />
+  <br>
   <img src="public/logos/Chuo_Connect_Logo_Primary.svg" alt="Chuo Connect Logo" width="180"/>
-  
   <br><br>
 
   <a href="https://chuoconnectkenya.vercel.app/">

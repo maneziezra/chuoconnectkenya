@@ -63,9 +63,9 @@ export default function HeroSection() {
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',
-          borderRadius: 20,
-          border: '2px solid var(--border-medium)',
-          boxShadow: 'var(--shadow-neo)',
+          borderRadius: 24,
+          border: '1px solid var(--border-light)',
+          boxShadow: 'var(--shadow-xl)',
           background: 'var(--bg-secondary)',
         }}
       >
@@ -112,17 +112,17 @@ export default function HeroSection() {
                   alignItems: 'center',
                   gap: 6,
                   padding: '5px 14px 5px 6px',
-                  borderRadius: 10,
-                  border: '2px solid var(--border-medium)',
+                  borderRadius: 12,
+                  border: '1px solid var(--border-light)',
                   background: 'var(--bg-primary)',
-                  boxShadow: 'var(--shadow-neo)',
+                  boxShadow: 'var(--shadow-md)',
                   marginBottom: 28,
                 }}
               >
                 <span
                   style={{
                     background: 'var(--gold-primary)',
-                    color: 'var(--text-primary)',
+                    color: 'var(--gold-contrast-text)',
                     fontWeight: 800,
                     fontSize: '0.65rem',
                     letterSpacing: '0.06em',
@@ -254,17 +254,18 @@ export default function HeroSection() {
                 >
                   <div
                     style={{
-                      width: 36,
-                      height: 36,
-                      borderRadius: 10,
-                      border: '2px solid var(--border-medium)',
+                      width: 40,
+                      height: 40,
+                      borderRadius: 12,
+                      border: '1px solid var(--border-light)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      background: 'var(--gold-glow)',
+                      background: 'var(--bg-primary)',
+                      boxShadow: 'var(--shadow-sm)',
                     }}
                   >
-                    <item.icon size={16} style={{ color: 'var(--text-primary)' }} />
+                    <item.icon size={18} style={{ color: 'var(--accent-gold)' }} />
                   </div>
                   <div>
                     <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
@@ -301,8 +302,8 @@ export default function HeroSection() {
                 right: '35%',
                 bottom: '18%',
                 borderRadius: 16,
-                border: '2px solid var(--border-medium)',
-                boxShadow: 'var(--shadow-neo)',
+                border: '1px solid var(--border-light)',
+                boxShadow: 'var(--shadow-lg)',
                 overflow: 'hidden',
                 zIndex: 2,
               }}
@@ -331,8 +332,8 @@ export default function HeroSection() {
                 width: '38%',
                 aspectRatio: '3/4',
                 borderRadius: 14,
-                border: '2px solid var(--border-medium)',
-                boxShadow: 'var(--shadow-neo)',
+                border: '1px solid var(--border-light)',
+                boxShadow: 'var(--shadow-md)',
                 overflow: 'hidden',
                 zIndex: 3,
               }}
@@ -368,8 +369,8 @@ export default function HeroSection() {
                 right: '10%',
                 height: '30%',
                 borderRadius: 14,
-                border: '2px solid var(--border-medium)',
-                boxShadow: 'var(--shadow-neo)',
+                border: '1px solid var(--border-light)',
+                boxShadow: 'var(--shadow-md)',
                 overflow: 'hidden',
                 zIndex: 4,
               }}
@@ -406,9 +407,10 @@ export default function HeroSection() {
                 position: 'absolute',
                 bottom: '35%',
                 right: '-5%',
-                background: 'var(--bg-primary)',
-                border: '2px solid var(--border-medium)',
-                boxShadow: 'var(--shadow-neo)',
+                background: 'color-mix(in srgb, var(--bg-primary) 95%, transparent)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid var(--border-light)',
+                boxShadow: 'var(--shadow-lg)',
                 borderRadius: 14,
                 padding: '14px 18px',
                 zIndex: 10,
