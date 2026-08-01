@@ -73,9 +73,9 @@ export default async function HomePage() {
         <div style={{ padding: '0 20px' }}>
           <div
             style={{
-              border: '2px solid var(--navy-deep)',
+              border: '2px solid var(--border-medium)',
               borderRadius: 20,
-              boxShadow: '6px 6px 0px var(--navy-deep)',
+              boxShadow: 'var(--shadow-neo)',
               background: 'var(--bg-secondary)',
               padding: '64px 20px',
               maxWidth: 1200,
@@ -119,10 +119,10 @@ export default async function HomePage() {
                         style={{
                           width: 48,
                           height: 48,
-                          border: '2px solid var(--navy-deep)',
+                          border: '2px solid var(--border-medium)',
                           borderRadius: 10,
                           background: 'var(--gold-glow)',
-                          color: 'var(--navy-deep)',
+                          color: 'var(--text-primary)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -135,7 +135,7 @@ export default async function HomePage() {
                         style={{
                           fontFamily: 'Playfair Display, serif',
                           fontSize: '1.25rem',
-                          color: 'var(--navy-deep)',
+                          color: 'var(--text-primary)',
                           marginBottom: 12}}
                       >
                         {feat.title}
@@ -206,15 +206,15 @@ export default async function HomePage() {
                           right: 16,
                           background: 'var(--bg-primary)',
                           padding: '4px 10px',
-                          border: '2px solid var(--navy-deep)',
+                          border: '2px solid var(--border-medium)',
                           borderRadius: 8,
-                          boxShadow: '2px 2px 0px var(--navy-deep)',
+                          boxShadow: 'var(--shadow-neo)',
                           display: 'flex',
                           alignItems: 'center',
                           gap: 4,
                           fontSize: '0.85rem',
                           fontWeight: 700,
-                          color: 'var(--navy-deep)'
+                          color: 'var(--text-primary)'
                         }}
                       >
                         <Star size={14} aria-hidden="true" style={{ color: 'var(--gold-primary)', fill: 'var(--gold-primary)' }} />
@@ -226,9 +226,9 @@ export default async function HomePage() {
                         <span
                           className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}
                           style={{
-                            border: '2px solid var(--navy-deep)',
+                            border: '2px solid var(--border-medium)',
                             borderRadius: 8,
-                            boxShadow: '2px 2px 0px var(--navy-deep)'
+                            boxShadow: 'var(--shadow-neo)'
                           }}
                         >
                           {uni.type}
@@ -241,7 +241,7 @@ export default async function HomePage() {
                         style={{
                           fontFamily: 'Playfair Display, serif',
                           fontSize: '1.25rem',
-                          color: 'var(--navy-deep)',
+                          color: 'var(--text-primary)',
                           marginBottom: 8,
                           lineHeight: 1.4}}
                       >
@@ -270,12 +270,12 @@ export default async function HomePage() {
                   padding: '60px',
                   textAlign: 'center',
                   background: 'var(--bg-secondary)',
-                  border: '2px solid var(--navy-deep)',
+                  border: '2px solid var(--border-medium)',
                   borderRadius: 20,
-                  boxShadow: '6px 6px 0px var(--navy-deep)'
+                  boxShadow: 'var(--shadow-neo)'
                 }}
               >
-                <p style={{ color: 'var(--navy-deep)', fontWeight: 500 }}>Populate Supabase with mock universities to see them here.</p>
+                <p style={{ color: 'var(--text-primary)', fontWeight: 500 }}>Populate Supabase with mock universities to see them here.</p>
               </div>
             )}
           </StaggerContainer>

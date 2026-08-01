@@ -107,7 +107,7 @@ export default function ClusterCalculator() {
     }}>
       <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         <div style={{ marginBottom: '50px', textAlign: 'center' }}>
-          <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-inverse)', marginBottom: '16px', fontFamily: 'Playfair Display, serif' }}>
+          <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: '#FFFFFF', marginBottom: '16px', fontFamily: 'Playfair Display, serif' }}>
             Cluster Points Calculator
           </h1>
           <p style={{ fontSize: '1.1rem', color: 'rgba(255, 255, 255, 0.7)', maxWidth: '600px', margin: '0 auto', lineHeight: 1.6 }}>
@@ -139,7 +139,7 @@ export default function ClusterCalculator() {
                     border: '1px solid rgba(255, 255, 255, 0.15)',
                     borderRadius: '4px',
                     fontSize: '1rem',
-                    color: 'var(--text-inverse)',
+                    color: '#FFFFFF',
                     fontWeight: 500,
                     cursor: 'pointer',
                     outline: 'none',
@@ -149,7 +149,7 @@ export default function ClusterCalculator() {
                   onMouseOut={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'}
                 >
                   {GRADES.map(g => (
-                    <option key={g.label} value={g.value} style={{ color: 'var(--navy-deep)' }}>
+                    <option key={g.label} value={g.value} style={{ color: 'var(--text-primary)' }}>
                       {g.label}
                     </option>
                   ))}
@@ -165,7 +165,7 @@ export default function ClusterCalculator() {
             onClick={calculatePoints}
             style={{
               background: 'var(--gold-primary)',
-              color: 'var(--navy-deep)',
+              color: 'var(--text-primary)',
               border: 'none',
               padding: '16px 48px',
               fontSize: '1rem',
@@ -200,14 +200,14 @@ export default function ClusterCalculator() {
               <div style={{ fontSize: '4.5rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'Playfair Display, serif', lineHeight: 1, marginBottom: '16px' }}>
                 {results.score.toFixed(1)} <span style={{ fontSize: '1.5rem', color: 'rgba(255, 255, 255, 0.3)' }}>/ 48</span>
               </div>
-              <div style={{ fontSize: '1.2rem', color: 'var(--text-inverse)', fontWeight: 500 }}>
+              <div style={{ fontSize: '1.2rem', color: '#FFFFFF', fontWeight: 500 }}>
                 Mean Grade: <span style={{ color: 'var(--gold-primary)', fontWeight: 700 }}>{results.mean}</span>
               </div>
             </div>
 
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '16px', marginBottom: '24px' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 600, color: 'var(--text-inverse)', margin: 0 }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 600, color: '#FFFFFF', margin: 0 }}>
                   Matching Courses
                 </h3>
                 <span style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.5)' }}>
@@ -249,7 +249,7 @@ export default function ClusterCalculator() {
                       </div>
                       
                       <div style={{ flex: 1 }}>
-                        <h4 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-inverse)', margin: '0 0 4px 0' }}>
+                        <h4 style={{ fontSize: '1.1rem', fontWeight: 600, color: '#FFFFFF', margin: '0 0 4px 0' }}>
                           {course.name}
                         </h4>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>

@@ -12,9 +12,9 @@ export default function CalculatorPage() {
       <div style={{ padding: '0 20px', marginTop: '40px' }}>
         <div style={{
           position: 'relative',
-          border: '2px solid var(--navy-deep)',
+          border: '2px solid var(--border-medium)',
           borderRadius: 20,
-          boxShadow: '4px 4px 0px var(--navy-deep)',
+          boxShadow: 'var(--shadow-neo)',
           background: 'var(--bg-secondary)',
           padding: '48px 40px',
           overflow: 'hidden'
@@ -28,7 +28,7 @@ export default function CalculatorPage() {
             pointerEvents: 'none'
           }} />
           <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center' }}>
-            <h1 className="text-h1" style={{ color: 'var(--navy-deep)', marginBottom: 16 }}>
+            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 16 }}>
               Cluster Points Calculator
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: 600, margin: '0 auto', lineHeight: 1.6 }}>

@@ -35,9 +35,9 @@ export default async function CoursesPage() {
       <div style={{ padding: '0 20px', marginTop: '40px' }}>
         <div style={{
           position: 'relative',
-          border: '2px solid var(--navy-deep)',
+          border: '2px solid var(--border-medium)',
           borderRadius: 20,
-          boxShadow: '4px 4px 0px var(--navy-deep)',
+          boxShadow: 'var(--shadow-neo)',
           background: 'var(--bg-secondary)',
           padding: '48px 40px',
           overflow: 'hidden'
@@ -58,20 +58,20 @@ export default async function CoursesPage() {
                 gap: 8,
                 padding: '4px 14px',
                 background: 'var(--gold-glow)',
-                border: '2px solid var(--navy-deep)',
+                border: '2px solid var(--border-medium)',
                 borderRadius: 8,
-                boxShadow: '2px 2px 0px var(--navy-deep)',
+                boxShadow: 'var(--shadow-neo)',
                 fontSize: '0.75rem',
                 fontWeight: 700,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
-                color: 'var(--navy-deep)',
+                color: 'var(--text-primary)',
                 marginBottom: 16}}
             >
               <BookOpen size={14} />
               Course Directory
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--navy-deep)', marginBottom: 12 }}>
+            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
               Find Your Dream Course
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 560 }}>
@@ -106,7 +106,7 @@ export default async function CoursesPage() {
                         fontFamily: 'Playfair Display, serif',
                         fontSize: '1.2rem',
                         fontWeight: 600,
-                        color: 'var(--navy-deep)',
+                        color: 'var(--text-primary)',
                         marginBottom: 12,
                         lineHeight: 1.3}}
                     >
@@ -132,7 +132,7 @@ export default async function CoursesPage() {
                   <div style={{ padding: '16px 24px', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                       Min KUCCPS Score:<br />
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1rem', fontWeight: 700, color: 'var(--navy-deep)' }}>
+                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                         {course.minPoints.toFixed(1)} pts
                       </span>
                     </div>

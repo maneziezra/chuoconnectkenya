@@ -30,9 +30,9 @@ export default async function UniversitiesPage() {
       <div style={{ padding: '0 20px', marginTop: '40px' }}>
         <div style={{
           position: 'relative',
-          border: '2px solid var(--navy-deep)',
+          border: '2px solid var(--border-medium)',
           borderRadius: 20,
-          boxShadow: '4px 4px 0px var(--navy-deep)',
+          boxShadow: 'var(--shadow-neo)',
           background: 'var(--bg-secondary)',
           padding: '48px 40px',
           overflow: 'hidden'
@@ -48,14 +48,14 @@ export default async function UniversitiesPage() {
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span style={{
               display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)',
-              border: '2px solid var(--navy-deep)', borderRadius: 8,
-              boxShadow: '2px 2px 0px var(--navy-deep)',
+              border: '2px solid var(--border-medium)', borderRadius: 8,
+              boxShadow: 'var(--shadow-neo)',
               fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
-              color: 'var(--navy-deep)', marginBottom: 16,
+              color: 'var(--text-primary)', marginBottom: 16,
             }}>
               Complete Directory
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--navy-deep)', marginBottom: 12 }}>Explore Campuses Across Kenya</h1>
+            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Explore Campuses Across Kenya</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 560 }}>
               Discover{' '}
               <span style={{ color: 'var(--gold-primary)', fontWeight: 600 }}>{universities.length}</span>{' '}

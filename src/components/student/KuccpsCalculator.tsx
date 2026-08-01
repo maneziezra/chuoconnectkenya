@@ -91,7 +91,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
             <h3
               style={{
-                color: 'var(--navy-deep)',
+                color: 'var(--text-primary)',
                 fontSize: '1.1rem',
                 fontWeight: 600,
                 display: 'flex',
@@ -204,7 +204,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
               <span style={{ color: 'var(--gold-primary)', fontSize: '2rem', fontWeight: 700, lineHeight: 1 }}>
                 {overallGrade}
               </span>
-              <span style={{ color: 'var(--text-inverse)', fontSize: '1rem', fontWeight: 500 }}>
+              <span style={{ color: '#FFFFFF', fontSize: '1rem', fontWeight: 500 }}>
                 Mean Grade
               </span>
             </div>
@@ -215,7 +215,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
           </div>
           <button 
             className="btn btn-outline" 
-            style={{ color: 'var(--text-inverse)', borderColor: 'rgba(255,255,255,0.2)' }}
+            style={{ color: '#FFFFFF', borderColor: 'rgba(255,255,255,0.2)' }}
             onClick={() => setIsEditingGrades(true)}
           >
             <Edit3 size={16} /> Edit Grades
@@ -227,7 +227,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
       {results && (
         <div style={{ marginTop: 48, display: 'flex', flexDirection: 'column', gap: 20 }}>
           <div style={{ marginBottom: 8 }}>
-            <h2 className="text-h2" style={{ color: 'var(--navy-deep)', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+            <h2 className="text-h2" style={{ color: 'var(--text-primary)', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
               <TrendingUp size={24} style={{ color: 'var(--gold-primary)' }} />
               Your Cluster Scores & Qualifying Courses
             </h2>
@@ -262,7 +262,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
                     alignItems: 'center',
                   }}
                 >
-                  <span style={{ color: 'var(--text-inverse)', fontWeight: 600, fontSize: '0.9rem' }}>
+                  <span style={{ color: '#FFFFFF', fontWeight: 600, fontSize: '0.9rem' }}>
                     {cluster}
                   </span>
                   <span
@@ -299,7 +299,7 @@ export default function KuccpsCalculator({ courses, universities, initialProfile
                         >
                           <div style={{ flex: 1 }}>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-                              <h4 style={{ fontWeight: 600, color: 'var(--navy-deep)', fontSize: '1.05rem', margin: 0 }}>
+                              <h4 style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem', margin: 0 }}>
                                 {course.title}
                               </h4>
                               <span className="badge badge-green" style={{ padding: '4px 8px', fontSize: '0.7rem' }}>

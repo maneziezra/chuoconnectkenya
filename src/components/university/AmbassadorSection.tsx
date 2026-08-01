@@ -37,7 +37,7 @@ export default function AmbassadorSection({ initialAmbassadors }: Props) {
     <div className="card card-body">
       <h2 style={{
         fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600,
-        color: 'var(--navy-deep)', marginBottom: 8, paddingBottom: 12,
+        color: 'var(--text-primary)', marginBottom: 8, paddingBottom: 12,
         borderBottom: '1px solid var(--border-light)',
       }}>
         Student Ambassadors
@@ -65,14 +65,14 @@ export default function AmbassadorSection({ initialAmbassadors }: Props) {
                   ) : amb.name.charAt(0)}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 600, color: 'var(--navy-deep)', fontSize: '0.95rem' }}>{amb.name}</div>
+                  <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{amb.name}</div>
                   <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 2 }}>{amb.course} · Year {amb.year}</div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.6 }}>{amb.bio}</p>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
                     {amb.topics?.map(t => (
                       <span key={t} style={{
                         fontSize: '0.72rem', padding: '3px 10px', background: 'var(--gold-glow)',
-                        color: 'var(--navy-deep)', borderRadius: 'var(--radius-full)',
+                        color: 'var(--text-primary)', borderRadius: 'var(--radius-full)',
                         border: '1px solid rgba(199,155,55,0.2)', fontWeight: 500,
                       }}>{t}</span>
                     ))}

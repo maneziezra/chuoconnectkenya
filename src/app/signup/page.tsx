@@ -68,17 +68,17 @@ export default function SignupPage() {
       <div className="container" style={{ maxWidth: 480, margin: '0 auto' }}>
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'Playfair Display, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--navy-deep)' }}>
-            <div style={{ width: 40, height: 40, background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'Playfair Display, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+            <div style={{ width: 40, height: 40, background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <GraduationCap size={20} color="var(--navy-deep)" />
             </div>
             Chuo Connect Kenya
           </div>
-          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--navy-deep)', marginTop: 20, fontWeight: 700 }}>Create Your Account</h1>
+          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginTop: 20, fontWeight: 700 }}>Create Your Account</h1>
           <p style={{ color: 'var(--text-secondary)', marginTop: 8, fontSize: '0.95rem' }}>Free for students. Always.</p>
         </div>
 
-        <div style={{ background: 'var(--bg-primary)', borderRadius: 20, border: '2px solid var(--navy-deep)', padding: 36, boxShadow: '6px 6px 0px var(--navy-deep)' }}>
+        <div style={{ background: 'var(--bg-primary)', borderRadius: 20, border: '2px solid var(--border-medium)', padding: 36, boxShadow: 'var(--shadow-neo)' }}>
           {error && (
             <div style={{ padding: 12, background: 'var(--danger-bg)', color: 'var(--danger-text)', borderRadius: 8, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.9rem' }}>
               <AlertCircle size={18} />
@@ -150,13 +150,13 @@ export default function SignupPage() {
             </button>
 
             <p style={{ textAlign: 'center', fontSize: '0.82rem', color: 'var(--text-tertiary)' }}>
-              By signing up, you agree to our <Link href="/terms" style={{ color: 'var(--navy-deep)', fontWeight: 600 }}>Terms of Service</Link> and Privacy Policy.
+              By signing up, you agree to our <Link href="/terms" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Terms of Service</Link> and Privacy Policy.
             </p>
           </form>
 
           <div style={{ borderTop: '1px solid var(--border-light)', marginTop: 24, paddingTop: 24, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
             Already have an account?{' '}
-            <Link href="/login" style={{ color: 'var(--navy-deep)', fontWeight: 600 }}>Log in</Link>
+            <Link href="/login" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Log in</Link>
           </div>
         </div>
       </div>

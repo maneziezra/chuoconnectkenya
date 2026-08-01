@@ -61,7 +61,7 @@ export default function ReviewSection({ universityId, initialReviews }: Props) {
   return (
     <div className="card card-body">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid var(--border-light)' }}>
-        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy-deep)' }}>
+        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)' }}>
           Student Reviews
         </h2>
         {!submitted && (
@@ -133,7 +133,7 @@ export default function ReviewSection({ universityId, initialReviews }: Props) {
             <div key={r.id} style={{ paddingBottom: 20, borderBottom: '1px solid var(--border-light)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
                 <div>
-                  <div style={{ fontWeight: 600, color: 'var(--navy-deep)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem', display: 'flex', alignItems: 'center', gap: 8 }}>
                     {r.authorName || 'Anonymous'}
                     {r.verified && <span style={{ fontSize: '0.7rem', background: 'var(--success-bg)', color: 'var(--success-text)', padding: '2px 8px', borderRadius: 'var(--radius-full)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 2 }}><Check size={10} /> Verified</span>}
                   </div>

@@ -64,8 +64,8 @@ export default function HeroSection() {
           alignItems: 'center',
           overflow: 'hidden',
           borderRadius: 20,
-          border: '2px solid var(--navy-deep)',
-          boxShadow: '6px 6px 0px var(--navy-deep)',
+          border: '2px solid var(--border-medium)',
+          boxShadow: 'var(--shadow-neo)',
           background: 'var(--bg-secondary)',
         }}
       >
@@ -113,16 +113,16 @@ export default function HeroSection() {
                   gap: 6,
                   padding: '5px 14px 5px 6px',
                   borderRadius: 10,
-                  border: '2px solid var(--navy-deep)',
+                  border: '2px solid var(--border-medium)',
                   background: 'var(--bg-primary)',
-                  boxShadow: '2px 2px 0px var(--navy-deep)',
+                  boxShadow: 'var(--shadow-neo)',
                   marginBottom: 28,
                 }}
               >
                 <span
                   style={{
                     background: 'var(--gold-primary)',
-                    color: 'var(--navy-deep)',
+                    color: 'var(--text-primary)',
                     fontWeight: 800,
                     fontSize: '0.65rem',
                     letterSpacing: '0.06em',
@@ -133,7 +133,7 @@ export default function HeroSection() {
                 >
                   NEW
                 </span>
-                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--navy-deep)' }}>
+                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                   2026 KUCCPS intake is live
                 </span>
               </div>
@@ -147,7 +147,7 @@ export default function HeroSection() {
                 fontWeight: 700,
                 lineHeight: 1.06,
                 letterSpacing: '-0.03em',
-                color: 'var(--navy-deep)',
+                color: 'var(--text-primary)',
                 fontFamily: "'Playfair Display', serif",
               }}
             >
@@ -257,17 +257,17 @@ export default function HeroSection() {
                       width: 36,
                       height: 36,
                       borderRadius: 10,
-                      border: '2px solid var(--navy-deep)',
+                      border: '2px solid var(--border-medium)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       background: 'var(--gold-glow)',
                     }}
                   >
-                    <item.icon size={16} style={{ color: 'var(--navy-deep)' }} />
+                    <item.icon size={16} style={{ color: 'var(--text-primary)' }} />
                   </div>
                   <div>
-                    <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--navy-deep)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
+                    <div style={{ fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.1, letterSpacing: '-0.02em' }}>
                       {item.value}
                     </div>
                     <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-tertiary)', letterSpacing: '0.02em' }}>
@@ -301,8 +301,8 @@ export default function HeroSection() {
                 right: '35%',
                 bottom: '18%',
                 borderRadius: 16,
-                border: '2px solid var(--navy-deep)',
-                boxShadow: '4px 4px 0px var(--navy-deep)',
+                border: '2px solid var(--border-medium)',
+                boxShadow: 'var(--shadow-neo)',
                 overflow: 'hidden',
                 zIndex: 2,
               }}
@@ -331,8 +331,8 @@ export default function HeroSection() {
                 width: '38%',
                 aspectRatio: '3/4',
                 borderRadius: 14,
-                border: '2px solid var(--navy-deep)',
-                boxShadow: '3px 3px 0px var(--navy-deep)',
+                border: '2px solid var(--border-medium)',
+                boxShadow: 'var(--shadow-neo)',
                 overflow: 'hidden',
                 zIndex: 3,
               }}
@@ -349,7 +349,7 @@ export default function HeroSection() {
                 padding: '8px 10px',
                 background: 'linear-gradient(transparent, rgba(26,35,56,0.85))',
               }}>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-inverse)', letterSpacing: '0.03em' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.03em' }}>
                   Strathmore
                 </span>
               </div>
@@ -368,8 +368,8 @@ export default function HeroSection() {
                 right: '10%',
                 height: '30%',
                 borderRadius: 14,
-                border: '2px solid var(--navy-deep)',
-                boxShadow: '3px 3px 0px var(--navy-deep)',
+                border: '2px solid var(--border-medium)',
+                boxShadow: 'var(--shadow-neo)',
                 overflow: 'hidden',
                 zIndex: 4,
               }}
@@ -386,7 +386,7 @@ export default function HeroSection() {
                 padding: '8px 12px',
                 background: 'linear-gradient(transparent, rgba(26,35,56,0.85))',
               }}>
-                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-inverse)', letterSpacing: '0.03em' }}>
+                <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.03em' }}>
                   University of Nairobi
                 </span>
               </div>
@@ -407,8 +407,8 @@ export default function HeroSection() {
                 bottom: '35%',
                 right: '-5%',
                 background: 'var(--bg-primary)',
-                border: '2px solid var(--navy-deep)',
-                boxShadow: '4px 4px 0px var(--navy-deep)',
+                border: '2px solid var(--border-medium)',
+                boxShadow: 'var(--shadow-neo)',
                 borderRadius: 14,
                 padding: '14px 18px',
                 zIndex: 10,
@@ -417,7 +417,7 @@ export default function HeroSection() {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
                 <TrendingUp size={14} aria-hidden="true" style={{ color: 'var(--gold-primary)' }} />
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--navy-deep)' }}>Trending Now</span>
+                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-primary)' }}>Trending Now</span>
               </div>
               <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', lineHeight: 1.4 }}>
                 Computer Science at JKUAT — most searched this week
@@ -439,7 +439,7 @@ export default function HeroSection() {
                 top: '5%',
                 right: '42%',
                 background: 'var(--gold-primary)',
-                border: '2px solid var(--navy-deep)',
+                border: '2px solid var(--border-medium)',
                 borderRadius: 10,
                 padding: '6px 10px',
                 zIndex: 10,
@@ -448,8 +448,8 @@ export default function HeroSection() {
                 gap: 4,
               }}
             >
-              <MapPin size={12} aria-hidden="true" style={{ color: 'var(--navy-deep)' }} />
-              <span style={{ fontSize: '0.68rem', fontWeight: 800, color: 'var(--navy-deep)', letterSpacing: '0.02em' }}>
+              <MapPin size={12} aria-hidden="true" style={{ color: 'var(--text-primary)' }} />
+              <span style={{ fontSize: '0.68rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '0.02em' }}>
                 47 Counties
               </span>
             </motion.div>

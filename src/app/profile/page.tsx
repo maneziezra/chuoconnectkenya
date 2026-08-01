@@ -159,11 +159,11 @@ export default function ProfilePage() {
         {/* Breadcrumb & Header */}
         <div style={{ marginBottom: 32 }}>
           <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', marginBottom: 8 }}>
-            <Link href="/dashboard" style={{ color: 'var(--navy-deep)', textDecoration: 'none' }}>Dashboard</Link>
+            <Link href="/dashboard" style={{ color: 'var(--text-primary)', textDecoration: 'none' }}>Dashboard</Link>
             <span style={{ margin: '0 8px' }}>/</span>
             Profile Settings
           </div>
-          <h1 className="text-h2" style={{ color: 'var(--navy-deep)', display: 'flex', alignItems: 'center', gap: 12 }}>
+          <h1 className="text-h2" style={{ color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: 12 }}>
             <User size={32} style={{ color: 'var(--gold-primary)' }} />
             Profile Settings
           </h1>
@@ -176,8 +176,8 @@ export default function ProfilePage() {
           style={{
             background: 'var(--bg-primary)',
             borderRadius: 20,
-            border: '2px solid var(--navy-deep)',
-            boxShadow: '4px 4px 0px var(--navy-deep)',
+            border: '2px solid var(--border-medium)',
+            boxShadow: 'var(--shadow-neo)',
             overflow: 'hidden'
           }}
         >
@@ -189,11 +189,11 @@ export default function ProfilePage() {
               ) : avatarUrl ? (
                 <Image src={avatarUrl} alt="Avatar" fill style={{ objectFit: 'cover' }} unoptimized />
               ) : (
-                <User size={40} style={{ color: 'var(--navy-deep)' }} />
+                <User size={40} style={{ color: 'var(--text-primary)' }} />
               )}
             </div>
             <div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 8 }}>Profile Picture</h3>
+              <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Profile Picture</h3>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
                 Upload a picture to personalize your account.
               </p>
@@ -237,7 +237,7 @@ export default function ProfilePage() {
 
               {/* Personal Details */}
               <div style={{ gridColumn: '1 / -1', marginTop: 8 }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 16, borderBottom: '1px solid var(--border-light)', paddingBottom: 8 }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 16, borderBottom: '1px solid var(--border-light)', paddingBottom: 8 }}>
                   Personal Details
                 </h3>
               </div>
@@ -283,7 +283,7 @@ export default function ProfilePage() {
 
               {/* Academic Details */}
               <div style={{ gridColumn: '1 / -1', marginTop: 16 }}>
-                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 16, borderBottom: '1px solid var(--border-light)', paddingBottom: 8 }}>
+                <h3 style={{ fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 16, borderBottom: '1px solid var(--border-light)', paddingBottom: 8 }}>
                   Academic Background
                 </h3>
               </div>

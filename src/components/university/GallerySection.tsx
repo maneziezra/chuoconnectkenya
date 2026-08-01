@@ -26,7 +26,7 @@ export default function GallerySection({ universityId, virtualTourUrl }: Props) 
     <div className="card card-body">
       <h2 style={{
         fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600,
-        color: 'var(--navy-deep)', marginBottom: 8, paddingBottom: 12,
+        color: 'var(--text-primary)', marginBottom: 8, paddingBottom: 12,
         borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 8}}>
         <span style={{ color: 'var(--gold-primary)' }}><Camera size={18} /></span>
         Campus Gallery
@@ -40,7 +40,7 @@ export default function GallerySection({ universityId, virtualTourUrl }: Props) 
           style={{
             display: 'flex', alignItems: 'center', gap: 12, padding: '16px 20px',
             background: 'var(--navy-deep)', borderRadius: 'var(--radius-lg)', marginBottom: 20,
-            textDecoration: 'none', color: 'var(--text-inverse)', transition: 'var(--transition)'}}
+            textDecoration: 'none', color: '#FFFFFF', transition: 'var(--transition)'}}
         >
           <div style={{
             width: 48, height: 48, borderRadius: '50%', background: 'var(--gold-primary)',
@@ -78,7 +78,7 @@ export default function GallerySection({ universityId, virtualTourUrl }: Props) 
               <div style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0, padding: '8px 12px',
                 background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)',
-                color: 'var(--text-inverse)', fontSize: '0.72rem', textAlign: 'left'}}>
+                color: '#FFFFFF', fontSize: '0.72rem', textAlign: 'left'}}>
                 {item.caption}
               </div>
             )}
@@ -102,7 +102,7 @@ export default function GallerySection({ universityId, virtualTourUrl }: Props) 
           {selected.caption && (
             <div style={{
               position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)',
-              color: 'var(--text-inverse)', fontSize: '0.9rem', background: 'rgba(0,0,0,0.6)',
+              color: '#FFFFFF', fontSize: '0.9rem', background: 'rgba(0,0,0,0.6)',
               padding: '8px 20px', borderRadius: 'var(--radius-full)'}}>
               {selected.caption}
             </div>
@@ -111,7 +111,7 @@ export default function GallerySection({ universityId, virtualTourUrl }: Props) 
             onClick={() => setSelected(null)}
             style={{
               position: 'absolute', top: 20, right: 20, background: 'rgba(255,255,255,0.1)',
-              border: 'none', color: 'var(--text-inverse)', cursor: 'pointer', borderRadius: '50%',
+              border: 'none', color: '#FFFFFF', cursor: 'pointer', borderRadius: '50%',
               width: 40, height: 40, fontSize: '1.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center'}}
           >
             <X size={24} />

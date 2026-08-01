@@ -13,7 +13,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   government: 'Government', private: 'Private', institutional: 'Institutional', international: 'International',
 };
 const CATEGORY_COLORS: Record<string, { bg: string; color: string }> = {
-  government: { bg: 'var(--navy-light)', color: 'var(--navy-deep)' },
+  government: { bg: 'var(--navy-light)', color: 'var(--text-primary)' },
   private: { bg: 'var(--gold-glow)', color: 'var(--gold-primary)' },
   institutional: { bg: 'var(--success-bg)', color: 'var(--success-text)' },
   international: { bg: 'var(--warning-bg)', color: 'var(--warning-text)' },
@@ -58,9 +58,9 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
       <div style={{ padding: '0 20px', marginTop: '40px' }}>
         <div style={{
           position: 'relative',
-          border: '2px solid var(--navy-deep)',
+          border: '2px solid var(--border-medium)',
           borderRadius: 20,
-          boxShadow: '4px 4px 0px var(--navy-deep)',
+          boxShadow: 'var(--shadow-neo)',
           background: 'var(--bg-secondary)',
           padding: '48px 40px',
           overflow: 'hidden'
@@ -74,10 +74,10 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
             pointerEvents: 'none'
           }} />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 8, boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--navy-deep)', marginBottom: 16 }}>
+            <span style={{ display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-primary)', marginBottom: 16 }}>
               Funding Opportunities
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--navy-deep)', marginBottom: 12 }}>Scholarships & Bursaries</h1>
+            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Scholarships & Bursaries</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 560 }}>
               Discover funding opportunities to support your higher education journey in Kenya and abroad.
             </p>
@@ -97,10 +97,10 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                   href={`/scholarships${cat === 'All' ? '' : `?category=${cat}`}`}
                   style={{
                     padding: '6px 16px', borderRadius: 8,
-                    border: '2px solid var(--navy-deep)', fontSize: '0.85rem', fontWeight: 600,
+                    border: '2px solid var(--border-medium)', fontSize: '0.85rem', fontWeight: 600,
                     textDecoration: 'none', transition: 'all 0.2s',
                     background: isActive ? 'var(--gold-glow)' : 'var(--bg-secondary)',
-                    color: 'var(--navy-deep)',
+                    color: 'var(--text-primary)',
                     boxShadow: isActive ? '2px 2px 0px var(--navy-deep)' : 'none',
                     transform: isActive ? 'translate(-2px, -2px)' : 'none',
                   }}
@@ -118,7 +118,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                   <Search size={20} />
                 </div>
                 <div>
-                  <h2 className="text-h2" style={{ color: 'var(--navy-deep)', fontSize: '1.25rem', marginBottom: 4 }}>
+                  <h2 className="text-h2" style={{ color: 'var(--text-primary)', fontSize: '1.25rem', marginBottom: 4 }}>
                     Matches for {userCounty} County
                   </h2>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
@@ -134,11 +134,11 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                     return (
                       <div key={`county-${s.id}`} className="card card-body" style={{ display: 'flex', flexDirection: 'column', border: '2px solid var(--gold-primary)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
-                          <span style={{ padding: '3px 10px', borderRadius: 8, border: '2px solid var(--navy-deep)', boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', background: catStyle.bg, color: catStyle.color }}>
+                          <span style={{ padding: '3px 10px', borderRadius: 8, border: '2px solid var(--border-medium)', boxShadow: 'var(--shadow-neo)', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', background: catStyle.bg, color: catStyle.color }}>
                             {CATEGORY_LABELS[s.category]}
                           </span>
                         </div>
-                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.05rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 4, lineHeight: 1.3 }}>{s.title}</h3>
+                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3 }}>{s.title}</h3>
                         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.7, flex: 1 }}>{s.description}</p>
                       </div>
                     );
@@ -159,7 +159,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           ) : scholarships.length === 0 ? (
             <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
               <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--navy-deep)', marginBottom: 8 }}>No scholarships found</h3>
+              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No scholarships found</h3>
               <p style={{ color: 'var(--text-secondary)' }}>We couldn't find any scholarships matching your criteria.</p>
             </div>
           ) : (
@@ -169,18 +169,18 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                 return (
                   <div key={s.id} className="card card-body" style={{ display: 'flex', flexDirection: 'column' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
-                      <span style={{ padding: '3px 10px', borderRadius: 8, border: '2px solid var(--navy-deep)', boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', background: catStyle.bg, color: catStyle.color }}>
+                      <span style={{ padding: '3px 10px', borderRadius: 8, border: '2px solid var(--border-medium)', boxShadow: 'var(--shadow-neo)', fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', background: catStyle.bg, color: catStyle.color }}>
                         {CATEGORY_LABELS[s.category]}
                       </span>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>
                         <Calendar size={12} /> {new Date(s.deadline).toLocaleDateString('en-KE', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </div>
                     </div>
-                    <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.05rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 4, lineHeight: 1.3 }}>{s.title}</h3>
+                    <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3 }}>{s.title}</h3>
                     <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: 10 }}>by {s.provider}</div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: 'var(--gold-glow)', borderRadius: 'var(--radius-md)', marginBottom: 12 }}>
                       <GraduationCap size={14} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
-                      <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--navy-deep)' }}>{s.amount}</span>
+                      <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-primary)' }}>{s.amount}</span>
                     </div>
                     <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.7, flex: 1 }}>{s.description}</p>
                     <div style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid var(--border-light)' }}>
@@ -200,7 +200,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           )}
 
           {/* CTA */}
-          <div style={{ marginTop: 60, padding: '40px', background: 'var(--bg-secondary)', borderRadius: 16, border: '2px solid var(--navy-deep)', boxShadow: '6px 6px 0px var(--navy-deep)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ marginTop: 60, padding: '40px', background: 'var(--bg-secondary)', borderRadius: 16, border: '2px solid var(--border-medium)', boxShadow: 'var(--shadow-neo)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
             <div style={{
               backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
               backgroundSize: '28px 28px',
@@ -210,7 +210,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
               pointerEvents: 'none'
             }} />
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--navy-deep)', marginBottom: 12 }}>Know a scholarship not listed here?</h2>
+              <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--text-primary)', marginBottom: 12 }}>Know a scholarship not listed here?</h2>
               <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>Help us grow our database for future students.</p>
               <Link href="/contact" className="btn btn-navy">Submit a Scholarship</Link>
             </div>

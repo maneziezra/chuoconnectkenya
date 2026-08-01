@@ -56,7 +56,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
           overflow: 'hidden', opacity: sidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1rem', fontWeight: 600, color: 'var(--navy-deep)' }}>Filter Results</h3>
+            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>Filter Results</h3>
             {hasFilters && (
               <button onClick={clearFilters} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--gold-primary)', fontWeight: 600 }}>
                 Clear All
@@ -90,7 +90,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
                     background: facilities.includes(f) ? 'var(--navy-deep)' : 'white',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, cursor: 'pointer',
                   }} onClick={() => toggleFacility(f)}>
-                    {facilities.includes(f) && <Check size={11} style={{ color: 'var(--text-inverse)' }} />}
+                    {facilities.includes(f) && <Check size={11} style={{ color: '#FFFFFF' }} />}
                   </div>
                   {f}
                 </label>
@@ -135,7 +135,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
 
           {/* Results Count */}
           <div style={{ marginBottom: 20, fontSize: '0.875rem', color: 'var(--text-tertiary)' }}>
-            Showing <strong style={{ color: 'var(--navy-deep)' }}>{filtered.length}</strong> of {universities.length} institutions
+            Showing <strong style={{ color: 'var(--text-primary)' }}>{filtered.length}</strong> of {universities.length} institutions
             {hasFilters && <span> · Filters applied</span>}
           </div>
 
@@ -160,7 +160,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                     }}
                   >
-                    {isInCompare ? <Check size={14} style={{ color: 'var(--text-inverse)' }} /> : <Scale size={14} style={{ color: 'var(--text-tertiary)' }} />}
+                    {isInCompare ? <Check size={14} style={{ color: '#FFFFFF' }} /> : <Scale size={14} style={{ color: 'var(--text-tertiary)' }} />}
                   </button>
 
                   <Link href={`/universities/${uni.id}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -170,14 +170,14 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
                         <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
                         <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Rank #{uni.ranking}</span>
                       </div>
-                      <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.05rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 6, lineHeight: 1.3 }}>{uni.name}</h3>
+                      <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.3 }}>{uni.name}</h3>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
                         <MapPin size={12} /> {uni.county} County · Est. {uni.established}
                       </div>
                       {uni.rating && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 12 }}>
                           <Star size={14} fill="var(--gold-primary)" stroke="none" />
-                          <span style={{ fontWeight: 600, color: 'var(--navy-deep)' }}>{uni.rating.toFixed(1)}</span>
+                          <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{uni.rating.toFixed(1)}</span>
                           <span>({uni.reviewCount?.toLocaleString()} reviews)</span>
                         </div>
                       )}
@@ -185,7 +185,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
                       {userHighSchool && (
                         <div style={{ padding: '6px 12px', background: 'var(--gold-glow)', borderRadius: 'var(--radius-md)', marginBottom: 12, display: 'inline-flex', alignItems: 'center', gap: 6, border: '1px solid rgba(199,155,55,0.2)' }}>
                           <Users size={12} style={{ color: 'var(--gold-primary)' }} />
-                          <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--navy-deep)' }}>
+                          <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                             {alumniCount} alumni from {userHighSchool}
                           </span>
                         </div>
@@ -209,7 +209,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
           {filtered.length === 0 && (
             <div style={{ textAlign: 'center', padding: '80px 20px', color: 'var(--text-tertiary)' }}>
               <Search size={48} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)', display: 'block' }} />
-              <h3 style={{ color: 'var(--navy-deep)', marginBottom: 8 }}>No results found</h3>
+              <h3 style={{ color: 'var(--text-primary)', marginBottom: 8 }}>No results found</h3>
               <p>Try adjusting your filters or search term.</p>
               <button onClick={clearFilters} className="btn btn-navy" style={{ marginTop: 20 }}>Clear Filters</button>
             </div>
@@ -226,12 +226,12 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
           boxShadow: 'var(--shadow-xl)', zIndex: 100, border: '1px solid rgba(199,155,55,0.3)',
         }}>
           <Scale size={18} style={{ color: 'var(--gold-primary)' }} />
-          <span style={{ color: 'var(--text-inverse)', fontSize: '0.875rem' }}>
+          <span style={{ color: '#FFFFFF', fontSize: '0.875rem' }}>
             <strong style={{ color: 'var(--gold-primary)' }}>{compareList.length}</strong> campus{compareList.length > 1 ? 'es' : ''} selected for comparison
           </span>
           {compareList.map(u => (
             <span key={u.id} style={{ display: 'flex', alignItems: 'center', gap: 6, background: 'rgba(255,255,255,0.1)', borderRadius: 'var(--radius-full)', padding: '4px 12px' }}>
-              <span style={{ fontSize: '0.78rem', color: 'var(--text-inverse)' }}>{u.abbrev}</span>
+              <span style={{ fontSize: '0.78rem', color: '#FFFFFF' }}>{u.abbrev}</span>
               <button onClick={() => toggleCompare(u)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.6)', display: 'flex', padding: 0 }}>
                 <X size={12} />
               </button>

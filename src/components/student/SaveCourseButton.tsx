@@ -89,18 +89,18 @@ export default function SaveCourseButton({ courseId, isSavedInitial, user, profi
               style={{ 
                 background: 'var(--bg-primary)', padding: 24, borderRadius: 20, 
                 width: '100%', maxWidth: 400, position: 'relative', zIndex: 10,
-                boxShadow: '6px 6px 0px var(--navy-deep)', border: '2px solid var(--navy-deep)'
+                boxShadow: 'var(--shadow-neo)', border: '2px solid var(--border-medium)'
               }}
             >
               <button onClick={() => setShowGate(false)} style={{ position: 'absolute', top: 16, right: 16, color: 'var(--text-tertiary)', background: 'transparent', border: 'none', cursor: 'pointer' }} aria-label="Close">
                 <X size={20} />
               </button>
               
-              <div style={{ width: 48, height: 48, borderRadius: 10, background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--navy-deep)', marginBottom: 16 }}>
+              <div style={{ width: 48, height: 48, borderRadius: 10, background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', marginBottom: 16 }}>
                 <User size={24} />
               </div>
               
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--navy-deep)', marginBottom: 8, fontFamily: 'Playfair Display, serif' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, fontFamily: 'Playfair Display, serif' }}>
                 Complete Your Profile
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', marginBottom: 24, lineHeight: 1.5 }}>

@@ -2467,14 +2467,14 @@ export default async function HousingPage({ searchParams }: Props) {
     <>
       {/* Hero Section */}
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', border: '2px solid var(--border-medium)', borderRadius: 20, boxShadow: 'var(--shadow-neo)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 8, boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--navy-deep)', marginBottom: 16 }}>
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-primary)', marginBottom: 16 }}>
               <Home size={14} />
               Student Accommodation
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--navy-deep)', marginBottom: 12 }}>
+            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
               Find Your Perfect Student Home
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 700, lineHeight: 1.6 }}>
@@ -2488,11 +2488,11 @@ export default async function HousingPage({ searchParams }: Props) {
         <div className="container" style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
           {/* Filters Sidebar */}
           <aside style={{ width: 280, flexShrink: 0, background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', padding: 24, border: '1px solid var(--border-light)', position: 'sticky', top: 100 }}>
-            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--navy-deep)', marginBottom: 20 }}>Filters</h3>
+            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 20 }}>Filters</h3>
             
             <form action="/housing" method="GET">
               <div style={{ marginBottom: 20 }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 8 }}>Property Type</label>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Property Type</label>
                 <select name="type" defaultValue={type || ''} className="form-input" style={{ width: '100%' }}>
                   <option value="">All Types</option>
                   <option value="hostel">Hostels</option>
@@ -2503,7 +2503,7 @@ export default async function HousingPage({ searchParams }: Props) {
               </div>
 
               <div style={{ marginBottom: 20 }}>
-                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 8 }}>County</label>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>County</label>
                 <select name="county" defaultValue={county || ''} className="form-input" style={{ width: '100%' }}>
                   <option value="">All Counties</option>
                   {KENYAN_COUNTIES.map(c => (
@@ -2538,7 +2538,7 @@ export default async function HousingPage({ searchParams }: Props) {
             ) : housingListings.length === 0 ? (
               <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
                 <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--navy-deep)', marginBottom: 8 }}>No housing found</h3>
+                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No housing found</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>Try adjusting your filters to see more results.</p>
               </div>
             ) : (
@@ -2553,13 +2553,13 @@ export default async function HousingPage({ searchParams }: Props) {
                           <Home size={32} />
                         </div>
                       )}
-                      <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, background: 'var(--bg-primary)', color: 'var(--navy-deep)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                      <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, background: 'var(--bg-primary)', color: 'var(--text-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
                         {TYPE_LABELS[h.type]}
                       </div>
                     </div>
                     <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--navy-deep)', lineHeight: 1.2 }}>{h.name}</h3>
+                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.2 }}>{h.name}</h3>
                       </div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
                         <MapPin size={12} /> {h.location}, {h.county}

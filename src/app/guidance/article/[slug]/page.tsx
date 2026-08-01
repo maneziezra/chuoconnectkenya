@@ -50,7 +50,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </span>
           </div>
 
-          <h1 className="text-h1" style={{ color: 'var(--text-inverse)', marginBottom: 16, maxWidth: 800 }}>
+          <h1 className="text-h1" style={{ color: '#FFFFFF', marginBottom: 16, maxWidth: 800 }}>
             {article.title}
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.05rem', maxWidth: 700, lineHeight: 1.6 }}>

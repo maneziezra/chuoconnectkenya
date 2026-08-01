@@ -37,13 +37,13 @@ export default async function EventsPage() {
   return (
     <>
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--navy-deep)', borderRadius: 20, boxShadow: '4px 4px 0px var(--navy-deep)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
+        <div style={{ position: 'relative', border: '2px solid var(--border-medium)', borderRadius: 20, boxShadow: 'var(--shadow-neo)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 8, boxShadow: '2px 2px 0px var(--navy-deep)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--navy-deep)', marginBottom: 16 }}>
+            <span style={{ display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--text-primary)', marginBottom: 16 }}>
               Campus Life
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--navy-deep)', marginBottom: 12 }}>Student Events</h1>
+            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Student Events</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 560 }}>
               Don't miss out on open days, career fairs, cultural weeks, and more happening across Kenyan universities.
             </p>
@@ -61,7 +61,7 @@ export default async function EventsPage() {
           ) : events.length === 0 ? (
              <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
                <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-               <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--navy-deep)', marginBottom: 8 }}>No events found</h3>
+               <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No events found</h3>
                <p style={{ color: 'var(--text-secondary)' }}>Check back later for exciting campus events.</p>
              </div>
           ) : (
@@ -69,9 +69,9 @@ export default async function EventsPage() {
               {/* Featured Events */}
               {featuredEvents.length > 0 && (
                 <div style={{ marginBottom: 60 }}>
-                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--navy-deep)', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
                     Featured Events
-                    <span style={{ display: 'inline-block', padding: '4px 12px', background: 'var(--gold-glow)', border: '2px solid var(--navy-deep)', borderRadius: 8, boxShadow: '2px 2px 0px var(--navy-deep)', color: 'var(--navy-deep)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.05em' }}>Don't Miss</span>
+                    <span style={{ display: 'inline-block', padding: '4px 12px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', color: 'var(--text-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.05em' }}>Don't Miss</span>
                   </h2>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24 }}>
                     {featuredEvents.map(e => (
@@ -88,13 +88,13 @@ export default async function EventsPage() {
                                 {CATEGORY_CONFIG[e.category]?.icon} {CATEGORY_CONFIG[e.category]?.label}
                               </span>
                             </div>
-                            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.4rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 8 }}>{e.title}</h3>
+                            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.4rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>{e.title}</h3>
                             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: 800 }}>{e.description}</p>
                           </div>
                           
-                          <div style={{ border: '2px solid var(--navy-deep)', background: 'var(--bg-secondary)', padding: '16px 24px', borderRadius: 10, textAlign: 'center', minWidth: 140 }}>
+                          <div style={{ border: '2px solid var(--border-medium)', background: 'var(--bg-secondary)', padding: '16px 24px', borderRadius: 10, textAlign: 'center', minWidth: 140 }}>
                             <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', textTransform: 'uppercase' as const, fontWeight: 700, letterSpacing: '0.05em', marginBottom: 4 }}>Date</div>
-                            <div style={{ color: 'var(--navy-deep)', fontWeight: 600 }}>{formatDate(e.date)}</div>
+                            <div style={{ color: 'var(--text-primary)', fontWeight: 600 }}>{formatDate(e.date)}</div>
                           </div>
                         </div>
                         
@@ -117,7 +117,7 @@ export default async function EventsPage() {
               {/* Upcoming Events List */}
               {upcomingEvents.length > 0 && (
                 <div style={{ marginBottom: 60 }}>
-                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.5rem', color: 'var(--navy-deep)', marginBottom: 24 }}>Upcoming Events</h2>
+                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: 24 }}>Upcoming Events</h2>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: 24 }}>
                     {upcomingEvents.map(e => (
                       <div key={e.id} className="card card-body" style={{ display: 'flex', flexDirection: 'column' }}>
@@ -131,11 +131,11 @@ export default async function EventsPage() {
                           <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>{e.universityName}</span>
                         </div>
                         
-                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--navy-deep)', marginBottom: 8 }}>{e.title}</h3>
+                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>{e.title}</h3>
                         <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1, marginBottom: 16 }}>{e.description}</p>
                         
                         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', fontSize: '0.85rem' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--navy-deep)', fontWeight: 500 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-primary)', fontWeight: 500 }}>
                             <Calendar size={14} style={{ color: 'var(--gold-primary)' }}/>
                             {formatDate(e.date)} {e.endDate && `- ${formatDate(e.endDate)}`}
                           </div>
@@ -152,7 +152,7 @@ export default async function EventsPage() {
               {/* Past Events */}
               {pastEvents.length > 0 && (
                 <div>
-                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.5rem', color: 'var(--navy-deep)', marginBottom: 24, opacity: 0.6 }}>Past Events</h2>
+                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: 24, opacity: 0.6 }}>Past Events</h2>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: 24 }}>
                     {pastEvents.map(e => (
                       <div key={e.id} className="card card-body" style={{ opacity: 0.7, display: 'flex', flexDirection: 'column' }}>

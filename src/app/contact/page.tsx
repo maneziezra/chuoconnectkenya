@@ -12,10 +12,10 @@ export default function ContactPage() {
       <div style={{ padding: '40px 20px', background: 'var(--bg-secondary)' }}>
         <div
           style={{
-            background: 'var(--text-inverse)',
-            border: '2px solid var(--navy-deep)',
+            background: 'var(--bg-primary)',
+            border: '2px solid var(--border-medium)',
             borderRadius: 20,
-            boxShadow: '6px 6px 0px var(--navy-deep)',
+            boxShadow: 'var(--shadow-neo)',
             padding: '60px 40px',
             maxWidth: 1000,
             margin: '0 auto',
@@ -34,7 +34,7 @@ export default function ContactPage() {
             }}
           />
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <h1 className="text-h1" style={{ color: 'var(--navy-deep)', marginBottom: 12 }}>Get In Touch</h1>
+            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Get In Touch</h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: 480 }}>
               Have a question, partnership inquiry, or feedback? We&apos;d love to hear from you.
             </p>
@@ -47,7 +47,7 @@ export default function ContactPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 48 }}>
             {/* Contact Info */}
             <div>
-              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--navy-deep)', marginBottom: 24 }}>Contact Information</h2>
+              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24 }}>Contact Information</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 40 }}>
                 {[
                   { icon: <Mail size={24} />, label: 'Email', value: 'hello@chuoconnect.co.ke', href: 'mailto:hello@chuoconnect.co.ke' },
@@ -59,15 +59,15 @@ export default function ContactPage() {
                       style={{
                         width: 56,
                         height: 56,
-                        border: '2px solid var(--navy-deep)',
+                        border: '2px solid var(--border-medium)',
                         borderRadius: 10,
                         background: 'var(--gold-glow)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         flexShrink: 0,
-                        color: 'var(--navy-deep)',
-                        boxShadow: '2px 2px 0px var(--navy-deep)'
+                        color: 'var(--text-primary)',
+                        boxShadow: 'var(--shadow-neo)'
                       }}
                     >
                       {c.icon}
@@ -75,9 +75,9 @@ export default function ContactPage() {
                     <div>
                       <div style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-secondary)', marginBottom: 4 }}>{c.label}</div>
                       {c.href ? (
-                        <a href={c.href} style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--navy-deep)', textDecoration: 'none' }}>{c.value}</a>
+                        <a href={c.href} style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)', textDecoration: 'none' }}>{c.value}</a>
                       ) : (
-                        <div style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--navy-deep)' }}>{c.value}</div>
+                        <div style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)' }}>{c.value}</div>
                       )}
                     </div>
                   </div>
@@ -87,13 +87,13 @@ export default function ContactPage() {
               <div
                 style={{
                   padding: 32,
-                  background: 'var(--text-inverse)',
+                  background: 'var(--bg-primary)',
                   borderRadius: 16,
-                  border: '2px solid var(--navy-deep)',
-                  boxShadow: '4px 4px 0px var(--navy-deep)'
+                  border: '2px solid var(--border-medium)',
+                  boxShadow: 'var(--shadow-neo)'
                 }}
               >
-                <h3 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--navy-deep)', marginBottom: 12 }}>Are you a University?</h3>
+                <h3 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 12 }}>Are you a University?</h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: 20, lineHeight: 1.6 }}>
                   Join our partner programme to showcase your campus to thousands of students. Get a dedicated profile, analytics, and lead management.
                 </p>
@@ -104,24 +104,24 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div
               style={{
-                background: 'var(--text-inverse)',
+                background: 'var(--bg-primary)',
                 borderRadius: 20,
                 padding: 40,
-                border: '2px solid var(--navy-deep)',
-                boxShadow: '6px 6px 0px var(--navy-deep)'
+                border: '2px solid var(--border-medium)',
+                boxShadow: 'var(--shadow-neo)'
               }}
             >
-              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--navy-deep)', marginBottom: 24 }}>Send a Message</h2>
+              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24 }}>Send a Message</h2>
               <form style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                   <div>
-                    <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--navy-deep)', display: 'block', marginBottom: 8 }}>First Name</label>
+                    <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>First Name</label>
                     <input
                       placeholder="John"
                       style={{
                         width: '100%',
                         padding: '12px 16px',
-                        border: '2px solid var(--navy-deep)',
+                        border: '2px solid var(--border-medium)',
                         borderRadius: 10,
                         fontSize: '1rem',
                         outline: 'none',
@@ -130,13 +130,13 @@ export default function ContactPage() {
                     />
                   </div>
                   <div>
-                    <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--navy-deep)', display: 'block', marginBottom: 8 }}>Last Name</label>
+                    <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Last Name</label>
                     <input
                       placeholder="Kamau"
                       style={{
                         width: '100%',
                         padding: '12px 16px',
-                        border: '2px solid var(--navy-deep)',
+                        border: '2px solid var(--border-medium)',
                         borderRadius: 10,
                         fontSize: '1rem',
                         outline: 'none',
@@ -146,14 +146,14 @@ export default function ContactPage() {
                   </div>
                 </div>
                 <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--navy-deep)', display: 'block', marginBottom: 8 }}>Email</label>
+                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Email</label>
                   <input
                     type="email"
                     placeholder="john@example.com"
                     style={{
                       width: '100%',
                       padding: '12px 16px',
-                      border: '2px solid var(--navy-deep)',
+                      border: '2px solid var(--border-medium)',
                       borderRadius: 10,
                       fontSize: '1rem',
                       outline: 'none',
@@ -162,12 +162,12 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--navy-deep)', display: 'block', marginBottom: 8 }}>Subject</label>
+                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Subject</label>
                   <select
                     style={{
                       width: '100%',
                       padding: '12px 16px',
-                      border: '2px solid var(--navy-deep)',
+                      border: '2px solid var(--border-medium)',
                       borderRadius: 10,
                       fontSize: '1rem',
                       outline: 'none',
@@ -185,14 +185,14 @@ export default function ContactPage() {
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--navy-deep)', display: 'block', marginBottom: 8 }}>Message</label>
+                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Message</label>
                   <textarea
                     placeholder="Tell us how we can help…"
                     rows={5}
                     style={{
                       width: '100%',
                       padding: '14px 16px',
-                      border: '2px solid var(--navy-deep)',
+                      border: '2px solid var(--border-medium)',
                       borderRadius: 10,
                       fontSize: '1rem',
                       outline: 'none',

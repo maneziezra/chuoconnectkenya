@@ -14,13 +14,13 @@ const CHART_DATA = [
 export default function PartnerAnalyticsTab() {
   return (
     <div>
-      <h2 style={{ fontFamily: 'var(--font-playfair), serif', color: 'var(--navy-deep)', marginBottom: 24, fontSize: '1.5rem' }}>
+      <h2 style={{ fontFamily: 'var(--font-playfair), serif', color: 'var(--text-primary)', marginBottom: 24, fontSize: '1.5rem' }}>
         Audience Analytics
       </h2>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
         <div style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
-          <div style={{ fontWeight: 700, color: 'var(--navy-deep)', marginBottom: 20 }}>Interest by KCSE Cluster Points</div>
+          <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20 }}>Interest by KCSE Cluster Points</div>
           <div style={{ height: 260, width: '100%' }}>
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={CHART_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -41,16 +41,16 @@ export default function PartnerAnalyticsTab() {
         </div>
 
         <div style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-light)', borderRadius: 12, padding: 24 }}>
-          <div style={{ fontWeight: 700, color: 'var(--navy-deep)', marginBottom: 20 }}>Visitor Breakdown</div>
+          <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20 }}>Visitor Breakdown</div>
           {[
-            { label: 'Students (KCSE Leavers)', pct: 68, color: 'var(--navy-deep)' },
+            { label: 'Students (KCSE Leavers)', pct: 68, color: 'var(--text-primary)' },
             { label: 'Parents / Guardians', pct: 22, color: 'var(--gold-primary)' },
             { label: 'School Counsellors', pct: 10, color: 'var(--success-text)' },
           ].map(item => (
             <div key={item.label} style={{ marginBottom: 18 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
                 <span style={{ color: 'var(--text-secondary)' }}>{item.label}</span>
-                <span style={{ fontWeight: 700, color: 'var(--navy-deep)', fontFamily: 'var(--font-jetbrains), monospace' }}>{item.pct}%</span>
+                <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-jetbrains), monospace' }}>{item.pct}%</span>
               </div>
               <div style={{ height: 8, background: 'var(--bg-tertiary)', borderRadius: 4, overflow: 'hidden' }}>
                 <div style={{ height: '100%', width: `${item.pct}%`, background: item.color, borderRadius: 4 }} />
