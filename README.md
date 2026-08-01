@@ -10,31 +10,46 @@
   <br>
 
   [![Vercel Deployment](https://therealsujitk-vercel-badge.vercel.app/?app=chuoconnectkenya)](https://chuoconnectkenya.vercel.app/)
-  [![Next.js](https://img.shields.io/badge/Next.js-16.0-000000?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-  [![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-  [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
-  
-  <p align="center">
-    <strong><a href="https://chuoconnectkenya.vercel.app/">View Live Platform</a></strong>
-    ·
-    <strong><a href="https://github.com/maneziezra/chuoconnectkenya/issues">Report Bug</a></strong>
-    ·
-    <strong><a href="https://github.com/maneziezra/chuoconnectkenya/issues">Request Feature</a></strong>
-  </p>
+  [![License: MIT](https://img.shields.io/badge/License-MIT-000000?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
+
 </div>
 
----
+<br>
 
-## <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/book-open.svg" width="24" height="24" align="center"/> Executive Overview
+<div align="center">
+
+<a href="#overview"><kbd> <br> Overview <br> </kbd></a>&ensp;&ensp;
+<a href="#features"><kbd> <br> Features <br> </kbd></a>&ensp;&ensp;
+<a href="#architecture"><kbd> <br> Architecture <br> </kbd></a>&ensp;&ensp;
+<a href="#installation"><kbd> <br> Installation <br> </kbd></a>&ensp;&ensp;
+<a href="CONTRIBUTING.md"><kbd> <br> Contributing <br> </kbd></a>&ensp;&ensp;
+<a href="https://chuoconnectkenya.vercel.app/"><kbd> <br> Live Demo <br> </kbd></a>
+
+</div><br><br>
+
+<div align="center">
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=nextjs,react,ts,tailwind,supabase,postgres,vercel,nodejs,git,github,vscode&perline=11" />
+  </a>
+</div>
+
+<br>
+
+<a id="overview"></a>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=EXECUTIVE+OVERVIEW" width="450"/>
+
+---
 
 **Chuo Connect** is an enterprise-grade web platform engineered to bridge the gap between Kenyan students and higher education institutions. By delivering a highly optimized, unified ecosystem, Chuo Connect empowers users to navigate university admissions, calculate KUCCPS cluster points dynamically, and secure verified housing.
 
 Designed with a strict, neo-brutalist aesthetic and built on a high-performance modern web stack, it delivers an unparalleled, secure experience for students, partners, and institutions.
 
----
+<br>
 
-## <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/layers.svg" width="24" height="24" align="center"/> Core Infrastructure & Features
+<a id="features"></a>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=CORE+INFRASTRUCTURE" width="450"/>
+
+---
 
 <table>
   <tr>
@@ -59,9 +74,12 @@ Designed with a strict, neo-brutalist aesthetic and built on a high-performance 
   </tr>
 </table>
 
----
+<br>
 
-## <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/cpu.svg" width="24" height="24" align="center"/> Architecture & Tech Stack
+<a id="architecture"></a>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=ARCHITECTURE+%26+STACK" width="450"/>
+
+---
 
 Chuo Connect is deployed on a highly scalable, edge-first architecture to guarantee uncompromising performance and developer velocity.
 
@@ -86,9 +104,15 @@ Chuo Connect is deployed on a highly scalable, edge-first architecture to guaran
 - **Security Protocols**: HTTP Security Headers (HSTS, X-Frame-Options), RLS Database Isolation
 </details>
 
+<br>
+
+<a id="installation"></a>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=INSTALLATION" width="450"/>
+
 ---
 
-## <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/terminal.svg" width="24" height="24" align="center"/> Getting Started
+> [!IMPORTANT]
+> Ensure you have an active Supabase project and Node.js v26.x+ installed before initializing the local engine.
 
 ### 1. Repository Setup
 ```bash
@@ -110,9 +134,12 @@ npm run dev
 ```
 Execute the application locally at `http://localhost:3000`.
 
----
+<br>
 
-## <img src="https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shield.svg" width="24" height="24" align="center"/> Security & Compliance
+<a id="security"></a>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=SECURITY+%26+COMPLIANCE" width="450"/>
+
+---
 
 Data integrity and user isolation are enforced rigorously:
 - **Zero-Trust Access**: APIs require strict bearer token verification.
