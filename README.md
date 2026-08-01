@@ -4,7 +4,7 @@
   <br><br>
 
   <a href="https://chuoconnectkenya.vercel.app/">
-    <img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=24&pause=1000&color=000000&center=true&vCenter=true&width=600&lines=The+Premier+University+Discovery+Platform;Automated+KUCCPS+Cluster+Calculation;Premium+Student+Housing+Integration;Built+for+Kenyan+Students" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=24&pause=1000&color=1D4ED8;EAB308;4338CA;F59E0B&center=true&vCenter=true&width=600&lines=The+Premier+University+Discovery+Platform;Automated+KUCCPS+Cluster+Calculation;Premium+Student+Housing+Integration;Built+for+Kenyan+Students" alt="Typing SVG" />
   </a>
 
   <br>
@@ -36,7 +36,7 @@
 <br>
 
 <a id="overview"></a>
-<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=EXECUTIVE+OVERVIEW" width="450"/>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=1D4ED8;F59E0B&vCenter=true&width=435&height=25&lines=EXECUTIVE+OVERVIEW;PLATFORM+SUMMARY" width="450"/>
 
 ---
 
@@ -47,7 +47,7 @@ Designed with a strict, neo-brutalist aesthetic and built on a high-performance 
 <br>
 
 <a id="features"></a>
-<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=CORE+INFRASTRUCTURE" width="450"/>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=1D4ED8;F59E0B&vCenter=true&width=435&height=25&lines=CORE+INFRASTRUCTURE;KEY+FEATURES" width="450"/>
 
 ---
 
@@ -77,7 +77,7 @@ Designed with a strict, neo-brutalist aesthetic and built on a high-performance 
 <br>
 
 <a id="architecture"></a>
-<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=ARCHITECTURE+%26+STACK" width="450"/>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=1D4ED8;F59E0B&vCenter=true&width=435&height=25&lines=ARCHITECTURE+%26+STACK;TECH+FOUNDATION" width="450"/>
 
 ---
 
@@ -107,7 +107,7 @@ Chuo Connect is deployed on a highly scalable, edge-first architecture to guaran
 <br>
 
 <a id="installation"></a>
-<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=INSTALLATION" width="450"/>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=1D4ED8;F59E0B&vCenter=true&width=435&height=25&lines=INSTALLATION;GET+STARTED" width="450"/>
 
 ---
 
@@ -137,7 +137,7 @@ Execute the application locally at `http://localhost:3000`.
 <br>
 
 <a id="security"></a>
-<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=000000&vCenter=true&width=435&height=25&lines=SECURITY+%26+COMPLIANCE" width="450"/>
+<img src="https://readme-typing-svg.herokuapp.com?font=Inter&weight=600&size=25&pause=1000&color=1D4ED8;F59E0B&vCenter=true&width=435&height=25&lines=SECURITY+%26+COMPLIANCE;ENTERPRISE+GRADE" width="450"/>
 
 ---
 
