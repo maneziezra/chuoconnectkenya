@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { Star, Users, MapPin, ArrowRight, Check, Scale, X, Filter, ChevronDown, Search } from 'lucide-react';
 import type { University } from '@/lib/types';
@@ -8,27 +8,70 @@ import type { University } from '@/lib/types';
 const COUNTIES = ['All', 'Nairobi', 'Mombasa', 'Kisumu', 'Nakuru', 'Eldoret', 'Nyeri', 'Thika', 'Machakos', 'Kilifi', 'Garissa'];
 const TYPES = ['All', 'Public', 'Private', 'Technical', 'TVET'];
 const FACILITIES_OPTIONS = ['Library', 'Sports Complex', 'Hospital', 'Innovation Hub', 'Wi-Fi Campus', 'Laboratory', 'Hostel'];
+const COMPARE_STORAGE_KEY = 'cck_compare_list';
 
 interface Props {
   universities: University[];
   userHighSchool?: string | null;
+  initialCounty?: string;
+  initialQuery?: string;
+  initialType?: string;
 }
 
-export default function UniversityBrowser({ universities, userHighSchool }: Props) {
+export default function UniversityBrowser({
+  universities,
+  userHighSchool,
+  initialCounty,
+  initialQuery,
+  initialType,
+}: Props) {
+  const countyOptions = useMemo(() => {
+    const dynamicCounties = Array.from(
+      new Set([...COUNTIES.slice(1), ...universities.map(u => u.county).filter(Boolean)])
+    ).sort();
+    return ['All', ...dynamicCounties];
+  }, [universities]);
+
   const [filtered, setFiltered] = useState<University[]>(universities);
-  const [query, setQuery] = useState('');
-  const [county, setCounty] = useState('All');
-  const [type, setType] = useState('All');
+  const [query, setQuery] = useState(initialQuery || '');
+  const [county, setCounty] = useState(initialCounty || 'All');
+  const [type, setType] = useState(initialType || 'All');
   const [facilities, setFacilities] = useState<string[]>([]);
   const [minRating, setMinRating] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [compareList, setCompareList] = useState<University[]>([]);
 
   useEffect(() => {
+    if (initialCounty !== undefined) setCounty(initialCounty || 'All');
+  }, [initialCounty]);
+
+  useEffect(() => {
+    if (initialQuery !== undefined) setQuery(initialQuery || '');
+  }, [initialQuery]);
+
+  useEffect(() => {
+    if (initialType !== undefined) setType(initialType || 'All');
+  }, [initialType]);
+
+  // Hydrate compare list from localStorage on mount
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(COMPARE_STORAGE_KEY);
+      if (stored) {
+        const parsed: { id: string }[] = JSON.parse(stored);
+        const matched = parsed
+          .map(item => universities.find(u => u.id === item.id))
+          .filter((u): u is University => Boolean(u));
+        if (matched.length > 0) setCompareList(matched.slice(0, 3));
+      }
+    } catch {}
+  }, [universities]);
+
+  useEffect(() => {
     let result = universities;
     if (query) result = result.filter(u => u.name.toLowerCase().includes(query.toLowerCase()) || u.county.toLowerCase().includes(query.toLowerCase()) || u.abbrev?.toLowerCase().includes(query.toLowerCase()));
-    if (county !== 'All') result = result.filter(u => u.county === county);
-    if (type !== 'All') result = result.filter(u => u.type === type);
+    if (county !== 'All') result = result.filter(u => u.county.toLowerCase() === county.toLowerCase());
+    if (type !== 'All') result = result.filter(u => u.type.toLowerCase() === type.toLowerCase());
     if (facilities.length > 0) result = result.filter(u => facilities.every(f => u.facilities?.some(uf => uf.toLowerCase().includes(f.toLowerCase()))));
     if (minRating > 0) result = result.filter(u => (u.rating ?? 0) >= minRating);
     setFiltered(result);
@@ -37,9 +80,18 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
   const toggleFacility = (f: string) => setFacilities(prev => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f]);
   const toggleCompare = (uni: University) => {
     setCompareList(prev => {
-      if (prev.find(u => u.id === uni.id)) return prev.filter(u => u.id !== uni.id);
-      if (prev.length >= 3) return prev;
-      return [...prev, uni];
+      const next = prev.find(u => u.id === uni.id)
+        ? prev.filter(u => u.id !== uni.id)
+        : prev.length >= 3
+          ? prev
+          : [...prev, uni];
+      try {
+        localStorage.setItem(
+          COMPARE_STORAGE_KEY,
+          JSON.stringify(next.map(u => ({ id: u.id, name: u.name, abbrev: u.abbrev || u.name })))
+        );
+      } catch {}
+      return next;
     });
   };
   const clearFilters = () => { setQuery(''); setCounty('All'); setType('All'); setFacilities([]); setMinRating(0); };
@@ -66,7 +118,7 @@ export default function UniversityBrowser({ universities, userHighSchool }: Prop
 
           <FilterSection title="County">
             <select value={county} onChange={e => setCounty(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--border-light)', fontSize: '0.875rem', color: 'var(--text-primary)', background: 'var(--bg-primary)', cursor: 'pointer' }}>
-              {COUNTIES.map(c => <option key={c} value={c}>{c}</option>)}
+              {countyOptions.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </FilterSection>
 

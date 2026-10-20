@@ -23,12 +23,13 @@ const NAV_LINKS: NavLink[] = [
   {
     label: 'Resources',
     children: [
+      { href: '/calculator', label: 'Points Calculator', icon: <Calculator size={16} /> },
+      { href: '/grades', label: 'KCSE Grade Guides', icon: <GraduationCap size={16} /> },
       { href: '/guidance', label: 'Career Guidance', icon: <BookOpen size={16} /> },
       { href: '/scholarships', label: 'Scholarships', icon: <GraduationCap size={16} /> },
       { href: '/housing', label: 'Student Housing', icon: <Home size={16} /> },
       { href: '/events', label: 'Campus Events', icon: <Calendar size={16} /> },
       { href: '/compare', label: 'Compare Campuses', icon: <Scale size={16} /> },
-      { href: '/calculator', label: 'Points Calculator', icon: <Calculator size={16} /> },
     ],
   },
   { href: '/portal', label: 'Partner Portal', icon: <Landmark size={14} /> },

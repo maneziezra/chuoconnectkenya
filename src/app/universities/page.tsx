@@ -10,7 +10,12 @@ export const metadata: Metadata = {
     'Browse and compare all accredited universities and colleges in Kenya. Filter by county, type, ranking, fees, facilities, accommodation and more.',
 };
 
-export default async function UniversitiesPage() {
+export default async function UniversitiesPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ county?: string; q?: string; type?: string }>;
+}) {
+  const params = await searchParams;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   let userHighSchool = null;
@@ -69,9 +74,16 @@ export default async function UniversitiesPage() {
 
       <section className="section">
         <div className="container">
-          <UniversityBrowser universities={universities} userHighSchool={userHighSchool} />
+          <UniversityBrowser
+            universities={universities}
+            userHighSchool={userHighSchool}
+            initialCounty={params.county}
+            initialQuery={params.q}
+            initialType={params.type}
+          />
         </div>
       </section>
     </>
   );
 }
+
