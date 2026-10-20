@@ -231,7 +231,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── TOP UNIVERSITIES ── */}
-      <section className="section" style={{ position: 'relative' }}>
+      <section className="section heavy-section-deferred" style={{ position: 'relative' }}>
         <div
           style={{
             position: 'absolute',
@@ -268,13 +268,14 @@ export default async function HomePage() {
                 <HoverScale scale={1.02} className="h-full">
                   <Link
                     href={`/universities/${uni.id}`}
-                    className="card"
+                    className="card scroll-reveal-card"
                     style={{ overflow: 'hidden', textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}
                   >
                     <div style={{ height: 200, position: 'relative' }}>
                       <img
                         src={uni.image}
                         alt={uni.name}
+                        loading="lazy"
                         style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                       />
                       <div
@@ -361,7 +362,7 @@ export default async function HomePage() {
       </section>
 
       {/* ── PARTNER CTA ── */}
-      <section style={{ padding: '80px 0', borderTop: '2px solid var(--navy-deep)' }}>
+      <section className="heavy-section-deferred" style={{ padding: '80px 0', borderTop: '2px solid var(--navy-deep)' }}>
         <div className="container" style={{ padding: '0 20px', maxWidth: 1240 }}>
           <div
             style={{

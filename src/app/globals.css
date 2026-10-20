@@ -475,16 +475,226 @@ img {
 }
 
 /* ============================================
-   ANIMATIONS
+   ANIMATIONS, SKELETONS & MODERN WEB GUIDANCE
    ============================================ */
 
+/* Cross-Document & Same-Document View Transitions */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+@keyframes vtFadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes vtFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 0.22s cubic-bezier(0.4, 0, 1, 1) both vtFadeOut;
+}
+
+::view-transition-new(root) {
+  animation: 0.28s cubic-bezier(0.16, 1, 0.3, 1) both vtFadeIn;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* Spin & Pulse Utilities (case-by-case reduced motion per `motion` guide) */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin,
+.spinner {
+  animation: spin 0.9s linear infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0.65;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+
+.animate-pulse {
+  animation: pulseGlow 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+/* shadcn/ui Skeleton with compositor-only transform shimmer */
+@keyframes skeletonWave {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: var(--bg-tertiary);
+}
+
+.skeleton-shimmer.skeleton-gold {
+  background: var(--gold-glow);
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 100%
+  );
+  animation: skeletonWave 1.5s ease-in-out infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    display: none;
+  }
+}
+
+.dark .skeleton-shimmer::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
+}
+
+/* Route & Section Fade-Up */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.animate-fadeup {
-  animation: fadeUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+
+.animate-fadeup,
+.page-transition-enter {
+  animation: fadeUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
 }
+
+/* Scroll-Driven Entry & Exit Effects (`scroll-entry-exit-effects`) */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes scrollCardEnter {
+      from {
+        opacity: 0.25;
+        transform: translateY(22px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .scroll-reveal-card {
+      animation: scrollCardEnter auto linear backwards;
+      /* Declared after `animation` shorthand so the shorthand does not reset the timeline */
+      animation-timeline: view();
+      animation-range: entry 0% entry 32%;
+    }
+  }
+}
+
+/* Top-Layer Dialog Entry/Exit (`animate-to-from-top-layer`) */
+dialog.chuo-enquiry {
+  border: 2px solid var(--border-medium);
+  border-radius: 20px;
+  padding: 0;
+  width: min(560px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  overflow: auto;
+  margin: auto;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-xl);
+  opacity: 0;
+  transform: scale(0.94) translateY(8px);
+  transition-property: opacity, transform, display, overlay;
+  transition-duration: 0.26s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  transition-behavior: allow-discrete;
+}
+
+dialog.chuo-enquiry::backdrop {
+  background-color: rgba(11, 17, 32, 0);
+  backdrop-filter: blur(0px);
+  transition-property: background-color, backdrop-filter, display, overlay;
+  transition-duration: 0.26s;
+  transition-timing-function: ease-out;
+  transition-behavior: allow-discrete;
+}
+
+:is(dialog.chuo-enquiry[open]):where(:not([data-closing])) {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+
+  &::backdrop {
+    background-color: rgba(11, 17, 32, 0.65);
+    backdrop-filter: blur(4px);
+
+    @starting-style {
+      background-color: rgba(11, 17, 32, 0);
+      backdrop-filter: blur(0px);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  dialog.chuo-enquiry {
+    transform: none;
+    transition-duration: 0.1s;
+  }
+
+  @starting-style {
+    dialog.chuo-enquiry[open] {
+      transform: none;
+    }
+  }
+}
+
+/* Below-the-fold Deferred Rendering (`defer-rendering-heavy-content`) */
+.heavy-section-deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 480px;
+}
+
 
 /* ============================================
    DASHBOARD UTILITIES

@@ -22,6 +22,8 @@ export const metadata: Metadata = {
 import { createClient } from '@/lib/supabase/server';
 
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { NavigationProgress } from '@/components/ui/navigation-progress';
+import { ScrollRevealObserver } from '@/components/ui/scroll-reveal-observer';
 
 export default async function RootLayout({
   children,
@@ -35,6 +37,8 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${playfair.variable} ${instrument.variable} ${jetbrains.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NavigationProgress />
+          <ScrollRevealObserver />
           <Navbar user={user} />
           <main>{children}</main>
           <Footer />

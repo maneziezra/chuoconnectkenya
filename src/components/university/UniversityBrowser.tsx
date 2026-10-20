@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { Star, Users, MapPin, ArrowRight, Check, Scale, X, Filter, ChevronDown, Search } from 'lucide-react';
 import type { University } from '@/lib/types';
@@ -40,6 +40,25 @@ export default function UniversityBrowser({
   const [minRating, setMinRating] = useState(0);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [compareList, setCompareList] = useState<University[]>([]);
+  const resultsSummaryRef = useRef<HTMLDivElement>(null);
+
+  const runFilterTransition = (updateFn: () => void, routeFocus = false) => {
+    if (typeof document === 'undefined' || !('startViewTransition' in document)) {
+      updateFn();
+      if (routeFocus) resultsSummaryRef.current?.focus();
+      return;
+    }
+    const transition = (document as Document & {
+      startViewTransition: (cb: () => void) => { finished: Promise<void> };
+    }).startViewTransition(() => {
+      updateFn();
+    });
+    if (routeFocus) {
+      transition.finished.finally(() => {
+        resultsSummaryRef.current?.focus();
+      });
+    }
+  };
 
   useEffect(() => {
     if (initialCounty !== undefined) setCounty(initialCounty || 'All');
@@ -77,7 +96,8 @@ export default function UniversityBrowser({
     setFiltered(result);
   }, [query, county, type, facilities, minRating, universities]);
 
-  const toggleFacility = (f: string) => setFacilities(prev => prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f]);
+  const toggleFacility = (f: string) =>
+    runFilterTransition(() => setFacilities(prev => (prev.includes(f) ? prev.filter(x => x !== f) : [...prev, f])));
   const toggleCompare = (uni: University) => {
     setCompareList(prev => {
       const next = prev.find(u => u.id === uni.id)
@@ -94,7 +114,14 @@ export default function UniversityBrowser({
       return next;
     });
   };
-  const clearFilters = () => { setQuery(''); setCounty('All'); setType('All'); setFacilities([]); setMinRating(0); };
+  const clearFilters = () =>
+    runFilterTransition(() => {
+      setQuery('');
+      setCounty('All');
+      setType('All');
+      setFacilities([]);
+      setMinRating(0);
+    }, true);
   const hasFilters = query || county !== 'All' || type !== 'All' || facilities.length > 0 || minRating > 0;
 
   return (
@@ -117,7 +144,7 @@ export default function UniversityBrowser({
           </div>
 
           <FilterSection title="County">
-            <select value={county} onChange={e => setCounty(e.target.value)} style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--border-light)', fontSize: '0.875rem', color: 'var(--text-primary)', background: 'var(--bg-primary)', cursor: 'pointer' }}>
+            <select value={county} onChange={e => runFilterTransition(() => setCounty(e.target.value))} style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--border-light)', fontSize: '0.875rem', color: 'var(--text-primary)', background: 'var(--bg-primary)', cursor: 'pointer' }}>
               {countyOptions.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </FilterSection>
@@ -126,7 +153,7 @@ export default function UniversityBrowser({
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {TYPES.map(t => (
                 <label key={t} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.875rem', color: type === t ? 'var(--navy-deep)' : 'var(--text-secondary)', fontWeight: type === t ? 600 : 400 }}>
-                  <input type="radio" name="type" value={t} checked={type === t} onChange={() => setType(t)} style={{ accentColor: 'var(--navy-deep)' }} />
+                  <input type="radio" name="type" value={t} checked={type === t} onChange={() => runFilterTransition(() => setType(t))} style={{ accentColor: 'var(--navy-deep)' }} />
                   {t}
                 </label>
               ))}
@@ -186,7 +213,11 @@ export default function UniversityBrowser({
           </div>
 
           {/* Results Count */}
-          <div style={{ marginBottom: 20, fontSize: '0.875rem', color: 'var(--text-tertiary)' }}>
+          <div
+            ref={resultsSummaryRef}
+            tabIndex={-1}
+            style={{ marginBottom: 20, fontSize: '0.875rem', color: 'var(--text-tertiary)', outline: 'none' }}
+          >
             Showing <strong style={{ color: 'var(--text-primary)' }}>{filtered.length}</strong> of {universities.length} institutions
             {hasFilters && <span> · Filters applied</span>}
           </div>
@@ -199,7 +230,7 @@ export default function UniversityBrowser({
               const alumniCount = userHighSchool ? (uni.id.length + userHighSchool.length + 3) * 2 : 0;
               
               return (
-                <div key={uni.id} className="card" style={{ position: 'relative', height: '100%' }}>
+                <div key={uni.id} className="card scroll-reveal-card" style={{ position: 'relative', height: '100%' }}>
                   {/* Compare toggle */}
                   <button
                     onClick={() => toggleCompare(uni)}

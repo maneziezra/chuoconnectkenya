@@ -81,15 +81,87 @@ export default function ExpressInquiryModal({
   const selectedUniversityName =
     universityOptions?.find(u => u.id === form.universityId)?.name ?? universityName ?? 'the university';
 
-  // Open/close the native <dialog> (gives focus trapping + Escape for free).
+  // Probe whether discrete display transition is actually supported (guards against Firefox bug 1882408)
+  function canTransitionDisplay(): boolean {
+    if (typeof window === 'undefined' || !window.CSS?.supports?.('transition-behavior', 'allow-discrete') || !document.body) {
+      return false;
+    }
+    const probe = document.createElement('div');
+    probe.style.cssText = 'transition: display 1s allow-discrete !important; display: block;';
+    document.body.appendChild(probe);
+    getComputedStyle(probe).display;
+    probe.style.display = 'none';
+    const supported = getComputedStyle(probe).display === 'block';
+    probe.remove();
+    return supported;
+  }
+
+  function supportsTopLayerExit(): boolean {
+    return typeof window !== 'undefined' && Boolean(window.CSS?.supports?.('overlay', 'auto')) && canTransitionDisplay();
+  }
+
+  async function requestCloseDialog() {
+    const dialog = dialogRef.current;
+    if (!dialog || !dialog.open) {
+      setOpen(false);
+      return;
+    }
+    if (!supportsTopLayerExit()) {
+      dialog.setAttribute('data-closing', '');
+      const animations = dialog.getAnimations({ subtree: true });
+      if (animations.length > 0) {
+        await Promise.race([
+          Promise.allSettled(animations.map(a => a.finished)),
+          new Promise(r => setTimeout(r, 2000)),
+        ]);
+      }
+      if (!dialog.hasAttribute('data-closing')) return;
+      dialog.removeAttribute('data-closing');
+    }
+    dialog.close();
+    setOpen(false);
+  }
+
+  // Open/close the native <dialog> and wire `cancel` + light-dismiss fallback (`light-dismiss-a-dialog` & `animate-to-from-top-layer`)
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+
+    const handleCancel = (event: Event) => {
+      event.preventDefault();
+      void requestCloseDialog();
+    };
+
+    const handleBackdropClick = (event: MouseEvent) => {
+      if ('closedBy' in HTMLDialogElement.prototype) return;
+      if (event.target !== dialog) return;
+      const rect = dialog.getBoundingClientRect();
+      const isDialogContent =
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width;
+      if (isDialogContent) return;
+      void requestCloseDialog();
+    };
+
+    dialog.addEventListener('cancel', handleCancel);
+    dialog.addEventListener('click', handleBackdropClick);
+    return () => {
+      dialog.removeEventListener('cancel', handleCancel);
+      dialog.removeEventListener('click', handleBackdropClick);
+    };
+  }, []);
+
   useEffect(() => {
     const dialog = dialogRef.current;
     if (!dialog) return;
     if (open && !dialog.open) {
+      dialog.removeAttribute('data-closing');
       dialog.showModal();
       requestAnimationFrame(() => nameRef.current?.focus());
     } else if (!open && dialog.open) {
-      dialog.close();
+      void requestCloseDialog();
     }
   }, [open]);
 
@@ -192,24 +264,14 @@ export default function ExpressInquiryModal({
         className="chuo-enquiry"
         aria-labelledby={id('title')}
         onClose={() => setOpen(false)}
-        onClick={e => {
-          // Click on the backdrop (the dialog element itself, not its content) closes it.
-          if (e.target === dialogRef.current) setOpen(false);
-        }}
+        {...({ closedby: 'any' } as any)}
       >
-        <style>{`
-          .chuo-enquiry { border: 2px solid var(--border-medium); border-radius: 20px; padding: 0;
-            width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 32px); overflow: auto;
-            background: var(--bg-primary); color: var(--text-primary); box-shadow: var(--shadow-neo); }
-          .chuo-enquiry::backdrop { background: rgba(17, 24, 39, 0.65); }
-        `}</style>
-
         <div style={{ padding: 28 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, marginBottom: 6 }}>
             <h2 id={id('title')} style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.4rem', margin: 0, color: 'var(--text-primary)' }}>
               {status === 'success' ? 'Enquiry sent' : `Request admission info${chooseUniversity ? '' : ` — ${selectedUniversityName}`}`}
             </h2>
-            <button type="button" className="btn btn-ghost btn-sm" onClick={() => setOpen(false)} aria-label="Close">
+            <button type="button" className="btn btn-ghost btn-sm" onClick={() => void requestCloseDialog()} aria-label="Close">
               <X size={18} aria-hidden="true" />
             </button>
           </div>
@@ -224,7 +286,7 @@ export default function ExpressInquiryModal({
                 Their admissions team can now contact you on the phone number you gave. This is an enquiry, not an application:
                 complete your official placement through KUCCPS or the university&apos;s own portal.
               </p>
-              <button type="button" className="btn btn-navy" onClick={() => setOpen(false)}>Done</button>
+              <button type="button" className="btn btn-navy" onClick={() => void requestCloseDialog()}>Done</button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} noValidate>
