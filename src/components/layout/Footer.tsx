@@ -32,6 +32,7 @@ export default function Footer() {
               <ul className="link-list">
                 <li><Link href="/universities">University Directory</Link></li>
                 <li><Link href="/courses">Course Finder</Link></li>
+                <li><Link href="/grades">Courses by KCSE Grade</Link></li>
                 <li><Link href="/compare">Compare Campuses</Link></li>
                 <li><Link href="/events">Campus Events</Link></li>
               </ul>
@@ -40,10 +41,11 @@ export default function Footer() {
             <div className="link-col">
               <span className="col-heading">Resources</span>
               <ul className="link-list">
-                <li><Link href="/guidance">Career Guidance</Link></li>
-                <li><Link href="/scholarships">Scholarships</Link></li>
+                <li><Link href="/calculator">KUCCPS & HEF Calculator</Link></li>
+                <li><Link href="/grades/c-plus">Courses for Grade C+</Link></li>
+                <li><Link href="/grades/c">Diploma Bridge (Grade C)</Link></li>
+                <li><Link href="/scholarships">Scholarships & HEF</Link></li>
                 <li><Link href="/housing">Student Housing</Link></li>
-                <li><Link href="/dashboard">KUCCPS Calculator</Link></li>
               </ul>
             </div>
 

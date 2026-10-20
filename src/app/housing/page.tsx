@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Home, Search, XCircle, CheckCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, Home, Search, XCircle, CheckCircle, MessageCircle } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import type { Housing } from '@/lib/types';
+import { universitiesData } from '@/lib/data/universities';
 
 const MOCK_HOUSING: Housing[] = [
   {
@@ -2419,6 +2420,7 @@ interface Props {
   searchParams: Promise<{
     type?: string;
     county?: string;
+    university?: string;
     availableOnly?: string;
   }>;
 }
@@ -2427,7 +2429,10 @@ export default async function HousingPage({ searchParams }: Props) {
   const params = await searchParams;
   const type = params.type;
   const county = params.county;
+  const university = params.university;
   const availableOnly = params.availableOnly === 'true';
+
+  const uniMap = new Map(universitiesData.map(u => [u.id, u]));
 
   const supabase = await createClient();
   let query = supabase.from('housing').select('*').order('createdAt', { ascending: false });
@@ -2438,23 +2443,28 @@ export default async function HousingPage({ searchParams }: Props) {
   if (county) {
     query = query.ilike('county', `%${county}%`);
   }
+  if (university) {
+    query = query.eq('universityId', university);
+  }
   if (availableOnly) {
     query = query.eq('available', true);
   }
 
   const { data, error } = await query;
-  
+
   // If the table doesn't exist yet (PGRST205) or data is empty (DB not seeded), use mock data
   let housingListings = (data || []) as Housing[];
   if (error?.code === 'PGRST205' || housingListings.length === 0) {
     housingListings = MOCK_HOUSING;
-    
-    // Apply filters to mock data manually
+
     if (type) {
       housingListings = housingListings.filter(h => h.type === type);
     }
     if (county) {
       housingListings = housingListings.filter(h => h.county.toLowerCase().includes(county.toLowerCase()));
+    }
+    if (university) {
+      housingListings = housingListings.filter(h => h.universityId === university);
     }
     if (availableOnly) {
       housingListings = housingListings.filter(h => h.available);
@@ -2468,7 +2478,7 @@ export default async function HousingPage({ searchParams }: Props) {
       {/* Hero Section */}
       <div style={{ padding: '40px 20px 0' }}>
         <div style={{ position: 'relative', border: '2px solid var(--border-medium)', borderRadius: 20, boxShadow: 'var(--shadow-neo)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }} />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-primary)', marginBottom: 16 }}>
               <Home size={14} />
@@ -2478,20 +2488,32 @@ export default async function HousingPage({ searchParams }: Props) {
               Find Your Perfect Student Home
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 700, lineHeight: 1.6 }}>
-              Explore verified hostels, apartments, and shared spaces near your university. Filter by amenities, distance, and price to find the ideal living situation for your campus life.
+              Explore verified hostels, apartments, and shared spaces near your university. Filter by campus, amenities, county, and price to book your room for the upcoming semester.
             </p>
           </div>
         </div>
       </div>
 
       <section className="section" style={{ background: 'var(--bg-secondary)', minHeight: '60vh' }}>
-        <div className="container" style={{ display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+        <div className="container" style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
           {/* Filters Sidebar */}
           <aside style={{ width: 280, flexShrink: 0, background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', padding: 24, border: '1px solid var(--border-light)', position: 'sticky', top: 100 }}>
             <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 20 }}>Filters</h3>
-            
+
             <form action="/housing" method="GET">
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 18 }}>
+                <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Near University</label>
+                <select name="university" defaultValue={university || ''} className="form-input" style={{ width: '100%' }}>
+                  <option value="">All Universities</option>
+                  {universitiesData.map(u => (
+                    <option key={u.id} value={u.id}>
+                      {u.abbrev ? `${u.abbrev} — ${u.name}` : u.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div style={{ marginBottom: 18 }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Property Type</label>
                 <select name="type" defaultValue={type || ''} className="form-input" style={{ width: '100%' }}>
                   <option value="">All Types</option>
@@ -2502,7 +2524,7 @@ export default async function HousingPage({ searchParams }: Props) {
                 </select>
               </div>
 
-              <div style={{ marginBottom: 20 }}>
+              <div style={{ marginBottom: 18 }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>County</label>
                 <select name="county" defaultValue={county || ''} className="form-input" style={{ width: '100%' }}>
                   <option value="">All Counties</option>
@@ -2520,8 +2542,8 @@ export default async function HousingPage({ searchParams }: Props) {
               </div>
 
               <button type="submit" className="btn btn-navy" style={{ width: '100%' }}>Apply Filters</button>
-              
-              {(type || county || availableOnly) && (
+
+              {(type || county || university || availableOnly) && (
                 <Link href="/housing" className="btn btn-outline" style={{ width: '100%', marginTop: 8, textAlign: 'center', display: 'block' }}>
                   Clear All
                 </Link>
@@ -2530,7 +2552,7 @@ export default async function HousingPage({ searchParams }: Props) {
           </aside>
 
           {/* Listings Grid */}
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: '1 1 560px' }}>
             {isError ? (
               <div style={{ padding: '60px 20px', textAlign: 'center', background: 'var(--danger-bg)', borderRadius: 'var(--radius-lg)' }}>
                 <p style={{ color: 'var(--danger-text)' }}>Failed to load housing. Please try again later.</p>
@@ -2542,68 +2564,95 @@ export default async function HousingPage({ searchParams }: Props) {
                 <p style={{ color: 'var(--text-secondary)' }}>Try adjusting your filters to see more results.</p>
               </div>
             ) : (
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 24 }}>
-                {housingListings.map(h => (
-                  <div key={h.id} className="card" style={{ display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)' }}>
-                    <div style={{ height: 160, background: 'var(--navy-light)', position: 'relative', overflow: 'hidden' }}>
-                      {h.image ? (
-                        <img src={h.image} alt={h.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      ) : (
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', color: 'var(--text-tertiary)' }}>
-                          <Home size={32} />
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(310px, 1fr))', gap: 24 }}>
+                {housingListings.map(h => {
+                  const uniObj = h.universityId ? uniMap.get(h.universityId) : undefined;
+                  const cleanDigits = (h.contactPhone || '').replace(/\D+/g, '');
+                  const waPhone = cleanDigits.startsWith('254')
+                    ? cleanDigits
+                    : cleanDigits.startsWith('07') || cleanDigits.startsWith('01')
+                    ? `254${cleanDigits.slice(1)}`
+                    : null;
+                  const waText = `Hi, I found ${h.name} (${h.location}) on Chuo Connect Kenya and would like to inquire about student room availability (${h.price}).`;
+
+                  return (
+                    <div key={h.id} className="card" style={{ display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)' }}>
+                      <div style={{ height: 160, background: 'var(--navy-light)', position: 'relative', overflow: 'hidden' }}>
+                        {h.image ? (
+                          <img src={h.image} alt={h.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                        ) : (
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', color: 'var(--text-tertiary)' }}>
+                            <Home size={32} />
+                          </div>
+                        )}
+                        <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, background: 'var(--bg-primary)', color: 'var(--text-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                          {TYPE_LABELS[h.type]}
                         </div>
-                      )}
-                      <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, background: 'var(--bg-primary)', color: 'var(--text-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
-                        {TYPE_LABELS[h.type]}
-                      </div>
-                    </div>
-                    <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.2 }}>{h.name}</h3>
-                      </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
-                        <MapPin size={12} /> {h.location}, {h.county}
-                      </div>
-                      
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
-                        {h.amenities?.slice(0, 3).map(a => (
-                          <span key={a} style={{ padding: '2px 8px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-                            {a}
-                          </span>
-                        ))}
-                        {h.amenities && h.amenities.length > 3 && (
-                          <span style={{ padding: '2px 8px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
-                            +{h.amenities.length - 3} more
-                          </span>
+                        {uniObj && (
+                          <div style={{ position: 'absolute', bottom: 10, left: 10, padding: '3px 10px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 700, background: 'var(--navy-deep)', color: 'var(--gold-primary)' }}>
+                            Near {uniObj.abbrev || uniObj.name}
+                          </div>
                         )}
                       </div>
-
-                      <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid var(--border-light)' }}>
-                        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 12 }}>
-                          <div>
-                            <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Starting from</div>
-                            <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--gold-primary)' }}>{h.price}</div>
-                          </div>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', color: h.available ? '#059669' : '#DC2626', fontWeight: 500 }}>
-                            {h.available ? <><CheckCircle size={12}/> Available</> : <><XCircle size={12}/> Full</>}
-                          </div>
+                      <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+                          <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.2 }}>{h.name}</h3>
                         </div>
-                        <div style={{ display: 'flex', gap: 8 }}>
-                          {h.contactPhone && (
-                            <a href={`tel:${h.contactPhone.replace(/\s+/g, '')}`} className="btn btn-outline" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
-                              <Phone size={14} /> Call
-                            </a>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
+                          <MapPin size={12} /> {h.location}, {h.county}
+                        </div>
+
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
+                          {h.amenities?.slice(0, 3).map(a => (
+                            <span key={a} style={{ padding: '2px 8px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+                              {a}
+                            </span>
+                          ))}
+                          {h.amenities && h.amenities.length > 3 && (
+                            <span style={{ padding: '2px 8px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+                              +{h.amenities.length - 3} more
+                            </span>
                           )}
-                          {h.contactEmail && (
-                            <a href={`mailto:${h.contactEmail}`} className="btn btn-outline" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 12px' }}>
-                              <Mail size={14} /> Email
-                            </a>
-                          )}
+                        </div>
+
+                        <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid var(--border-light)' }}>
+                          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 12 }}>
+                            <div>
+                              <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Starting from</div>
+                              <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--gold-primary)' }}>{h.price}</div>
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', color: h.available ? '#059669' : '#DC2626', fontWeight: 500 }}>
+                              {h.available ? <><CheckCircle size={12} /> Available</> : <><XCircle size={12} /> Full</>}
+                            </div>
+                          </div>
+                          <div style={{ display: 'flex', gap: 8 }}>
+                            {waPhone && (
+                              <a
+                                href={`https://wa.me/${waPhone}?text=${encodeURIComponent(waText)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-gold btn-sm"
+                                style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 10px' }}
+                              >
+                                <MessageCircle size={14} /> WhatsApp
+                              </a>
+                            )}
+                            {h.contactPhone && (
+                              <a href={`tel:${h.contactPhone.replace(/\s+/g, '')}`} className="btn btn-outline btn-sm" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 10px' }}>
+                                <Phone size={14} /> Call
+                              </a>
+                            )}
+                            {h.contactEmail && (
+                              <a href={`mailto:${h.contactEmail}`} className="btn btn-outline btn-sm" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 10px' }}>
+                                <Mail size={14} /> Email
+                              </a>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
