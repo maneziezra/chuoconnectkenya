@@ -5,7 +5,7 @@ import { universitiesData } from '@/lib/data/universities';
 import ComparePageClient from '@/components/university/ComparePageClient';
 
 export const metadata: Metadata = {
-  title: 'Compare Universities | Chuo Connect Kenya',
+  title: 'Compare Universities Side-by-Side',
   description: 'Compare universities side-by-side. Evaluate tuition fees, academic programmes, facilities, accommodation, ratings and more.',
 };
 

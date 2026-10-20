@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Privacy Policy | Chuo Connect',
-  description: 'Privacy Policy and Data Handling for Chuo Connect',
+  title: 'Privacy Policy & Data Handling',
+  description: 'Privacy Policy and Data Handling for Chuo Connect Kenya',
 };
 
 export default function PrivacyPage() {

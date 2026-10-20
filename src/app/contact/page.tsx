@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin } from 'lucide-react';
 import ContactFormClient from '@/components/contact/ContactFormClient';
 
 export const metadata: Metadata = {
-  title: 'Contact Us & B2B Partnerships | Chuo Connect Kenya',
+  title: 'Contact Us & University Partnerships',
   description: 'Get in touch with the Chuo Connect Kenya team. We help students, universities, hostel operators, and scholarship partners connect.',
 };
 

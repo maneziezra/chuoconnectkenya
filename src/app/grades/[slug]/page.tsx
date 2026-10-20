@@ -32,10 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const guide = getGradeGuideBySlug(slug);
   if (!guide) {
-    return { title: 'KCSE Grade Guide | Chuo Connect Kenya' };
+    return { title: 'KCSE Grade Guide' };
   }
+  const cleanTitle = guide.metaTitle.replace(/\s*\|\s*Chuo Connect.*$/i, '');
   return {
-    title: guide.metaTitle,
+    title: cleanTitle,
     description: guide.metaDescription,
     alternates: {
       canonical: `/grades/${guide.slug}`,

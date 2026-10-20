@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { GraduationCap, Target, Users, MessageCircle, Star, Search, Building2, Scale, Video, Bot, FileText, Repeat, UsersRound, Building } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Chuo Connect Kenya | Our Mission & Vision',
+  title: 'About Us — Mission & Vision',
   description: "Chuo Connect Kenya is Kenya's premier campus discovery platform helping students find the right university through immersive profiles, smart search, and student ambassadors.",
 };
 

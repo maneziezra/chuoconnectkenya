@@ -14,9 +14,12 @@ import { HoverScale } from '@/components/animations/HoverScale';
 import HeroSection from '@/components/home/HeroSection';
 
 export const metadata: Metadata = {
-  title: 'Chuo Connect Kenya — Discover Your University, KUCCPS Cluster Points & Scholarships',
+  title: {
+    absolute: 'Chuo Connect Kenya — Discover Your University, KUCCPS Cluster Points & Scholarships',
+  },
   description:
-    'Find and compare every university in Kenya. Calculate your KUCCPS 2026 cluster points, check HEF Band 1–5 fees, explore KCSE grade guides, and apply directly.'};
+    'Find and compare every university in Kenya. Calculate your KUCCPS 2026 cluster points, check HEF Band 1–5 fees, explore KCSE grade guides, and apply directly.'
+};
 
 const FEATURES = [
   {

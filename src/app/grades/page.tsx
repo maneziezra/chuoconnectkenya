@@ -4,7 +4,7 @@ import { GraduationCap, Calculator, ArrowRight, CheckCircle2, Sparkles } from 'l
 import { GRADE_GUIDES, getCoursesForGradeGuide } from '@/lib/data/gradeGuides';
 
 export const metadata: Metadata = {
-  title: 'KCSE Mean Grade Course & Career Guides (A to D+) | Chuo Connect Kenya',
+  title: 'KCSE Mean Grade Course & Career Guides (A to D+)',
   description:
     'Find the best KUCCPS degree, KMTC, and TVET diploma courses in Kenya for your exact KCSE Mean Grade — from A & A- to B+, B, C+, C plain, C- and D+.',
 };

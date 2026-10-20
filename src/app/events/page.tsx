@@ -5,7 +5,7 @@ import type { Event } from '@/lib/types';
 import ExpressInquiryModal from '@/components/university/ExpressInquiryModal';
 
 export const metadata: Metadata = {
-  title: '2026 Campus Open Days & Career Events | Chuo Connect Kenya',
+  title: '2026 Campus Open Days & Career Events',
   description:
     'Discover upcoming 2026/2027 campus open days, KUCCPS placement clinics, career fairs, and student hackathons at universities across Kenya.',
 };

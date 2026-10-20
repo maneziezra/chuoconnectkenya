@@ -5,7 +5,7 @@ import { universitiesData } from '@/lib/data/universities';
 import UniversityBrowser from '@/components/university/UniversityBrowser';
 
 export const metadata: Metadata = {
-  title: 'Explore Universities in Kenya | Chuo Connect Kenya',
+  title: 'Explore Universities in Kenya',
   description:
     'Browse and compare all accredited universities and colleges in Kenya. Filter by county, type, ranking, fees, facilities, accommodation and more.',
 };

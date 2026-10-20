@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Terms of Service | Chuo Connect',
-  description: 'Terms of Service and User Agreement for Chuo Connect',
+  title: 'Terms of Service & User Agreement',
+  description: 'Terms of Service and User Agreement for Chuo Connect Kenya',
 };
 
 export default function TermsPage() {

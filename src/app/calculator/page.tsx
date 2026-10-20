@@ -4,7 +4,7 @@ import { createClient } from '@/lib/supabase/server';
 import type { Course, University } from '@/lib/types';
 
 export const metadata: Metadata = {
-  title: 'KUCCPS Cluster Points & HEF Funding Calculator | Chuo Connect Kenya',
+  title: 'KUCCPS Cluster Points & HEF Funding Calculator',
   description:
     'Calculate your official KUCCPS Weighted Cluster Points across all 8 subject clusters, simulate your HEF Band 1–5 Government Scholarship & HELB Loan, and build your 6-slot KUCCPS choice basket.',
 };

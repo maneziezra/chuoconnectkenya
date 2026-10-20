@@ -6,7 +6,7 @@ import { FALLBACK_SCHOLARSHIPS, type EnrichedScholarship } from '@/lib/data/scho
 import ExpressInquiryModal from '@/components/university/ExpressInquiryModal';
 
 export const metadata: Metadata = {
-  title: 'Scholarships, HEF Grants & HELB Loans in Kenya (2026) | Chuo Connect',
+  title: 'Scholarships, HEF Grants & HELB Loans in Kenya (2026)',
   description:
     'Discover 2026 Kenyan scholarships, HEF Band 1–5 Government Grants, HELB Tuition & Upkeep Loans, Mastercard Foundation, Equity Leaders, and institutional university bursaries.',
 };

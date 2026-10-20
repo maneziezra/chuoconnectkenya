@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Guidance & About | Chuo Connect Kenya',
+  title: 'Admissions Guidance & Student Hub',
   description: 'Expert advice, KUCCPS placement guides, scholarship opportunities, and about the Chuo Connect Kenya platform.',
 };
 

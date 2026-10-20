@@ -2400,7 +2400,7 @@ const MOCK_HOUSING: Housing[] = [
 ];
 
 export const metadata: Metadata = {
-  title: 'Student Housing | Chuo Connect Kenya',
+  title: 'Student Housing & Hostels',
   description: 'Find affordable student housing and hostels near universities in Kenya. Compare rooms, amenities, and prices.',
 };
 
