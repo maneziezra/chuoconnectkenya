@@ -8,6 +8,8 @@ import {
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import type { University, Course, Review, Ambassador } from '@/lib/types';
+import { universitiesData } from '@/lib/data/universities';
+import { coursesData as localCourses } from '@/lib/data/courses';
 import ReviewSection from '@/components/university/ReviewSection';
 import AmbassadorSection from '@/components/university/AmbassadorSection';
 import GallerySection from '@/components/university/GallerySection';
@@ -19,7 +21,8 @@ type Props = { params: Promise<{ id: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const supabase = await createClient();
-  const { data: uni } = await supabase.from('universities').select('*').eq('id', id).single();
+  const { data: dbUni } = await supabase.from('universities').select('*').eq('id', id).single();
+  const uni = dbUni || universitiesData.find(u => u.id === id);
   if (!uni) return { title: 'Not Found' };
   return {
     title: `${uni.name} | Campus Profile`,
@@ -30,15 +33,21 @@ export default async function CampusProfilePage({ params }: Props) {
   const { id } = await params;
   const supabase = await createClient();
 
-  const { data: uniData } = await supabase.from('universities').select('*').eq('id', id).single();
+  const { data: dbUniData } = await supabase.from('universities').select('*').eq('id', id).single();
+  const uniData = dbUniData || universitiesData.find(u => u.id === id);
   if (!uniData) notFound();
   const uni = {
     ...uniData,
-    image: uniData.coverUrl || uniData.logoUrl || uniData.image || '/images/universities/uon.jpg'
+    image: (uniData as any).coverUrl || (uniData as any).logoUrl || uniData.image || '/images/universities/uon.jpg'
   } as University;
 
-  const { data: coursesData } = await supabase.from('courses').select('*').contains('universityIds', [id]);
-  const uniCourses = (coursesData || []) as Course[];
+  const { data: dbCourses } = await supabase.from('courses').select('*').contains('universityIds', [id]);
+  const fallbackCourses = localCourses.filter(c => c.universityIds.includes(id));
+  const seenCourseIds = new Set((dbCourses || []).map((c: Course) => c.id));
+  const uniCourses = [
+    ...((dbCourses || []) as Course[]),
+    ...fallbackCourses.filter(c => !seenCourseIds.has(c.id)),
+  ];
 
   const { data: reviewsData } = await supabase
     .from('reviews')
@@ -156,14 +165,26 @@ export default async function CampusProfilePage({ params }: Props) {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {uniCourses.map(course => (
                       <div key={course.id} style={{
-                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                        display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap',
                         padding: '12px 16px', background: 'var(--bg-secondary)',
                         borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)'}}>
                         <div>
                           <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{course.title}</div>
                           <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 2 }}>{course.clusterGroup} · {course.duration}</div>
                         </div>
-                        <span className="badge badge-gold">{course.minPoints}+ pts</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                          <span className="badge badge-gold">{course.minPoints}+ pts</span>
+                          <ExpressInquiryModal
+                            source="university_page"
+                            universityId={uni.id}
+                            universityName={uni.name}
+                            defaultCourse={course.title}
+                            courseOptions={[course.title]}
+                            fallbackContact={{ email: uni.contactEmail, phone: uni.contactPhone }}
+                            triggerLabel="Enquire"
+                            triggerClassName="btn btn-navy btn-sm"
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -332,7 +353,7 @@ export default async function CampusProfilePage({ params }: Props) {
               <div className="card card-body" style={{ background: 'var(--gold-glow)', border: '1px solid rgba(199,155,55,0.3)' }}>
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}><Lightbulb size={18} style={{ color: 'var(--gold-primary)' }} /> Get Personalised Recommendations</div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16 }}>Enter your KCSE grades to see if you qualify for programmes here.</p>
-                <Link href="/signup" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center' }}>Check Eligibility</Link>
+                <Link href="/calculator" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center' }}>Check Eligibility</Link>
               </div>
 
               {/* Compare CTA */}

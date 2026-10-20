@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import type { University } from '@/lib/types';
+import { universitiesData } from '@/lib/data/universities';
 import ComparePageClient from '@/components/university/ComparePageClient';
 
 export const metadata: Metadata = {
@@ -20,7 +21,10 @@ export default async function ComparePage({ searchParams }: Props) {
   if (idList.length > 0) {
     const supabase = await createClient();
     const { data } = await supabase.from('universities').select('*').in('id', idList);
-    universities = (data || []).map((u: any) => ({
+    const dbUnis = data || [];
+    const seen = new Set(dbUnis.map((u: any) => u.id));
+    const localMatches = universitiesData.filter(u => idList.includes(u.id) && !seen.has(u.id));
+    universities = [...dbUnis, ...localMatches].map((u: any) => ({
       ...u,
       image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg'
     })) as University[];

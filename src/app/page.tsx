@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Search, Star, Award, ArrowRight,
-  Home, Calendar, Scale, MapPin
+  Home, Calendar, Scale, MapPin, Calculator, Sparkles
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import type { University } from '@/lib/types';
+import { universitiesData } from '@/lib/data/universities';
+import { GRADE_GUIDES } from '@/lib/data/gradeGuides';
 import { FadeIn } from '@/components/animations/FadeIn';
 import { StaggerContainer } from '@/components/animations/StaggerContainer';
 import { StaggerItem } from '@/components/animations/StaggerItem';
@@ -12,15 +14,21 @@ import { HoverScale } from '@/components/animations/HoverScale';
 import HeroSection from '@/components/home/HeroSection';
 
 export const metadata: Metadata = {
-  title: 'Chuo Connect Kenya — Discover Your University',
+  title: 'Chuo Connect Kenya — Discover Your University, KUCCPS Cluster Points & Scholarships',
   description:
-    'Find and compare every university in Kenya. Calculate your KUCCPS score, read real student reviews, and get personalised recommendations — all in one place.'};
+    'Find and compare every university in Kenya. Calculate your KUCCPS 2026 cluster points, check HEF Band 1–5 fees, explore KCSE grade guides, and apply directly.'};
 
 const FEATURES = [
   {
+    icon: <Calculator size={22} aria-hidden="true" />,
+    title: 'KUCCPS Cluster & HEF Calculator',
+    desc: 'Compute your official 48-point weighted cluster score across all 8 groups and simulate your HEF Band 1–5 household fee.',
+    href: '/calculator'
+  },
+  {
     icon: <Search size={22} aria-hidden="true" />,
     title: 'Deep Campus Profiles',
-    desc: 'Accommodation, labs, clubs, sports, fees, virtual tours, and interactive campus maps — all in one profile.',
+    desc: 'Accommodation, labs, clubs, sports, fees, virtual tours, and direct admissions inquiry — all in one profile.',
     href: '/universities'
   },
   {
@@ -30,27 +38,21 @@ const FEATURES = [
     href: '/compare'
   },
   {
-    icon: <Star size={22} aria-hidden="true" />,
-    title: 'Dual Review Engine',
-    desc: 'Separate, verified ratings from current students and parents across 9 distinct criteria for honest insights.',
-    href: '/universities'
-  },
-  {
     icon: <Award size={22} aria-hidden="true" />,
     title: 'Funding & Scholarships',
-    desc: 'Discover government bursaries, private scholarships, and international funding to support your education.',
+    desc: 'Discover Equity Wings to Fly, Elimu, HELB/HEF grants, Mastercard Foundation, and private bursaries.',
     href: '/scholarships'
   },
   {
     icon: <Home size={22} aria-hidden="true" />,
-    title: 'Student Housing',
-    desc: 'Find affordable accommodation and hostels near campuses. Compare rooms, amenities, and prices easily.',
+    title: 'Verified Student Housing',
+    desc: 'Filter Qwetu, Qejani, and vetted campus hostels by university proximity and book viewings on WhatsApp.',
     href: '/housing'
   },
   {
     icon: <Calendar size={22} aria-hidden="true" />,
-    title: 'Campus Events',
-    desc: 'Discover upcoming campus events, open days, career fairs, and student activities across Kenya.',
+    title: 'Campus Open Days & Fairs',
+    desc: 'RSVP for 2026/2027 university open days, KUCCPS revision clinics, hackathons, and career fairs across Kenya.',
     href: '/events'
   },
 ];
@@ -58,7 +60,8 @@ const FEATURES = [
 export default async function HomePage() {
   const supabase = await createClient();
   const { data } = await supabase.from('universities').select('*').order('ranking', { ascending: true }).limit(3);
-  const featuredUnis = (data || []).map((u: any) => ({
+  const rawUnis = data && data.length > 0 ? data : universitiesData.slice(0, 3);
+  const featuredUnis = rawUnis.map((u: any) => ({
     ...u,
     image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg'
   })) as University[];
@@ -67,6 +70,81 @@ export default async function HomePage() {
     <>
       {/* ── HERO SECTION ── */}
       <HeroSection />
+
+      {/* ── KCSE GRADE QUICK-MATCHER STRIP ── */}
+      <section style={{ padding: '44px 20px 0' }}>
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: '0 auto',
+            padding: '28px 32px',
+            borderRadius: 20,
+            border: '2px solid var(--border-medium)',
+            boxShadow: 'var(--shadow-neo)',
+            background: 'var(--bg-primary)',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 18,
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+            <div>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  fontSize: '0.72rem',
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: 'var(--gold-primary)',
+                  marginBottom: 4,
+                }}
+              >
+                <Sparkles size={13} /> 2026 KCSE Placement & Bridging Guides
+              </span>
+              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.4rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                What Mean Grade Did You Score in KCSE?
+              </h2>
+            </div>
+            <Link href="/calculator" className="btn btn-navy btn-sm">
+              <Calculator size={15} /> Open Full KUCCPS Calculator
+            </Link>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(145px, 1fr))', gap: 10 }}>
+            {GRADE_GUIDES.map(guide => (
+              <Link
+                key={guide.slug}
+                href={`/grades/${guide.slug}`}
+                style={{
+                  textDecoration: 'none',
+                  padding: '12px 14px',
+                  borderRadius: 12,
+                  border: '1.5px solid var(--border-medium)',
+                  background: 'var(--bg-secondary)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: 8,
+                  transition: 'var(--transition)',
+                }}
+              >
+                <div>
+                  <div style={{ fontWeight: 800, fontSize: '1.05rem', color: 'var(--text-primary)', fontFamily: 'Playfair Display, serif' }}>
+                    Grade {guide.gradeLabel}
+                  </div>
+                  <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', fontWeight: 600 }}>
+                    {guide.isDegreeEligible ? 'Direct Degree Entry' : 'Diploma & TVET Bridge'}
+                  </div>
+                </div>
+                <ArrowRight size={15} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── FEATURES SECTION ── */}
       <section className="section" style={{ padding: '80px 0' }}>
@@ -320,7 +398,7 @@ export default async function HomePage() {
                   color: 'var(--text-primary)',
                   marginBottom: 16}}
               >
-                Are you a University Admin?
+                Are you a University or Hostel Partner?
               </h2>
               <p
                 style={{
@@ -328,14 +406,19 @@ export default async function HomePage() {
                   fontSize: '1.1rem',
                   lineHeight: 1.7,
                   marginBottom: 32,
-                  maxWidth: 500}}
+                  maxWidth: 560}}
               >
-                Claim your institution's profile to access detailed analytics, manage your campus information, update courses, and connect with prospective students.
+                Claim your institution&apos;s profile to receive pre-qualified KCSE student leads (with verified 48-point cluster scores and HEF bands), manage campus analytics, and track enrollment revenue.
               </p>
-              <div style={{ display: 'flex', gap: 16 }}>
+              <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
                 <HoverScale>
                   <Link href="/portal" className="btn btn-gold">
-                    Access Partner Portal
+                    Access Partner Portal (Live Demo)
+                  </Link>
+                </HoverScale>
+                <HoverScale>
+                  <Link href="/contact" className="btn btn-outline">
+                    Partner Onboarding & Pricing
                   </Link>
                 </HoverScale>
               </div>

@@ -4,13 +4,42 @@ import { useState } from 'react';
 import { MessageCircle, Send, Zap, Check, GraduationCap } from 'lucide-react';
 import type { Ambassador } from '@/lib/types';
 
+function getDefaultAmbassadors(universityId: string): Ambassador[] {
+  return [
+    {
+      id: `amb-${universityId}-1`,
+      universityId,
+      userId: `amb-user-${universityId}-1`,
+      name: 'Faith Chebet',
+      course: 'BSc. Computer Science',
+      year: '3',
+      bio: 'Happy to answer questions about first-year orientation, HEF/HELB bursary clearance, and safe student hostels near main gate.',
+      topics: ['Accommodation', 'HEF & HELB', 'Tech Clubs', 'First-Year Tips'],
+      responseTime: 'Replies within 2 hrs',
+    },
+    {
+      id: `amb-${universityId}-2`,
+      universityId,
+      userId: `amb-user-${universityId}-2`,
+      name: 'David Omondi',
+      course: 'Bachelor of Commerce (Finance)',
+      year: '4',
+      bio: 'Student council peer mentor. Ask me about inter-faculty transfers, attachment placements, and campus sports.',
+      topics: ['Course Transfers', 'Attachments', 'Campus Life', 'Budgeting'],
+      responseTime: 'Replies within 4 hrs',
+    },
+  ];
+}
+
 interface Props {
   universityId: string;
   initialAmbassadors: Ambassador[];
 }
 
-export default function AmbassadorSection({ initialAmbassadors }: Props) {
-  const [ambassadors] = useState<Ambassador[]>(initialAmbassadors);
+export default function AmbassadorSection({ universityId, initialAmbassadors }: Props) {
+  const [ambassadors] = useState<Ambassador[]>(
+    initialAmbassadors.length > 0 ? initialAmbassadors : getDefaultAmbassadors(universityId)
+  );
   const [selectedAmbassador, setSelectedAmbassador] = useState<Ambassador | null>(null);
   const [message, setMessage] = useState('');
   const [sending, setSending] = useState(false);

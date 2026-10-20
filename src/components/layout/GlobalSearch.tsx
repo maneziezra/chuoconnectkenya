@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, X, MapPin } from 'lucide-react';
+import { Search, X, MapPin, Award, Calculator } from 'lucide-react';
 
 interface SearchResult {
-  type: 'university' | 'course' | 'county';
+  type: 'university' | 'course' | 'county' | 'grade' | 'scholarship';
   id: string;
   label: string;
   sub?: string;
@@ -19,11 +19,26 @@ export default function GlobalSearch() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setOpen(prev => {
+          const next = !prev;
+          if (next) setTimeout(() => inputRef.current?.focus(), 50);
+          return next;
+        });
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
+
+  useEffect(() => {
     if (!query.trim()) { setResults([]); return; }
     const timer = setTimeout(async () => {
       const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
       if (res.ok) setResults(await res.json());
-    }, 280);
+    }, 240);
     return () => clearTimeout(timer);
   }, [query]);
 
@@ -32,11 +47,21 @@ export default function GlobalSearch() {
     setQuery('');
     if (result.type === 'university') router.push(`/universities/${result.id}`);
     else if (result.type === 'course') router.push(`/courses?q=${encodeURIComponent(result.label)}`);
+    else if (result.type === 'grade') router.push(`/grades/${result.id}`);
+    else if (result.type === 'scholarship') router.push('/scholarships');
     else router.push(`/universities?county=${encodeURIComponent(result.label)}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') { setOpen(false); setQuery(''); }
+  };
+
+  const getBadgeStyle = (type: SearchResult['type']) => {
+    if (type === 'university') return { background: 'var(--navy-light)', color: 'var(--navy-deep)' };
+    if (type === 'course') return { background: 'var(--gold-glow)', color: 'var(--gold-primary)' };
+    if (type === 'grade') return { background: 'var(--success-bg)', color: 'var(--success-text)' };
+    if (type === 'scholarship') return { background: 'var(--navy-deep)', color: 'var(--gold-primary)' };
+    return { background: 'var(--bg-secondary)', color: 'var(--text-secondary)' };
   };
 
   return (
@@ -77,7 +102,7 @@ export default function GlobalSearch() {
                 value={query}
                 onChange={e => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Search universities, courses, counties, career fields…"
+                placeholder="Search universities, courses, KCSE grades (C+, B+), scholarships…"
                 aria-label="Search query"
                 style={{
                   flex: 1, border: 'none', outline: 'none', fontSize: '1rem',
@@ -92,50 +117,81 @@ export default function GlobalSearch() {
             </div>
 
             {results.length > 0 ? (
-              <ul style={{ listStyle: 'none', padding: '8px 0', maxHeight: 360, overflowY: 'auto' }}>
-                {results.map(r => (
-                  <li key={`${r.type}-${r.id}`}>
-                    <button
-                      onClick={() => handleSelect(r)}
-                      style={{
-                        width: '100%', textAlign: 'left', padding: '12px 20px',
-                        background: 'none', border: 'none', cursor: 'pointer',
-                        display: 'flex', alignItems: 'center', gap: 12,
-                        transition: 'var(--transition)',
-                      }}
-                      onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-secondary)')}
-                      onMouseLeave={e => (e.currentTarget.style.background = 'none')}
-                    >
-                      <span style={{
-                        padding: '3px 8px', borderRadius: 'var(--radius-sm)', fontSize: '0.7rem',
-                        fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
-                        background: r.type === 'university' ? 'var(--navy-light)' : r.type === 'course' ? 'var(--gold-glow)' : 'var(--bg-secondary)',
-                        color: r.type === 'university' ? 'var(--navy-deep)' : r.type === 'course' ? 'var(--gold-primary)' : 'var(--text-secondary)',
-                        flexShrink: 0,
-                      }}>
-                        {r.type}
-                      </span>
-                      <div>
-                        <div style={{ fontWeight: 500, color: 'var(--text-primary)', fontSize: '0.9rem' }}>{r.label}</div>
-                        {r.sub && <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>{r.sub}</div>}
-                      </div>
-                    </button>
-                  </li>
-                ))}
+              <ul style={{ listStyle: 'none', padding: '8px 0', maxHeight: 380, overflowY: 'auto' }}>
+                {results.map(r => {
+                  const badgeStyle = getBadgeStyle(r.type);
+                  return (
+                    <li key={`${r.type}-${r.id}`}>
+                      <button
+                        onClick={() => handleSelect(r)}
+                        style={{
+                          width: '100%', textAlign: 'left', padding: '12px 20px',
+                          background: 'none', border: 'none', cursor: 'pointer',
+                          display: 'flex', alignItems: 'center', gap: 12,
+                          transition: 'var(--transition)',
+                        }}
+                        onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-secondary)')}
+                        onMouseLeave={e => (e.currentTarget.style.background = 'none')}
+                      >
+                        <span style={{
+                          padding: '3px 8px', borderRadius: 'var(--radius-sm)', fontSize: '0.7rem',
+                          fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
+                          ...badgeStyle,
+                          flexShrink: 0,
+                        }}>
+                          {r.type}
+                        </span>
+                        <div>
+                          <div style={{ fontWeight: 500, color: 'var(--text-primary)', fontSize: '0.9rem' }}>{r.label}</div>
+                          {r.sub && <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>{r.sub}</div>}
+                        </div>
+                      </button>
+                    </li>
+                  );
+                })}
               </ul>
             ) : query.length > 1 ? (
               <div style={{ padding: '32px 20px', textAlign: 'center', color: 'var(--text-tertiary)' }}>
                 No results for "<strong>{query}</strong>"
               </div>
             ) : (
-              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-tertiary)', marginBottom: 4 }}>Quick Filters</div>
-                {['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru'].map(c => (
-                  <button key={c} onClick={() => handleSelect({ type: 'county', id: c, label: c })}
-                    style={{ textAlign: 'left', padding: '12px 16px', minHeight: '48px', borderRadius: 'var(--radius-md)', background: 'var(--bg-secondary)', border: 'none', cursor: 'pointer', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><MapPin size={14} aria-hidden="true" /> {c} County</div>
-                  </button>
-                ))}
+              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-tertiary)', marginBottom: 8 }}>KCSE Grade Guides & Tools</div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                    {[
+                      { label: 'KUCCPS Calculator', href: '/calculator', icon: <Calculator size={13} /> },
+                      { label: 'Grade C+ Guide', href: '/grades/c-plus', icon: <Award size={13} /> },
+                      { label: 'Grade B+ Guide', href: '/grades/b-plus', icon: <Award size={13} /> },
+                      { label: 'Grade C (Diploma)', href: '/grades/c', icon: <Award size={13} /> },
+                      { label: '2026 Scholarships', href: '/scholarships', icon: <Award size={13} /> },
+                    ].map(item => (
+                      <button
+                        key={item.href}
+                        onClick={() => { setOpen(false); setQuery(''); router.push(item.href); }}
+                        style={{
+                          display: 'inline-flex', alignItems: 'center', gap: 6,
+                          padding: '8px 12px', borderRadius: 'var(--radius-full)',
+                          background: 'var(--gold-glow)', border: '1px solid var(--border-light)',
+                          cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)',
+                        }}
+                      >
+                        {item.icon} {item.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-tertiary)', marginBottom: 8 }}>Popular Counties</div>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                    {['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru'].map(c => (
+                      <button key={c} onClick={() => handleSelect({ type: 'county', id: c, label: c })}
+                        style={{ textAlign: 'left', padding: '10px 14px', borderRadius: 'var(--radius-md)', background: 'var(--bg-secondary)', border: 'none', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><MapPin size={14} aria-hidden="true" /> {c} County</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -144,3 +200,4 @@ export default function GlobalSearch() {
     </div>
   );
 }
+

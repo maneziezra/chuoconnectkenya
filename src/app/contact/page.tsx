@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
+import Link from 'next/link';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import ContactFormClient from '@/components/contact/ContactFormClient';
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Chuo Connect Kenya',
-  description: 'Get in touch with the Chuo Connect Kenya team. We help students, universities, and partners connect.',
+  title: 'Contact Us & B2B Partnerships | Chuo Connect Kenya',
+  description: 'Get in touch with the Chuo Connect Kenya team. We help students, universities, hostel operators, and scholarship partners connect.',
 };
 
 export default function ContactPage() {
@@ -35,8 +37,8 @@ export default function ContactPage() {
           />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Get In Touch</h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: 480 }}>
-              Have a question, partnership inquiry, or feedback? We&apos;d love to hear from you.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: 560 }}>
+              Have a university partnership inquiry, student hostel listing, scholarship submission, or student admissions question? We&apos;re here to help.
             </p>
           </div>
         </div>
@@ -51,7 +53,7 @@ export default function ContactPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 40 }}>
                 {[
                   { icon: <Mail size={24} />, label: 'Email', value: 'hello@chuoconnect.co.ke', href: 'mailto:hello@chuoconnect.co.ke' },
-                  { icon: <Phone size={24} />, label: 'Phone', value: '+254 700 000 000', href: 'tel:+254700000000' },
+                  { icon: <Phone size={24} />, label: 'Phone / WhatsApp', value: '+254 700 000 000', href: 'https://wa.me/254700000000' },
                   { icon: <MapPin size={24} />, label: 'Location', value: 'Nairobi, Kenya', href: undefined },
                 ].map(c => (
                   <div key={c.label} style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
@@ -93,11 +95,11 @@ export default function ContactPage() {
                   boxShadow: 'var(--shadow-neo)'
                 }}
               >
-                <h3 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 12 }}>Are you a University?</h3>
+                <h3 style={{ fontWeight: 700, fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 12 }}>Are you a University or Hostel Partner?</h3>
                 <p style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', marginBottom: 20, lineHeight: 1.6 }}>
-                  Join our partner programme to showcase your campus to thousands of students. Get a dedicated profile, analytics, and lead management.
+                  Join our B2B partner network to receive verified, KCSE-qualified student inquiries, manage your campus profile, and track admission conversions in real time.
                 </p>
-                <a href="/portal" className="btn btn-navy">Partner With Us</a>
+                <Link href="/portal" className="btn btn-navy">Open Partner Portal</Link>
               </div>
             </div>
 
@@ -112,111 +114,7 @@ export default function ContactPage() {
               }}
             >
               <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24 }}>Send a Message</h2>
-              <form style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-                  <div>
-                    <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>First Name</label>
-                    <input
-                      placeholder="John"
-                      style={{
-                        width: '100%',
-                        padding: '12px 16px',
-                        border: '2px solid var(--border-medium)',
-                        borderRadius: 10,
-                        fontSize: '1rem',
-                        outline: 'none',
-                        background: 'var(--bg-secondary)'
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Last Name</label>
-                    <input
-                      placeholder="Kamau"
-                      style={{
-                        width: '100%',
-                        padding: '12px 16px',
-                        border: '2px solid var(--border-medium)',
-                        borderRadius: 10,
-                        fontSize: '1rem',
-                        outline: 'none',
-                        background: 'var(--bg-secondary)'
-                      }}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Email</label>
-                  <input
-                    type="email"
-                    placeholder="john@example.com"
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '2px solid var(--border-medium)',
-                      borderRadius: 10,
-                      fontSize: '1rem',
-                      outline: 'none',
-                      background: 'var(--bg-secondary)'
-                    }}
-                  />
-                </div>
-                <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Subject</label>
-                  <select
-                    style={{
-                      width: '100%',
-                      padding: '12px 16px',
-                      border: '2px solid var(--border-medium)',
-                      borderRadius: 10,
-                      fontSize: '1rem',
-                      outline: 'none',
-                      background: 'var(--bg-secondary)',
-                      cursor: 'pointer'
-                    }}
-                  >
-                    <option>General Enquiry</option>
-                    <option>University Partnership</option>
-                    <option>Submit a Scholarship</option>
-                    <option>Submit an Event</option>
-                    <option>List Student Housing</option>
-                    <option>Student Ambassador Programme</option>
-                    <option>Technical Support</option>
-                  </select>
-                </div>
-                <div>
-                  <label style={{ fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase' as const, letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 8 }}>Message</label>
-                  <textarea
-                    placeholder="Tell us how we can help…"
-                    rows={5}
-                    style={{
-                      width: '100%',
-                      padding: '14px 16px',
-                      border: '2px solid var(--border-medium)',
-                      borderRadius: 10,
-                      fontSize: '1rem',
-                      outline: 'none',
-                      resize: 'vertical' as const,
-                      background: 'var(--bg-secondary)'
-                    }}
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-navy"
-                  style={{
-                    width: '100%',
-                    justifyContent: 'center',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                    marginTop: 8,
-                    padding: '16px'
-                  }}
-                >
-                  <MessageCircle size={18} /> Send Message
-                </button>
-              </form>
+              <ContactFormClient />
             </div>
           </div>
         </div>

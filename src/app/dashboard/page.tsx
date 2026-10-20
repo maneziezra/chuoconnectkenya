@@ -33,6 +33,8 @@ const GUIDANCE_CARDS = [
 
 import { createClient } from '@/lib/supabase/server';
 import type { Course, University } from '@/lib/types';
+import { coursesData as localCourses } from '@/lib/data/courses';
+import { universitiesData as localUnis } from '@/lib/data/universities';
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -53,8 +55,8 @@ export default async function DashboardPage() {
   const { data: coursesData } = await supabase.from('courses').select('*');
   const { data: universitiesData } = await supabase.from('universities').select('id, name');
   
-  const courses = (coursesData || []) as Course[];
-  const universities = (universitiesData || []) as University[];
+  const courses = (coursesData && coursesData.length > 0 ? coursesData : localCourses) as Course[];
+  const universities = (universitiesData && universitiesData.length > 0 ? universitiesData : localUnis) as University[];
   
   const savedCoursesList = courses.filter((c: Course) => savedCoursesIds.includes(c.id));
 

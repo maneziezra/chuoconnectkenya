@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { createClient } from '@/lib/supabase/server';
 import type { University } from '@/lib/types';
+import { universitiesData } from '@/lib/data/universities';
 import UniversityBrowser from '@/components/university/UniversityBrowser';
 
 export const metadata: Metadata = {
@@ -19,7 +20,8 @@ export default async function UniversitiesPage() {
   }
   
   const { data } = await supabase.from('universities').select('*').order('ranking', { ascending: true });
-  const universities = (data || []).map((u: any) => ({ 
+  const rawUnis = data && data.length > 0 ? data : universitiesData;
+  const universities = rawUnis.map((u: any) => ({ 
     ...u, 
     image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg' 
   })) as University[];
