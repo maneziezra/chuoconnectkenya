@@ -1,6 +1,5 @@
 import Link from 'next/link';
 
-
 export default function Footer() {
   return (
     <footer className="site-footer">
@@ -9,19 +8,19 @@ export default function Footer() {
           {/* Brand */}
           <div className="brand-col">
             <div className="brand-logo">
-              <Link href="/">
+              <Link href="/" className="brand-link">
                 {/* SVG Logo matching the requested CC format */}
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ marginBottom: '16px' }}>
-                  <path d="M22 8C14.268 8 8 14.268 8 22C8 29.732 14.268 36 22 36" stroke="var(--moss)" strokeWidth="4" strokeLinecap="round" />
-                  <path d="M18 14C11.3726 14 6 19.3726 6 26C6 32.6274 11.3726 38 18 38" stroke="var(--citrus)" strokeWidth="4" strokeLinecap="round" />
+                <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ marginBottom: '14px' }}>
+                  <path d="M22 8C14.268 8 8 14.268 8 22C8 29.732 14.268 36 22 36" stroke="var(--navy-deep)" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M18 14C11.3726 14 6 19.3726 6 26C6 32.6274 11.3726 38 18 38" stroke="var(--gold-primary)" strokeWidth="4" strokeLinecap="round" />
                 </svg>
-                <span style={{ fontSize: '1.5rem', fontWeight: 600, display: 'block', letterSpacing: '-0.03em', fontFamily: 'Inter, sans-serif' }}>
+                <span style={{ fontSize: '1.45rem', fontWeight: 700, display: 'block', letterSpacing: '-0.028em', color: 'var(--text-primary)' }}>
                   Chuo Connect
                 </span>
               </Link>
             </div>
             <p className="brand-tagline">
-              Kenya's premier campus discovery platform. Connecting students with their ideal higher education institutions.
+              Kenya&apos;s premier campus discovery platform. Connecting students with their ideal higher education institutions.
             </p>
           </div>
 
@@ -83,65 +82,61 @@ export default function Footer() {
 
       <style>{`
         .site-footer {
-          --footer-bg: var(--bg-tertiary, #F1F5F9);
-          --footer-text: var(--navy-deep, #1A2338);
-          --footer-accent: var(--gold-primary, #C79B37);
-          --footer-border: var(--border-medium, #CBD5E1);
-          --border-radius: 1.25rem;
+          --footer-bg: var(--bg-tertiary);
+          --footer-text: var(--text-primary);
+          --footer-accent: var(--gold-primary);
+          --footer-border: var(--border-light);
           
-          -webkit-text-size-adjust: 100%;
           letter-spacing: 0;
-          font-family: Inter, Arial, sans-serif;
+          font-family: inherit;
           -webkit-font-smoothing: antialiased;
           text-rendering: optimizeLegibility;
           color: var(--footer-text);
-          font-size: 1.125rem;
+          font-size: 1rem;
           font-weight: 450;
-          line-height: 150%;
+          line-height: 1.6;
           box-sizing: border-box;
-          print-color-adjust: exact !important;
           display: block;
           z-index: 1;
           position: relative;
-          padding: 0.5rem;
-          background-color: var(--bg-primary, #FFFFFF);
+          padding: 0 20px 24px;
+          background-color: var(--bg-primary);
         }
 
         .footer-island {
           background-color: var(--footer-bg);
-          border-radius: 20px;
-          border: 2px solid var(--border-light);
-          margin: 20px;
-          padding: 4rem 3rem 2rem;
+          border-radius: var(--radius-xl);
+          border: 1px solid var(--footer-border);
+          border-top: 1px solid var(--apple-glass-highlight);
+          box-shadow: 0 20px 48px -12px rgba(26, 35, 56, 0.06), 0 1px 3px rgba(0, 0, 0, 0.03);
+          margin: 0 auto;
+          max-width: 1360px;
+          padding: 4rem 3.5rem 2.5rem;
         }
 
         .footer-grid {
           display: grid;
-          grid-template-columns: 350px 1fr;
+          grid-template-columns: 320px 1fr;
           gap: 4rem;
-          margin-bottom: 4rem;
+          margin-bottom: 3.5rem;
         }
 
-        .brand-logo a {
-          display: block;
+        .brand-link {
+          display: inline-block;
           color: var(--footer-text);
           text-decoration: none;
+          transition: transform var(--apple-press);
         }
-
-        /* SVG override for Navy/Gold */
-        .brand-logo svg path:nth-child(1) {
-          stroke: var(--footer-text);
-        }
-        .brand-logo svg path:nth-child(2) {
-          stroke: var(--footer-accent);
+        .brand-link:active {
+          transform: scale(0.98);
         }
 
         .brand-tagline {
-          margin-top: 1.5rem;
-          color: var(--text-secondary, #475569);
-          font-size: 1rem;
-          line-height: 1.6;
-          max-width: 280px;
+          margin-top: 1.25rem;
+          color: var(--text-secondary);
+          font-size: 0.92rem;
+          line-height: 1.62;
+          max-width: 290px;
         }
 
         .links-container {
@@ -152,9 +147,9 @@ export default function Footer() {
 
         .col-heading {
           display: block;
-          font-size: 0.875rem;
-          font-weight: 600;
-          margin-bottom: 1.5rem;
+          font-size: 0.76rem;
+          font-weight: 700;
+          margin-bottom: 1.25rem;
           color: var(--footer-text);
           text-transform: uppercase;
           letter-spacing: 0.05em;
@@ -166,20 +161,22 @@ export default function Footer() {
           margin: 0;
           display: flex;
           flex-direction: column;
-          gap: 0.875rem;
+          gap: 0.75rem;
         }
 
         .link-list a {
-          color: var(--text-secondary, #475569);
+          color: var(--text-secondary);
           text-decoration: none;
-          font-size: 0.95rem;
-          transition: color 0.2s ease;
+          font-size: 0.92rem;
+          display: inline-block;
+          transition: color var(--apple-ease), transform var(--apple-press);
         }
 
         .link-list a:hover {
           color: var(--footer-accent);
-          text-decoration: underline;
-          text-underline-offset: 4px;
+        }
+        .link-list a:active {
+          transform: scale(0.975);
         }
 
         .footer-bottom {
@@ -188,8 +185,8 @@ export default function Footer() {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-size: 0.875rem;
-          color: var(--text-secondary, #475569);
+          font-size: 0.84rem;
+          color: var(--text-tertiary);
         }
 
         .legal-links {
@@ -198,13 +195,17 @@ export default function Footer() {
         }
 
         .legal-links a {
-          color: inherit;
+          color: var(--text-secondary);
           text-decoration: none;
-          transition: color 0.2s;
+          transition: color var(--apple-ease), transform var(--apple-press);
+          display: inline-block;
         }
 
         .legal-links a:hover {
           color: var(--footer-text);
+        }
+        .legal-links a:active {
+          transform: scale(0.975);
         }
 
         @media (max-width: 1024px) {
@@ -214,7 +215,7 @@ export default function Footer() {
           }
           .links-container {
             grid-template-columns: repeat(2, 1fr);
-            gap: 3rem 2rem;
+            gap: 2.5rem 2rem;
           }
         }
 
@@ -227,25 +228,22 @@ export default function Footer() {
             gap: 2rem;
           }
           .link-list a {
-            display: inline-block;
-            padding: 8px 0;
+            padding: 4px 0;
           }
           .footer-bottom {
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1.25rem;
             align-items: flex-start;
           }
           .legal-links {
             flex-direction: column;
-            gap: 1rem;
+            gap: 0.75rem;
           }
           .legal-links a {
-            display: inline-block;
-            padding: 8px 0;
+            padding: 4px 0;
           }
         }
       `}</style>
     </footer>
   );
 }
-

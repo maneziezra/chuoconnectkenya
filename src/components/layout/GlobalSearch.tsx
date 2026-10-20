@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, MapPin, Award, Calculator } from 'lucide-react';
 
 interface SearchResult {
@@ -36,9 +37,13 @@ export default function GlobalSearch() {
   useEffect(() => {
     if (!query.trim()) { setResults([]); return; }
     const timer = setTimeout(async () => {
-      const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-      if (res.ok) setResults(await res.json());
-    }, 240);
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+        if (res.ok) setResults(await res.json());
+      } catch (err) {
+        console.error('Search fetch error:', err);
+      }
+    }, 220);
     return () => clearTimeout(timer);
   }, [query]);
 
@@ -66,138 +71,345 @@ export default function GlobalSearch() {
 
   return (
     <div style={{ position: 'relative' }}>
+      {/* Apple Spotlight Trigger Pill */}
       <button
         onClick={() => { setOpen(true); setTimeout(() => inputRef.current?.focus(), 50); }}
+        className="apple-search-trigger"
         style={{
-          display: 'flex', alignItems: 'center', gap: 8,
-          padding: '8px 16px', borderRadius: 'var(--radius-full)',
-          background: 'var(--bg-secondary)', border: '1.5px solid var(--border-light)',
-          color: 'var(--text-tertiary)', cursor: 'pointer', fontSize: '0.875rem',
-          transition: 'var(--transition)',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 9,
+          padding: '8px 16px',
+          borderRadius: 'var(--radius-full)',
+          background: 'var(--bg-secondary)',
+          border: '1px solid var(--border-light)',
+          borderTop: '1px solid var(--apple-glass-highlight)',
+          color: 'var(--text-secondary)',
+          cursor: 'pointer',
+          fontSize: '0.875rem',
+          fontWeight: 500,
+          boxShadow: 'var(--shadow-sm)',
+          transition: 'transform var(--apple-press), background var(--apple-ease), border-color var(--apple-ease), box-shadow var(--apple-ease)',
+          letterSpacing: '-0.01em',
         }}
-        aria-label="Open search"
+        aria-label="Open search command palette"
         id="global-search-btn"
       >
-        <Search size={16} />
+        <Search size={15} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
         <span>Search universities, courses…</span>
-        <span style={{ marginLeft: 8, padding: '2px 6px', background: 'var(--border-light)', borderRadius: 4, fontSize: '0.75rem' }}>⌘K</span>
+        <span
+          style={{
+            marginLeft: 6,
+            padding: '2px 7px',
+            background: 'var(--bg-primary)',
+            border: '1px solid var(--border-light)',
+            borderRadius: 'var(--radius-sm)',
+            fontSize: '0.72rem',
+            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontWeight: 600,
+            color: 'var(--text-tertiary)',
+            letterSpacing: '0.02em',
+          }}
+        >
+          ⌘K
+        </span>
       </button>
 
-      {open && (
-        <>
-          <div
-            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.4)', zIndex: 999 }}
-            onClick={() => { setOpen(false); setQuery(''); }}
-          />
-          <div style={{
-            position: 'fixed', top: '12vh', left: '50%', transform: 'translateX(-50%)',
-            width: '100%', maxWidth: 580, zIndex: 1000,
-            background: 'var(--bg-primary)', borderRadius: 'var(--radius-xl)',
-            boxShadow: 'var(--shadow-xl)', overflow: 'hidden',
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '16px 20px', borderBottom: '1px solid var(--border-light)' }}>
-              <Search size={20} aria-hidden="true" style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
-              <input
-                ref={inputRef}
-                value={query}
-                onChange={e => setQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder="Search universities, courses, KCSE grades (C+, B+), scholarships…"
-                aria-label="Search query"
-                style={{
-                  flex: 1, border: 'none', outline: 'none', fontSize: '1rem',
-                  color: 'var(--text-primary)', background: 'transparent',
-                }}
-              />
-              {query && (
-                <button onClick={() => setQuery('')} aria-label="Clear search" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-tertiary)' }}>
-                  <X size={16} aria-hidden="true" />
-                </button>
-              )}
-            </div>
+      {/* Apple Spotlight Palette Modal */}
+      <AnimatePresence>
+        {open && (
+          <>
+            {/* Frosted Glass Scrim */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                position: 'fixed',
+                inset: 0,
+                background: 'rgba(11, 17, 32, 0.42)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                zIndex: 999,
+              }}
+              onClick={() => { setOpen(false); setQuery(''); }}
+            />
 
-            {results.length > 0 ? (
-              <ul style={{ listStyle: 'none', padding: '8px 0', maxHeight: 380, overflowY: 'auto' }}>
-                {results.map(r => {
-                  const badgeStyle = getBadgeStyle(r.type);
-                  return (
-                    <li key={`${r.type}-${r.id}`}>
-                      <button
-                        onClick={() => handleSelect(r)}
-                        style={{
-                          width: '100%', textAlign: 'left', padding: '12px 20px',
-                          background: 'none', border: 'none', cursor: 'pointer',
-                          display: 'flex', alignItems: 'center', gap: 12,
-                          transition: 'var(--transition)',
-                        }}
-                        onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-secondary)')}
-                        onMouseLeave={e => (e.currentTarget.style.background = 'none')}
-                      >
-                        <span style={{
-                          padding: '3px 8px', borderRadius: 'var(--radius-sm)', fontSize: '0.7rem',
-                          fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em',
-                          ...badgeStyle,
-                          flexShrink: 0,
-                        }}>
-                          {r.type}
-                        </span>
-                        <div>
-                          <div style={{ fontWeight: 500, color: 'var(--text-primary)', fontSize: '0.9rem' }}>{r.label}</div>
-                          {r.sub && <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>{r.sub}</div>}
-                        </div>
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            ) : query.length > 1 ? (
-              <div style={{ padding: '32px 20px', textAlign: 'center', color: 'var(--text-tertiary)' }}>
-                No results for "<strong>{query}</strong>"
+            {/* Elevated Glass Island */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96, y: -8 }}
+              transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+              style={{
+                position: 'fixed',
+                top: '12vh',
+                left: '50%',
+                x: '-50%',
+                width: 'calc(100% - 32px)',
+                maxWidth: 600,
+                zIndex: 1000,
+                transformOrigin: 'top center',
+                background: 'var(--apple-glass-bg)',
+                backdropFilter: 'blur(28px) saturate(190%)',
+                WebkitBackdropFilter: 'blur(28px) saturate(190%)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-xl)',
+                boxShadow: '0 24px 60px -12px rgba(11, 17, 32, 0.32), 0 8px 24px -4px rgba(11, 17, 32, 0.16)',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Search Bar Input */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 12,
+                  padding: '18px 22px',
+                  borderBottom: '1px solid var(--border-light)',
+                  background: 'transparent',
+                }}
+              >
+                <Search size={20} aria-hidden="true" style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                <input
+                  ref={inputRef}
+                  value={query}
+                  onChange={e => setQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Search universities, courses, KCSE grades (C+, B+), scholarships…"
+                  aria-label="Search query"
+                  style={{
+                    flex: 1,
+                    border: 'none',
+                    outline: 'none',
+                    fontSize: '1.05rem',
+                    fontWeight: 500,
+                    letterSpacing: '-0.015em',
+                    color: 'var(--text-primary)',
+                    background: 'transparent',
+                  }}
+                />
+                {query ? (
+                  <button
+                    onClick={() => setQuery('')}
+                    aria-label="Clear search"
+                    style={{
+                      background: 'var(--bg-secondary)',
+                      border: '1px solid var(--border-light)',
+                      borderRadius: 'var(--radius-full)',
+                      width: 26,
+                      height: 26,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      color: 'var(--text-secondary)',
+                      transition: 'transform var(--apple-press)',
+                    }}
+                    onMouseDown={e => e.currentTarget.style.transform = 'scale(0.92)'}
+                    onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    <X size={14} aria-hidden="true" />
+                  </button>
+                ) : (
+                  <span
+                    style={{
+                      padding: '3px 7px',
+                      background: 'var(--bg-secondary)',
+                      border: '1px solid var(--border-light)',
+                      borderRadius: 'var(--radius-sm)',
+                      fontSize: '0.7rem',
+                      fontWeight: 600,
+                      color: 'var(--text-tertiary)',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    ESC
+                  </span>
+                )}
               </div>
-            ) : (
-              <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-                <div>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-tertiary)', marginBottom: 8 }}>KCSE Grade Guides & Tools</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-                    {[
-                      { label: 'KUCCPS Calculator', href: '/calculator', icon: <Calculator size={13} /> },
-                      { label: 'Grade C+ Guide', href: '/grades/c-plus', icon: <Award size={13} /> },
-                      { label: 'Grade B+ Guide', href: '/grades/b-plus', icon: <Award size={13} /> },
-                      { label: 'Grade C (Diploma)', href: '/grades/c', icon: <Award size={13} /> },
-                      { label: '2026 Scholarships', href: '/scholarships', icon: <Award size={13} /> },
-                    ].map(item => (
-                      <button
-                        key={item.href}
-                        onClick={() => { setOpen(false); setQuery(''); router.push(item.href); }}
-                        style={{
-                          display: 'inline-flex', alignItems: 'center', gap: 6,
-                          padding: '8px 12px', borderRadius: 'var(--radius-full)',
-                          background: 'var(--gold-glow)', border: '1px solid var(--border-light)',
-                          cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)',
-                        }}
-                      >
-                        {item.icon} {item.label}
-                      </button>
-                    ))}
+
+              {/* Dynamic Results List */}
+              {results.length > 0 ? (
+                <ul
+                  style={{
+                    listStyle: 'none',
+                    padding: '8px',
+                    margin: 0,
+                    maxHeight: 400,
+                    overflowY: 'auto',
+                    overscrollBehavior: 'contain',
+                  }}
+                >
+                  {results.map(r => {
+                    const badgeStyle = getBadgeStyle(r.type);
+                    return (
+                      <li key={`${r.type}-${r.id}`} style={{ margin: '2px 0' }}>
+                        <button
+                          onClick={() => handleSelect(r)}
+                          style={{
+                            width: '100%',
+                            textAlign: 'left',
+                            padding: '12px 16px',
+                            background: 'transparent',
+                            border: 'none',
+                            borderRadius: 'var(--radius-md)',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 12,
+                            transition: 'transform var(--apple-press), background var(--apple-ease)',
+                          }}
+                          onMouseDown={e => e.currentTarget.style.transform = 'scale(0.985)'}
+                          onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                          onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-secondary)')}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.transform = 'scale(1)';
+                          }}
+                        >
+                          <span
+                            style={{
+                              padding: '3px 8px',
+                              borderRadius: 'var(--radius-sm)',
+                              fontSize: '0.68rem',
+                              fontWeight: 700,
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.04em',
+                              ...badgeStyle,
+                              flexShrink: 0,
+                            }}
+                          >
+                            {r.type}
+                          </span>
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.92rem', letterSpacing: '-0.01em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                              {r.label}
+                            </div>
+                            {r.sub && (
+                              <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: 2 }}>
+                                {r.sub}
+                              </div>
+                            )}
+                          </div>
+                        </button>
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : query.length > 1 ? (
+                <div style={{ padding: '40px 24px', textAlign: 'center', color: 'var(--text-tertiary)' }}>
+                  No results found for &ldquo;<strong style={{ color: 'var(--text-primary)' }}>{query}</strong>&rdquo;
+                </div>
+              ) : (
+                /* Default Suggestions / Quick Matchers */
+                <div style={{ padding: '20px 22px 24px', display: 'flex', flexDirection: 'column', gap: 18 }}>
+                  <div>
+                    <div
+                      style={{
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                        color: 'var(--text-tertiary)',
+                        marginBottom: 10,
+                      }}
+                    >
+                      KCSE Grade Guides & Placement Tools
+                    </div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                      {[
+                        { label: 'KUCCPS Calculator', href: '/calculator', icon: <Calculator size={13} /> },
+                        { label: 'Grade C+ Guide', href: '/grades/c-plus', icon: <Award size={13} /> },
+                        { label: 'Grade B+ Guide', href: '/grades/b-plus', icon: <Award size={13} /> },
+                        { label: 'Grade C (Diploma)', href: '/grades/c', icon: <Award size={13} /> },
+                        { label: '2026 Scholarships', href: '/scholarships', icon: <Award size={13} /> },
+                      ].map(item => (
+                        <button
+                          key={item.href}
+                          onClick={() => { setOpen(false); setQuery(''); router.push(item.href); }}
+                          style={{
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: 6,
+                            padding: '8px 14px',
+                            borderRadius: 'var(--radius-full)',
+                            background: 'var(--gold-glow)',
+                            border: '1px solid var(--border-light)',
+                            cursor: 'pointer',
+                            fontSize: '0.82rem',
+                            fontWeight: 600,
+                            color: 'var(--text-primary)',
+                            transition: 'transform var(--apple-press), background var(--apple-ease)',
+                          }}
+                          onMouseDown={e => e.currentTarget.style.transform = 'scale(0.96)'}
+                          onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                          onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.04)'}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.filter = 'none';
+                            e.currentTarget.style.transform = 'scale(1)';
+                          }}
+                        >
+                          {item.icon} {item.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <div
+                      style={{
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                        color: 'var(--text-tertiary)',
+                        marginBottom: 10,
+                      }}
+                    >
+                      Browse by County
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 8 }}>
+                      {['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru'].map(c => (
+                        <button
+                          key={c}
+                          onClick={() => handleSelect({ type: 'county', id: c, label: c })}
+                          style={{
+                            textAlign: 'left',
+                            padding: '10px 14px',
+                            borderRadius: 'var(--radius-md)',
+                            background: 'var(--bg-secondary)',
+                            border: '1px solid var(--border-light)',
+                            cursor: 'pointer',
+                            fontSize: '0.86rem',
+                            fontWeight: 500,
+                            color: 'var(--text-secondary)',
+                            transition: 'transform var(--apple-press), background var(--apple-ease)',
+                          }}
+                          onMouseDown={e => e.currentTarget.style.transform = 'scale(0.98)'}
+                          onMouseUp={e => e.currentTarget.style.transform = 'scale(1)'}
+                          onMouseEnter={e => (e.currentTarget.style.background = 'var(--bg-primary)')}
+                          onMouseLeave={e => {
+                            e.currentTarget.style.background = 'var(--bg-secondary)';
+                            e.currentTarget.style.transform = 'scale(1)';
+                          }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
+                            <MapPin size={14} aria-hidden="true" style={{ color: 'var(--gold-primary)' }} />
+                            <span>{c} County</span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-tertiary)', marginBottom: 8 }}>Popular Counties</div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-                    {['Nairobi', 'Mombasa', 'Kisumu', 'Nakuru'].map(c => (
-                      <button key={c} onClick={() => handleSelect({ type: 'county', id: c, label: c })}
-                        style={{ textAlign: 'left', padding: '10px 14px', borderRadius: 'var(--radius-md)', background: 'var(--bg-secondary)', border: 'none', cursor: 'pointer', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}><MapPin size={14} aria-hidden="true" /> {c} County</div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </>
-      )}
+              )}
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
-

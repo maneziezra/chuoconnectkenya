@@ -83,12 +83,12 @@ export default function Navbar({ user }: { user: any }) {
             alignItems: 'center',
             padding: '0 24px',
             transition: 'all 0.4s cubic-bezier(.16,1,.3,1)',
-            background: scrolled ? 'var(--bg-primary)' : 'var(--bg-primary)',
-            opacity: scrolled ? 0.95 : 1,
-            backdropFilter: scrolled ? 'blur(16px)' : 'none',
-            WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-            borderRadius: scrolled ? 0 : 20,
+            background: 'var(--apple-glass-bg)',
+            backdropFilter: 'blur(24px) saturate(190%)',
+            WebkitBackdropFilter: 'blur(24px) saturate(190%)',
+            borderRadius: scrolled ? 0 : 'var(--radius-xl)',
             border: `1px solid ${scrolled ? 'var(--border-light)' : 'var(--border-medium)'}`,
+            borderTop: '1px solid var(--apple-glass-highlight)',
             boxShadow: scrolled ? 'var(--shadow-sm)' : 'var(--shadow-md)',
           }}
         >
@@ -121,7 +121,7 @@ export default function Navbar({ user }: { user: any }) {
                         display: 'flex', alignItems: 'center', gap: 6,
                         background: 'none', border: 'none', cursor: 'pointer',
                         padding: '8px 16px', fontSize: '14px', fontWeight: 600,
-                        borderRadius: '12px',
+                        borderRadius: 'var(--radius-md)',
                         color: link.children.some(c => pathname.startsWith(c.href)) ? 'var(--text-primary)' : 'var(--text-secondary)',
                         transition: 'all 0.2s',
                       }}
@@ -132,18 +132,21 @@ export default function Navbar({ user }: { user: any }) {
                     <AnimatePresence>
                       {dropdown === link.label && (
                         <motion.div
-                          initial={{ opacity: 0, y: 10, scale: 0.98 }}
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                          transition={{ duration: 0.15, ease: "easeOut" }}
-                          style={{ position: 'absolute', top: '100%', left: '50%', paddingTop: '12px', zIndex: 200, transform: 'translateX(-50%)' }}
+                          exit={{ opacity: 0, y: 6, scale: 0.97 }}
+                          transition={{ duration: 0.24, ease: [0.16, 1, 0.3, 1] }}
+                          style={{
+                            position: 'absolute', top: '100%', left: '50%',
+                            paddingTop: '12px', zIndex: 200, transform: 'translateX(-50%)',
+                            transformOrigin: 'top center'
+                          }}
                         >
                           <div
+                            className="apple-glass-elevated"
                             style={{
-                              background: 'var(--bg-primary)', borderRadius: '16px',
-                              border: '1px solid var(--border-light)',
-                              boxShadow: 'var(--shadow-lg)',
-                              minWidth: 240, overflow: 'hidden', padding: '8px'
+                              borderRadius: 'var(--radius-lg)',
+                              minWidth: 250, overflow: 'hidden', padding: '8px'
                             }}
                           >
                           {link.children.map(child => (

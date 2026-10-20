@@ -61,16 +61,25 @@
   --gold-contrast-text: #0F172A;
   --navy-contrast-text: #FFFFFF;
 
-  /* Radii */
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   16px;
-  --radius-xl:   24px;
+  /* Apple Design Continuous Squircle Radii (Law 16 Craft) */
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
   --radius-full: 9999px;
 
-  /* Transitions */
-  --transition: all 0.2s cubic-bezier(.16, 1, .3, 1);
-  --transition-slow: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Apple Design Springs & Fluid Physics (Designing Fluid Interfaces WWDC 2018) */
+  --apple-spring: 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  --apple-spring-bounce: 0.44s cubic-bezier(0.34, 1.25, 0.64, 1);
+  --apple-press: 80ms cubic-bezier(0.2, 0, 0, 1);
+  --apple-ease: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: all 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Apple Translucent Materials (Law 12) */
+  --apple-glass-bg: rgba(255, 255, 255, 0.76);
+  --apple-glass-border: rgba(0, 0, 0, 0.07);
+  --apple-glass-highlight: rgba(255, 255, 255, 0.8);
 
   /* Layout */
   --max-width: 1280px;
@@ -126,6 +135,11 @@
   /* Special Contrast Variables */
   --gold-contrast-text: #0F172A;
   --navy-contrast-text: #0F172A; /* Dark text on light blue bg in dark mode */
+
+  /* Apple Translucent Materials - DARK MODE (Law 12) */
+  --apple-glass-bg: rgba(11, 17, 32, 0.78);
+  --apple-glass-border: rgba(255, 255, 255, 0.08);
+  --apple-glass-highlight: rgba(255, 255, 255, 0.14);
 }
 
 /* ============================================
@@ -168,8 +182,18 @@ img {
   display: block;
 }
 
+/* Apple Law 1 & 10: Response — highlight on touch-down/active, kill latency */
+button, .btn, .card-interactive, [role="button"], a.btn {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:active, .btn:active, .card-interactive:active, a.btn:active {
+  transform: scale(0.982);
+  transition: transform var(--apple-press) !important;
+}
+
 /* ============================================
-   TYPOGRAPHY
+   TYPOGRAPHY (Apple Law 15: Optical Sizing & Tracking)
    ============================================ */
 
 .font-serif       { font-family: var(--font-instrument), serif; }
@@ -181,7 +205,7 @@ img {
   font-family: var(--font-instrument), serif;
   font-size: clamp(2.5rem, 6vw, 4.8rem);
   line-height: 1.05;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.028em;
   text-wrap: balance;
   color: var(--text-primary);
 }
@@ -190,7 +214,8 @@ img {
   font-family: var(--font-playfair), serif;
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
+  letter-spacing: -0.024em;
   text-wrap: balance;
   color: var(--text-primary);
 }
@@ -199,7 +224,8 @@ img {
   font-family: var(--font-playfair), serif;
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.22;
+  letter-spacing: -0.018em;
   text-wrap: balance;
   color: var(--text-primary);
 }
@@ -208,6 +234,8 @@ img {
   font-family: var(--font-inter), sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
+  letter-spacing: -0.014em;
+  line-height: 1.35;
   color: var(--text-primary);
 }
 
@@ -215,9 +243,30 @@ img {
   font-family: var(--font-inter), sans-serif;
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--text-tertiary);
+}
+
+/* ============================================
+   APPLE DESIGN MATERIALS & DEPTH (Law 12)
+   ============================================ */
+
+.apple-glass {
+  background: var(--apple-glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--apple-glass-border);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 1px 1px rgba(0, 0, 0, 0.03);
+}
+
+.apple-glass-elevated {
+  background: var(--apple-glass-bg);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 1px solid var(--apple-glass-border);
+  border-top: 1px solid var(--apple-glass-highlight);
+  box-shadow: 0 20px 48px -8px rgba(0, 0, 0, 0.16), 0 0 1px 1px rgba(0, 0, 0, 0.04);
 }
 
 /* ============================================
@@ -253,78 +302,94 @@ img {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 28px;
-  border-radius: var(--radius-lg);
+  padding: 12px 24px;
+  border-radius: var(--radius-md);
   font-family: var(--font-inter), sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
+  letter-spacing: -0.012em;
   cursor: pointer;
-  transition: var(--transition);
-  border: 2px solid var(--accent-main);
+  transition: transform var(--apple-press), background-color var(--apple-ease), box-shadow var(--apple-ease), border-color var(--apple-ease);
+  border: 1.5px solid transparent;
   white-space: nowrap;
+  user-select: none;
+}
+.btn:active {
+  transform: scale(0.975);
 }
 
 .btn-gold {
   background: var(--accent-gold);
   color: var(--gold-contrast-text);
   border-color: var(--accent-gold);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 14px rgba(199, 155, 55, 0.25);
 }
 .dark .btn-gold {
   color: var(--gold-contrast-text);
 }
 .btn-gold:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.06);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 24px rgba(199, 155, 55, 0.35);
 }
 .btn-gold:active {
-  transform: translateY(0);
+  transform: scale(0.975);
+  box-shadow: 0 2px 6px rgba(199, 155, 55, 0.2);
 }
 
 .btn-navy {
   background: var(--brand-navy);
   color: var(--navy-contrast-text);
   border-color: var(--brand-navy);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 14px rgba(26, 35, 56, 0.15);
 }
 .dark .btn-navy {
   background: #E2E8F0;
-  color: var(--navy-contrast-text);
+  color: #0F172A;
   border-color: #E2E8F0;
 }
 .btn-navy:hover {
-  filter: brightness(1.1);
+  filter: brightness(1.08);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(26, 35, 56, 0.25);
+}
+.btn-navy:active {
+  transform: scale(0.975);
+  box-shadow: 0 2px 6px rgba(26, 35, 56, 0.1);
 }
 
 .btn-outline {
   background: var(--bg-primary);
   color: var(--text-primary);
+  border-color: var(--border-medium);
   box-shadow: var(--shadow-sm);
 }
 .btn-outline:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+  border-color: var(--text-primary);
 }
 .btn-outline:active {
-  transform: translateY(0);
+  transform: scale(0.975);
   box-shadow: var(--shadow-sm);
 }
 
 .btn-ghost {
   background: transparent;
   color: var(--text-primary);
-  border: 2px solid transparent;
+  border: 1.5px solid transparent;
 }
 .btn-ghost:hover {
   background: var(--accent-light);
+}
+.btn-ghost:active {
+  transform: scale(0.975);
 }
 
 .btn-sm {
   padding: 8px 16px;
   font-size: 0.85rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
 /* ============================================
@@ -391,18 +456,29 @@ img {
 
 .card {
   background: var(--bg-primary);
-  border: 2px solid var(--border-light);
+  border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 0 1px 1px rgba(0, 0, 0, 0.02);
   overflow: hidden;
-  transition: var(--transition-slow);
+  transition: transform var(--apple-spring), box-shadow var(--apple-spring), border-color var(--apple-ease);
   position: relative;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--accent-gold);
+  box-shadow: 0 18px 38px -6px rgba(0, 0, 0, 0.12), 0 0 1px 1px rgba(0, 0, 0, 0.04);
+  border-color: var(--border-medium);
+}
+
+.dark .card {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 24px -2px rgba(0, 0, 0, 0.4);
+}
+
+.dark .card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 20px 48px -4px rgba(0, 0, 0, 0.65);
 }
 
 .card-neo {
@@ -780,10 +856,11 @@ img {
   }
 }
 
-/* Top-Layer Dialog Entry/Exit (`animate-to-from-top-layer`) */
+/* Top-Layer Dialog Entry/Exit (Apple Law 3 & 12: Fluid Spring & Translucent Scrim) */
 dialog.chuo-enquiry {
-  border: 2px solid var(--border-medium);
-  border-radius: 20px;
+  border: 1px solid var(--border-medium);
+  border-top: 1px solid var(--apple-glass-highlight);
+  border-radius: var(--radius-xl);
   padding: 0;
   width: min(560px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
@@ -791,11 +868,11 @@ dialog.chuo-enquiry {
   margin: auto;
   background: var(--bg-primary);
   color: var(--text-primary);
-  box-shadow: var(--shadow-xl);
+  box-shadow: 0 24px 64px -12px rgba(0, 0, 0, 0.36), 0 0 1px 1px rgba(0, 0, 0, 0.05);
   opacity: 0;
-  transform: scale(0.94) translateY(8px);
+  transform: scale(0.96) translateY(12px);
   transition-property: opacity, transform, display, overlay;
-  transition-duration: 0.26s;
+  transition-duration: 0.32s;
   transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   transition-behavior: allow-discrete;
 }
@@ -803,9 +880,10 @@ dialog.chuo-enquiry {
 dialog.chuo-enquiry::backdrop {
   background-color: rgba(11, 17, 32, 0);
   backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
   transition-property: background-color, backdrop-filter, display, overlay;
-  transition-duration: 0.26s;
-  transition-timing-function: ease-out;
+  transition-duration: 0.32s;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   transition-behavior: allow-discrete;
 }
 
@@ -815,30 +893,54 @@ dialog.chuo-enquiry::backdrop {
 
   @starting-style {
     opacity: 0;
-    transform: scale(0.94) translateY(8px);
+    transform: scale(0.96) translateY(12px);
   }
 
   &::backdrop {
-    background-color: rgba(11, 17, 32, 0.65);
-    backdrop-filter: blur(4px);
+    background-color: rgba(11, 17, 32, 0.58);
+    backdrop-filter: blur(14px) saturate(180%);
+    -webkit-backdrop-filter: blur(14px) saturate(180%);
 
     @starting-style {
       background-color: rgba(11, 17, 32, 0);
       backdrop-filter: blur(0px);
+      -webkit-backdrop-filter: blur(0px);
     }
   }
 }
 
+/* Apple Law 14: Reduced Motion & Reduced Transparency Accessibility */
 @media (prefers-reduced-motion: reduce) {
   dialog.chuo-enquiry {
-    transform: none;
-    transition-duration: 0.1s;
+    transform: none !important;
+    transition-duration: 0.12s;
   }
 
   @starting-style {
     dialog.chuo-enquiry[open] {
-      transform: none;
+      transform: none !important;
     }
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .apple-glass, .apple-glass-elevated, header, dialog.chuo-enquiry {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: var(--bg-primary) !important;
+  }
+
+  dialog.chuo-enquiry::backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: rgba(11, 17, 32, 0.85) !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .card, .btn, .apple-glass, dialog.chuo-enquiry {
+    border-width: 2px !important;
+    border-color: var(--text-primary) !important;
   }
 }
 

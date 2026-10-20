@@ -83,29 +83,79 @@ export default async function CampusProfilePage({ params }: Props) {
           alt={`${uni.name} campus`}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
         />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,35,56,0.3) 0%, rgba(26,35,56,0.92) 100%)' }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(11,17,32,0.35) 0%, rgba(11,17,32,0.92) 100%)' }} />
         <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
-          <Link href="/universities" className="btn btn-ghost btn-sm" style={{ color: 'rgba(255,255,255,0.85)', marginBottom: 18, display: 'inline-flex' }}>
-            <ArrowLeft size={16} /> Back to Directory
+          <Link
+            href="/universities"
+            className="btn btn-ghost btn-sm"
+            style={{
+              color: 'rgba(255,255,255,0.9)',
+              background: 'rgba(255,255,255,0.14)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(255,255,255,0.22)',
+              borderTop: '1px solid rgba(255,255,255,0.45)',
+              borderRadius: 'var(--radius-full)',
+              padding: '6px 14px',
+              marginBottom: 20,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: '0.84rem',
+              fontWeight: 500,
+            }}
+          >
+            <ArrowLeft size={15} /> Back to Directory
           </Link>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
             <div>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
-                <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
-                <span className="badge badge-green">Rank #{uni.ranking}</span>
-                {uni.virtualTourUrl && <span className="badge" style={{ background: 'rgba(255,255,255,0.15)', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: 6 }}><Play size={12} /> Virtual Tour</span>}
+              <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
+                <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`} style={{ borderRadius: 'var(--radius-sm)', letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.72rem' }}>{uni.type}</span>
+                <span className="badge badge-green" style={{ borderRadius: 'var(--radius-sm)', letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.72rem' }}>Rank #{uni.ranking}</span>
+                {uni.virtualTourUrl && (
+                  <span
+                    className="badge"
+                    style={{
+                      background: 'rgba(255,255,255,0.16)',
+                      backdropFilter: 'blur(12px)',
+                      color: '#FFFFFF',
+                      border: '1px solid rgba(255,255,255,0.25)',
+                      borderRadius: 'var(--radius-sm)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      fontSize: '0.72rem',
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    <Play size={11} fill="white" /> Virtual Tour
+                  </span>
+                )}
               </div>
-              <h1 className="text-h1" style={{ color: '#FFFFFF' }}>{uni.name}</h1>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 12, color: 'rgba(255,255,255,0.8)', fontSize: '0.92rem', flexWrap: 'wrap' }}>
-                <span><MapPin size={14} style={{ display: 'inline' }} /> {uni.county}</span>
-                <span><Calendar size={14} style={{ display: 'inline' }} /> Est. {uni.established}</span>
-                <span><Users size={14} style={{ display: 'inline' }} /> {uni.students} students</span>
+              <h1 className="text-h1" style={{ color: '#FFFFFF', letterSpacing: '-0.028em' }}>{uni.name}</h1>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 12, color: 'rgba(255,255,255,0.82)', fontSize: '0.92rem', flexWrap: 'wrap' }}>
+                <span><MapPin size={14} style={{ display: 'inline', marginRight: 4 }} /> {uni.county}</span>
+                <span><Calendar size={14} style={{ display: 'inline', marginRight: 4 }} /> Est. {uni.established}</span>
+                <span><Users size={14} style={{ display: 'inline', marginRight: 4 }} /> {uni.students} students</span>
                 {uni.campusSize && <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Building2 size={14} /> {uni.campusSize}</span>}
               </div>
             </div>
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
               {uni.rating && (
-                <div style={{ background: 'rgba(255,255,255,0.1)', backdropFilter: 'blur(12px)', border: '1px solid rgba(255,255,255,0.2)', borderRadius: 'var(--radius-lg)', padding: '16px 24px', textAlign: 'center' }}>
+                <div
+                  style={{
+                    background: 'rgba(255,255,255,0.12)',
+                    backdropFilter: 'blur(20px) saturate(180%)',
+                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    borderTop: '1px solid rgba(255,255,255,0.5)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: '16px 24px',
+                    textAlign: 'center',
+                    boxShadow: '0 12px 32px rgba(0, 0, 0, 0.25)',
+                  }}
+                >
                   <div style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace', lineHeight: 1 }}>{uni.rating.toFixed(1)}</div>
                   <div className="stars" style={{ margin: '4px 0', display: 'flex', justifyContent: 'center', gap: 2, color: 'var(--gold-primary)' }}>
                     <Star size={16} fill="currentColor" />
@@ -114,7 +164,7 @@ export default async function CampusProfilePage({ params }: Props) {
                     <Star size={16} fill="currentColor" />
                     <Star size={16} fill="currentColor" />
                   </div>
-                  <div style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.8rem' }}>{uni.reviewCount?.toLocaleString()} reviews</div>
+                  <div style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.8rem', letterSpacing: '-0.01em' }}>{uni.reviewCount?.toLocaleString()} reviews</div>
                 </div>
               )}
               <CompareButton universityId={uni.id} universityName={uni.name} universityAbbrev={uni.abbrev} />
@@ -123,8 +173,19 @@ export default async function CampusProfilePage({ params }: Props) {
         </div>
       </div>
 
-      {/* Tab Navigation */}
-      <div style={{ background: 'var(--bg-primary)', borderBottom: '2px solid var(--border-light)', position: 'sticky', top: 'var(--nav-height)', zIndex: 40 }}>
+      {/* Tab Navigation: Apple Translucent Glass Pill Bar */}
+      <div
+        style={{
+          background: 'var(--apple-glass-bg)',
+          backdropFilter: 'blur(24px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+          borderBottom: '1px solid var(--border-light)',
+          borderTop: '1px solid var(--apple-glass-highlight)',
+          position: 'sticky',
+          top: 'var(--nav-height)',
+          zIndex: 40,
+        }}
+      >
         <div className="container">
           <nav className="uni-tab-nav">
             {TAB_SECTIONS.map(tab => (
@@ -284,16 +345,34 @@ export default async function CampusProfilePage({ params }: Props) {
             {/* Right: Sidebar */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24, minWidth: 0 }}>
               {/* Fee Card */}
-              <div className="card card-body" style={{ background: 'var(--navy-deep)', color: '#FFFFFF' }}>
-                <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--gold-primary)', marginBottom: 8 }}>Tuition Fees</div>
-                <div style={{ fontSize: '1.4rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', color: 'var(--gold-primary)' }}>{uni.fees}</div>
-                <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.65)', marginTop: 8, lineHeight: 1.5 }}>Fees vary by programme. Contact admissions for exact figures.</p>
+              <div
+                className="card card-body"
+                style={{
+                  background: 'var(--navy-deep)',
+                  color: '#FFFFFF',
+                  borderRadius: 'var(--radius-xl)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.25)',
+                  boxShadow: '0 12px 32px -8px rgba(17, 24, 39, 0.2)',
+                }}
+              >
+                <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--gold-primary)', marginBottom: 8 }}>Tuition Fees</div>
+                <div style={{ fontSize: '1.45rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', color: 'var(--gold-primary)', letterSpacing: '-0.02em' }}>{uni.fees}</div>
+                <p style={{ fontSize: '0.84rem', color: 'rgba(255,255,255,0.72)', marginTop: 8, lineHeight: 1.55 }}>Fees vary by programme. Contact admissions for exact figures.</p>
               </div>
 
               {/* Admission Enquiry */}
-              <div className="card card-body" style={{ border: '2px solid var(--gold-primary)' }}>
-                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>Interested in {uni.abbrev}?</div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>
+              <div
+                className="card card-body"
+                style={{
+                  borderRadius: 'var(--radius-xl)',
+                  border: '1px solid var(--gold-primary)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  boxShadow: '0 8px 24px rgba(199, 155, 55, 0.12)',
+                }}
+              >
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.05rem', letterSpacing: '-0.015em', marginBottom: 8 }}>Interested in {uni.abbrev}?</div>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>
                   Ask for the prospectus, exact fees or an admissions call. We pass your details to the university with your consent.
                 </p>
                 <ExpressInquiryModal
@@ -302,13 +381,20 @@ export default async function CampusProfilePage({ params }: Props) {
                   universityName={uni.name}
                   courseOptions={uniCourses.map(c => c.title)}
                   fallbackContact={{ email: uni.contactEmail, phone: uni.contactPhone }}
-                  triggerStyle={{ width: '100%', justifyContent: 'center' }}
+                  triggerStyle={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}
                 />
               </div>
 
               {/* Quick Facts */}
-              <div className="card card-body">
-                <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16 }}>Quick Facts</div>
+              <div
+                className="card card-body"
+                style={{
+                  borderRadius: 'var(--radius-xl)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                }}
+              >
+                <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16, letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.76rem', fontWeight: 700 }}>Quick Facts</div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {[
                     { label: 'Established', value: uni.established.toString() },
@@ -328,8 +414,15 @@ export default async function CampusProfilePage({ params }: Props) {
 
               {/* Contact */}
               {(uni.contactEmail || uni.contactPhone || uni.website) && (
-                <div className="card card-body">
-                  <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16 }}>Contact & Links</div>
+                <div
+                  className="card card-body"
+                  style={{
+                    borderRadius: 'var(--radius-xl)',
+                    border: '1px solid var(--border-light)',
+                    borderTop: '1px solid var(--apple-glass-highlight)',
+                  }}
+                >
+                  <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16, letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.76rem', fontWeight: 700 }}>Contact & Links</div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {uni.website && (
                       <a
@@ -338,6 +431,7 @@ export default async function CampusProfilePage({ params }: Props) {
                         rel="noopener noreferrer"
                         className="contact-interactive-link"
                         title="Official Website"
+                        style={{ borderRadius: 'var(--radius-md)' }}
                       >
                         <Globe size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                         <span style={{ overflowWrap: 'anywhere' }}>{uni.website.replace(/^https?:\/\//, '')}</span>
@@ -348,6 +442,7 @@ export default async function CampusProfilePage({ params }: Props) {
                         href={`mailto:${uni.contactEmail}`}
                         className="contact-interactive-link"
                         title="Email Admissions"
+                        style={{ borderRadius: 'var(--radius-md)' }}
                       >
                         <Mail size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                         <span style={{ overflowWrap: 'anywhere' }}>{uni.contactEmail}</span>
@@ -358,6 +453,7 @@ export default async function CampusProfilePage({ params }: Props) {
                         href={`tel:${uni.contactPhone}`}
                         className="contact-interactive-link"
                         title="Call Admissions"
+                        style={{ borderRadius: 'var(--radius-md)' }}
                       >
                         <Phone size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                         <span>{uni.contactPhone}</span>
@@ -370,7 +466,7 @@ export default async function CampusProfilePage({ params }: Props) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-gold"
-                      style={{ marginTop: 18, width: '100%', justifyContent: 'center' }}
+                      style={{ marginTop: 18, width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}
                     >
                       Visit Official Website
                     </a>
@@ -379,16 +475,36 @@ export default async function CampusProfilePage({ params }: Props) {
               )}
 
               {/* CTA */}
-              <div className="card card-body" style={{ background: 'var(--gold-glow)', border: '1px solid rgba(199,155,55,0.3)' }}>
-                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}><Lightbulb size={18} style={{ color: 'var(--gold-primary)' }} /> Get Personalised Recommendations</div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Enter your KCSE grades to see if you qualify for programmes here.</p>
-                <Link href="/calculator" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center' }}>Check Eligibility</Link>
+              <div
+                className="card card-body"
+                style={{
+                  background: 'var(--gold-glow)',
+                  border: '1px solid rgba(199,155,55,0.25)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  borderRadius: 'var(--radius-xl)',
+                }}
+              >
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8, letterSpacing: '-0.015em' }}>
+                  <Lightbulb size={18} style={{ color: 'var(--gold-primary)' }} /> Get Personalised Recommendations
+                </div>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Enter your KCSE grades to see if you qualify for programmes here.</p>
+                <Link href="/calculator" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}>Check Eligibility</Link>
               </div>
 
               {/* Compare CTA */}
-              <div className="card card-body" style={{ background: 'var(--navy-light)', border: '1px solid var(--border-light)' }}>
-                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}><Scale size={18} style={{ color: 'var(--gold-primary)' }} /> Compare This Campus</div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Add to your comparison list to evaluate against other institutions side-by-side.</p>
+              <div
+                className="card card-body"
+                style={{
+                  background: 'var(--navy-light)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  borderRadius: 'var(--radius-xl)',
+                }}
+              >
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8, letterSpacing: '-0.015em' }}>
+                  <Scale size={18} style={{ color: 'var(--gold-primary)' }} /> Compare This Campus
+                </div>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Add to your comparison list to evaluate against other institutions side-by-side.</p>
                 <CompareButton universityId={uni.id} universityName={uni.name} universityAbbrev={uni.abbrev} fullWidth />
               </div>
             </div>
@@ -401,15 +517,24 @@ export default async function CampusProfilePage({ params }: Props) {
 
 function InfoCard({ title, icon, children }: { title: string; icon?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <div className="card card-body">
+    <div
+      className="card card-body"
+      style={{
+        borderRadius: 'var(--radius-xl)',
+        border: '1px solid var(--border-light)',
+        borderTop: '1px solid var(--apple-glass-highlight)',
+        boxShadow: 'var(--shadow-sm)',
+      }}
+    >
       <h2 style={{
-        fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', fontWeight: 600,
-        color: 'var(--text-primary)', marginBottom: 18, paddingBottom: 12,
+        fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', fontWeight: 600,
+        letterSpacing: '-0.02em',
+        color: 'var(--text-primary)', marginBottom: 18, paddingBottom: 14,
         borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 10}}>
         {icon && <span style={{ color: 'var(--gold-primary)', display: 'flex', alignItems: 'center' }}>{icon}</span>}
         {title}
       </h2>
-      <div style={{ lineHeight: 1.8 }}>
+      <div style={{ lineHeight: 1.75 }}>
         {children}
       </div>
     </div>
