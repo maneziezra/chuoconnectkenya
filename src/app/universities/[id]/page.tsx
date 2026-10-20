@@ -12,6 +12,7 @@ import ReviewSection from '@/components/university/ReviewSection';
 import AmbassadorSection from '@/components/university/AmbassadorSection';
 import GallerySection from '@/components/university/GallerySection';
 import CompareButton from '@/components/university/CompareButton';
+import ExpressInquiryModal from '@/components/university/ExpressInquiryModal';
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -260,6 +261,22 @@ export default async function CampusProfilePage({ params }: Props) {
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--gold-primary)', marginBottom: 8 }}>Tuition Fees</div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', color: 'var(--gold-primary)' }}>{uni.fees}</div>
                 <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)', marginTop: 8 }}>Fees vary by programme. Contact admissions for exact figures.</p>
+              </div>
+
+              {/* Admission Enquiry */}
+              <div className="card card-body" style={{ border: '2px solid var(--gold-primary)' }}>
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>Interested in {uni.abbrev}?</div>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>
+                  Ask for the prospectus, exact fees or an admissions call. We pass your details to the university with your consent.
+                </p>
+                <ExpressInquiryModal
+                  source="university_page"
+                  universityId={uni.id}
+                  universityName={uni.name}
+                  courseOptions={uniCourses.map(c => c.title)}
+                  fallbackContact={{ email: uni.contactEmail, phone: uni.contactPhone }}
+                  triggerStyle={{ width: '100%', justifyContent: 'center' }}
+                />
               </div>
 
               {/* Quick Facts */}

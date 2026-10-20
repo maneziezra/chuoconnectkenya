@@ -4,6 +4,7 @@ import { MapPin, BookOpen, Clock, Users } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import type { Course, University } from '@/lib/types';
 import SaveCourseButton from '@/components/student/SaveCourseButton';
+import ExpressInquiryModal from '@/components/university/ExpressInquiryModal';
 
 export const metadata: Metadata = {
   title: 'Course Finder',
@@ -129,14 +130,14 @@ export default async function CoursesPage() {
                     </div>
                   </div>
                   
-                  <div style={{ padding: '16px 24px', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ padding: '16px 24px', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                       Min KUCCPS Score:<br />
                       <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                         {course.minPoints.toFixed(1)} pts
                       </span>
                     </div>
-                    <div style={{ display: 'flex', gap: 12 }}>
+                    <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
                       <SaveCourseButton 
                         courseId={course.id} 
                         isSavedInitial={savedCourses.includes(course.id)} 
@@ -146,6 +147,15 @@ export default async function CoursesPage() {
                       <Link href={`/dashboard`} className="btn btn-outline btn-sm">
                         Check Eligibility
                       </Link>
+                      {offeredAt.length > 0 && (
+                        <ExpressInquiryModal
+                          source="course_page"
+                          universityOptions={offeredAt.map(u => ({ id: u.id, name: u.name }))}
+                          defaultCourse={course.title}
+                          triggerLabel="Request Info"
+                          triggerClassName="btn btn-gold btn-sm"
+                        />
+                      )}
                     </div>
                   </div>
                 </div>

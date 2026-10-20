@@ -215,3 +215,50 @@ export interface SearchFilters {
   accommodation?: boolean;
   minRating?: number;
 }
+
+// ============================================
+// Phase 2: student leads & partner CRM
+// ============================================
+
+export const LEAD_STATUSES = ['New', 'Contacted', 'Applied', 'Enrolled', 'Not interested'] as const;
+export type LeadStatus = typeof LEAD_STATUSES[number];
+
+export const LEAD_SOURCES = ['university_page', 'course_page', 'calculator'] as const;
+export type LeadSource = typeof LEAD_SOURCES[number];
+
+export const FINANCING_PREFERENCES = ['hef_loan', 'self_sponsored', 'scholarship', 'undecided'] as const;
+export type FinancingPreference = typeof FINANCING_PREFERENCES[number];
+
+/** Row shape of `public.university_leads` (see supabase_university_leads.sql). */
+export interface UniversityLead {
+  id: string;
+  universityId: string;
+  student_name: string;
+  phone: string;
+  email: string | null;
+  /** Self-reported via the calculator; not verified. */
+  cluster_points: number | null;
+  mean_grade: string | null;
+  target_course: string | null;
+  financing_preference: FinancingPreference;
+  hef_band: number | null;
+  source: LeadSource;
+  consent: boolean;
+  status: LeadStatus;
+  createdAt: string;
+}
+
+/** Validated payload accepted by POST /api/leads. */
+export interface LeadInput {
+  universityId: string;
+  studentName: string;
+  /** E.164 Kenyan mobile, e.g. +254712345678 */
+  phone: string;
+  email: string | null;
+  clusterPoints: number | null;
+  meanGrade: string | null;
+  targetCourse: string | null;
+  financingPreference: FinancingPreference;
+  hefBand: number | null;
+  source: LeadSource;
+}

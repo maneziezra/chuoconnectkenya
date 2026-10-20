@@ -11,6 +11,7 @@ import {
   GRADE_POINTS,
   CLUSTER_SUBJECTS,
   DIPLOMA_PATHWAYS,
+  gradeToPoints,
   calculateClusterScore,
   calculateMeanGrade,
   calculateAggregatePoints,
@@ -27,6 +28,8 @@ import { universitiesData as fallbackUniversitiesData } from '@/lib/data/univers
 import Link from 'next/link';
 import type { Course, University } from '@/lib/types';
 import { createClient } from '@/lib/supabase/client';
+import { saveStudentSnapshot } from '@/lib/utils/studentSnapshot';
+import ExpressInquiryModal from '@/components/university/ExpressInquiryModal';
 
 const SUBJECTS = [
   'Mathematics', 'English', 'Kiswahili',
@@ -146,6 +149,12 @@ export default function KuccpsCalculator({
   const [showReachCourses, setShowReachCourses] = useState(true);
   const [showDiplomaBridge, setShowDiplomaBridge] = useState(false);
 
+  const hasSavedGrades = !!initialProfile?.saved_grades?.overallGrade;
+  const [gradesSource, setGradesSource] = useState<'sample' | 'entered' | 'saved'>(
+    hasSavedGrades ? 'saved' : 'sample'
+  );
+  const [hefTouched, setHefTouched] = useState(false);
+
   // HEF Band Simulator state
   const [hefInput, setHefInput] = useState<HefInput>({
     monthlyIncomeKes: 35000,
@@ -159,6 +168,9 @@ export default function KuccpsCalculator({
 
   // Free Lead Capture Gate for Printable / WhatsApp Placement Report
   const [leadUnlocked, setLeadUnlocked] = useState(false);
+  const [leadConsent, setLeadConsent] = useState(false);
+  const [leadFormError, setLeadFormError] = useState('');
+  const [leadSendNotice, setLeadSendNotice] = useState('');
   const [leadForm, setLeadForm] = useState({
     fullName: initialProfile?.full_name || '',
     whatsapp: '',
@@ -168,7 +180,6 @@ export default function KuccpsCalculator({
   const [submittingLead, setSubmittingLead] = useState(false);
 
   const [isSaving, setIsSaving] = useState(false);
-  const hasSavedGrades = !!initialProfile?.saved_grades?.overallGrade;
   const [isEditingGrades, setIsEditingGrades] = useState(!hasSavedGrades);
   const supabase = createClient();
 
@@ -176,6 +187,19 @@ export default function KuccpsCalculator({
   const aggregatePoints = useMemo(() => calculateAggregatePoints(subjectGrades), [subjectGrades]);
   const degreeQualified = useMemo(() => isDegreeEligible(overallGrade), [overallGrade]);
   const hefResult = useMemo(() => calculateHefBand(hefInput), [hefInput]);
+  const hasRealResults = gradesSource !== 'sample' && !!overallGrade;
+
+  const eligibleDiplomas = useMemo(() => {
+    if (!overallGrade) return DIPLOMA_PATHWAYS;
+    const studentPts = gradeToPoints(overallGrade);
+    return DIPLOMA_PATHWAYS.filter(dip => studentPts >= gradeToPoints(dip.minMeanGrade || 'C-'));
+  }, [overallGrade]);
+
+  useEffect(() => {
+    if (activeTab === 'hef') {
+      setHefTouched(true);
+    }
+  }, [activeTab]);
 
   // Compute cluster scores & matched courses
   const clusterResults = useMemo(() => {
@@ -212,6 +236,19 @@ export default function KuccpsCalculator({
       setShowDiplomaBridge(true);
     }
   }, [overallGrade, degreeQualified]);
+
+  // Remember the student's own latest result (never the sample profile) so the
+  // admission-enquiry form on university and course pages can pre-fill it.
+  useEffect(() => {
+    if (!hasRealResults || !overallGrade || !clusterResults) return;
+    saveStudentSnapshot({
+      meanGrade: overallGrade,
+      aggregatePoints,
+      bestClusterScore: Math.max(...clusterResults.map(c => c.score)),
+      hefBand: hefResult.band,
+      updatedAt: new Date().toISOString(),
+    });
+  }, [hasRealResults, overallGrade, aggregatePoints, clusterResults, hefResult.band]);
 
   const handleSaveGrades = async () => {
     if (!userId) return;
@@ -263,28 +300,51 @@ export default function KuccpsCalculator({
 
   const handleUnlockReport = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!leadForm.fullName.trim() || !leadForm.whatsapp.trim()) return;
+    if (!leadForm.fullName.trim() || !leadForm.whatsapp.trim() || !leadConsent) return;
     setSubmittingLead(true);
+    setLeadFormError('');
+    setLeadSendNotice('');
 
+    const firstBasketItem = Object.values(basket)[0];
+    const topClusterScore = clusterResults ? Math.max(...clusterResults.map(c => c.score)) : 0;
+    const isDiploma = firstBasketItem?.course.level === 'Diploma';
+
+    let unlock = true;
     try {
-      const firstBasketItem = Object.values(basket)[0];
-      const topClusterScore = clusterResults
-        ? Math.max(...clusterResults.map(c => c.score))
-        : 0;
-
-      // Save lead to Supabase university_leads table (best-effort)
-      await supabase.from('university_leads').insert({
-        universityId: firstBasketItem?.universityId || leadForm.targetUniversityId || 'uon',
-        student_name: leadForm.fullName.trim(),
-        cluster_points: firstBasketItem?.studentScore || topClusterScore,
-        target_course: firstBasketItem?.course.title || `Mean Grade ${overallGrade} (${hefResult.bandLabel.split('—')[0].trim()})`,
-        status: 'Favorited',
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          universityId: firstBasketItem?.universityId || leadForm.targetUniversityId || 'uon',
+          studentName: leadForm.fullName,
+          phone: leadForm.whatsapp,
+          email: leadForm.email,
+          targetCourse: firstBasketItem?.course.title,
+          // Only attach results the student actually entered; never the sample profile.
+          clusterPoints: hasRealResults && !isDiploma ? (firstBasketItem?.studentScore || topClusterScore) : undefined,
+          meanGrade: hasRealResults ? overallGrade || undefined : undefined,
+          hefBand: hefTouched ? hefResult.band : undefined,
+          source: 'calculator',
+          consent: leadConsent,
+        }),
       });
+
+      if (!res.ok) {
+        const data: { error?: string; fieldErrors?: Record<string, string> } = await res.json().catch(() => ({}));
+        if (res.status === 400) {
+          // The student can fix this (e.g. a mistyped number), so keep the form open.
+          unlock = false;
+          setLeadFormError(data.fieldErrors?.phone || data.fieldErrors?.studentName || data.fieldErrors?.email || data.error || 'Please check your details.');
+        } else {
+          // Our side failed (service down / not set up yet). The report is still theirs.
+          setLeadSendNotice(`Your report is unlocked, but we could not pass your details to the university. ${data.error ?? ''}`.trim());
+        }
+      }
     } catch {
-      // Fallback to localStorage if table RLS restricts anonymous insert
+      setLeadSendNotice('Your report is unlocked, but we could not reach our servers to pass your details to the university.');
     } finally {
       setSubmittingLead(false);
-      setLeadUnlocked(true);
+      if (unlock) setLeadUnlocked(true);
     }
   };
 
@@ -516,7 +576,10 @@ export default function KuccpsCalculator({
                     <button
                       key={preset.label}
                       type="button"
-                      onClick={() => setSubjectGrades(preset.grades)}
+                      onClick={() => {
+                        setGradesSource('sample');
+                        setSubjectGrades(preset.grades);
+                      }}
                       style={{
                         padding: '6px 12px',
                         borderRadius: 8,
@@ -617,9 +680,10 @@ export default function KuccpsCalculator({
                       className="form-select"
                       style={{ padding: '10px 12px', fontSize: '0.9rem', fontWeight: 600 }}
                       value={subjectGrades[subject] || ''}
-                      onChange={e =>
-                        setSubjectGrades(prev => ({ ...prev, [subject]: e.target.value }))
-                      }
+                      onChange={e => {
+                        setGradesSource('entered');
+                        setSubjectGrades(prev => ({ ...prev, [subject]: e.target.value }));
+                      }}
                     >
                       <option value="">— Not Taken —</option>
                       {GRADES.map(g => (
@@ -1007,14 +1071,22 @@ export default function KuccpsCalculator({
                   </div>
 
                   <div style={{ padding: 20, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
-                    {DIPLOMA_PATHWAYS.map(dip => {
+                    {eligibleDiplomas.length === 0 && (
+                      <p style={{ gridColumn: '1 / -1', color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>
+                        None of the listed diploma programmes accept a mean grade of {overallGrade}. Certificate-level TVET courses
+                        may still be open to you; contact your nearest TVET institution.
+                      </p>
+                    )}
+                    {eligibleDiplomas.map(dip => {
                       const isInBasket = Object.values(basket).some(b => b?.course.id === dip.id);
+                      // Diplomas are admitted by mean grade, not cluster points, and intakes are not guaranteed:
+                      // 'competitive' keeps them from counting as a SAFE backup in the basket audit.
                       const dipOdds: PlacementOdds = {
-                        status: 'safe',
-                        label: 'Guaranteed TVET / Diploma Entry',
+                        status: 'competitive',
+                        label: 'Meets the minimum entry grade',
                         badgeText: `Min Grade ${dip.minMeanGrade || 'C-'}`,
-                        delta: 5,
-                        probabilityPct: 96,
+                        delta: 0,
+                        probabilityPct: 0, // not applicable to diplomas; never displayed
                       };
                       return (
                         <div key={dip.id} className="card" style={{ padding: 18, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 14 }}>
@@ -1040,7 +1112,7 @@ export default function KuccpsCalculator({
                             </span>
                             <button
                               type="button"
-                              onClick={() => addToBasket(dip, 32, dipOdds)}
+                              onClick={() => addToBasket(dip, 0, dipOdds)}
                               disabled={isInBasket}
                               className={isInBasket ? 'btn btn-outline btn-sm' : 'btn btn-gold btn-sm'}
                             >
@@ -1411,13 +1483,31 @@ export default function KuccpsCalculator({
                   </div>
 
                   {item && (
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 10, borderTop: '1px solid var(--border-light)', fontSize: '0.78rem' }}>
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontWeight: 700 }}>
-                        Your Score: {item.studentScore.toFixed(1)} vs {item.course.minPoints.toFixed(1)}
-                      </span>
-                      <span style={{ color: item.odds.status === 'safe' ? 'var(--success-text)' : 'var(--gold-primary)', fontWeight: 700 }}>
-                        {item.odds.badgeText}
-                      </span>
+                    <div style={{ paddingTop: 10, borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.78rem' }}>
+                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontWeight: 700 }}>
+                          {item.course.level === 'Diploma'
+                            ? `Entry: mean grade ${item.course.minMeanGrade ?? 'C-'} or above`
+                            : `Your Score: ${item.studentScore.toFixed(1)} vs ${item.course.minPoints.toFixed(1)}`}
+                        </span>
+                        <span style={{ color: item.odds.status === 'safe' ? 'var(--success-text)' : 'var(--gold-primary)', fontWeight: 700 }}>
+                          {item.odds.badgeText}
+                        </span>
+                      </div>
+                      <ExpressInquiryModal
+                        source="calculator"
+                        universityId={item.universityId}
+                        universityName={item.universityName}
+                        defaultCourse={item.course.title}
+                        prefill={hasRealResults ? {
+                          clusterPoints: item.course.level === 'Diploma' ? undefined : item.studentScore,
+                          meanGrade: overallGrade || undefined,
+                          hefBand: hefTouched ? hefResult.band : undefined,
+                        } : undefined}
+                        triggerLabel="Request admission info"
+                        triggerClassName="btn btn-outline btn-sm"
+                        triggerStyle={{ width: '100%', justifyContent: 'center' }}
+                      />
                     </div>
                   )}
                 </div>
@@ -1456,6 +1546,12 @@ export default function KuccpsCalculator({
               </p>
             </div>
           </div>
+
+          {leadSendNotice && (
+            <div role="status" style={{ padding: '12px 16px', borderRadius: 12, marginBottom: 16, fontSize: '0.88rem', background: 'var(--gold-glow)', border: '1px solid var(--border-medium)', color: 'var(--text-primary)' }}>
+              {leadSendNotice}
+            </div>
+          )}
 
           {/* Free WhatsApp / Email Lead Gate to Unlock Shareable & Printable Report */}
           {!leadUnlocked ? (
@@ -1534,6 +1630,24 @@ export default function KuccpsCalculator({
                   </select>
                 </div>
               </div>
+
+              <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontSize: '0.8rem', lineHeight: 1.5, color: 'rgba(255,255,255,0.85)', marginBottom: 16, cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  required
+                  checked={leadConsent}
+                  onChange={e => setLeadConsent(e.target.checked)}
+                  style={{ marginTop: 3 }}
+                />
+                <span>
+                  I agree that Chuo Connect may share my name, phone number, KCSE results and the programme I selected with the
+                  university I choose, so they can contact me about admission. See our{' '}
+                  <a href="/privacy" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold-primary)', textDecoration: 'underline' }}>privacy policy</a>.
+                </span>
+              </label>
+              {leadFormError && (
+                <p role="alert" style={{ color: '#FCA5A5', fontSize: '0.84rem', marginBottom: 12 }}>{leadFormError}</p>
+              )}
 
               <button type="submit" className="btn btn-gold" disabled={submittingLead}>
                 {submittingLead ? (
