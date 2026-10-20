@@ -53,7 +53,16 @@ export type ClusterGroup =
   | 'Cluster 1: Pure Sciences'
   | 'Cluster 2: Biological Sciences'
   | 'Cluster 3: Technical & Applied Sciences'
-  | 'Cluster 4: Social Sciences & Humanities';
+  | 'Cluster 4: Social Sciences & Humanities'
+  | 'Cluster 1: Law & Legal Studies'
+  | 'Cluster 3: Arts & Humanities'
+  | 'Cluster 4: Business & Economics'
+  | 'Cluster 7: Engineering & Technology'
+  | 'Cluster 9: Computing & Information Technology'
+  | 'Cluster 13: Medicine, Nursing & Health'
+  | 'Cluster 15: Agriculture, Environment & Agribusiness'
+  | 'Cluster 19: Education & Teaching'
+  | string;
 
 export interface Course {
   id: string;
@@ -64,6 +73,9 @@ export interface Course {
   description: string;
   universityIds: string[];
   careerOutcomes?: string[];
+  estimatedAnnualCostKes?: number;
+  level?: 'Degree' | 'Diploma' | 'Certificate';
+  minMeanGrade?: string;
 }
 
 export interface Review {
