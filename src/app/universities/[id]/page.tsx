@@ -9,6 +9,7 @@ import {
 import { createClient } from '@/lib/supabase/server';
 import type { University, Course, Review, Ambassador } from '@/lib/types';
 import { universitiesData } from '@/lib/data/universities';
+import { universityGalleries } from '@/lib/data/universityGalleries';
 import { coursesData as localCourses } from '@/lib/data/courses';
 import ReviewSection from '@/components/university/ReviewSection';
 import AmbassadorSection from '@/components/university/AmbassadorSection';
@@ -20,9 +21,10 @@ type Props = { params: Promise<{ id: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
+  const normalizedId = id.toLowerCase();
   const supabase = await createClient();
   const { data: dbUni } = await supabase.from('universities').select('*').eq('id', id).single();
-  const uni = dbUni || universitiesData.find(u => u.id === id);
+  const uni = dbUni || universitiesData.find(u => u.id === id || u.id === normalizedId || u.abbrev?.toLowerCase() === normalizedId);
   if (!uni) return { title: 'Not Found' };
   return {
     title: `${uni.name} | Campus Profile`,
@@ -31,10 +33,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function CampusProfilePage({ params }: Props) {
   const { id } = await params;
+  const normalizedId = id.toLowerCase();
   const supabase = await createClient();
 
   const { data: dbUniData } = await supabase.from('universities').select('*').eq('id', id).single();
-  const uniData = dbUniData || universitiesData.find(u => u.id === id);
+  const uniData = dbUniData || universitiesData.find(u => u.id === id || u.id === normalizedId || u.abbrev?.toLowerCase() === normalizedId);
   if (!uniData) notFound();
   const uni = {
     ...uniData,
@@ -74,22 +77,26 @@ export default async function CampusProfilePage({ params }: Props) {
   return (
     <>
       {/* Hero Banner */}
-      <div style={{ position: 'relative', height: 420, overflow: 'hidden' }}>
-        <img src={uni.image} alt={`${uni.name} campus`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,35,56,0.25) 0%, rgba(26,35,56,0.88) 100%)' }} />
-        <div className="container" style={{ position: 'absolute', bottom: 40, left: '50%', transform: 'translateX(-50%)', width: '100%' }}>
-          <Link href="/universities" className="btn btn-ghost btn-sm" style={{ color: 'rgba(255,255,255,0.8)', marginBottom: 16, display: 'inline-flex' }}>
+      <div className="uni-hero-banner">
+        <img
+          src={uni.image}
+          alt={`${uni.name} campus`}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+        />
+        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(26,35,56,0.3) 0%, rgba(26,35,56,0.92) 100%)' }} />
+        <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
+          <Link href="/universities" className="btn btn-ghost btn-sm" style={{ color: 'rgba(255,255,255,0.85)', marginBottom: 18, display: 'inline-flex' }}>
             <ArrowLeft size={16} /> Back to Directory
           </Link>
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
             <div>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 10, flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 12, flexWrap: 'wrap' }}>
                 <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
                 <span className="badge badge-green">Rank #{uni.ranking}</span>
                 {uni.virtualTourUrl && <span className="badge" style={{ background: 'rgba(255,255,255,0.15)', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', gap: 6 }}><Play size={12} /> Virtual Tour</span>}
               </div>
               <h1 className="text-h1" style={{ color: '#FFFFFF' }}>{uni.name}</h1>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginTop: 10, color: 'rgba(255,255,255,0.75)', fontSize: '0.9rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginTop: 12, color: 'rgba(255,255,255,0.8)', fontSize: '0.92rem', flexWrap: 'wrap' }}>
                 <span><MapPin size={14} style={{ display: 'inline' }} /> {uni.county}</span>
                 <span><Calendar size={14} style={{ display: 'inline' }} /> Est. {uni.established}</span>
                 <span><Users size={14} style={{ display: 'inline' }} /> {uni.students} students</span>
@@ -119,17 +126,12 @@ export default async function CampusProfilePage({ params }: Props) {
       {/* Tab Navigation */}
       <div style={{ background: 'var(--bg-primary)', borderBottom: '2px solid var(--border-light)', position: 'sticky', top: 'var(--nav-height)', zIndex: 40 }}>
         <div className="container">
-          <nav style={{ display: 'flex', gap: 0 }}>
+          <nav className="uni-tab-nav">
             {TAB_SECTIONS.map(tab => (
               <a
                 key={tab.id}
                 href={`#${tab.id}`}
-                className="hover-text-navy"
-                style={{
-                  padding: '16px 24px', fontSize: '0.875rem', fontWeight: 500,
-                  color: 'var(--text-secondary)', textDecoration: 'none',
-                  borderBottom: '2px solid transparent', marginBottom: -2,
-                  transition: 'var(--transition)'}}
+                className="uni-tab-link hover-text-navy"
               >
                 {tab.label}
               </a>
@@ -141,9 +143,9 @@ export default async function CampusProfilePage({ params }: Props) {
       {/* Content */}
       <section className="section-sm">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 40 }}>
+          <div className="uni-profile-grid">
             {/* Left: Main Content */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 36, minWidth: 0 }}>
 
               {/* Overview Section */}
               <div id="overview">
@@ -261,7 +263,11 @@ export default async function CampusProfilePage({ params }: Props) {
 
               {/* Gallery Section */}
               <div id="gallery">
-                <GallerySection universityId={uni.id} virtualTourUrl={uni.virtualTourUrl} />
+                <GallerySection
+                  universityId={uni.id}
+                  virtualTourUrl={uni.virtualTourUrl}
+                  items={uni.gallery || universityGalleries[uni.id]}
+                />
               </div>
 
               {/* Reviews Section */}
@@ -276,12 +282,12 @@ export default async function CampusProfilePage({ params }: Props) {
             </div>
 
             {/* Right: Sidebar */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 24, minWidth: 0 }}>
               {/* Fee Card */}
               <div className="card card-body" style={{ background: 'var(--navy-deep)', color: '#FFFFFF' }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--gold-primary)', marginBottom: 8 }}>Tuition Fees</div>
                 <div style={{ fontSize: '1.4rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', color: 'var(--gold-primary)' }}>{uni.fees}</div>
-                <p style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.55)', marginTop: 8 }}>Fees vary by programme. Contact admissions for exact figures.</p>
+                <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.65)', marginTop: 8, lineHeight: 1.5 }}>Fees vary by programme. Contact admissions for exact figures.</p>
               </div>
 
               {/* Admission Enquiry */}
@@ -303,7 +309,7 @@ export default async function CampusProfilePage({ params }: Props) {
               {/* Quick Facts */}
               <div className="card card-body">
                 <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16 }}>Quick Facts</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {[
                     { label: 'Established', value: uni.established.toString() },
                     { label: 'Students', value: uni.students },
@@ -312,9 +318,9 @@ export default async function CampusProfilePage({ params }: Props) {
                     { label: 'Type', value: uni.type },
                     ...(uni.campusSize ? [{ label: 'Campus Size', value: uni.campusSize }] : []),
                   ].map(({ label, value }) => (
-                    <div key={label} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.88rem' }}>
-                      <span style={{ color: 'var(--text-tertiary)' }}>{label}</span>
-                      <span style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{value}</span>
+                    <div key={label} className="fact-item-row">
+                      <span style={{ color: 'var(--text-tertiary)', flexShrink: 0, fontSize: '0.88rem' }}>{label}</span>
+                      <span style={{ fontWeight: 600, color: 'var(--text-primary)', textAlign: 'right', wordBreak: 'break-word', fontSize: '0.9rem' }}>{value}</span>
                     </div>
                   ))}
                 </div>
@@ -326,23 +332,46 @@ export default async function CampusProfilePage({ params }: Props) {
                   <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16 }}>Contact & Links</div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {uni.website && (
-                      <a href={uni.website} target="_blank" rel="noopener noreferrer" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.88rem', color: 'var(--text-primary)' }}>
-                        <Globe size={14} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} /> {uni.website.replace('https://', '')}
+                      <a
+                        href={uni.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-interactive-link"
+                        title="Official Website"
+                      >
+                        <Globe size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                        <span style={{ overflowWrap: 'anywhere' }}>{uni.website.replace(/^https?:\/\//, '')}</span>
                       </a>
                     )}
                     {uni.contactEmail && (
-                      <a href={`mailto:${uni.contactEmail}`} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.88rem', color: 'var(--text-primary)' }}>
-                        <Mail size={14} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} /> {uni.contactEmail}
+                      <a
+                        href={`mailto:${uni.contactEmail}`}
+                        className="contact-interactive-link"
+                        title="Email Admissions"
+                      >
+                        <Mail size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                        <span style={{ overflowWrap: 'anywhere' }}>{uni.contactEmail}</span>
                       </a>
                     )}
                     {uni.contactPhone && (
-                      <a href={`tel:${uni.contactPhone}`} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.88rem', color: 'var(--text-primary)' }}>
-                        <Phone size={14} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} /> {uni.contactPhone}
+                      <a
+                        href={`tel:${uni.contactPhone}`}
+                        className="contact-interactive-link"
+                        title="Call Admissions"
+                      >
+                        <Phone size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                        <span>{uni.contactPhone}</span>
                       </a>
                     )}
                   </div>
                   {uni.website && (
-                    <a href={uni.website} target="_blank" rel="noopener noreferrer" className="btn btn-gold" style={{ marginTop: 16, width: '100%', justifyContent: 'center' }}>
+                    <a
+                      href={uni.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn btn-gold"
+                      style={{ marginTop: 18, width: '100%', justifyContent: 'center' }}
+                    >
                       Visit Official Website
                     </a>
                   )}
@@ -352,14 +381,14 @@ export default async function CampusProfilePage({ params }: Props) {
               {/* CTA */}
               <div className="card card-body" style={{ background: 'var(--gold-glow)', border: '1px solid rgba(199,155,55,0.3)' }}>
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}><Lightbulb size={18} style={{ color: 'var(--gold-primary)' }} /> Get Personalised Recommendations</div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16 }}>Enter your KCSE grades to see if you qualify for programmes here.</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Enter your KCSE grades to see if you qualify for programmes here.</p>
                 <Link href="/calculator" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center' }}>Check Eligibility</Link>
               </div>
 
               {/* Compare CTA */}
               <div className="card card-body" style={{ background: 'var(--navy-light)', border: '1px solid var(--border-light)' }}>
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}><Scale size={18} style={{ color: 'var(--gold-primary)' }} /> Compare This Campus</div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16 }}>Add to your comparison list to evaluate against other institutions side-by-side.</p>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Add to your comparison list to evaluate against other institutions side-by-side.</p>
                 <CompareButton universityId={uni.id} universityName={uni.name} universityAbbrev={uni.abbrev} fullWidth />
               </div>
             </div>
@@ -374,13 +403,15 @@ function InfoCard({ title, icon, children }: { title: string; icon?: React.React
   return (
     <div className="card card-body">
       <h2 style={{
-        fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600,
-        color: 'var(--text-primary)', marginBottom: 16, paddingBottom: 12,
-        borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 8}}>
-        {icon && <span style={{ color: 'var(--gold-primary)' }}>{icon}</span>}
+        fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', fontWeight: 600,
+        color: 'var(--text-primary)', marginBottom: 18, paddingBottom: 12,
+        borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 10}}>
+        {icon && <span style={{ color: 'var(--gold-primary)', display: 'flex', alignItems: 'center' }}>{icon}</span>}
         {title}
       </h2>
-      {children}
+      <div style={{ lineHeight: 1.8 }}>
+        {children}
+      </div>
     </div>
   );
 }

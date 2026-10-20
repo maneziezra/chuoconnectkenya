@@ -328,6 +328,64 @@ img {
 }
 
 /* ============================================
+   RESPONSIVE UNIVERSITY PROFILE LAYOUT
+   ============================================ */
+
+.uni-hero-banner {
+  position: relative;
+  min-height: 420px;
+  display: flex;
+  align-items: flex-end;
+  padding: 48px 0;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .uni-hero-banner {
+    min-height: auto;
+    padding: 32px 0 24px;
+  }
+}
+
+.uni-tab-nav {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.uni-tab-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.uni-tab-link {
+  padding: 16px 24px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: var(--transition);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.uni-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 36px;
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .uni-profile-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+/* ============================================
    CARDS
    ============================================ */
 
@@ -338,6 +396,7 @@ img {
   box-shadow: var(--shadow-md);
   overflow: hidden;
   transition: var(--transition-slow);
+  position: relative;
 }
 
 .card:hover {
@@ -359,6 +418,77 @@ img {
   border-color: var(--accent-main);
 }
 
+.card-body {
+  padding: 30px;
+}
+
+@media (max-width: 768px) {
+  .card-body {
+    padding: 22px 18px;
+  }
+}
+
+.footer-heading {
+  font-family: var(--font-playfair), serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.fact-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 18px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-light);
+  font-size: 0.9rem;
+  gap: 16px;
+  transition: var(--transition);
+}
+.fact-item-row:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-tertiary);
+}
+
+.contact-interactive-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: var(--transition);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  position: relative;
+}
+.contact-interactive-link:hover {
+  background: var(--navy-light) !important;
+  border-color: var(--accent-gold) !important;
+  color: var(--accent-main) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+.contact-interactive-link:active {
+  background: var(--bg-tertiary) !important;
+  border-color: var(--accent-gold) !important;
+  transform: scale(0.99);
+}
+.contact-interactive-link:focus,
+.contact-interactive-link:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
 /* ============================================
    BADGES
    ============================================ */
@@ -366,13 +496,14 @@ img {
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 12px;
+  gap: 6px;
+  padding: 5px 12px;
   border-radius: var(--radius-sm);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 700;
   border: 1px solid var(--border-medium);
   letter-spacing: 0.02em;
+  line-height: 1.3;
 }
 
 .badge-gold {
@@ -392,6 +523,28 @@ img {
   color: var(--success-text);
   border-color: rgba(21, 128, 61, 0.3);
 }
+
+.uni-card-image {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.gallery-item-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.gallery-item-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-gold) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+.gallery-item-btn:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 3px;
+}
+
 
 /* ============================================
    FORMS

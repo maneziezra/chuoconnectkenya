@@ -25,8 +25,13 @@ export default async function UniversitiesPage({
   }
   
   const { data } = await supabase.from('universities').select('*').order('ranking', { ascending: true });
-  const rawUnis = data && data.length > 0 ? data : universitiesData;
-  const universities = rawUnis.map((u: any) => ({ 
+  const dbIds = new Set((data || []).map((u: any) => u.id));
+  const mergedUnis = [
+    ...(data || []),
+    ...universitiesData.filter(u => !dbIds.has(u.id))
+  ].sort((a: any, b: any) => (a.ranking ?? 99) - (b.ranking ?? 99));
+
+  const universities = mergedUnis.map((u: any) => ({ 
     ...u, 
     image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg' 
   })) as University[];
