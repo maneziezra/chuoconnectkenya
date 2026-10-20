@@ -10,6 +10,7 @@ const instrument = Instrument_Serif({ weight: "400", style: ["normal", "italic"]
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains', display: 'swap' });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://chuoconnectkenya.vercel.app'),
   title: {
     default: 'Chuo Connect Kenya — University Intelligence Platform',
     template: '%s | Chuo Connect Kenya',
