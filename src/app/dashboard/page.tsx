@@ -64,62 +64,118 @@ export default async function DashboardPage() {
     <>
       {/* Hero Header */}
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--border-medium)', borderRadius: 20, boxShadow: 'var(--shadow-neo)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
+        <div
+          style={{
+            position: 'relative',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
+            background: 'var(--bg-secondary)',
+            padding: '44px 36px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
+              backgroundSize: '28px 28px',
+              opacity: 0.035,
+              pointerEvents: 'none',
+            }}
+          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
               {user ? (
-                <div style={{ display: 'flex', alignItems: 'center', gap: 24, width: '100%', background: 'var(--bg-primary)', padding: 24, borderRadius: 20, border: '2px solid var(--border-medium)', boxShadow: 'var(--shadow-neo)' }}>
-                  <div style={{ width: 88, height: 88, borderRadius: 10, background: 'var(--gold-glow)', overflow: 'hidden', flexShrink: 0, position: 'relative', border: '2px solid var(--border-medium)' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 24,
+                    width: '100%',
+                    background: 'var(--bg-primary)',
+                    padding: 24,
+                    borderRadius: 'var(--radius-xl)',
+                    border: '1px solid var(--border-light)',
+                    borderTop: '1px solid var(--apple-glass-highlight)',
+                    boxShadow: 'var(--shadow-sm)',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 88,
+                      height: 88,
+                      borderRadius: 'var(--radius-lg)',
+                      background: 'var(--gold-glow)',
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                      position: 'relative',
+                      border: '1px solid var(--border-light)',
+                    }}
+                  >
                     {profile?.avatar_url ? (
                       <Image src={profile.avatar_url} alt="Avatar" fill style={{ objectFit: 'cover' }} unoptimized />
                     ) : (
                       <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <User size={40} style={{ color: 'var(--text-primary)' }} />
+                        <User size={36} style={{ color: 'var(--text-primary)' }} />
                       </div>
                     )}
                   </div>
-                  <div style={{ flex: 1 }}>
-                    <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 8, fontSize: '2rem' }}>
+                  <div style={{ flex: '1 1 260px' }}>
+                    <h1
+                      style={{
+                        color: 'var(--text-primary)',
+                        marginBottom: 8,
+                        fontSize: '1.85rem',
+                        fontFamily: 'var(--font-sans)',
+                        fontWeight: 700,
+                        letterSpacing: '-0.025em',
+                      }}
+                    >
                       {profile?.full_name || user.email?.split('@')[0]}
                     </h1>
                     <div style={{ display: 'flex', gap: 16, color: 'var(--text-secondary)', fontSize: '0.9rem', flexWrap: 'wrap' }}>
                       {profile?.high_school && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <GraduationCap size={16} style={{ color: 'var(--text-primary)' }} />
+                          <GraduationCap size={16} style={{ color: 'var(--gold-primary)' }} />
                           {profile.high_school}
                         </div>
                       )}
                       {profile?.index_number && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <BookOpen size={16} style={{ color: 'var(--text-primary)' }} />
+                          <BookOpen size={16} style={{ color: 'var(--gold-primary)' }} />
                           Index: {profile.index_number}
                         </div>
                       )}
                       {profile?.saved_grades?.overallGrade && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                          <Award size={16} style={{ color: 'var(--text-primary)' }} />
+                          <Award size={16} style={{ color: 'var(--gold-primary)' }} />
                           Mean Grade: {profile.saved_grades.overallGrade}
                         </div>
                       )}
                     </div>
                   </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                    <Link href="/profile" className="btn btn-gold btn-sm" style={{ width: '100%', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                    <Link href="/profile" className="btn btn-gold btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>
                       Edit Profile
                     </Link>
-                    <form action={async () => {
-                      'use server';
-                      const supabase = await createClient();
-                      await supabase.auth.signOut();
-                    }}>
-                      <button type="submit" className="btn btn-outline btn-sm" style={{ width: '100%', justifyContent: 'center' }}>
+                    <form
+                      action={async () => {
+                        'use server';
+                        const supabase = await createClient();
+                        await supabase.auth.signOut();
+                      }}
+                    >
+                      <button type="submit" className="btn btn-outline btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>
                         Log Out
                       </button>
                     </form>
                   </div>
                 </div>
-            ) : (
+              ) : (
                 <>
                   <div>
                     <div
@@ -127,38 +183,47 @@ export default async function DashboardPage() {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: 8,
-                        padding: '4px 14px',
-                        background: 'var(--gold-glow)',
-                        border: '2px solid var(--border-medium)',
-                        boxShadow: 'var(--shadow-neo)',
-                        borderRadius: 8,
-                        fontSize: '0.75rem',
+                        padding: '5px 14px',
+                        background: 'var(--apple-glass-bg)',
+                        border: '1px solid var(--border-light)',
+                        borderTop: '1px solid var(--apple-glass-highlight)',
+                        borderRadius: 'var(--radius-full)',
+                        fontSize: '0.72rem',
                         fontWeight: 700,
-                        letterSpacing: '0.08em',
-                        textTransform: 'uppercase' as const,
+                        letterSpacing: '0.06em',
+                        textTransform: 'uppercase',
                         color: 'var(--text-primary)',
                         marginBottom: 16,
                       }}
                     >
-                      <GraduationCap size={12} />
+                      <GraduationCap size={13} style={{ color: 'var(--gold-primary)' }} />
                       Student Centre
                     </div>
-                    <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
+                    <h1
+                      style={{
+                        color: 'var(--text-primary)',
+                        marginBottom: 12,
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: 'clamp(1.9rem, 3.5vw, 2.5rem)',
+                        fontWeight: 800,
+                        letterSpacing: '-0.03em',
+                      }}
+                    >
                       My Dashboard
                     </h1>
-                    <p style={{ color: 'var(--text-secondary)', maxWidth: 500 }}>
+                    <p style={{ color: 'var(--text-secondary)', maxWidth: 520, fontSize: '1rem', lineHeight: 1.6 }}>
                       Calculate your KUCCPS cluster scores, discover the programmes you qualify for,
-                      and plan your academic future.
+                      and plan your academic future with 2026 data.
                     </p>
                   </div>
-                  <Link href="/signup" className="btn btn-gold">
+                  <Link href="/signup" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>
                     Save My Results <ArrowRight size={16} />
                   </Link>
                 </>
-            )}
+              )}
+            </div>
           </div>
         </div>
-      </div>
       </div>
 
       {/* Main Content */}
@@ -166,23 +231,44 @@ export default async function DashboardPage() {
         <div className="container">
           {/* Progress Tracker */}
           {user && (
-            <div className="card" style={{ marginBottom: 32, padding: '24px 32px' }}>
-              <h2 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 20 }}>Your Chuo Connect Checklist</h2>
+            <div
+              className="card"
+              style={{
+                marginBottom: 32,
+                padding: '24px 32px',
+                borderRadius: 'var(--radius-xl)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+            >
+              <h2
+                style={{
+                  fontSize: '1.15rem',
+                  fontWeight: 700,
+                  fontFamily: 'var(--font-sans)',
+                  letterSpacing: '-0.02em',
+                  color: 'var(--text-primary)',
+                  marginBottom: 20,
+                }}
+              >
+                Your Chuo Connect Checklist
+              </h2>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 20 }}>
                 {/* Step 1 */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
-                  <CheckCircle2 size={24} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                  <CheckCircle2 size={22} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                   <div>
                     <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.9rem' }}>Create Account</div>
-                    <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 4 }}>You're in!</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 4 }}>You&apos;re in!</div>
                   </div>
                 </div>
                 {/* Step 2 */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                   {profile?.high_school && profile?.index_number && profile?.county ? (
-                    <CheckCircle2 size={24} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                    <CheckCircle2 size={22} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                   ) : (
-                    <Circle size={24} style={{ color: 'var(--border-medium)', flexShrink: 0 }} />
+                    <Circle size={22} style={{ color: 'var(--border-medium)', flexShrink: 0 }} />
                   )}
                   <div>
                     <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.9rem' }}>Complete Profile</div>
@@ -194,9 +280,9 @@ export default async function DashboardPage() {
                 {/* Step 3 */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                   {profile?.saved_grades?.overallGrade ? (
-                    <CheckCircle2 size={24} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                    <CheckCircle2 size={22} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                   ) : (
-                    <Circle size={24} style={{ color: 'var(--border-medium)', flexShrink: 0 }} />
+                    <Circle size={22} style={{ color: 'var(--border-medium)', flexShrink: 0 }} />
                   )}
                   <div>
                     <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.9rem' }}>Enter KCSE Grades</div>
@@ -208,9 +294,9 @@ export default async function DashboardPage() {
                 {/* Step 4 */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                   {savedCoursesIds.length > 0 ? (
-                    <CheckCircle2 size={24} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                    <CheckCircle2 size={22} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                   ) : (
-                    <Circle size={24} style={{ color: 'var(--border-medium)', flexShrink: 0 }} />
+                    <Circle size={22} style={{ color: 'var(--border-medium)', flexShrink: 0 }} />
                   )}
                   <div>
                     <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.9rem' }}>Save a Course</div>
@@ -223,27 +309,57 @@ export default async function DashboardPage() {
             </div>
           )}
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: 40 }}>
+          <div className="student-dashboard-grid">
             {/* Calculator */}
             <div>
               {savedCoursesList.length > 0 && (
                 <div style={{ marginBottom: 40 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-                    <h2 className="text-h2" style={{ color: 'var(--text-primary)', fontSize: '1.5rem' }}>My Applications</h2>
-                    <Link href="/courses" className="btn btn-outline btn-sm">Browse More</Link>
+                    <h2
+                      style={{
+                        color: 'var(--text-primary)',
+                        fontSize: '1.45rem',
+                        fontFamily: 'var(--font-sans)',
+                        fontWeight: 700,
+                        letterSpacing: '-0.025em',
+                      }}
+                    >
+                      My Applications
+                    </h2>
+                    <Link href="/courses" className="btn btn-outline btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>Browse More</Link>
                   </div>
                   <div className="grid-auto">
                     {savedCoursesList.map(course => {
                       const offeredAt = universities.filter(u => course.universityIds.includes(u.id));
                       return (
-                        <div key={course.id} className="card" style={{ display: 'flex', flexDirection: 'column' }}>
-                          <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                        <div
+                          key={course.id}
+                          className="card"
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            borderRadius: 'var(--radius-xl)',
+                            border: '1px solid var(--border-light)',
+                            borderTop: '1px solid var(--apple-glass-highlight)',
+                          }}
+                        >
+                          <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: 24 }}>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
                               <span className="badge badge-navy">
                                 {course.clusterGroup.split(':')[0]}
                               </span>
                             </div>
-                            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.3 }}>
+                            <h3
+                              style={{
+                                fontFamily: 'var(--font-sans)',
+                                fontSize: '1.1rem',
+                                fontWeight: 700,
+                                letterSpacing: '-0.02em',
+                                color: 'var(--text-primary)',
+                                marginBottom: 8,
+                                lineHeight: 1.3,
+                              }}
+                            >
                               {course.title}
                             </h3>
                             <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
@@ -253,7 +369,7 @@ export default async function DashboardPage() {
                             </div>
                           </div>
                           <div style={{ padding: '12px 24px', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)' }}>
-                             <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--gold-primary)' }}>Application Tracked</span>
+                            <span style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--gold-primary)' }}>Application Tracked</span>
                           </div>
                         </div>
                       );
@@ -272,47 +388,128 @@ export default async function DashboardPage() {
               {profile?.county && (
                 <div style={{ marginTop: 48 }}>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-                    <h2 className="text-h2" style={{ color: 'var(--text-primary)', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <Home size={24} style={{ color: 'var(--gold-primary)' }} />
+                    <h2
+                      style={{
+                        color: 'var(--text-primary)',
+                        fontSize: '1.45rem',
+                        fontFamily: 'var(--font-sans)',
+                        fontWeight: 700,
+                        letterSpacing: '-0.025em',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 10,
+                      }}
+                    >
+                      <Home size={22} style={{ color: 'var(--gold-primary)' }} />
                       Smart Housing Matches
                     </h2>
-                    <Link href="/housing" className="btn btn-outline btn-sm">View All</Link>
+                    <Link href="/housing" className="btn btn-outline btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>View All</Link>
                   </div>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', marginBottom: 20 }}>
-                    Based on your profile, here are some recommended student accommodations near you.
+                  <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', marginBottom: 20, lineHeight: 1.55 }}>
+                    Based on your profile, here are recommended student accommodations near your target universities.
                   </p>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+                  <div className="student-housing-grid">
                     {/* Housing Card 1 */}
-                    <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div
+                      className="card"
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        borderRadius: 'var(--radius-xl)',
+                        border: '1px solid var(--border-light)',
+                        borderTop: '1px solid var(--apple-glass-highlight)',
+                        overflow: 'hidden',
+                      }}
+                    >
                       <div style={{ height: 160, position: 'relative' }}>
                         <Image src="/images/housing/qwetu-hurlingham.jpg" alt="Qwetu Hurlingham" fill style={{ objectFit: 'cover' }} />
-                        <div style={{ position: 'absolute', top: 12, right: 12, background: 'var(--gold-primary)', color: 'var(--text-inverse)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: 12,
+                            right: 12,
+                            background: 'var(--accent-gold)',
+                            color: 'var(--gold-contrast-text)',
+                            padding: '4px 10px',
+                            borderRadius: 'var(--radius-full)',
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.04em',
+                            boxShadow: 'var(--shadow-sm)',
+                          }}
+                        >
                           98% MATCH
                         </div>
                       </div>
-                      <div className="card-body" style={{ padding: 16 }}>
-                        <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4 }}>Qwetu Hurlingham</h3>
+                      <div className="card-body" style={{ padding: 20 }}>
+                        <h3
+                          style={{
+                            fontSize: '1.05rem',
+                            fontWeight: 700,
+                            fontFamily: 'var(--font-sans)',
+                            letterSpacing: '-0.02em',
+                            color: 'var(--text-primary)',
+                            marginBottom: 4,
+                          }}
+                        >
+                          Qwetu Hurlingham
+                        </h3>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>Nairobi County • Premium Hostel</div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>From KES 25,000</span>
-                          <Link href="/housing" style={{ fontSize: '0.8rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
+                          <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>From KES 25,000</span>
+                          <Link href="/housing" style={{ fontSize: '0.82rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
                         </div>
                       </div>
                     </div>
                     {/* Housing Card 2 */}
-                    <div className="card" style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div
+                      className="card"
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        borderRadius: 'var(--radius-xl)',
+                        border: '1px solid var(--border-light)',
+                        borderTop: '1px solid var(--apple-glass-highlight)',
+                        overflow: 'hidden',
+                      }}
+                    >
                       <div style={{ height: 160, position: 'relative' }}>
                         <Image src="/images/housing/qejani-karen.jpg" alt="Qejani Karen" fill style={{ objectFit: 'cover' }} />
-                        <div style={{ position: 'absolute', top: 12, right: 12, background: 'var(--gold-primary)', color: 'var(--text-inverse)', padding: '4px 8px', borderRadius: '4px', fontSize: '0.75rem', fontWeight: 700 }}>
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: 12,
+                            right: 12,
+                            background: 'var(--accent-gold)',
+                            color: 'var(--gold-contrast-text)',
+                            padding: '4px 10px',
+                            borderRadius: 'var(--radius-full)',
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.04em',
+                            boxShadow: 'var(--shadow-sm)',
+                          }}
+                        >
                           94% MATCH
                         </div>
                       </div>
-                      <div className="card-body" style={{ padding: 16 }}>
-                        <h3 style={{ fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 4 }}>Qejani Karen</h3>
+                      <div className="card-body" style={{ padding: 20 }}>
+                        <h3
+                          style={{
+                            fontSize: '1.05rem',
+                            fontWeight: 700,
+                            fontFamily: 'var(--font-sans)',
+                            letterSpacing: '-0.02em',
+                            color: 'var(--text-primary)',
+                            marginBottom: 4,
+                          }}
+                        >
+                          Qejani Karen
+                        </h3>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>Nairobi County • Standard Hostel</div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-primary)' }}>From KES 15,000</span>
-                          <Link href="/housing" style={{ fontSize: '0.8rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
+                          <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>From KES 15,000</span>
+                          <Link href="/housing" style={{ fontSize: '0.82rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
                         </div>
                       </div>
                     </div>
@@ -327,20 +524,21 @@ export default async function DashboardPage() {
               <div
                 style={{
                   background: 'var(--bg-primary)',
-                  border: '2px solid var(--border-medium)',
-                  boxShadow: 'var(--shadow-neo)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  boxShadow: 'var(--shadow-sm)',
                   padding: 24,
-                  borderRadius: 20,
+                  borderRadius: 'var(--radius-xl)',
                 }}
               >
                 <div
                   style={{
-                    fontSize: '0.75rem',
+                    fontSize: '0.72rem',
                     fontWeight: 700,
-                    letterSpacing: '0.08em',
+                    letterSpacing: '0.06em',
                     textTransform: 'uppercase',
-                    color: 'var(--text-primary)',
-                    marginBottom: 12,
+                    color: 'var(--gold-primary)',
+                    marginBottom: 14,
                   }}
                 >
                   How It Works
@@ -358,8 +556,8 @@ export default async function DashboardPage() {
                           width: 28,
                           height: 28,
                           background: 'var(--gold-glow)',
-                          border: '2px solid var(--border-medium)',
-                          borderRadius: 8,
+                          border: '1px solid var(--border-light)',
+                          borderRadius: 'var(--radius-sm)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -367,11 +565,12 @@ export default async function DashboardPage() {
                           fontWeight: 700,
                           flexShrink: 0,
                           color: 'var(--text-primary)',
+                          fontFamily: 'var(--font-mono)',
                         }}
                       >
                         {step}
                       </div>
-                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.5 }}>
+                      <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', lineHeight: 1.5, margin: 0 }}>
                         {text}
                       </p>
                     </div>
@@ -384,19 +583,20 @@ export default async function DashboardPage() {
                 <div
                   style={{
                     background: 'var(--gold-glow)',
-                    border: '2px solid var(--border-medium)',
-                    boxShadow: 'var(--shadow-neo)',
+                    border: '1px solid var(--border-light)',
+                    borderTop: '1px solid var(--apple-glass-highlight)',
+                    boxShadow: 'var(--shadow-sm)',
                     padding: 24,
-                    borderRadius: 20,
+                    borderRadius: 'var(--radius-xl)',
                   }}
                 >
-                  <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <Save size={18} style={{ color: 'var(--text-primary)' }} /> Save & Track Your Progress
+                  <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.95rem' }}>
+                    <Save size={18} style={{ color: 'var(--gold-primary)' }} /> Save & Track Your Progress
                   </div>
                   <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>
                     Create a free account to save your grades, favourite universities, and get personalised notifications.
                   </p>
-                  <Link href="/signup" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center' }}>
+                  <Link href="/signup" className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}>
                     Create Free Account
                   </Link>
                 </div>
@@ -406,19 +606,21 @@ export default async function DashboardPage() {
               <div
                 style={{
                   background: 'var(--bg-primary)',
-                  border: '2px solid var(--border-medium)',
-                  borderRadius: 20,
-                  boxShadow: 'var(--shadow-neo)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  borderRadius: 'var(--radius-xl)',
+                  boxShadow: 'var(--shadow-sm)',
                   overflow: 'hidden',
                 }}
               >
                 <div
                   style={{
-                    padding: '14px 20px',
+                    padding: '16px 20px',
                     borderBottom: '1px solid var(--border-light)',
                     fontWeight: 700,
                     color: 'var(--text-primary)',
-                    fontSize: '0.9rem',
+                    fontSize: '0.88rem',
+                    letterSpacing: '-0.01em',
                   }}
                 >
                   Explore Guidance
@@ -433,7 +635,7 @@ export default async function DashboardPage() {
                       padding: '14px 20px',
                       borderBottom: '1px solid var(--border-light)',
                       textDecoration: 'none',
-                      transition: 'background 0.2s',
+                      transition: 'background var(--apple-ease)',
                     }}
                   >
                     <div
@@ -441,8 +643,8 @@ export default async function DashboardPage() {
                         width: 36,
                         height: 36,
                         background: 'var(--gold-glow)',
-                        border: '2px solid var(--border-medium)',
-                        borderRadius: 8,
+                        border: '1px solid var(--border-light)',
+                        borderRadius: 'var(--radius-md)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',

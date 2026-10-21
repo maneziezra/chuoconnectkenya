@@ -26,71 +26,136 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
-      <div style={{ background: 'var(--navy-deep)', padding: '64px 0 40px', borderBottom: '4px solid var(--gold-primary)' }}>
-        <div className="container">
-          <Link 
-            href="/guidance" 
-            style={{ 
-              display: 'inline-flex', alignItems: 'center', gap: 6, 
-              color: 'rgba(255,255,255,0.7)', textDecoration: 'none', 
-              fontSize: '0.9rem', marginBottom: 32, fontWeight: 500,
-              transition: 'var(--transition)'
+      {/* ── HERO BANNER ── */}
+      <div style={{ padding: '32px 20px 0', background: 'var(--bg-secondary)' }}>
+        <div
+          style={{
+            background: 'var(--apple-glass-bg)',
+            backdropFilter: 'blur(16px)',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: 'var(--shadow-md)',
+            padding: '48px 36px',
+            maxWidth: 1040,
+            margin: '0 auto',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
+              backgroundSize: '28px 28px',
+              opacity: 0.035,
+              pointerEvents: 'none',
             }}
-            className="hover-text-gold"
-          >
-            <ArrowLeft size={16} /> Back to Guidance Hub
-          </Link>
+          />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <Link 
+              href="/guidance" 
+              style={{ 
+                display: 'inline-flex', alignItems: 'center', gap: 6, 
+                color: 'var(--text-secondary)', textDecoration: 'none', 
+                fontSize: '0.88rem', marginBottom: 24, fontWeight: 600,
+                transition: 'var(--transition)'
+              }}
+              className="hover-text-gold"
+            >
+              <ArrowLeft size={16} /> Back to Guidance Hub
+            </Link>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>
-            <div style={{ width: 48, height: 48, background: 'rgba(199,155,55,0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-primary)' }}>
-              {article.icon}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+              <div
+                style={{
+                  width: 44,
+                  height: 44,
+                  background: 'var(--gold-glow)',
+                  borderRadius: 'var(--radius-md)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--gold-primary)',
+                }}
+              >
+                {article.icon}
+              </div>
+              <span style={{ fontSize: '0.82rem', color: 'var(--gold-primary)', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <Clock size={14} /> {article.readTime}
+              </span>
             </div>
-            <span style={{ fontSize: '0.85rem', color: 'var(--gold-primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 6 }}>
-              <Clock size={14} /> {article.readTime}
-            </span>
-          </div>
 
-          <h1 className="text-h1" style={{ color: '#FFFFFF', marginBottom: 16, maxWidth: 800 }}>
-            {article.title}
-          </h1>
-          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.05rem', maxWidth: 700, lineHeight: 1.6 }}>
-            {article.desc}
-          </p>
+            <h1
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 4vw, 2.8rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.035em',
+                lineHeight: 1.15,
+                color: 'var(--text-primary)',
+                marginBottom: 14,
+                maxWidth: 860,
+              }}
+            >
+              {article.title}
+            </h1>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', maxWidth: 740, lineHeight: 1.6, margin: 0 }}>
+              {article.desc}
+            </p>
+          </div>
         </div>
       </div>
 
-      <section className="section">
-        <div className="container">
-          <div className="article-content" style={{ maxWidth: 800, margin: '0 auto', color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8 }}>
-            {article.content}
+      <section className="section" style={{ background: 'var(--bg-secondary)', padding: '48px 20px 80px' }}>
+        <div className="container" style={{ maxWidth: 880 }}>
+          <div
+            style={{
+              background: 'var(--bg-primary)',
+              borderRadius: 'var(--radius-xl)',
+              border: '1px solid var(--border-light)',
+              borderTop: '1px solid var(--apple-glass-highlight)',
+              boxShadow: 'var(--shadow-sm)',
+              padding: '48px 40px',
+            }}
+          >
+            <div className="article-content" style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', lineHeight: 1.8 }}>
+              {article.content}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Inline styles for article content since we don't have a global article class */}
+      {/* Inline styles for article content */}
       <style dangerouslySetInnerHTML={{__html: `
         .article-content h2 {
-          color: var(--navy-deep);
-          font-family: var(--font-serif);
-          font-size: 1.75rem;
-          margin-top: 48px;
+          color: var(--text-primary);
+          font-family: var(--font-sans);
+          font-weight: 700;
+          letter-spacing: -0.025em;
+          font-size: 1.6rem;
+          margin-top: 40px;
           margin-bottom: 16px;
         }
         .article-content h2:first-child {
           margin-top: 0;
         }
         .article-content p {
-          margin-bottom: 24px;
+          margin-bottom: 20px;
         }
         .article-content ul {
-          margin-bottom: 24px;
+          margin-bottom: 20px;
           padding-left: 24px;
         }
         .article-content li {
-          margin-bottom: 12px;
+          margin-bottom: 10px;
         }
         .article-content strong {
-          color: var(--navy-deep);
+          color: var(--text-primary);
+          font-weight: 700;
         }
         .hover-text-gold:hover {
           color: var(--gold-primary) !important;

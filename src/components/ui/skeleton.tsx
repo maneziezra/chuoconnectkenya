@@ -32,8 +32,9 @@ export function PageHeroSkeleton() {
     <div style={{ padding: '0 20px', marginTop: 40 }} role="status" aria-label="Loading page header">
       <div
         style={{
-          border: '2px solid var(--border-light)',
-          borderRadius: 20,
+          border: '1px solid var(--border-light)',
+          borderTop: '1px solid var(--apple-glass-highlight)',
+          borderRadius: 'var(--radius-xl)',
           background: 'var(--bg-secondary)',
           padding: '48px 40px',
         }}
@@ -53,7 +54,8 @@ export function UniversityCardSkeleton() {
     <div
       className="card"
       style={{
-        border: '2px solid var(--border-light)',
+        border: '1px solid var(--border-light)',
+        borderTop: '1px solid var(--apple-glass-highlight)',
         borderRadius: 'var(--radius-xl)',
         overflow: 'hidden',
         background: 'var(--bg-primary)',
@@ -95,7 +97,8 @@ export function CourseCardSkeleton() {
       className="card"
       style={{
         padding: 24,
-        border: '2px solid var(--border-light)',
+        border: '1px solid var(--border-light)',
+        borderTop: '1px solid var(--apple-glass-highlight)',
         borderRadius: 'var(--radius-xl)',
         background: 'var(--bg-primary)',
         display: 'flex',

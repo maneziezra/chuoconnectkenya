@@ -3,6 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import type { University } from '@/lib/types';
 import { universitiesData } from '@/lib/data/universities';
 import UniversityBrowser from '@/components/university/UniversityBrowser';
+import { GraduationCap } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Explore Universities in Kenya',
@@ -37,58 +38,104 @@ export default async function UniversitiesPage({
   })) as University[];
 
   return (
-    <>
-      {/* Page Header */}
-      <div style={{ padding: '0 20px', marginTop: '40px' }}>
-        <div style={{
-          position: 'relative',
-          border: '2px solid var(--border-medium)',
-          borderRadius: 20,
-          boxShadow: 'var(--shadow-neo)',
-          background: 'var(--bg-secondary)',
-          padding: '48px 40px',
-          overflow: 'hidden'
-        }}>
-          <div style={{
-            backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-            backgroundSize: '28px 28px',
-            opacity: 0.04,
-            position: 'absolute',
-            inset: 0,
-            pointerEvents: 'none'
-          }} />
-          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{
-              display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)',
-              border: '2px solid var(--border-medium)', borderRadius: 8,
-              boxShadow: 'var(--shadow-neo)',
-              fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
-              color: 'var(--text-primary)', marginBottom: 16,
-            }}>
-              Complete Directory
-            </span>
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Explore Campuses Across Kenya</h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 560 }}>
-              Discover{' '}
-              <span style={{ color: 'var(--gold-primary)', fontWeight: 600 }}>{universities.length}</span>{' '}
-              accredited institutions. Filter, compare, and find your perfect campus match.
+    <div style={{ minHeight: 'calc(100vh - var(--nav-height))', paddingBottom: 80 }}>
+      {/* Hero Header with Apple Glass Squircle */}
+      <div style={{ padding: '0 20px', marginTop: '28px', maxWidth: '1400px', margin: '28px auto 0' }}>
+        <div
+          style={{
+            position: 'relative',
+            border: '1px solid var(--border-light)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.03)',
+            background: 'var(--bg-secondary)',
+            padding: '44px 36px',
+            overflow: 'hidden',
+          }}
+        >
+          {/* Subtle Ambient Radial Lighting */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              right: 0,
+              width: 500,
+              height: 260,
+              background: 'radial-gradient(circle at 100% 0%, var(--gold-glow), transparent 70%)',
+              pointerEvents: 'none',
+            }}
+          />
+          <div
+            style={{
+              backgroundImage: 'radial-gradient(circle, var(--text-primary) 0.75px, transparent 0.75px)',
+              backgroundSize: '24px 24px',
+              opacity: 0.035,
+              position: 'absolute',
+              inset: 0,
+              pointerEvents: 'none',
+            }}
+          />
+
+          <div style={{ position: 'relative', zIndex: 1, maxWidth: 740 }}>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '6px 14px',
+                background: 'var(--bg-primary)',
+                border: '1px solid var(--border-light)',
+                borderRadius: 'var(--radius-full)',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                color: 'var(--accent-gold)',
+                marginBottom: 16,
+              }}
+            >
+              <GraduationCap size={13} style={{ color: 'var(--accent-gold)' }} />
+              Directory of Accredited Institutions
+            </div>
+
+            <h1
+              style={{
+                fontSize: 'clamp(1.85rem, 3.5vw, 2.5rem)',
+                fontWeight: 700,
+                letterSpacing: '-0.028em',
+                lineHeight: 1.15,
+                color: 'var(--text-primary)',
+                fontFamily: 'var(--font-sans)',
+                margin: '0 0 12px 0',
+              }}
+            >
+              Explore Campuses Across Kenya
+            </h1>
+
+            <p
+              style={{
+                color: 'var(--text-secondary)',
+                fontSize: '0.98rem',
+                lineHeight: 1.55,
+                margin: 0,
+                fontFamily: 'var(--font-sans)',
+              }}
+            >
+              Discover <strong style={{ color: 'var(--accent-gold)' }}>{universities.length}</strong> accredited Kenyan institutions. Filter by county, type, ranking, fees, facilities, and verified student reviews.
             </p>
           </div>
         </div>
       </div>
 
-      <section className="section">
-        <div className="container">
-          <UniversityBrowser
-            universities={universities}
-            userHighSchool={userHighSchool}
-            initialCounty={params.county}
-            initialQuery={params.q}
-            initialType={params.type}
-          />
-        </div>
+      <section style={{ maxWidth: '1400px', margin: '32px auto 0', padding: '0 20px' }}>
+        <UniversityBrowser
+          universities={universities}
+          userHighSchool={userHighSchool}
+          initialCounty={params.county}
+          initialQuery={params.q}
+          initialType={params.type}
+        />
       </section>
-    </>
+    </div>
   );
 }
-

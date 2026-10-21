@@ -175,9 +175,10 @@ export default function ProfilePage() {
         <div
           style={{
             background: 'var(--bg-primary)',
-            borderRadius: 20,
-            border: '2px solid var(--border-medium)',
-            boxShadow: 'var(--shadow-neo)',
+            borderRadius: 'var(--radius-xl)',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
             overflow: 'hidden'
           }}
         >

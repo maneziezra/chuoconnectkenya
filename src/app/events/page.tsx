@@ -113,13 +113,63 @@ export default async function EventsPage() {
   return (
     <>
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--border-medium)', borderRadius: 20, boxShadow: 'var(--shadow-neo)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }} />
+        <div
+          style={{
+            position: 'relative',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
+            background: 'var(--bg-secondary)',
+            padding: '44px 36px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
+              backgroundSize: '28px 28px',
+              opacity: 0.035,
+              pointerEvents: 'none',
+            }}
+          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ display: 'inline-block', padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-primary)', marginBottom: 16 }}>
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '5px 14px',
+                background: 'var(--apple-glass-bg)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                color: 'var(--text-primary)',
+                marginBottom: 16,
+                backdropFilter: 'blur(16px)',
+              }}
+            >
+              <Calendar size={13} style={{ color: 'var(--gold-primary)' }} />
               Campus Open Days & Clinics
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Student Events & Open Days</h1>
+            <h1
+              style={{
+                color: 'var(--text-primary)',
+                marginBottom: 12,
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Student Events & Open Days
+            </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 620, lineHeight: 1.6 }}>
               Tour campuses in person, meet admissions officers, and attend KUCCPS & scholarship clinics across Kenyan universities.
             </p>
@@ -130,9 +180,9 @@ export default async function EventsPage() {
       <section className="section">
         <div className="container">
           {events.length === 0 ? (
-            <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
+            <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-xl)', border: '1px dashed var(--border-medium)' }}>
               <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No events found</h3>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>No events found</h3>
               <p style={{ color: 'var(--text-secondary)' }}>Check back later for upcoming campus events.</p>
             </div>
           ) : (
@@ -140,19 +190,57 @@ export default async function EventsPage() {
               {/* Featured Events */}
               {featuredEvents.length > 0 && (
                 <div style={{ marginBottom: 60 }}>
-                  <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <h2
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '1.6rem',
+                      fontWeight: 700,
+                      letterSpacing: '-0.025em',
+                      color: 'var(--text-primary)',
+                      marginBottom: 24,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 12,
+                    }}
+                  >
                     Featured Open Days
-                    <span style={{ display: 'inline-block', padding: '4px 12px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', color: 'var(--text-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                    <span
+                      style={{
+                        display: 'inline-block',
+                        padding: '4px 12px',
+                        background: 'var(--apple-glass-bg)',
+                        border: '1px solid var(--border-light)',
+                        borderTop: '1px solid var(--apple-glass-highlight)',
+                        borderRadius: 'var(--radius-full)',
+                        color: 'var(--gold-primary)',
+                        fontSize: '0.72rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                      }}
+                    >
                       RSVP Open
                     </span>
                   </h2>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 24 }}>
                     {featuredEvents.map(e => (
-                      <div key={e.id} className="card card-body" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                      <div
+                        key={e.id}
+                        className="card card-body"
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          gap: 20,
+                          borderRadius: 'var(--radius-xl)',
+                          border: '1px solid var(--border-light)',
+                          borderTop: '1px solid var(--apple-glass-highlight)',
+                          padding: 28,
+                        }}
+                      >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16 }}>
                           <div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                              <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>{e.universityName}</span>
+                              <span style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--text-secondary)' }}>{e.universityName}</span>
                               <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'var(--border-medium)' }} />
                               <span
                                 style={{
@@ -171,27 +259,52 @@ export default async function EventsPage() {
                                 {CATEGORY_CONFIG[e.category]?.icon} {CATEGORY_CONFIG[e.category]?.label}
                               </span>
                             </div>
-                            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                            <h3
+                              style={{
+                                fontFamily: 'var(--font-sans)',
+                                fontSize: '1.35rem',
+                                fontWeight: 700,
+                                letterSpacing: '-0.02em',
+                                color: 'var(--text-primary)',
+                                marginBottom: 8,
+                              }}
+                            >
                               {e.title}
                             </h3>
                             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: 800, margin: 0 }}>{e.description}</p>
                           </div>
 
-                          <div style={{ border: '2px solid var(--border-medium)', background: 'var(--bg-secondary)', padding: '16px 24px', borderRadius: 10, textAlign: 'center', minWidth: 150 }}>
-                            <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 4 }}>
+                          <div
+                            style={{
+                              border: '1px solid var(--border-light)',
+                              borderTop: '1px solid var(--apple-glass-highlight)',
+                              background: 'var(--bg-secondary)',
+                              padding: '16px 24px',
+                              borderRadius: 'var(--radius-md)',
+                              textAlign: 'center',
+                              minWidth: 150,
+                            }}
+                          >
+                            <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 4 }}>
                               Event Date
                             </div>
-                            <div style={{ color: 'var(--text-primary)', fontWeight: 700 }}>{formatDate(e.date)}</div>
+                            <div style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '0.95rem' }}>{formatDate(e.date)}</div>
                           </div>
                         </div>
 
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, paddingTop: 16, borderTop: '1px solid var(--border-light)' }}>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-tertiary)', fontSize: '0.9rem' }}>
-                            <MapPin size={16} style={{ color: 'var(--gold-primary)' }} /> {e.location}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--text-tertiary)', fontSize: '0.88rem' }}>
+                            <MapPin size={15} style={{ color: 'var(--gold-primary)' }} /> {e.location}
                           </div>
                           <div style={{ display: 'flex', gap: 10 }}>
                             {e.registrationUrl && (
-                              <a href={e.registrationUrl} target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm">
+                              <a
+                                href={e.registrationUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-outline btn-sm"
+                                style={{ borderRadius: 'var(--radius-md)' }}
+                              >
                                 Event Page <ExternalLink size={14} />
                               </a>
                             )}
@@ -214,12 +327,32 @@ export default async function EventsPage() {
               {/* Upcoming Events List */}
               {upcomingEvents.length > 0 && (
                 <div>
-                  <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: 24 }}>
+                  <h2
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: '1.45rem',
+                      fontWeight: 700,
+                      letterSpacing: '-0.02em',
+                      color: 'var(--text-primary)',
+                      marginBottom: 24,
+                    }}
+                  >
                     Upcoming Campus Sessions
                   </h2>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 24 }}>
                     {upcomingEvents.map(e => (
-                      <div key={e.id} className="card card-body" style={{ display: 'flex', flexDirection: 'column' }}>
+                      <div
+                        key={e.id}
+                        className="card card-body"
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          borderRadius: 'var(--radius-xl)',
+                          border: '1px solid var(--border-light)',
+                          borderTop: '1px solid var(--apple-glass-highlight)',
+                          padding: 24,
+                        }}
+                      >
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
                           <span
                             style={{
@@ -240,14 +373,35 @@ export default async function EventsPage() {
                           <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>{e.universityName}</span>
                         </div>
 
-                        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                        <h3
+                          style={{
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '1.12rem',
+                            fontWeight: 700,
+                            letterSpacing: '-0.02em',
+                            color: 'var(--text-primary)',
+                            marginBottom: 8,
+                          }}
+                        >
                           {e.title}
                         </h3>
-                        <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1, marginBottom: 16 }}>
+                        <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1, marginBottom: 16 }}>
                           {e.description}
                         </p>
 
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '12px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-md)', fontSize: '0.85rem', marginBottom: 14 }}>
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 8,
+                            padding: '12px 14px',
+                            background: 'var(--bg-secondary)',
+                            borderRadius: 'var(--radius-md)',
+                            border: '1px solid var(--border-light)',
+                            fontSize: '0.85rem',
+                            marginBottom: 16,
+                          }}
+                        >
                           <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--text-primary)', fontWeight: 500 }}>
                             <Calendar size={14} style={{ color: 'var(--gold-primary)' }} />
                             {formatDate(e.date)} {e.endDate && `- ${formatDate(e.endDate)}`}
@@ -264,7 +418,7 @@ export default async function EventsPage() {
                           defaultCourse={`Open Day RSVP: ${e.title}`}
                           triggerLabel="RSVP / Enquire"
                           triggerClassName="btn btn-outline btn-sm"
-                          triggerStyle={{ width: '100%', justifyContent: 'center' }}
+                          triggerStyle={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}
                         />
                       </div>
                     ))}
@@ -278,3 +432,4 @@ export default async function EventsPage() {
     </>
   );
 }
+

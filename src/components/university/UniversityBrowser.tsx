@@ -135,16 +135,16 @@ export default function UniversityBrowser({
           overflow: 'hidden', opacity: sidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>Filter Results</h3>
+            <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Filter Results</h3>
             {hasFilters && (
-              <button onClick={clearFilters} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--gold-primary)', fontWeight: 600 }}>
+              <button onClick={clearFilters} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
                 Clear All
               </button>
             )}
           </div>
 
           <FilterSection title="County">
-            <select value={county} onChange={e => runFilterTransition(() => setCounty(e.target.value))} style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1.5px solid var(--border-light)', fontSize: '0.875rem', color: 'var(--text-primary)', background: 'var(--bg-primary)', cursor: 'pointer' }}>
+            <select value={county} onChange={e => runFilterTransition(() => setCounty(e.target.value))} style={{ width: '100%', padding: '8px 12px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)', fontSize: '0.875rem', color: 'var(--text-primary)', background: 'var(--bg-primary)', cursor: 'pointer' }}>
               {countyOptions.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
           </FilterSection>
@@ -152,8 +152,8 @@ export default function UniversityBrowser({
           <FilterSection title="Institution Type">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {TYPES.map(t => (
-                <label key={t} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.875rem', color: type === t ? 'var(--navy-deep)' : 'var(--text-secondary)', fontWeight: type === t ? 600 : 400 }}>
-                  <input type="radio" name="type" value={t} checked={type === t} onChange={() => runFilterTransition(() => setType(t))} style={{ accentColor: 'var(--navy-deep)' }} />
+                <label key={t} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.875rem', color: type === t ? 'var(--accent-gold)' : 'var(--text-secondary)', fontWeight: type === t ? 700 : 400 }}>
+                  <input type="radio" name="type" value={t} checked={type === t} onChange={() => runFilterTransition(() => setType(t))} style={{ accentColor: 'var(--accent-gold)' }} />
                   {t}
                 </label>
               ))}
@@ -166,10 +166,10 @@ export default function UniversityBrowser({
                 <label key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                   <div style={{
                     width: 18, height: 18, borderRadius: 4, border: facilities.includes(f) ? 'none' : '1.5px solid var(--border-medium)',
-                    background: facilities.includes(f) ? 'var(--navy-deep)' : 'var(--bg-primary)',
+                    background: facilities.includes(f) ? 'var(--accent-gold)' : 'var(--bg-primary)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, cursor: 'pointer',
                   }} onClick={() => toggleFacility(f)}>
-                    {facilities.includes(f) && <Check size={11} style={{ color: '#FFFFFF' }} />}
+                    {facilities.includes(f) && <Check size={11} style={{ color: 'var(--gold-contrast-text)' }} />}
                   </div>
                   {f}
                 </label>
@@ -253,7 +253,7 @@ export default function UniversityBrowser({
                         <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
                         <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Rank #{uni.ranking}</span>
                       </div>
-                      <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.3 }}>{uni.name}</h3>
+                      <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.05rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.3 }}>{uni.name}</h3>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
                         <MapPin size={12} /> {uni.county} County · Est. {uni.established}
                       </div>

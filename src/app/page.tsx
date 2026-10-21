@@ -110,10 +110,10 @@ export default async function HomePage() {
               </span>
               <h2
                 style={{
-                  fontFamily: 'var(--font-serif)',
+                  fontFamily: 'var(--font-sans)',
                   fontSize: '1.45rem',
-                  fontWeight: 700,
-                  letterSpacing: '-0.02em',
+                  fontWeight: 800,
+                  letterSpacing: '-0.025em',
                   color: 'var(--text-primary)',
                 }}
               >
@@ -151,7 +151,7 @@ export default async function HomePage() {
                       fontWeight: 800,
                       fontSize: '1.08rem',
                       color: 'var(--text-primary)',
-                      fontFamily: 'var(--font-serif)',
+                      fontFamily: 'var(--font-sans)',
                       letterSpacing: '-0.02em',
                     }}
                   >
@@ -188,8 +188,9 @@ export default async function HomePage() {
                 className="text-h2"
                 style={{
                   marginBottom: 16,
-                  letterSpacing: '-0.028em',
-                  fontFamily: 'var(--font-serif)',
+                  letterSpacing: '-0.03em',
+                  fontWeight: 800,
+                  fontFamily: 'var(--font-sans)',
                 }}
               >
                 Everything you need to make the right choice
@@ -252,8 +253,9 @@ export default async function HomePage() {
                       </div>
                       <h3
                         style={{
-                          fontFamily: 'var(--font-serif)',
+                          fontFamily: 'var(--font-sans)',
                           fontSize: '1.25rem',
+                          fontWeight: 700,
                           color: 'var(--text-primary)',
                           letterSpacing: '-0.02em',
                           marginBottom: 12,
@@ -293,8 +295,9 @@ export default async function HomePage() {
                   className="text-h2"
                   style={{
                     marginBottom: 10,
-                    letterSpacing: '-0.028em',
-                    fontFamily: 'var(--font-serif)',
+                    letterSpacing: '-0.03em',
+                    fontWeight: 800,
+                    fontFamily: 'var(--font-sans)',
                   }}
                 >
                   Top Rated Campuses
@@ -390,8 +393,9 @@ export default async function HomePage() {
                       </div>
                       <h3
                         style={{
-                          fontFamily: 'var(--font-serif)',
+                          fontFamily: 'var(--font-sans)',
                           fontSize: '1.25rem',
+                          fontWeight: 700,
                           color: 'var(--text-primary)',
                           marginBottom: 8,
                           lineHeight: 1.35,
@@ -479,9 +483,10 @@ export default async function HomePage() {
             <FadeIn direction="up" style={{ flex: 1, position: 'relative', zIndex: 1 }}>
               <h2
                 style={{
-                  fontFamily: 'var(--font-serif)',
+                  fontFamily: 'var(--font-sans)',
                   fontSize: 'clamp(2rem, 3.5vw, 2.6rem)',
-                  letterSpacing: '-0.028em',
+                  fontWeight: 800,
+                  letterSpacing: '-0.035em',
                   lineHeight: 1.15,
                   color: 'var(--text-primary)',
                   marginBottom: 16,

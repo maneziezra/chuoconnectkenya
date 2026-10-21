@@ -15,15 +15,16 @@ export default function AboutPage() {
         <div
           style={{
             background: 'var(--bg-primary)',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 20,
-            boxShadow: 'var(--shadow-neo)',
-            padding: '80px 40px',
-            maxWidth: 1000,
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
+            padding: '72px 36px',
+            maxWidth: 1040,
             margin: '0 auto',
             textAlign: 'center',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
           }}
         >
           <div
@@ -32,33 +33,47 @@ export default function AboutPage() {
               inset: 0,
               backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
               backgroundSize: '28px 28px',
-              opacity: 0.04,
-              pointerEvents: 'none'
+              opacity: 0.035,
+              pointerEvents: 'none',
             }}
           />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <span
               style={{
-                display: 'inline-block',
-                padding: '4px 14px',
-                background: 'var(--gold-glow)',
-                border: '2px solid var(--border-medium)',
-                borderRadius: 8,
-                boxShadow: 'var(--shadow-neo)',
-                fontSize: '0.75rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '5px 14px',
+                background: 'var(--apple-glass-bg)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.72rem',
                 fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase' as const,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
                 color: 'var(--text-primary)',
-                marginBottom: 20
+                marginBottom: 20,
+                backdropFilter: 'blur(16px)',
               }}
             >
+              <GraduationCap size={13} style={{ color: 'var(--gold-primary)' }} />
               Our Story
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 20 }}>
-              Kenya's Premier Campus Discovery Platform
+            <h1
+              style={{
+                color: 'var(--text-primary)',
+                marginBottom: 16,
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2.1rem, 4vw, 3rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.15,
+              }}
+            >
+              Kenya&apos;s Premier Campus Discovery Platform
             </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', lineHeight: 1.8, maxWidth: 700, margin: '0 auto' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1.08rem', lineHeight: 1.7, maxWidth: 680, margin: '0 auto' }}>
               Chuo Connect Kenya was founded with a single belief: every student deserves the tools to make an informed, confident decision about their academic future.
             </p>
           </div>
@@ -68,24 +83,27 @@ export default function AboutPage() {
       {/* Problem & Solution */}
       <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: 48, alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 32, alignItems: 'stretch' }}>
             <div
               style={{
                 background: 'var(--bg-primary)',
-                border: '2px solid var(--border-medium)',
-                borderRadius: 20,
-                boxShadow: 'var(--shadow-neo)',
-                padding: 40
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-xl)',
+                boxShadow: 'var(--shadow-sm)',
+                padding: 36,
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 20 }}>The Problem We Solve</h2>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 16 }}>
+              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.45rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 16 }}>The Problem We Solve</h2>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 16, fontSize: '0.94rem' }}>
                 Choosing a university or college is one of the most important decisions in a student&apos;s life. Yet many Kenyan students lack access to comprehensive, reliable, and engaging information about campuses across the country.
               </p>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 24 }}>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 24, fontSize: '0.94rem' }}>
                 Existing platforms primarily focus on admission requirements or course listings, leaving students without insight into campus life, facilities, student experiences, accommodation, and overall suitability.
               </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 'auto' }}>
                 {[
                   'Limited information about campus life',
                   'No centralized institution information',
@@ -94,8 +112,8 @@ export default function AboutPage() {
                   'Limited access to current student experiences',
                   'Uncertainty about accommodation and costs',
                 ].map(p => (
-                  <div key={p} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 500 }}>
-                    <div style={{ width: 8, height: 8, borderRadius: 2, background: 'var(--navy-deep)', flexShrink: 0 }} />
+                  <div key={p} style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.88rem', color: 'var(--text-primary)', fontWeight: 500 }}>
+                    <div style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold-primary)', flexShrink: 0 }} />
                     {p}
                   </div>
                 ))}
@@ -104,40 +122,44 @@ export default function AboutPage() {
             
             <div
               style={{
-                background: 'var(--bg-secondary)',
-                border: '2px solid var(--border-medium)',
-                borderRadius: 20,
-                boxShadow: 'var(--shadow-neo)',
-                padding: 40,
-                color: 'var(--text-primary)'
+                background: 'var(--bg-primary)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-xl)',
+                boxShadow: 'var(--shadow-sm)',
+                padding: 36,
+                color: 'var(--text-primary)',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
-              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 20 }}>Our Solution</h2>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 24 }}>
+              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.45rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 16 }}>Our Solution</h2>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 24, fontSize: '0.94rem' }}>
                 Chuo Connect Kenya serves as a centralized platform where students can explore, compare, and confidently choose their ideal campus.
               </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                 {[
-                  { icon: <Search size={20} />, label: 'Discover all accredited institutions' },
-                  { icon: <Building2 size={20} />, label: 'Explore campus facilities & life' },
-                  { icon: <Scale size={20} />, label: 'Compare institutions side-by-side' },
-                  { icon: <Video size={20} />, label: 'Watch virtual campus tours' },
-                  { icon: <Star size={20} />, label: 'Read authentic student reviews' },
-                  { icon: <MessageCircle size={20} />, label: 'Chat with student ambassadors' },
-                  { icon: <Bot size={20} />, label: 'Get AI-powered recommendations' },
+                  { icon: <Search size={18} />, label: 'Discover all accredited institutions' },
+                  { icon: <Building2 size={18} />, label: 'Explore campus facilities & life' },
+                  { icon: <Scale size={18} />, label: 'Compare institutions side-by-side' },
+                  { icon: <Video size={18} />, label: 'Watch virtual campus tours' },
+                  { icon: <Star size={18} />, label: 'Read authentic student reviews' },
+                  { icon: <MessageCircle size={18} />, label: 'Chat with student ambassadors' },
+                  { icon: <Bot size={18} />, label: 'Get AI-powered recommendations' },
                 ].map(s => (
                   <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: '0.9rem', fontWeight: 500 }}>
                     <span
                       style={{
-                        fontSize: '1.2rem',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
                         width: 36,
                         height: 36,
-                        border: '2px solid var(--border-medium)',
-                        borderRadius: 8,
-                        background: 'var(--gold-glow)'
+                        border: '1px solid var(--border-light)',
+                        borderRadius: 'var(--radius-md)',
+                        background: 'var(--gold-glow)',
+                        color: 'var(--gold-primary)',
+                        flexShrink: 0,
                       }}
                     >
                       {s.icon}
@@ -154,33 +176,35 @@ export default function AboutPage() {
       {/* Vision & Mission */}
       <section style={{ background: 'var(--bg-primary)', padding: '80px 0' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 40 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 32 }}>
             <div
               style={{
                 background: 'var(--bg-secondary)',
-                borderRadius: 20,
-                padding: 40,
-                border: '2px solid var(--border-medium)',
-                boxShadow: 'var(--shadow-neo)'
+                borderRadius: 'var(--radius-xl)',
+                padding: 36,
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <div
                 style={{
-                  width: 52,
-                  height: 52,
+                  width: 48,
+                  height: 48,
                   background: 'var(--gold-glow)',
-                  border: '2px solid var(--border-medium)',
-                  borderRadius: 10,
+                  border: '1px solid var(--border-light)',
+                  borderRadius: 'var(--radius-md)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: 20
+                  marginBottom: 18,
+                  color: 'var(--gold-primary)',
                 }}
               >
-                <Target size={26} style={{ color: 'var(--text-primary)' }} />
+                <Target size={24} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: 'var(--text-primary)', marginBottom: 16 }}>Our Vision</h3>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1rem' }}>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>
                 To become Kenya&apos;s most trusted digital platform for discovering, exploring, and connecting students with campuses and higher education opportunities.
               </p>
             </div>
@@ -188,29 +212,31 @@ export default function AboutPage() {
             <div
               style={{
                 background: 'var(--bg-secondary)',
-                borderRadius: 20,
-                padding: 40,
-                border: '2px solid var(--border-medium)',
-                boxShadow: 'var(--shadow-neo)'
+                borderRadius: 'var(--radius-xl)',
+                padding: 36,
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <div
                 style={{
-                  width: 52,
-                  height: 52,
+                  width: 48,
+                  height: 48,
                   background: 'var(--gold-glow)',
-                  border: '2px solid var(--border-medium)',
-                  borderRadius: 10,
+                  border: '1px solid var(--border-light)',
+                  borderRadius: 'var(--radius-md)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: 20
+                  marginBottom: 18,
+                  color: 'var(--gold-primary)',
                 }}
               >
-                <GraduationCap size={26} style={{ color: 'var(--text-primary)' }} />
+                <GraduationCap size={24} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: 'var(--text-primary)', marginBottom: 16 }}>Our Mission</h3>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1rem' }}>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
+              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>
                 To simplify the university selection process by providing students with accurate information, immersive campus experiences, and personalised recommendations that help them make informed educational decisions.
               </p>
             </div>
@@ -222,38 +248,48 @@ export default function AboutPage() {
       <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: 'var(--text-primary)', marginBottom: 12 }}>Who We Serve</h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: 480, margin: '0 auto' }}>Our platform is built for the Kenyan education ecosystem.</p>
+            <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.8rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 10 }}>Who We Serve</h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: 480, margin: '0 auto', fontSize: '0.95rem' }}>Our platform is built for the Kenyan higher education ecosystem.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
             {[
-              { icon: <GraduationCap size={32} />, title: 'KCSE Candidates', desc: 'Planning the next step after Form 4' },
-              { icon: <Users size={32} />, title: 'High School Graduates', desc: 'Exploring all options before applying' },
-              { icon: <FileText size={32} />, title: 'Diploma Students', desc: 'Seeking degree upgrade pathways' },
-              { icon: <Repeat size={32} />, title: 'Transfer Students', desc: 'Looking to switch institutions' },
-              { icon: <UsersRound size={32} />, title: 'Parents & Guardians', desc: 'Supporting children\'s decision-making' },
-              { icon: <Building size={32} />, title: 'Universities & Colleges', desc: 'Showcasing campuses to students' },
+              { icon: <GraduationCap size={28} />, title: 'KCSE Candidates', desc: 'Planning the next step after Form 4' },
+              { icon: <Users size={28} />, title: 'High School Graduates', desc: 'Exploring all options before applying' },
+              { icon: <FileText size={28} />, title: 'Diploma Students', desc: 'Seeking degree upgrade pathways' },
+              { icon: <Repeat size={28} />, title: 'Transfer Students', desc: 'Looking to switch institutions' },
+              { icon: <UsersRound size={28} />, title: 'Parents & Guardians', desc: 'Supporting children\'s decision-making' },
+              { icon: <Building size={28} />, title: 'Universities & Colleges', desc: 'Showcasing campuses to students' },
             ].map(u => (
-              <div key={u.title} className="card card-body" style={{ textAlign: 'center', padding: 24 }}>
+              <div
+                key={u.title}
+                className="card card-body"
+                style={{
+                  textAlign: 'center',
+                  padding: 24,
+                  borderRadius: 'var(--radius-xl)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                }}
+              >
                 <div
                   style={{
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginBottom: 16,
-                    color: 'var(--text-primary)',
-                    width: 64,
-                    height: 64,
+                    color: 'var(--gold-primary)',
+                    width: 56,
+                    height: 56,
                     margin: '0 auto 16px',
-                    border: '2px solid var(--border-medium)',
-                    borderRadius: 10,
-                    background: 'var(--gold-glow)'
+                    border: '1px solid var(--border-light)',
+                    borderRadius: 'var(--radius-md)',
+                    background: 'var(--gold-glow)',
                   }}
                 >
                   {u.icon}
                 </div>
-                <h4 style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>{u.title}</h4>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{u.desc}</p>
+                <h4 style={{ fontWeight: 700, fontFamily: 'var(--font-sans)', letterSpacing: '-0.015em', color: 'var(--text-primary)', marginBottom: 6, fontSize: '1rem' }}>{u.title}</h4>
+                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>{u.desc}</p>
               </div>
             ))}
           </div>
@@ -264,28 +300,30 @@ export default function AboutPage() {
       <section style={{ padding: '80px 20px', background: 'var(--bg-primary)' }}>
         <div
           style={{
-            background: 'var(--navy-deep)',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 20,
-            boxShadow: 'var(--shadow-neo)',
-            padding: '80px 40px',
+            background: 'var(--bg-secondary)',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
+            padding: '64px 36px',
             textAlign: 'center',
             maxWidth: 1000,
-            margin: '0 auto'
+            margin: '0 auto',
           }}
         >
-          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', color: 'var(--text-inverse)', marginBottom: 16 }}>
+          <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--text-primary)', marginBottom: 14 }}>
             Start Your Campus Journey Today
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: 32, maxWidth: 480, margin: '0 auto 32px', fontSize: '1.1rem' }}>
+          <p style={{ color: 'var(--text-secondary)', marginBottom: 32, maxWidth: 520, margin: '0 auto 32px', fontSize: '1.05rem', lineHeight: 1.6 }}>
             Join thousands of Kenyan students making informed decisions about their academic future.
           </p>
-          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link href="/universities" className="btn btn-gold">Explore Campuses</Link>
-            <Link href="/signup" className="btn btn-outline" style={{ background: 'var(--bg-primary)' }}>Create Account</Link>
+          <div style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link href="/universities" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>Explore Campuses</Link>
+            <Link href="/signup" className="btn btn-outline" style={{ borderRadius: 'var(--radius-md)' }}>Create Account</Link>
           </div>
         </div>
       </section>
     </>
   );
 }
+

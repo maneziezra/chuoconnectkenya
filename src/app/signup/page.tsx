@@ -64,23 +64,32 @@ export default function SignupPage() {
   };
 
   return (
-    <section style={{ minHeight: '100vh', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', padding: '60px 0' }}>
+    <section style={{ minHeight: '100vh', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', padding: '60px 20px' }}>
       <div className="container" style={{ maxWidth: 480, margin: '0 auto' }}>
         {/* Logo */}
-        <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>
-            <div style={{ width: 40, height: 40, background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <GraduationCap size={20} color="var(--navy-deep)" />
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)' }}>
+            <div style={{ width: 42, height: 42, background: 'var(--gold-glow)', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <GraduationCap size={22} style={{ color: 'var(--gold-primary)' }} />
             </div>
             Chuo Connect Kenya
           </div>
-          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginTop: 20, fontWeight: 700 }}>Create Your Account</h1>
-          <p style={{ color: 'var(--text-secondary)', marginTop: 8, fontSize: '0.95rem' }}>Free for students. Always.</p>
+          <h1 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.85rem', letterSpacing: '-0.03em', color: 'var(--text-primary)', marginTop: 20, fontWeight: 800 }}>Create Your Account</h1>
+          <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: '0.95rem' }}>Free for students. Always.</p>
         </div>
 
-        <div style={{ background: 'var(--bg-primary)', borderRadius: 20, border: '2px solid var(--border-medium)', padding: 36, boxShadow: 'var(--shadow-neo)' }}>
+        <div
+          style={{
+            background: 'var(--bg-primary)',
+            borderRadius: 'var(--radius-xl)',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            padding: 36,
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
+          }}
+        >
           {error && (
-            <div style={{ padding: 12, background: 'var(--danger-bg)', color: 'var(--danger-text)', borderRadius: 8, marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.9rem' }}>
+            <div style={{ padding: 12, background: 'var(--danger-bg)', color: 'var(--danger-text)', borderRadius: 'var(--radius-md)', marginBottom: 20, display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.9rem' }}>
               <AlertCircle size={18} />
               {error}
             </div>
@@ -88,7 +97,7 @@ export default function SignupPage() {
 
           <form onSubmit={handleSignup} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
             <div className="form-group">
-              <label className="form-label">Full Name</label>
+              <label className="form-label" style={{ fontWeight: 600, fontSize: '0.85rem' }}>Full Name</label>
               <input
                 type="text"
                 className="form-input"
@@ -96,10 +105,11 @@ export default function SignupPage() {
                 required
                 value={formData.fullName}
                 onChange={e => setFormData({ ...formData, fullName: e.target.value })}
+                style={{ borderRadius: 'var(--radius-md)' }}
               />
             </div>
             <div className="form-group">
-              <label className="form-label">Email Address</label>
+              <label className="form-label" style={{ fontWeight: 600, fontSize: '0.85rem' }}>Email Address</label>
               <input
                 type="email"
                 className="form-input"
@@ -107,10 +117,11 @@ export default function SignupPage() {
                 required
                 value={formData.email}
                 onChange={e => setFormData({ ...formData, email: e.target.value })}
+                style={{ borderRadius: 'var(--radius-md)' }}
               />
             </div>
             <div className="form-group">
-              <label className="form-label">Password</label>
+              <label className="form-label" style={{ fontWeight: 600, fontSize: '0.85rem' }}>Password</label>
               <input
                 type="password"
                 className="form-input"
@@ -119,15 +130,17 @@ export default function SignupPage() {
                 minLength={8}
                 value={formData.password}
                 onChange={e => setFormData({ ...formData, password: e.target.value })}
+                style={{ borderRadius: 'var(--radius-md)' }}
               />
             </div>
             <div className="form-group">
-              <label className="form-label">I am a...</label>
+              <label className="form-label" style={{ fontWeight: 600, fontSize: '0.85rem' }}>I am a...</label>
               <select
                 className="form-select"
                 value={formData.role}
                 onChange={e => setFormData({ ...formData, role: e.target.value })}
                 required
+                style={{ borderRadius: 'var(--radius-md)' }}
               >
                 <option value="student">Student / Form 4 Leaver</option>
                 <option value="parent">Parent / Guardian</option>
@@ -136,7 +149,7 @@ export default function SignupPage() {
               </select>
             </div>
 
-            <button type="submit" disabled={isLoading} className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: 8 }}>
+            <button type="submit" disabled={isLoading} className="btn btn-gold" style={{ width: '100%', justifyContent: 'center', marginTop: 8, borderRadius: 'var(--radius-md)' }}>
               {isLoading ? (
                 <>
                   <Loader2 size={16} className="animate-spin" style={{ marginRight: 8 }} />
@@ -149,17 +162,18 @@ export default function SignupPage() {
               )}
             </button>
 
-            <p style={{ textAlign: 'center', fontSize: '0.82rem', color: 'var(--text-tertiary)' }}>
-              By signing up, you agree to our <Link href="/terms" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Terms of Service</Link> and Privacy Policy.
+            <p style={{ textAlign: 'center', fontSize: '0.82rem', color: 'var(--text-tertiary)', margin: '4px 0 0' }}>
+              By signing up, you agree to our <Link href="/terms" style={{ color: 'var(--gold-primary)', fontWeight: 600 }}>Terms of Service</Link> and Privacy Policy.
             </p>
           </form>
 
-          <div style={{ borderTop: '1px solid var(--border-light)', marginTop: 24, paddingTop: 24, textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
+          <div style={{ borderTop: '1px solid var(--border-light)', marginTop: 24, paddingTop: 20, textAlign: 'center', fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
             Already have an account?{' '}
-            <Link href="/login" style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Log in</Link>
+            <Link href="/login" style={{ color: 'var(--gold-primary)', fontWeight: 700 }}>Log in</Link>
           </div>
         </div>
       </div>
     </section>
   );
 }
+

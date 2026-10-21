@@ -268,7 +268,7 @@ export default function ExpressInquiryModal({
       >
         <div style={{ padding: 28 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 16, marginBottom: 6 }}>
-            <h2 id={id('title')} style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', margin: 0, color: 'var(--text-primary)' }}>
+            <h2 id={id('title')} style={{ fontFamily: 'var(--font-sans)', fontSize: '1.35rem', fontWeight: 700, letterSpacing: '-0.025em', margin: 0, color: 'var(--text-primary)' }}>
               {status === 'success' ? 'Enquiry sent' : `Request admission info${chooseUniversity ? '' : ` — ${selectedUniversityName}`}`}
             </h2>
             <button type="button" className="btn btn-ghost btn-sm" onClick={() => void requestCloseDialog()} aria-label="Close">

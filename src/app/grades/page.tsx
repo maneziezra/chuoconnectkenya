@@ -17,11 +17,12 @@ export default function GradesIndexPage() {
         <div
           style={{
             position: 'relative',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 20,
-            boxShadow: 'var(--shadow-neo)',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
             background: 'var(--bg-primary)',
-            padding: '48px 40px',
+            padding: '44px 36px',
             overflow: 'hidden',
           }}
         >
@@ -31,7 +32,7 @@ export default function GradesIndexPage() {
               inset: 0,
               backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
               backgroundSize: '28px 28px',
-              opacity: 0.04,
+              opacity: 0.035,
               pointerEvents: 'none',
             }}
           />
@@ -40,34 +41,44 @@ export default function GradesIndexPage() {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: 6,
-                padding: '4px 14px',
-                background: 'var(--gold-glow)',
-                border: '2px solid var(--border-medium)',
-                borderRadius: 8,
-                boxShadow: 'var(--shadow-neo)',
-                fontSize: '0.75rem',
+                gap: 8,
+                padding: '5px 14px',
+                background: 'var(--apple-glass-bg)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.72rem',
                 fontWeight: 700,
-                letterSpacing: '0.08em',
+                letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 color: 'var(--text-primary)',
                 marginBottom: 16,
+                backdropFilter: 'blur(16px)',
               }}
             >
-              <Sparkles size={14} style={{ color: 'var(--gold-primary)' }} />
+              <Sparkles size={13} style={{ color: 'var(--gold-primary)' }} />
               2026 KUCCPS & TVET Placement Guides
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
+            <h1
+              style={{
+                color: 'var(--text-primary)',
+                marginBottom: 12,
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+              }}
+            >
               Courses by KCSE Mean Grade (A to D+)
             </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1.05rem', maxWidth: 680, lineHeight: 1.6, marginBottom: 24 }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 680, lineHeight: 1.6, marginBottom: 24 }}>
               Select your KCSE Mean Grade below to explore qualifying Bachelor’s degrees, KMTC medical diplomas, and accredited TVET-to-Degree pathways, complete with 2026 cutoffs and HEF Band 1–5 funding rules.
             </p>
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link href="/calculator" className="btn btn-gold">
+              <Link href="/calculator" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>
                 <Calculator size={16} /> Calculate Exact Cluster Points
               </Link>
-              <Link href="/courses" className="btn btn-outline">
+              <Link href="/courses" className="btn btn-outline" style={{ borderRadius: 'var(--radius-md)' }}>
                 Browse All Courses
               </Link>
             </div>
@@ -96,8 +107,11 @@ export default function GradesIndexPage() {
                     justifyContent: 'space-between',
                     gap: 18,
                     background: 'var(--bg-primary)',
-                    border: '2px solid var(--border-medium)',
-                    boxShadow: 'var(--shadow-neo)',
+                    borderRadius: 'var(--radius-xl)',
+                    border: '1px solid var(--border-light)',
+                    borderTop: '1px solid var(--apple-glass-highlight)',
+                    boxShadow: 'var(--shadow-sm)',
+                    transition: 'transform var(--apple-press), box-shadow var(--apple-ease)',
                   }}
                 >
                   <div>
@@ -105,31 +119,42 @@ export default function GradesIndexPage() {
                       <span
                         style={{
                           padding: '6px 14px',
-                          borderRadius: 10,
-                          background: 'var(--navy-deep)',
-                          color: 'var(--gold-primary)',
+                          borderRadius: 'var(--radius-md)',
+                          background: 'var(--accent-gold)',
+                          color: 'var(--gold-contrast-text)',
                           fontFamily: 'var(--font-mono)',
                           fontWeight: 800,
-                          fontSize: '1.1rem',
+                          fontSize: '1.05rem',
                         }}
                       >
                         Grade {guide.gradeLabel}
                       </span>
                       <span
                         style={{
-                          fontSize: '0.75rem',
+                          fontSize: '0.72rem',
                           fontWeight: 700,
                           padding: '4px 10px',
-                          borderRadius: 6,
+                          borderRadius: 'var(--radius-full)',
                           background: guide.isDegreeEligible ? 'rgba(16, 185, 129, 0.14)' : 'var(--gold-glow)',
                           color: guide.isDegreeEligible ? 'var(--success-text)' : 'var(--text-primary)',
+                          border: '1px solid var(--border-light)',
                         }}
                       >
                         {guide.isDegreeEligible ? 'Direct Degree Entry' : 'Diploma & TVET Bridge'}
                       </span>
                     </div>
 
-                    <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.22rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.35 }}>
+                    <h2
+                      style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '1.2rem',
+                        fontWeight: 700,
+                        letterSpacing: '-0.02em',
+                        color: 'var(--text-primary)',
+                        marginBottom: 8,
+                        lineHeight: 1.35,
+                      }}
+                    >
                       {guide.headline}
                     </h2>
                     <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 16 }}>
@@ -139,7 +164,7 @@ export default function GradesIndexPage() {
                     <div
                       style={{
                         padding: 12,
-                        borderRadius: 10,
+                        borderRadius: 'var(--radius-md)',
                         background: 'var(--bg-secondary)',
                         border: '1px solid var(--border-light)',
                         fontSize: '0.8rem',
@@ -193,35 +218,46 @@ export default function GradesIndexPage() {
           <div
             style={{
               marginTop: 48,
-              padding: 36,
-              borderRadius: 20,
-              background: 'var(--navy-deep)',
-              color: '#FFFFFF',
+              padding: '36px 32px',
+              borderRadius: 'var(--radius-xl)',
+              background: 'var(--bg-primary)',
+              border: '1px solid var(--border-light)',
+              borderTop: '1px solid var(--apple-glass-highlight)',
+              boxShadow: 'var(--shadow-sm)',
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               flexWrap: 'wrap',
               gap: 20,
-              boxShadow: 'var(--shadow-neo)',
             }}
           >
             <div style={{ maxWidth: 620 }}>
-              <div style={{ color: 'var(--gold-primary)', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
+              <div style={{ color: 'var(--gold-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
                 Official KUCCPS Formula + HEF Means-Testing Simulator
               </div>
-              <h3 style={{ fontSize: '1.45rem', fontWeight: 700, color: '#FFFFFF', marginBottom: 8 }}>
+              <h3
+                style={{
+                  fontSize: '1.35rem',
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 700,
+                  letterSpacing: '-0.02em',
+                  color: 'var(--text-primary)',
+                  marginBottom: 8,
+                }}
+              >
                 Don’t Guess Your Cluster Points—Calculate All 8 Clusters Instantly
               </h3>
-              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.92rem', margin: 0, lineHeight: 1.6 }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', margin: 0, lineHeight: 1.6 }}>
                 Two students with the same Mean Grade can have a 6-point difference in weighted cluster scores depending on their 4 cluster subjects. Enter your 7–12 KCSE subjects to see your exact placement odds.
               </p>
             </div>
-            <Link href="/calculator" className="btn btn-gold">
+            <Link href="/calculator" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>
               <CheckCircle2 size={16} /> Launch KUCCPS Calculator
             </Link>
           </div>
         </div>
       </section>
     </div>
+
   );
 }

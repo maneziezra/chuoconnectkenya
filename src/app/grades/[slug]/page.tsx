@@ -82,9 +82,10 @@ export default async function GradeDetailPage({ params }: Props) {
         <div
           style={{
             position: 'relative',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 20,
-            boxShadow: 'var(--shadow-neo)',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
             background: 'var(--bg-primary)',
             padding: '40px 36px',
             overflow: 'hidden',
@@ -114,15 +115,16 @@ export default async function GradeDetailPage({ params }: Props) {
                     key={g.slug}
                     href={`/grades/${g.slug}`}
                     style={{
-                      padding: '4px 10px',
-                      borderRadius: 6,
+                      padding: '5px 12px',
+                      borderRadius: 'var(--radius-full)',
                       fontSize: '0.76rem',
                       fontWeight: 700,
                       textDecoration: 'none',
                       fontFamily: 'var(--font-mono)',
-                      background: g.slug === guide.slug ? 'var(--navy-deep)' : 'var(--bg-secondary)',
-                      color: g.slug === guide.slug ? 'var(--gold-primary)' : 'var(--text-secondary)',
-                      border: '1px solid var(--border-medium)',
+                      background: g.slug === guide.slug ? 'var(--accent-gold)' : 'var(--bg-secondary)',
+                      color: g.slug === guide.slug ? 'var(--gold-contrast-text)' : 'var(--text-secondary)',
+                      border: '1px solid var(--border-light)',
+                      transition: 'all var(--apple-ease)',
                     }}
                   >
                     {g.gradeLabel}
@@ -134,13 +136,13 @@ export default async function GradeDetailPage({ params }: Props) {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap', marginBottom: 14 }}>
               <span
                 style={{
-                  padding: '6px 14px',
-                  borderRadius: 8,
-                  background: 'var(--navy-deep)',
-                  color: 'var(--gold-primary)',
+                  padding: '5px 12px',
+                  borderRadius: 'var(--radius-md)',
+                  background: 'var(--accent-gold)',
+                  color: 'var(--gold-contrast-text)',
                   fontFamily: 'var(--font-mono)',
                   fontWeight: 800,
-                  fontSize: '0.9rem',
+                  fontSize: '0.88rem',
                 }}
               >
                 KCSE Mean Grade {guide.gradeLabel}
@@ -148,19 +150,32 @@ export default async function GradeDetailPage({ params }: Props) {
               <span
                 style={{
                   padding: '5px 12px',
-                  borderRadius: 8,
-                  background: 'var(--gold-glow)',
-                  border: '1px solid var(--border-medium)',
+                  borderRadius: 'var(--radius-full)',
+                  background: 'var(--apple-glass-bg)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
                   fontSize: '0.78rem',
                   fontWeight: 700,
                   color: 'var(--text-primary)',
+                  backdropFilter: 'blur(16px)',
                 }}
               >
                 Aggregate: {guide.aggregateRange} • {guide.typicalClusterRange}
               </span>
             </div>
 
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 14, maxWidth: 860 }}>
+            <h1
+              style={{
+                color: 'var(--text-primary)',
+                marginBottom: 14,
+                maxWidth: 860,
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+                lineHeight: 1.2,
+              }}
+            >
               {guide.headline}
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1.02rem', maxWidth: 780, lineHeight: 1.65, marginBottom: 24 }}>
@@ -168,10 +183,10 @@ export default async function GradeDetailPage({ params }: Props) {
             </p>
 
             <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-              <Link href="/calculator" className="btn btn-gold">
+              <Link href="/calculator" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>
                 <Calculator size={16} /> Test Your Exact {guide.gradeLabel} Cluster Score
               </Link>
-              <Link href="/universities" className="btn btn-outline">
+              <Link href="/universities" className="btn btn-outline" style={{ borderRadius: 'var(--radius-md)' }}>
                 Compare Accredited Universities
               </Link>
             </div>
@@ -183,8 +198,18 @@ export default async function GradeDetailPage({ params }: Props) {
         <div className="container">
           {/* Strategy & HEF Funding Callout Grid */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 20, marginBottom: 40 }}>
-            <div className="card" style={{ padding: 24, background: 'var(--bg-primary)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.05rem', marginBottom: 14 }}>
+            <div
+              className="card"
+              style={{
+                padding: 24,
+                background: 'var(--bg-primary)',
+                borderRadius: 'var(--radius-xl)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.05rem', marginBottom: 14, fontFamily: 'var(--font-sans)', letterSpacing: '-0.015em' }}>
                 <Sparkles size={18} style={{ color: 'var(--gold-primary)' }} />
                 KUCCPS Revision Strategy for Grade {guide.gradeLabel}
               </div>
@@ -195,15 +220,25 @@ export default async function GradeDetailPage({ params }: Props) {
               </ul>
             </div>
 
-            <div className="card" style={{ padding: 24, background: 'var(--navy-deep)', color: '#FFFFFF' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--gold-primary)', fontSize: '1.02rem', marginBottom: 12 }}>
+            <div
+              className="card"
+              style={{
+                padding: 24,
+                background: 'var(--bg-primary)',
+                borderRadius: 'var(--radius-xl)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--gold-primary)', fontSize: '1.02rem', marginBottom: 12, fontFamily: 'var(--font-sans)', letterSpacing: '-0.015em' }}>
                 <Wallet size={18} />
                 HEF Band 1–5 Scholarship & HELB Loan Eligibility
               </div>
-              <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: 16 }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.65, marginBottom: 16 }}>
                 {guide.hefFundingNote}
               </p>
-              <Link href="/calculator" className="btn btn-gold btn-sm">
+              <Link href="/calculator" className="btn btn-gold btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>
                 Simulate Your Household Fee Share
               </Link>
             </div>
@@ -213,7 +248,16 @@ export default async function GradeDetailPage({ params }: Props) {
           {guide.isDegreeEligible && degreeCourses.length > 0 && (
             <div style={{ marginBottom: 48 }}>
               <div style={{ marginBottom: 20 }}>
-                <h2 className="text-h2" style={{ fontSize: '1.5rem', marginBottom: 6 }}>
+                <h2
+                  style={{
+                    fontSize: '1.5rem',
+                    fontFamily: 'var(--font-sans)',
+                    fontWeight: 700,
+                    letterSpacing: '-0.025em',
+                    color: 'var(--text-primary)',
+                    marginBottom: 6,
+                  }}
+                >
                   Qualifying Bachelor’s Degree Programmes for Grade {guide.gradeLabel}
                 </h2>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', margin: 0 }}>
@@ -234,8 +278,11 @@ export default async function GradeDetailPage({ params }: Props) {
                       key={course.id}
                       className="card"
                       style={{
-                        padding: 22,
+                        padding: 24,
                         background: 'var(--bg-primary)',
+                        borderRadius: 'var(--radius-xl)',
+                        border: '1px solid var(--border-light)',
+                        borderTop: '1px solid var(--apple-glass-highlight)',
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'space-between',
@@ -243,7 +290,7 @@ export default async function GradeDetailPage({ params }: Props) {
                       }}
                     >
                       <div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 10 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                           <span className="badge badge-navy" style={{ fontSize: '0.72rem' }}>
                             {course.clusterGroup.split(':')[0]}
                           </span>
@@ -253,16 +300,27 @@ export default async function GradeDetailPage({ params }: Props) {
                               fontSize: '0.78rem',
                               fontWeight: 700,
                               padding: '3px 10px',
-                              borderRadius: 6,
+                              borderRadius: 'var(--radius-full)',
                               background: 'var(--gold-glow)',
                               color: 'var(--text-primary)',
+                              border: '1px solid var(--border-light)',
                             }}
                           >
                             Cutoff: {course.minPoints.toFixed(1)} / 48
                           </span>
                         </div>
 
-                        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.12rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.3 }}>
+                        <h3
+                          style={{
+                            fontFamily: 'var(--font-sans)',
+                            fontSize: '1.15rem',
+                            fontWeight: 700,
+                            letterSpacing: '-0.02em',
+                            color: 'var(--text-primary)',
+                            marginBottom: 8,
+                            lineHeight: 1.3,
+                          }}
+                        >
                           {course.title}
                         </h3>
                         <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: 12 }}>
@@ -287,7 +345,7 @@ export default async function GradeDetailPage({ params }: Props) {
                                 style={{
                                   fontSize: '0.74rem',
                                   padding: '2px 8px',
-                                  borderRadius: 6,
+                                  borderRadius: 'var(--radius-sm)',
                                   background: 'var(--bg-secondary)',
                                   border: '1px solid var(--border-light)',
                                   color: 'var(--text-secondary)',
@@ -331,7 +389,16 @@ export default async function GradeDetailPage({ params }: Props) {
           {/* Diploma & TVET Pathways Section */}
           <div style={{ marginBottom: 48 }}>
             <div style={{ marginBottom: 20 }}>
-              <h2 className="text-h2" style={{ fontSize: '1.45rem', marginBottom: 6 }}>
+              <h2
+                style={{
+                  fontSize: '1.45rem',
+                  fontFamily: 'var(--font-sans)',
+                  fontWeight: 700,
+                  letterSpacing: '-0.025em',
+                  color: 'var(--text-primary)',
+                  marginBottom: 6,
+                }}
+              >
                 {guide.isDegreeEligible
                   ? 'Alternative Accelerated Diploma & Practical TVET Options'
                   : `Accredited Diploma-to-Degree & KMTC Programmes for Grade ${guide.gradeLabel}`}
@@ -353,8 +420,11 @@ export default async function GradeDetailPage({ params }: Props) {
                     key={dip.id}
                     className="card"
                     style={{
-                      padding: 22,
+                      padding: 24,
                       background: 'var(--bg-primary)',
+                      borderRadius: 'var(--radius-xl)',
+                      border: '1px solid var(--border-light)',
+                      borderTop: '1px solid var(--apple-glass-highlight)',
                       display: 'flex',
                       flexDirection: 'column',
                       justifyContent: 'space-between',
@@ -371,7 +441,16 @@ export default async function GradeDetailPage({ params }: Props) {
                         </span>
                       </div>
 
-                      <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
+                      <h3
+                        style={{
+                          fontFamily: 'var(--font-sans)',
+                          fontSize: '1.12rem',
+                          fontWeight: 700,
+                          letterSpacing: '-0.02em',
+                          color: 'var(--text-primary)',
+                          marginBottom: 8,
+                        }}
+                      >
                         {dip.title}
                       </h3>
                       <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>
@@ -401,15 +480,54 @@ export default async function GradeDetailPage({ params }: Props) {
           </div>
 
           {/* FAQ Section */}
-          <div className="card" style={{ padding: 28, background: 'var(--bg-primary)' }}>
-            <h2 className="text-h2" style={{ fontSize: '1.35rem', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div
+            className="card"
+            style={{
+              padding: 32,
+              background: 'var(--bg-primary)',
+              borderRadius: 'var(--radius-xl)',
+              border: '1px solid var(--border-light)',
+              borderTop: '1px solid var(--apple-glass-highlight)',
+              boxShadow: 'var(--shadow-sm)',
+            }}
+          >
+            <h2
+              style={{
+                fontSize: '1.35rem',
+                fontFamily: 'var(--font-sans)',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                marginBottom: 20,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                color: 'var(--text-primary)',
+              }}
+            >
               <HelpCircle size={20} style={{ color: 'var(--gold-primary)' }} />
               Frequently Asked Questions — KCSE Grade {guide.gradeLabel}
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {guide.faqs.map((faq, idx) => (
-                <div key={idx} style={{ padding: 18, borderRadius: 12, background: 'var(--bg-secondary)', border: '1px solid var(--border-light)' }}>
-                  <h3 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 6 }}>
+                <div
+                  key={idx}
+                  style={{
+                    padding: 20,
+                    borderRadius: 'var(--radius-lg)',
+                    background: 'var(--bg-secondary)',
+                    border: '1px solid var(--border-light)',
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontSize: '1rem',
+                      fontFamily: 'var(--font-sans)',
+                      fontWeight: 700,
+                      letterSpacing: '-0.015em',
+                      color: 'var(--text-primary)',
+                      marginBottom: 6,
+                    }}
+                  >
                     {faq.question}
                   </h3>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
@@ -422,5 +540,6 @@ export default async function GradeDetailPage({ params }: Props) {
         </div>
       </section>
     </div>
+
   );
 }

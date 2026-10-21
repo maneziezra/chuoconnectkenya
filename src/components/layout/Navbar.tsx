@@ -98,7 +98,7 @@ export default function Navbar({ user }: { user: any }) {
               <path d="M12 5H7.5L3.5 12L7.5 19H12" stroke="var(--text-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M24 5H19.5L15.5 12L19.5 19H24" stroke="var(--accent-gold)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            <span style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.03em', fontFamily: "'Inter', sans-serif" }}>
+            <span style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.03em', fontFamily: 'var(--font-sans)' }}>
               <span style={{ color: 'var(--text-primary)' }}>Chuo</span>
               <span style={{ color: 'var(--accent-gold)' }}>Connect</span>
             </span>

@@ -2475,20 +2475,67 @@ export default async function HousingPage({ searchParams }: Props) {
 
   return (
     <>
-      {/* Hero Section */}
+      {/* Hero Header */}
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--border-medium)', borderRadius: 20, boxShadow: 'var(--shadow-neo)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }} />
+        <div
+          style={{
+            position: 'relative',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
+            background: 'var(--bg-secondary)',
+            padding: '44px 36px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
+              backgroundSize: '28px 28px',
+              opacity: 0.035,
+              pointerEvents: 'none',
+            }}
+          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-primary)', marginBottom: 16 }}>
-              <Home size={14} />
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '5px 14px',
+                background: 'var(--apple-glass-bg)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                color: 'var(--text-primary)',
+                marginBottom: 16,
+                backdropFilter: 'blur(16px)',
+              }}
+            >
+              <Home size={13} style={{ color: 'var(--gold-primary)' }} />
               Student Accommodation
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
+            <h1
+              style={{
+                color: 'var(--text-primary)',
+                marginBottom: 12,
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+              }}
+            >
               Find Your Perfect Student Home
             </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 700, lineHeight: 1.6 }}>
-              Explore verified hostels, apartments, and shared spaces near your university. Filter by campus, amenities, county, and price to book your room for the upcoming semester.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 680, lineHeight: 1.6 }}>
+              Explore verified hostels, apartments, and shared spaces near your campus. Filter by university, amenities, county, and price with direct WhatsApp booking.
             </p>
           </div>
         </div>
@@ -2497,13 +2544,37 @@ export default async function HousingPage({ searchParams }: Props) {
       <section className="section" style={{ background: 'var(--bg-secondary)', minHeight: '60vh' }}>
         <div className="container" style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
           {/* Filters Sidebar */}
-          <aside style={{ width: 280, flexShrink: 0, background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', padding: 24, border: '1px solid var(--border-light)', position: 'sticky', top: 100 }}>
-            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 20 }}>Filters</h3>
+          <aside
+            style={{
+              width: 280,
+              flexShrink: 0,
+              background: 'var(--bg-primary)',
+              borderRadius: 'var(--radius-xl)',
+              padding: 24,
+              border: '1px solid var(--border-light)',
+              borderTop: '1px solid var(--apple-glass-highlight)',
+              boxShadow: 'var(--shadow-sm)',
+              position: 'sticky',
+              top: 100,
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: '1.15rem',
+                fontWeight: 700,
+                letterSpacing: '-0.02em',
+                color: 'var(--text-primary)',
+                marginBottom: 20,
+              }}
+            >
+              Filters
+            </h3>
 
             <form action="/housing" method="GET">
               <div style={{ marginBottom: 18 }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Near University</label>
-                <select name="university" defaultValue={university || ''} className="form-input" style={{ width: '100%' }}>
+                <select name="university" defaultValue={university || ''} className="form-input" style={{ width: '100%', borderRadius: 'var(--radius-md)' }}>
                   <option value="">All Universities</option>
                   {universitiesData.map(u => (
                     <option key={u.id} value={u.id}>
@@ -2515,7 +2586,7 @@ export default async function HousingPage({ searchParams }: Props) {
 
               <div style={{ marginBottom: 18 }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>Property Type</label>
-                <select name="type" defaultValue={type || ''} className="form-input" style={{ width: '100%' }}>
+                <select name="type" defaultValue={type || ''} className="form-input" style={{ width: '100%', borderRadius: 'var(--radius-md)' }}>
                   <option value="">All Types</option>
                   <option value="hostel">Hostels</option>
                   <option value="bedsitter">Bedsitters</option>
@@ -2526,7 +2597,7 @@ export default async function HousingPage({ searchParams }: Props) {
 
               <div style={{ marginBottom: 18 }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>County</label>
-                <select name="county" defaultValue={county || ''} className="form-input" style={{ width: '100%' }}>
+                <select name="county" defaultValue={county || ''} className="form-input" style={{ width: '100%', borderRadius: 'var(--radius-md)' }}>
                   <option value="">All Counties</option>
                   {KENYAN_COUNTIES.map(c => (
                     <option key={c} value={c}>{c}</option>
@@ -2541,10 +2612,12 @@ export default async function HousingPage({ searchParams }: Props) {
                 </label>
               </div>
 
-              <button type="submit" className="btn btn-navy" style={{ width: '100%' }}>Apply Filters</button>
+              <button type="submit" className="btn btn-gold" style={{ width: '100%', borderRadius: 'var(--radius-md)', justifyContent: 'center' }}>
+                Apply Filters
+              </button>
 
               {(type || county || university || availableOnly) && (
-                <Link href="/housing" className="btn btn-outline" style={{ width: '100%', marginTop: 8, textAlign: 'center', display: 'block' }}>
+                <Link href="/housing" className="btn btn-outline" style={{ width: '100%', marginTop: 8, textAlign: 'center', display: 'flex', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}>
                   Clear All
                 </Link>
               )}
@@ -2554,13 +2627,13 @@ export default async function HousingPage({ searchParams }: Props) {
           {/* Listings Grid */}
           <div style={{ flex: '1 1 560px' }}>
             {isError ? (
-              <div style={{ padding: '60px 20px', textAlign: 'center', background: 'var(--danger-bg)', borderRadius: 'var(--radius-lg)' }}>
+              <div style={{ padding: '60px 20px', textAlign: 'center', background: 'var(--danger-bg)', borderRadius: 'var(--radius-xl)' }}>
                 <p style={{ color: 'var(--danger-text)' }}>Failed to load housing. Please try again later.</p>
               </div>
             ) : housingListings.length === 0 ? (
-              <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
+              <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-primary)', borderRadius: 'var(--radius-xl)', border: '1px dashed var(--border-medium)' }}>
                 <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No housing found</h3>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>No housing found</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>Try adjusting your filters to see more results.</p>
               </div>
             ) : (
@@ -2576,8 +2649,20 @@ export default async function HousingPage({ searchParams }: Props) {
                   const waText = `Hi, I found ${h.name} (${h.location}) on Chuo Connect Kenya and would like to inquire about student room availability (${h.price}).`;
 
                   return (
-                    <div key={h.id} className="card" style={{ display: 'flex', flexDirection: 'column', background: 'var(--bg-primary)' }}>
-                      <div style={{ height: 160, background: 'var(--navy-light)', position: 'relative', overflow: 'hidden' }}>
+                    <div
+                      key={h.id}
+                      className="card"
+                      style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        background: 'var(--bg-primary)',
+                        borderRadius: 'var(--radius-xl)',
+                        border: '1px solid var(--border-light)',
+                        borderTop: '1px solid var(--apple-glass-highlight)',
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <div style={{ height: 170, background: 'var(--bg-secondary)', position: 'relative', overflow: 'hidden' }}>
                         {h.image ? (
                           <img src={h.image} alt={h.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         ) : (
@@ -2585,44 +2670,86 @@ export default async function HousingPage({ searchParams }: Props) {
                             <Home size={32} />
                           </div>
                         )}
-                        <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 'var(--radius-full)', fontSize: '0.75rem', fontWeight: 700, background: 'var(--bg-primary)', color: 'var(--text-primary)', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                        <div
+                          style={{
+                            position: 'absolute',
+                            top: 12,
+                            right: 12,
+                            padding: '4px 11px',
+                            borderRadius: 'var(--radius-full)',
+                            fontSize: '0.72rem',
+                            fontWeight: 700,
+                            letterSpacing: '0.03em',
+                            background: 'var(--apple-glass-bg)',
+                            backdropFilter: 'blur(16px)',
+                            border: '1px solid var(--border-light)',
+                            borderTop: '1px solid var(--apple-glass-highlight)',
+                            color: 'var(--text-primary)',
+                            boxShadow: 'var(--shadow-sm)',
+                          }}
+                        >
                           {TYPE_LABELS[h.type]}
                         </div>
                         {uniObj && (
-                          <div style={{ position: 'absolute', bottom: 10, left: 10, padding: '3px 10px', borderRadius: 6, fontSize: '0.72rem', fontWeight: 700, background: 'var(--navy-deep)', color: 'var(--gold-primary)' }}>
+                          <div
+                            style={{
+                              position: 'absolute',
+                              bottom: 10,
+                              left: 10,
+                              padding: '3px 10px',
+                              borderRadius: 'var(--radius-sm)',
+                              fontSize: '0.72rem',
+                              fontWeight: 700,
+                              background: 'var(--bg-primary)',
+                              border: '1px solid var(--border-light)',
+                              color: 'var(--gold-primary)',
+                              boxShadow: 'var(--shadow-sm)',
+                            }}
+                          >
                             Near {uniObj.abbrev || uniObj.name}
                           </div>
                         )}
                       </div>
-                      <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.2 }}>{h.name}</h3>
+                      <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: 22 }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
+                          <h3
+                            style={{
+                              fontFamily: 'var(--font-sans)',
+                              fontSize: '1.12rem',
+                              fontWeight: 700,
+                              letterSpacing: '-0.02em',
+                              color: 'var(--text-primary)',
+                              lineHeight: 1.3,
+                            }}
+                          >
+                            {h.name}
+                          </h3>
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
-                          <MapPin size={12} /> {h.location}, {h.county}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 14 }}>
+                          <MapPin size={13} style={{ color: 'var(--gold-primary)' }} /> {h.location}, {h.county}
                         </div>
 
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 16 }}>
                           {h.amenities?.slice(0, 3).map(a => (
-                            <span key={a} style={{ padding: '2px 8px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+                            <span key={a} style={{ padding: '3px 9px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
                               {a}
                             </span>
                           ))}
                           {h.amenities && h.amenities.length > 3 && (
-                            <span style={{ padding: '2px 8px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+                            <span style={{ padding: '3px 9px', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-sm)', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
                               +{h.amenities.length - 3} more
                             </span>
                           )}
                         </div>
 
                         <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid var(--border-light)' }}>
-                          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 12 }}>
+                          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 14 }}>
                             <div>
                               <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Starting from</div>
-                              <div style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--gold-primary)' }}>{h.price}</div>
+                              <div style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-mono)' }}>{h.price}</div>
                             </div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', color: h.available ? '#059669' : '#DC2626', fontWeight: 500 }}>
-                              {h.available ? <><CheckCircle size={12} /> Available</> : <><XCircle size={12} /> Full</>}
+                            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', color: h.available ? '#059669' : '#DC2626', fontWeight: 600 }}>
+                              {h.available ? <><CheckCircle size={13} /> Available</> : <><XCircle size={13} /> Full</>}
                             </div>
                           </div>
                           <div style={{ display: 'flex', gap: 8 }}>
@@ -2632,18 +2759,18 @@ export default async function HousingPage({ searchParams }: Props) {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-gold btn-sm"
-                                style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 10px' }}
+                                style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '7px 10px', borderRadius: 'var(--radius-md)' }}
                               >
                                 <MessageCircle size={14} /> WhatsApp
                               </a>
                             )}
                             {h.contactPhone && (
-                              <a href={`tel:${h.contactPhone.replace(/\s+/g, '')}`} className="btn btn-outline btn-sm" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 10px' }}>
+                              <a href={`tel:${h.contactPhone.replace(/\s+/g, '')}`} className="btn btn-outline btn-sm" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '7px 10px', borderRadius: 'var(--radius-md)' }}>
                                 <Phone size={14} /> Call
                               </a>
                             )}
                             {h.contactEmail && (
-                              <a href={`mailto:${h.contactEmail}`} className="btn btn-outline btn-sm" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '6px 10px' }}>
+                              <a href={`mailto:${h.contactEmail}`} className="btn btn-outline btn-sm" style={{ flex: 1, display: 'flex', justifyContent: 'center', padding: '7px 10px', borderRadius: 'var(--radius-md)' }}>
                                 <Mail size={14} /> Email
                               </a>
                             )}
@@ -2661,3 +2788,4 @@ export default async function HousingPage({ searchParams }: Props) {
     </>
   );
 }
+

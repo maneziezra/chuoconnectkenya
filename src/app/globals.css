@@ -99,6 +99,7 @@
   
   --gold-primary: #FBBF24;
   --navy-light: #1F2937;
+  --navy-deep: #1E293B;
 
   --text-primary:   #F9FAFB;
   --text-secondary: #D1D5DB;
@@ -1146,6 +1147,34 @@ dialog.chuo-enquiry::backdrop {
   
   .dashboard-header-btn {
     width: 100%;
+  }
+}
+
+/* Student Dashboard & Housing Responsive Grids */
+.student-dashboard-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 40px;
+  align-items: start;
+}
+
+.student-housing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .student-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .student-housing-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 

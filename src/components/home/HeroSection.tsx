@@ -144,16 +144,16 @@ export default function HeroSection() {
               </div>
             </motion.div>
 
-            {/* Headline — Law 15: Optical Sizing (-0.032em) */}
+            {/* Headline — Law 15: Optical Sizing (-0.035em) */}
             <motion.h1
               variants={fadeUp}
               style={{
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                fontWeight: 700,
+                fontWeight: 800,
                 lineHeight: 1.06,
-                letterSpacing: '-0.032em',
+                letterSpacing: '-0.035em',
                 color: 'var(--text-primary)',
-                fontFamily: 'var(--font-serif)',
+                fontFamily: 'var(--font-sans)',
               }}
             >
               Your future starts{' '}

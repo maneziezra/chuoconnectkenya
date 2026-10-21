@@ -70,11 +70,12 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
         <div
           style={{
             position: 'relative',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 20,
-            boxShadow: 'var(--shadow-neo)',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
             background: 'var(--bg-secondary)',
-            padding: '48px 40px',
+            padding: '44px 36px',
             overflow: 'hidden',
           }}
         >
@@ -82,7 +83,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
             style={{
               backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
               backgroundSize: '28px 28px',
-              opacity: 0.04,
+              opacity: 0.035,
               position: 'absolute',
               inset: 0,
               pointerEvents: 'none',
@@ -91,23 +92,36 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span
               style={{
-                display: 'inline-block',
-                padding: '4px 14px',
-                background: 'var(--gold-glow)',
-                border: '2px solid var(--border-medium)',
-                borderRadius: 8,
-                boxShadow: 'var(--shadow-neo)',
-                fontSize: '0.75rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '5px 14px',
+                background: 'var(--apple-glass-bg)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.72rem',
                 fontWeight: 700,
-                letterSpacing: '0.08em',
+                letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 color: 'var(--text-primary)',
                 marginBottom: 16,
+                backdropFilter: 'blur(16px)',
               }}
             >
+              <GraduationCap size={13} style={{ color: 'var(--gold-primary)' }} />
               2026 Student Funding Hub
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
+            <h1
+              style={{
+                color: 'var(--text-primary)',
+                marginBottom: 12,
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+              }}
+            >
               Scholarships, HEF Grants & Bursaries
             </h1>
             <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 640, lineHeight: 1.6 }}>
@@ -122,38 +136,39 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           {/* Interactive HEF Band 1-5 Simulator Callout */}
           <div
             style={{
-              background: 'var(--navy-deep)',
-              borderRadius: 18,
-              padding: '24px 28px',
-              color: '#FFFFFF',
-              marginBottom: 32,
+              background: 'var(--bg-primary)',
+              borderRadius: 'var(--radius-xl)',
+              border: '1px solid var(--border-light)',
+              borderTop: '1px solid var(--apple-glass-highlight)',
+              padding: '28px 32px',
+              marginBottom: 36,
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               flexWrap: 'wrap',
-              gap: 18,
-              boxShadow: 'var(--shadow-neo)',
+              gap: 20,
+              boxShadow: 'var(--shadow-sm)',
             }}
           >
             <div style={{ maxWidth: 640 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--gold-primary)', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--gold-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
                 <Wallet size={15} /> Means Testing Instrument (Bands 1–5)
               </div>
-              <h2 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FFFFFF', marginBottom: 6 }}>
+              <h2 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 6 }}>
                 Estimate Your Government HEF Scholarship % & HELB Upkeep Stipend
               </h2>
-              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.88rem', margin: 0, lineHeight: 1.55 }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: 0, lineHeight: 1.55 }}>
                 Find out whether you fall into Band 1 (70% Free Gov Scholarship + KES 60k Upkeep) through Band 5 and see your exact per-semester household fee before applying.
               </p>
             </div>
-            <Link href="/calculator" className="btn btn-gold">
+            <Link href="/calculator" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>
               <Calculator size={16} /> Open HEF Fee Simulator
             </Link>
           </div>
 
           {/* Category Filters & Search */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 32 }}>
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
               {['All', ...Object.keys(CATEGORY_LABELS)].map(cat => {
                 const isActive = (category || 'All') === cat;
                 return (
@@ -161,17 +176,17 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                     key={cat}
                     href={`/scholarships${cat === 'All' ? '' : `?category=${cat}`}`}
                     style={{
-                      padding: '6px 16px',
-                      borderRadius: 8,
-                      border: '2px solid var(--border-medium)',
-                      fontSize: '0.85rem',
+                      padding: '7px 18px',
+                      borderRadius: 'var(--radius-full)',
+                      border: '1px solid var(--border-light)',
+                      borderTop: '1px solid var(--apple-glass-highlight)',
+                      fontSize: '0.82rem',
                       fontWeight: 600,
                       textDecoration: 'none',
-                      transition: 'all 0.2s',
-                      background: isActive ? 'var(--gold-glow)' : 'var(--bg-secondary)',
-                      color: 'var(--text-primary)',
-                      boxShadow: isActive ? '2px 2px 0px var(--navy-deep)' : 'none',
-                      transform: isActive ? 'translate(-2px, -2px)' : 'none',
+                      transition: 'all var(--apple-ease)',
+                      background: isActive ? 'var(--accent-gold)' : 'var(--bg-secondary)',
+                      color: isActive ? 'var(--gold-contrast-text)' : 'var(--text-primary)',
+                      boxShadow: isActive ? 'var(--shadow-sm)' : 'none',
                     }}
                   >
                     {cat === 'All' ? 'All Funding' : CATEGORY_LABELS[cat]}
@@ -188,38 +203,48 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                 defaultValue={q || ''}
                 placeholder="Search HELB, Equity, USIU..."
                 className="form-input"
-                style={{ padding: '8px 12px', fontSize: '0.85rem' }}
+                style={{ padding: '8px 14px', fontSize: '0.85rem', borderRadius: 'var(--radius-md)' }}
               />
-              <button type="submit" className="btn btn-navy btn-sm">
-                Search
+              <button type="submit" className="btn btn-gold btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>
+                <Search size={14} /> Search
               </button>
             </form>
           </div>
 
           {scholarships.length === 0 ? (
-            <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
+            <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-xl)', border: '1px dashed var(--border-medium)' }}>
               <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No scholarships found</h3>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>No scholarships found</h3>
               <p style={{ color: 'var(--text-secondary)', marginBottom: 16 }}>We couldn&apos;t find any scholarships matching your filter.</p>
-              <Link href="/scholarships" className="btn btn-outline btn-sm">Reset Filters</Link>
+              <Link href="/scholarships" className="btn btn-outline btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>Reset Filters</Link>
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 24 }}>
               {scholarships.map(s => {
                 const catStyle = CATEGORY_COLORS[s.category] ?? { bg: 'var(--bg-secondary)', color: 'var(--text-secondary)' };
                 return (
-                  <div key={s.id} className="card card-body" style={{ display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
+                  <div
+                    key={s.id}
+                    className="card card-body"
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      borderRadius: 'var(--radius-xl)',
+                      border: '1px solid var(--border-light)',
+                      borderTop: '1px solid var(--apple-glass-highlight)',
+                      padding: 24,
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
                       <span
                         style={{
                           padding: '3px 10px',
-                          borderRadius: 8,
-                          border: '2px solid var(--border-medium)',
-                          boxShadow: 'var(--shadow-neo)',
+                          borderRadius: 'var(--radius-full)',
+                          border: '1px solid var(--border-light)',
                           fontSize: '0.72rem',
                           fontWeight: 700,
                           textTransform: 'uppercase',
-                          letterSpacing: '0.06em',
+                          letterSpacing: '0.04em',
                           background: catStyle.bg,
                           color: catStyle.color,
                         }}
@@ -227,27 +252,48 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                         {CATEGORY_LABELS[s.category] || s.category}
                       </span>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.78rem', color: 'var(--text-tertiary)' }}>
-                        <Calendar size={12} /> Deadline: {new Date(s.deadline).toLocaleDateString('en-KE', { month: 'short', day: 'numeric', year: 'numeric' })}
+                        <Calendar size={13} /> Deadline: {new Date(s.deadline).toLocaleDateString('en-KE', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </div>
                     </div>
 
-                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3 }}>
+                    <h3
+                      style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontSize: '1.12rem',
+                        fontWeight: 700,
+                        letterSpacing: '-0.02em',
+                        color: 'var(--text-primary)',
+                        marginBottom: 4,
+                        lineHeight: 1.3,
+                      }}
+                    >
                       {s.title}
                     </h3>
-                    <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: 10 }}>
-                      by <strong>{s.provider}</strong>
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
+                      by <strong style={{ color: 'var(--text-secondary)' }}>{s.provider}</strong>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 12px', background: 'var(--gold-glow)', borderRadius: 'var(--radius-md)', marginBottom: 12 }}>
-                      <GraduationCap size={15} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
-                      <span style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--text-primary)' }}>{s.amount}</span>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                        padding: '9px 14px',
+                        background: 'var(--gold-glow)',
+                        borderRadius: 'var(--radius-md)',
+                        border: '1px solid var(--border-light)',
+                        marginBottom: 14,
+                      }}
+                    >
+                      <GraduationCap size={16} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+                      <span style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-primary)' }}>{s.amount}</span>
                     </div>
 
-                    <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.65, flex: 1 }}>
+                    <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.65, flex: 1, margin: 0 }}>
                       {s.description}
                     </p>
 
-                    <div style={{ marginTop: 14, paddingTop: 14, borderTop: '1px solid var(--border-light)' }}>
+                    <div style={{ marginTop: 16, paddingTop: 14, borderTop: '1px solid var(--border-light)' }}>
                       <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginBottom: 12, lineHeight: 1.5 }}>
                         <strong>Eligibility:</strong> {s.eligibility}
                       </div>
@@ -258,8 +304,8 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                             href={s.applicationUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="btn btn-navy btn-sm"
-                            style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center' }}
+                            className="btn btn-outline btn-sm"
+                            style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', borderRadius: 'var(--radius-md)' }}
                           >
                             Official Portal <ExternalLink size={13} />
                           </a>
@@ -283,15 +329,37 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           )}
 
           {/* CTA */}
-          <div style={{ marginTop: 60, padding: '40px', background: 'var(--bg-secondary)', borderRadius: 16, border: '2px solid var(--border-medium)', boxShadow: 'var(--shadow-neo)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', marginBottom: 12 }}>
+          <div
+            style={{
+              marginTop: 60,
+              padding: '48px 36px',
+              background: 'var(--bg-secondary)',
+              borderRadius: 'var(--radius-xl)',
+              border: '1px solid var(--border-light)',
+              borderTop: '1px solid var(--apple-glass-highlight)',
+              boxShadow: 'var(--shadow-sm)',
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            <div style={{ position: 'relative', zIndex: 1, maxWidth: 640, margin: '0 auto' }}>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '1.5rem',
+                  fontWeight: 700,
+                  letterSpacing: '-0.025em',
+                  color: 'var(--text-primary)',
+                  marginBottom: 12,
+                }}
+              >
                 Represent a University Financial Aid Office or Foundation?
               </h2>
-              <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>
+              <p style={{ color: 'var(--text-secondary)', marginBottom: 24, fontSize: '0.95rem', lineHeight: 1.6 }}>
                 List your 2026 scholarship or bursary fund on Chuo Connect to reach qualified KCSE candidates nationwide.
               </p>
-              <Link href="/contact" className="btn btn-navy">Submit a Scholarship</Link>
+              <Link href="/contact" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>Submit a Scholarship</Link>
             </div>
           </div>
         </div>
@@ -299,3 +367,4 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
     </>
   );
 }
+

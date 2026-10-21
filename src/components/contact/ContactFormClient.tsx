@@ -72,24 +72,34 @@ export default function ContactFormClient() {
       <div style={{ textAlign: 'center', padding: '24px 8px' }}>
         <div
           style={{
-            width: 64,
-            height: 64,
-            borderRadius: '50%',
+            width: 56,
+            height: 56,
+            borderRadius: 'var(--radius-full)',
             background: 'var(--success-bg)',
             color: 'var(--success-text)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             margin: '0 auto 16px',
-            border: '2px solid var(--border-medium)',
+            border: '1px solid var(--border-light)',
+            boxShadow: 'var(--shadow-sm)',
           }}
         >
-          <CheckCircle2 size={32} />
+          <CheckCircle2 size={28} />
         </div>
-        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
+        <h3
+          style={{
+            fontFamily: 'var(--font-sans)',
+            fontSize: '1.45rem',
+            fontWeight: 800,
+            letterSpacing: '-0.025em',
+            color: 'var(--text-primary)',
+            marginBottom: 8,
+          }}
+        >
           Message Received!
         </h3>
-        <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: 24 }}>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, marginBottom: 24 }}>
           Thank you, <strong>{fullName}</strong>. Your <strong>{subject}</strong> inquiry has been logged with our partnerships & student support desk. We respond within 2 business hours.
         </p>
 
@@ -99,14 +109,14 @@ export default function ContactFormClient() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-gold"
-            style={{ width: '100%', justifyContent: 'center' }}
+            style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)', padding: '12px 18px', fontWeight: 700 }}
           >
             <Phone size={16} /> Fast-Track on WhatsApp Now
           </a>
           <a
             href={`mailto:hello@chuoconnect.co.ke?subject=${mailSubject}&body=${mailBody}`}
             className="btn btn-outline"
-            style={{ width: '100%', justifyContent: 'center' }}
+            style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)', padding: '12px 18px', fontWeight: 600 }}
           >
             <Mail size={16} /> Open in Email Client
           </a>
@@ -125,6 +135,7 @@ export default function ContactFormClient() {
             fontSize: '0.85rem',
             cursor: 'pointer',
             textDecoration: 'underline',
+            fontFamily: 'var(--font-sans)',
           }}
         >
           Send another message
@@ -134,28 +145,29 @@ export default function ContactFormClient() {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       {error && (
         <div
           style={{
-            padding: '12px 14px',
-            borderRadius: 10,
+            padding: '12px 16px',
+            borderRadius: 'var(--radius-md)',
             background: 'var(--danger-bg)',
             color: 'var(--danger-text)',
-            fontSize: '0.85rem',
+            fontSize: '0.84rem',
             fontWeight: 600,
             display: 'flex',
             alignItems: 'center',
             gap: 8,
+            border: '1px solid var(--border-light)',
           }}
         >
           <AlertCircle size={16} /> {error}
         </div>
       )}
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
         <div>
-          <label style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 6 }}>
+          <label style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>
             First Name *
           </label>
           <input
@@ -165,17 +177,18 @@ export default function ContactFormClient() {
             placeholder="John"
             style={{
               width: '100%',
-              padding: '12px 14px',
-              border: '2px solid var(--border-medium)',
-              borderRadius: 10,
-              fontSize: '0.95rem',
+              padding: '11px 14px',
+              border: '1px solid var(--border-light)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.92rem',
               outline: 'none',
               background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
             }}
           />
         </div>
         <div>
-          <label style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 6 }}>
+          <label style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>
             Last Name *
           </label>
           <input
@@ -185,20 +198,21 @@ export default function ContactFormClient() {
             placeholder="Kamau"
             style={{
               width: '100%',
-              padding: '12px 14px',
-              border: '2px solid var(--border-medium)',
-              borderRadius: 10,
-              fontSize: '0.95rem',
+              padding: '11px 14px',
+              border: '1px solid var(--border-light)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.92rem',
               outline: 'none',
               background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
             }}
           />
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
         <div>
-          <label style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 6 }}>
+          <label style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>
             Email Address *
           </label>
           <input
@@ -209,17 +223,18 @@ export default function ContactFormClient() {
             placeholder="john@example.com"
             style={{
               width: '100%',
-              padding: '12px 14px',
-              border: '2px solid var(--border-medium)',
-              borderRadius: 10,
-              fontSize: '0.95rem',
+              padding: '11px 14px',
+              border: '1px solid var(--border-light)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.92rem',
               outline: 'none',
               background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
             }}
           />
         </div>
         <div>
-          <label style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 6 }}>
+          <label style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>
             Phone / WhatsApp *
           </label>
           <input
@@ -230,20 +245,21 @@ export default function ContactFormClient() {
             placeholder="0712 345 678"
             style={{
               width: '100%',
-              padding: '12px 14px',
-              border: '2px solid var(--border-medium)',
-              borderRadius: 10,
-              fontSize: '0.95rem',
+              padding: '11px 14px',
+              border: '1px solid var(--border-light)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.92rem',
               outline: 'none',
               background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
             }}
           />
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
         <div>
-          <label style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 6 }}>
+          <label style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>
             Subject
           </label>
           <select
@@ -251,12 +267,13 @@ export default function ContactFormClient() {
             onChange={e => setSubject(e.target.value)}
             style={{
               width: '100%',
-              padding: '12px 14px',
-              border: '2px solid var(--border-medium)',
-              borderRadius: 10,
-              fontSize: '0.95rem',
+              padding: '11px 14px',
+              border: '1px solid var(--border-light)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.92rem',
               outline: 'none',
               background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
               cursor: 'pointer',
             }}
           >
@@ -270,7 +287,7 @@ export default function ContactFormClient() {
           </select>
         </div>
         <div>
-          <label style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 6 }}>
+          <label style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>
             Institution / Hostel (Optional)
           </label>
           <input
@@ -279,19 +296,20 @@ export default function ContactFormClient() {
             placeholder="e.g. Strathmore / Qwetu"
             style={{
               width: '100%',
-              padding: '12px 14px',
-              border: '2px solid var(--border-medium)',
-              borderRadius: 10,
-              fontSize: '0.95rem',
+              padding: '11px 14px',
+              border: '1px solid var(--border-light)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.92rem',
               outline: 'none',
               background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
             }}
           />
         </div>
       </div>
 
       <div>
-        <label style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-primary)', display: 'block', marginBottom: 6 }}>
+        <label style={{ fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em', color: 'var(--text-secondary)', display: 'block', marginBottom: 6 }}>
           Message *
         </label>
         <textarea
@@ -303,12 +321,13 @@ export default function ContactFormClient() {
           style={{
             width: '100%',
             padding: '12px 14px',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 10,
-            fontSize: '0.95rem',
+            border: '1px solid var(--border-light)',
+            borderRadius: 'var(--radius-md)',
+            fontSize: '0.92rem',
             outline: 'none',
             resize: 'vertical',
             background: 'var(--bg-secondary)',
+            color: 'var(--text-primary)',
           }}
         />
       </div>
@@ -323,17 +342,20 @@ export default function ContactFormClient() {
           display: 'flex',
           alignItems: 'center',
           gap: 8,
-          marginTop: 4,
-          padding: '14px 16px',
+          marginTop: 6,
+          padding: '13px 20px',
+          borderRadius: 'var(--radius-md)',
+          fontWeight: 700,
+          fontSize: '0.95rem',
         }}
       >
         {submitting ? (
           <>
-            <Loader2 size={18} className="animate-spin" /> Sending Message…
+            <Loader2 size={17} className="animate-spin" /> Sending Message…
           </>
         ) : (
           <>
-            <MessageCircle size={18} /> Send Message
+            <MessageCircle size={17} /> Send Message
           </>
         )}
       </button>

@@ -51,18 +51,65 @@ export default function GuidancePage() {
     <>
       {/* Hero Section */}
       <div style={{ padding: '40px 20px 0' }}>
-        <div style={{ position: 'relative', border: '2px solid var(--border-medium)', borderRadius: 20, boxShadow: 'var(--shadow-neo)', background: 'var(--bg-secondary)', padding: '48px 40px', overflow: 'hidden' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)', backgroundSize: '28px 28px', opacity: 0.04, pointerEvents: 'none' }}></div>
+        <div
+          style={{
+            position: 'relative',
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
+            background: 'var(--bg-secondary)',
+            padding: '44px 36px',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
+              backgroundSize: '28px 28px',
+              opacity: 0.035,
+              pointerEvents: 'none',
+            }}
+          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '4px 14px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-primary)', marginBottom: 16 }}>
-              <Compass size={14} />
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+                padding: '5px 14px',
+                background: 'var(--apple-glass-bg)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.72rem',
+                fontWeight: 700,
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                color: 'var(--text-primary)',
+                marginBottom: 16,
+                backdropFilter: 'blur(16px)',
+              }}
+            >
+              <Compass size={13} style={{ color: 'var(--gold-primary)' }} />
               About & Guidance
             </span>
-            <h1 className="text-h1" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>
+            <h1
+              style={{
+                color: 'var(--text-primary)',
+                marginBottom: 12,
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+              }}
+            >
               Connecting Students to Campuses Across Kenya
             </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 700, lineHeight: 1.6 }}>
-              Choosing a university is one of life's most important decisions. We aim to be Kenya's premier Campus Discovery Platform, enabling students to explore, compare, and connect with higher education institutions.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 680, lineHeight: 1.6 }}>
+              Choosing a university is one of life&apos;s most important decisions. We aim to be Kenya&apos;s premier Campus Discovery Platform, enabling students to explore, compare, and connect with higher education institutions.
             </p>
           </div>
         </div>
@@ -73,18 +120,40 @@ export default function GuidancePage() {
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginBottom: 48 }}>
             
-            <div className="card hover-gold" style={{ padding: 32 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '2px solid var(--border-medium)', borderRadius: 10, background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 16 }}><Rocket size={24} /></div>
-              <h3 className="text-h3" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                To become Kenya's most trusted digital platform for discovering, exploring, and connecting students with campuses and higher education opportunities.
+            <div
+              className="card"
+              style={{
+                padding: 32,
+                borderRadius: 'var(--radius-xl)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+            >
+              <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 20 }}>
+                <Rocket size={22} style={{ color: 'var(--gold-primary)' }} />
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.65, margin: 0 }}>
+                To become Kenya&apos;s most trusted digital platform for discovering, exploring, and connecting students with campuses and higher education opportunities.
               </p>
             </div>
 
-            <div className="card hover-gold" style={{ padding: 32 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '2px solid var(--border-medium)', borderRadius: 10, background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 16 }}><Target size={24} /></div>
-              <h3 className="text-h3" style={{ color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
+            <div
+              className="card"
+              style={{
+                padding: 32,
+                borderRadius: 'var(--radius-xl)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-sm)',
+              }}
+            >
+              <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 20 }}>
+                <Target size={22} style={{ color: 'var(--gold-primary)' }} />
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.65, margin: 0 }}>
                 To simplify the university selection process by providing students with accurate information, immersive campus experiences, and personalized recommendations to help them make informed educational decisions.
               </p>
             </div>
@@ -95,9 +164,9 @@ export default function GuidancePage() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                 <div style={{ padding: 8, background: 'rgba(220, 38, 38, 0.1)', color: '#dc2626', borderRadius: '50%' }}>
-                  <AlertCircle size={24} />
+                  <AlertCircle size={22} />
                 </div>
-                <h3 className="text-h3" style={{ color: 'var(--text-primary)' }}>The Challenge</h3>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>The Challenge</h3>
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: 16 }}>
                 Existing platforms primarily focus on admission requirements or course listings, leaving students without insight into campus life, facilities, student experiences, accommodation, and overall suitability.
@@ -113,9 +182,9 @@ export default function GuidancePage() {
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
                 <div style={{ padding: 8, background: 'rgba(16, 185, 129, 0.1)', color: 'var(--success-text)', borderRadius: '50%' }}>
-                  <CheckCircle2 size={24} />
+                  <CheckCircle2 size={22} />
                 </div>
-                <h3 className="text-h3" style={{ color: 'var(--text-primary)' }}>Our Solution</h3>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>Our Solution</h3>
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: 16 }}>
                 Chuo Connect Kenya serves as a centralized platform focusing on helping students answer one fundamental question: <strong style={{ color: 'var(--text-primary)' }}>“Which campus is the best fit for me?”</strong>
@@ -135,22 +204,33 @@ export default function GuidancePage() {
       <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 className="text-h2" style={{ color: 'var(--text-primary)', marginBottom: 16 }}>Core Platform Features</h2>
-            <p style={{ color: 'var(--text-secondary)', maxWidth: 600, margin: '0 auto' }}>
+            <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 14 }}>Core Platform Features</h2>
+            <p style={{ color: 'var(--text-secondary)', maxWidth: 600, margin: '0 auto', fontSize: '0.98rem' }}>
               Everything you need to confidently choose the right campus for your academic and personal goals.
             </p>
           </div>
           
           <div className="grid-auto">
             {CORE_FEATURES.map((feat, i) => (
-              <div key={i} className="card card-body hover-gold" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ width: 48, height: 48, border: '2px solid var(--border-medium)', borderRadius: 10, background: 'var(--gold-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', marginBottom: 20 }}>
+              <div
+                key={i}
+                className="card card-body"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  padding: 26,
+                  borderRadius: 'var(--radius-xl)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                }}
+              >
+                <div style={{ width: 44, height: 44, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-primary)', marginBottom: 18 }}>
                   {feat.icon}
                 </div>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 8 }}>
                   {feat.title}
                 </h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
                   {feat.desc}
                 </p>
               </div>
@@ -163,25 +243,36 @@ export default function GuidancePage() {
       <section className="section">
         <div className="container">
           <div style={{ marginBottom: 32 }}>
-            <h2 className="text-h2" style={{ color: 'var(--text-primary)' }}>Student Success Guides</h2>
-            <p style={{ color: 'var(--text-secondary)' }}>Expert resources to navigate your academic journey.</p>
+            <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 6 }}>Student Success Guides</h2>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Expert resources to navigate your academic journey.</p>
           </div>
 
           <div className="grid-auto">
             {ARTICLES.map((article, i) => (
-              <div key={i} className="card card-body hover-gold" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div style={{ width: 48, height: 48, border: '2px solid var(--border-medium)', borderRadius: 10, background: 'var(--gold-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', marginBottom: 20 }}>
+              <div
+                key={i}
+                className="card card-body"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  padding: 26,
+                  borderRadius: 'var(--radius-xl)',
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                }}
+              >
+                <div style={{ width: 44, height: 44, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-primary)', marginBottom: 18 }}>
                   {article.icon}
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 12, lineHeight: 1.3 }}>
+                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 10, lineHeight: 1.3 }}>
                   {article.title}
                 </h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 24, flex: 1 }}>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 20, flex: 1 }}>
                   {article.desc}
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', paddingTop: 16, borderTop: '1px solid var(--border-light)' }}>
                   <span style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                    <Clock size={12} /> {article.readTime}
+                    <Clock size={13} /> {article.readTime}
                   </span>
                   <Link href={`/guidance/article/${article.slug}`} style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--gold-primary)', display: 'flex', alignItems: 'center', gap: 4 }}>
                     Read Article <ArrowRight size={14} />
@@ -191,20 +282,35 @@ export default function GuidancePage() {
             ))}
           </div>
 
-          <div style={{ marginTop: 64, background: 'var(--bg-secondary)', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-lg)', padding: 40, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 40, flexWrap: 'wrap' }}>
+          <div
+            style={{
+              marginTop: 64,
+              background: 'var(--bg-secondary)',
+              border: '1px solid var(--border-light)',
+              borderTop: '1px solid var(--apple-glass-highlight)',
+              borderRadius: 'var(--radius-xl)',
+              boxShadow: 'var(--shadow-sm)',
+              padding: '40px 36px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 40,
+              flexWrap: 'wrap',
+            }}
+          >
             <div style={{ flex: '1 1 400px' }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--text-primary)', fontWeight: 700, marginBottom: 12 }}>
-                <GraduationCap size={20} /> Still not sure where to start?
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--gold-primary)', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 10 }}>
+                <GraduationCap size={18} /> Still not sure where to start?
               </div>
-              <h2 className="text-h2" style={{ color: 'var(--text-primary)', marginBottom: 16 }}>
+              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 12 }}>
                 Let our engine guide you.
               </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6 }}>
-                Enter your KCSE grades into our KUCCPS Calculator. We'll automatically compute your cluster points and show you exactly which degree programmes you qualify for across all accredited Kenyan universities.
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>
+                Enter your KCSE grades into our KUCCPS Calculator. We&apos;ll automatically compute your cluster points and show you exactly which degree programmes you qualify for across all accredited Kenyan universities.
               </p>
             </div>
             <div style={{ flexShrink: 0 }}>
-              <Link href="/dashboard" className="btn btn-navy btn-lg">
+              <Link href="/dashboard" className="btn btn-gold btn-lg" style={{ borderRadius: 'var(--radius-md)' }}>
                 Go to Calculator <ArrowRight size={18} />
               </Link>
             </div>
@@ -214,3 +320,4 @@ export default function GuidancePage() {
     </>
   );
 }
+

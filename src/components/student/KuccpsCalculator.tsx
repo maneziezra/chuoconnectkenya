@@ -398,25 +398,27 @@ export default function KuccpsCalculator({
           onClick={() => setActiveTab('matcher')}
           style={{
             padding: '16px 18px',
-            borderRadius: 14,
-            border: activeTab === 'matcher' ? '2px solid var(--gold-primary)' : '2px solid var(--border-medium)',
-            background: activeTab === 'matcher' ? 'var(--navy-deep)' : 'var(--bg-primary)',
-            color: activeTab === 'matcher' ? '#FFFFFF' : 'var(--text-primary)',
-            boxShadow: 'var(--shadow-neo)',
+            borderRadius: 'var(--radius-xl)',
+            border: activeTab === 'matcher' ? '1.5px solid var(--accent-gold)' : '1px solid var(--border-light)',
+            background: activeTab === 'matcher' ? 'var(--accent-main)' : 'var(--bg-primary)',
+            color: activeTab === 'matcher' ? 'var(--text-inverse)' : 'var(--text-primary)',
+            boxShadow: activeTab === 'matcher' ? '0 4px 16px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)',
             display: 'flex',
             alignItems: 'center',
             gap: 12,
             cursor: 'pointer',
             textAlign: 'left',
+            transition: 'transform var(--apple-press), background 0.16s ease, border-color 0.16s ease',
           }}
+          className="hover:border-[var(--accent-gold)] active:scale-[0.98]"
         >
           <div
             style={{
               width: 38,
               height: 38,
-              borderRadius: 10,
-              background: activeTab === 'matcher' ? 'var(--gold-primary)' : 'var(--gold-glow)',
-              color: 'var(--navy-deep)',
+              borderRadius: 'var(--radius-md)',
+              background: activeTab === 'matcher' ? 'var(--accent-gold)' : 'var(--gold-glow)',
+              color: activeTab === 'matcher' ? 'var(--gold-contrast-text)' : 'var(--accent-gold)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -426,7 +428,7 @@ export default function KuccpsCalculator({
             <Calculator size={18} />
           </div>
           <div>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.75 }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.8 }}>
               Step 1 • Official Formula
             </div>
             <div style={{ fontSize: '0.95rem', fontWeight: 700 }}>
@@ -440,25 +442,27 @@ export default function KuccpsCalculator({
           onClick={() => setActiveTab('hef')}
           style={{
             padding: '16px 18px',
-            borderRadius: 14,
-            border: activeTab === 'hef' ? '2px solid var(--gold-primary)' : '2px solid var(--border-medium)',
-            background: activeTab === 'hef' ? 'var(--navy-deep)' : 'var(--bg-primary)',
-            color: activeTab === 'hef' ? '#FFFFFF' : 'var(--text-primary)',
-            boxShadow: 'var(--shadow-neo)',
+            borderRadius: 'var(--radius-xl)',
+            border: activeTab === 'hef' ? '1.5px solid var(--accent-gold)' : '1px solid var(--border-light)',
+            background: activeTab === 'hef' ? 'var(--accent-main)' : 'var(--bg-primary)',
+            color: activeTab === 'hef' ? 'var(--text-inverse)' : 'var(--text-primary)',
+            boxShadow: activeTab === 'hef' ? '0 4px 16px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)',
             display: 'flex',
             alignItems: 'center',
             gap: 12,
             cursor: 'pointer',
             textAlign: 'left',
+            transition: 'transform var(--apple-press), background 0.16s ease, border-color 0.16s ease',
           }}
+          className="hover:border-[var(--accent-gold)] active:scale-[0.98]"
         >
           <div
             style={{
               width: 38,
               height: 38,
-              borderRadius: 10,
-              background: activeTab === 'hef' ? 'var(--gold-primary)' : 'var(--gold-glow)',
-              color: 'var(--navy-deep)',
+              borderRadius: 'var(--radius-md)',
+              background: activeTab === 'hef' ? 'var(--accent-gold)' : 'var(--gold-glow)',
+              color: activeTab === 'hef' ? 'var(--gold-contrast-text)' : 'var(--accent-gold)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -468,7 +472,7 @@ export default function KuccpsCalculator({
             <Wallet size={18} />
           </div>
           <div>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.75 }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.8 }}>
               Step 2 • Band {hefResult.band} ({hefResult.householdPct}% Fee)
             </div>
             <div style={{ fontSize: '0.95rem', fontWeight: 700 }}>
@@ -482,27 +486,29 @@ export default function KuccpsCalculator({
           onClick={() => setActiveTab('basket')}
           style={{
             padding: '16px 18px',
-            borderRadius: 14,
-            border: activeTab === 'basket' ? '2px solid var(--gold-primary)' : '2px solid var(--border-medium)',
-            background: activeTab === 'basket' ? 'var(--navy-deep)' : 'var(--bg-primary)',
-            color: activeTab === 'basket' ? '#FFFFFF' : 'var(--text-primary)',
-            boxShadow: 'var(--shadow-neo)',
+            borderRadius: 'var(--radius-xl)',
+            border: activeTab === 'basket' ? '1.5px solid var(--accent-gold)' : '1px solid var(--border-light)',
+            background: activeTab === 'basket' ? 'var(--accent-main)' : 'var(--bg-primary)',
+            color: activeTab === 'basket' ? 'var(--text-inverse)' : 'var(--text-primary)',
+            boxShadow: activeTab === 'basket' ? '0 4px 16px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             gap: 12,
             cursor: 'pointer',
             textAlign: 'left',
+            transition: 'transform var(--apple-press), background 0.16s ease, border-color 0.16s ease',
           }}
+          className="hover:border-[var(--accent-gold)] active:scale-[0.98]"
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <div
               style={{
                 width: 38,
                 height: 38,
-                borderRadius: 10,
-                background: activeTab === 'basket' ? 'var(--gold-primary)' : 'var(--gold-glow)',
-                color: 'var(--navy-deep)',
+                borderRadius: 'var(--radius-md)',
+                background: activeTab === 'basket' ? 'var(--accent-gold)' : 'var(--gold-glow)',
+                color: activeTab === 'basket' ? 'var(--gold-contrast-text)' : 'var(--accent-gold)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -512,7 +518,7 @@ export default function KuccpsCalculator({
               <Briefcase size={18} />
             </div>
             <div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.75 }}>
+              <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.8 }}>
                 Step 3 • Revision Simulator
               </div>
               <div style={{ fontSize: '0.95rem', fontWeight: 700 }}>
@@ -532,11 +538,12 @@ export default function KuccpsCalculator({
             <div
               style={{
                 background: 'var(--bg-primary)',
-                border: '2px solid var(--border-medium)',
-                borderRadius: 20,
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                borderRadius: 'var(--radius-xl)',
                 padding: 28,
                 marginBottom: 24,
-                boxShadow: 'var(--shadow-neo)',
+                boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
@@ -623,8 +630,9 @@ export default function KuccpsCalculator({
                 style={{
                   padding: '16px 20px',
                   background: 'var(--bg-secondary)',
-                  border: '2px solid var(--border-medium)',
-                  borderRadius: 14,
+                  border: '1px solid var(--border-light)',
+                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  borderRadius: 'var(--radius-lg)',
                   marginBottom: 20,
                   display: 'flex',
                   alignItems: 'center',
@@ -728,7 +736,7 @@ export default function KuccpsCalculator({
             <div
               style={{
                 background: 'var(--navy-deep)',
-                borderRadius: 20,
+                borderRadius: 'var(--radius-xl)',
                 padding: 24,
                 marginBottom: 24,
                 display: 'flex',
@@ -736,7 +744,9 @@ export default function KuccpsCalculator({
                 justifyContent: 'space-between',
                 flexWrap: 'wrap',
                 gap: 16,
-                boxShadow: 'var(--shadow-neo)',
+                border: '1px solid var(--border-light)',
+                borderTop: '1px solid var(--apple-glass-highlight)',
+                boxShadow: 'var(--shadow-md)',
               }}
             >
               <div>
@@ -830,8 +840,9 @@ export default function KuccpsCalculator({
                     style={{
                       padding: '14px 16px',
                       background: 'var(--bg-primary)',
-                      border: '2px solid var(--border-medium)',
-                      borderRadius: 14,
+                      border: '1px solid var(--border-light)',
+                      borderTop: '1px solid var(--apple-glass-highlight)',
+                      borderRadius: 'var(--radius-md)',
                       boxShadow: 'var(--shadow-sm)',
                     }}
                   >
@@ -863,10 +874,11 @@ export default function KuccpsCalculator({
                         key={cluster}
                         style={{
                           background: 'var(--bg-primary)',
-                          border: '2px solid var(--border-medium)',
-                          borderRadius: 18,
+                          border: '1px solid var(--border-light)',
+                          borderTop: '1px solid var(--apple-glass-highlight)',
+                          borderRadius: 'var(--radius-xl)',
                           overflow: 'hidden',
-                          boxShadow: 'var(--shadow-neo)',
+                          boxShadow: 'var(--shadow-sm)',
                         }}
                       >
                         <div
@@ -1022,8 +1034,9 @@ export default function KuccpsCalculator({
                   style={{
                     padding: 24,
                     background: 'var(--gold-glow)',
-                    border: '2px solid var(--border-medium)',
-                    borderRadius: 16,
+                    border: '1px solid var(--border-light)',
+                    borderTop: '1px solid var(--apple-glass-highlight)',
+                    borderRadius: 'var(--radius-xl)',
                     marginBottom: 24,
                   }}
                 >
@@ -1042,10 +1055,11 @@ export default function KuccpsCalculator({
                   style={{
                     marginTop: 28,
                     background: 'var(--bg-primary)',
-                    border: '2px solid var(--border-medium)',
-                    borderRadius: 18,
+                    border: '1px solid var(--border-light)',
+                    borderTop: '1px solid var(--apple-glass-highlight)',
+                    borderRadius: 'var(--radius-xl)',
                     overflow: 'hidden',
-                    boxShadow: 'var(--shadow-neo)',
+                    boxShadow: 'var(--shadow-sm)',
                   }}
                 >
                   <div
@@ -1137,10 +1151,11 @@ export default function KuccpsCalculator({
         <div
           style={{
             background: 'var(--bg-primary)',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 20,
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
             padding: 28,
-            boxShadow: 'var(--shadow-neo)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
           }}
         >
           <div style={{ marginBottom: 24 }}>
@@ -1200,7 +1215,7 @@ export default function KuccpsCalculator({
                       borderRadius: 6,
                       border: '1px solid var(--border-medium)',
                       background: hefInput.monthlyIncomeKes === b.val ? 'var(--gold-primary)' : 'var(--bg-primary)',
-                      color: hefInput.monthlyIncomeKes === b.val ? 'var(--navy-deep)' : 'var(--text-secondary)',
+                      color: hefInput.monthlyIncomeKes === b.val ? 'var(--gold-contrast-text)' : 'var(--text-secondary)',
                       fontWeight: 600,
                       cursor: 'pointer',
                     }}
@@ -1363,7 +1378,7 @@ export default function KuccpsCalculator({
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
               <thead>
-                <tr style={{ borderBottom: '2px solid var(--border-medium)', background: 'var(--bg-secondary)' }}>
+                <tr style={{ borderBottom: '1px solid var(--border-light)', background: 'var(--bg-secondary)' }}>
                   <th style={{ padding: '12px 14px' }}>Programme</th>
                   <th style={{ padding: '12px 14px' }}>Annual Cost</th>
                   <th style={{ padding: '12px 14px' }}>Gov Scholarship ({hefResult.scholarshipPct}%)</th>
@@ -1404,10 +1419,11 @@ export default function KuccpsCalculator({
         <div
           style={{
             background: 'var(--bg-primary)',
-            border: '2px solid var(--border-medium)',
-            borderRadius: 20,
+            border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
+            borderRadius: 'var(--radius-xl)',
             padding: 28,
-            boxShadow: 'var(--shadow-neo)',
+            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
           }}
         >
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16, marginBottom: 24 }}>
@@ -1426,6 +1442,7 @@ export default function KuccpsCalculator({
               type="button"
               onClick={() => setActiveTab('matcher')}
               className="btn btn-outline btn-sm"
+              style={{ borderRadius: 'var(--radius-md)' }}
             >
               + Add More Courses from Matcher
             </button>
@@ -1440,8 +1457,8 @@ export default function KuccpsCalculator({
                   key={slot}
                   style={{
                     padding: 18,
-                    borderRadius: 14,
-                    border: item ? '2px solid var(--gold-primary)' : '2px dashed var(--border-medium)',
+                    borderRadius: 'var(--radius-md)',
+                    border: item ? '1.5px solid var(--gold-primary)' : '1px dashed var(--border-light)',
                     background: item ? 'var(--bg-secondary)' : 'transparent',
                     display: 'flex',
                     flexDirection: 'column',

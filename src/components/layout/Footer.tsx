@@ -11,7 +11,7 @@ export default function Footer() {
               <Link href="/" className="brand-link">
                 {/* SVG Logo matching the requested CC format */}
                 <svg width="38" height="38" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style={{ marginBottom: '14px' }}>
-                  <path d="M22 8C14.268 8 8 14.268 8 22C8 29.732 14.268 36 22 36" stroke="var(--navy-deep)" strokeWidth="4" strokeLinecap="round" />
+                  <path d="M22 8C14.268 8 8 14.268 8 22C8 29.732 14.268 36 22 36" stroke="var(--text-primary)" strokeWidth="4" strokeLinecap="round" />
                   <path d="M18 14C11.3726 14 6 19.3726 6 26C6 32.6274 11.3726 38 18 38" stroke="var(--gold-primary)" strokeWidth="4" strokeLinecap="round" />
                 </svg>
                 <span style={{ fontSize: '1.45rem', fontWeight: 700, display: 'block', letterSpacing: '-0.028em', color: 'var(--text-primary)' }}>
