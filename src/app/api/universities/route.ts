@@ -35,8 +35,13 @@ export async function GET(request: NextRequest) {
     // Fallback to local data
   }
 
-  const rawUnis = dbUnis && dbUnis.length > 0 ? dbUnis : universitiesData;
-  const allUnis = rawUnis.map((u: any) => ({
+  const dbIds = new Set((dbUnis || []).map((u: any) => u.id));
+  const mergedUnis = [
+    ...(dbUnis || []),
+    ...universitiesData.filter(u => !dbIds.has(u.id)),
+  ].sort((a: any, b: any) => (a.ranking ?? 99) - (b.ranking ?? 99));
+
+  const allUnis = mergedUnis.map((u: any) => ({
     ...u,
     image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg',
   }));

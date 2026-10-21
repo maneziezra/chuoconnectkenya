@@ -247,7 +247,14 @@ export default function UniversityBrowser({
                   </button>
 
                   <Link href={`/universities/${uni.id}`} style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                    <img src={uni.image} alt={`${uni.name}`} className="uni-card-image" />
+                    <img
+                      src={uni.image}
+                      alt={`${uni.name}`}
+                      className="uni-card-image"
+                      onError={(e) => {
+                        (e.currentTarget as HTMLImageElement).src = '/images/universities/uon.jpg';
+                      }}
+                    />
                     <div className="card-body" style={{ flex: 1 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
                         <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
