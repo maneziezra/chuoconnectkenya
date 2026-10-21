@@ -127,7 +127,7 @@ export default function ReviewSection({ universityId, initialReviews }: Props) {
   return (
     <div className="card card-body">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid var(--border-light)' }}>
-        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)' }}>
+        <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)' }}>
           Student Reviews
         </h2>
         {!submitted && (

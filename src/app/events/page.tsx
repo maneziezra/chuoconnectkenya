@@ -132,7 +132,7 @@ export default async function EventsPage() {
           {events.length === 0 ? (
             <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
               <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No events found</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No events found</h3>
               <p style={{ color: 'var(--text-secondary)' }}>Check back later for upcoming campus events.</p>
             </div>
           ) : (
@@ -140,7 +140,7 @@ export default async function EventsPage() {
               {/* Featured Events */}
               {featuredEvents.length > 0 && (
                 <div style={{ marginBottom: 60 }}>
-                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24, display: 'flex', alignItems: 'center', gap: 12 }}>
                     Featured Open Days
                     <span style={{ display: 'inline-block', padding: '4px 12px', background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 8, boxShadow: 'var(--shadow-neo)', color: 'var(--text-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                       RSVP Open
@@ -171,7 +171,7 @@ export default async function EventsPage() {
                                 {CATEGORY_CONFIG[e.category]?.icon} {CATEGORY_CONFIG[e.category]?.label}
                               </span>
                             </div>
-                            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.4rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
                               {e.title}
                             </h3>
                             <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: 800, margin: 0 }}>{e.description}</p>
@@ -214,7 +214,7 @@ export default async function EventsPage() {
               {/* Upcoming Events List */}
               {upcomingEvents.length > 0 && (
                 <div>
-                  <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: 24 }}>
+                  <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: 24 }}>
                     Upcoming Campus Sessions
                   </h2>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: 24 }}>
@@ -240,7 +240,7 @@ export default async function EventsPage() {
                           <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-secondary)' }}>{e.universityName}</span>
                         </div>
 
-                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
+                        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>
                           {e.title}
                         </h3>
                         <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, flex: 1, marginBottom: 16 }}>

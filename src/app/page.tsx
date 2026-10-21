@@ -110,7 +110,7 @@ export default async function HomePage() {
               </span>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: 'var(--font-serif)',
                   fontSize: '1.45rem',
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
@@ -151,7 +151,7 @@ export default async function HomePage() {
                       fontWeight: 800,
                       fontSize: '1.08rem',
                       color: 'var(--text-primary)',
-                      fontFamily: "'Playfair Display', serif",
+                      fontFamily: 'var(--font-serif)',
                       letterSpacing: '-0.02em',
                     }}
                   >
@@ -189,7 +189,7 @@ export default async function HomePage() {
                 style={{
                   marginBottom: 16,
                   letterSpacing: '-0.028em',
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: 'var(--font-serif)',
                 }}
               >
                 Everything you need to make the right choice
@@ -252,7 +252,7 @@ export default async function HomePage() {
                       </div>
                       <h3
                         style={{
-                          fontFamily: "'Playfair Display', serif",
+                          fontFamily: 'var(--font-serif)',
                           fontSize: '1.25rem',
                           color: 'var(--text-primary)',
                           letterSpacing: '-0.02em',
@@ -294,7 +294,7 @@ export default async function HomePage() {
                   style={{
                     marginBottom: 10,
                     letterSpacing: '-0.028em',
-                    fontFamily: "'Playfair Display', serif",
+                    fontFamily: 'var(--font-serif)',
                   }}
                 >
                   Top Rated Campuses
@@ -390,7 +390,7 @@ export default async function HomePage() {
                       </div>
                       <h3
                         style={{
-                          fontFamily: "'Playfair Display', serif",
+                          fontFamily: 'var(--font-serif)',
                           fontSize: '1.25rem',
                           color: 'var(--text-primary)',
                           marginBottom: 8,
@@ -479,7 +479,7 @@ export default async function HomePage() {
             <FadeIn direction="up" style={{ flex: 1, position: 'relative', zIndex: 1 }}>
               <h2
                 style={{
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(2rem, 3.5vw, 2.6rem)',
                   letterSpacing: '-0.028em',
                   lineHeight: 1.15,

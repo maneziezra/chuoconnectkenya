@@ -153,7 +153,7 @@ export default function HeroSection() {
                 lineHeight: 1.06,
                 letterSpacing: '-0.032em',
                 color: 'var(--text-primary)',
-                fontFamily: "'Playfair Display', serif",
+                fontFamily: 'var(--font-serif)',
               }}
             >
               Your future starts{' '}

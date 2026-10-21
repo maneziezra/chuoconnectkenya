@@ -15,7 +15,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
 
   return (
     <div>
-      <h2 style={{ fontFamily: 'var(--font-playfair), serif', color: 'var(--text-primary)', marginBottom: 24, fontSize: '1.5rem' }}>
+      <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', marginBottom: 24, fontSize: '1.5rem' }}>
         Enquiry & Audience Analytics
       </h2>
 
@@ -60,7 +60,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
                 <div key={item.key} style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
                     <span style={{ color: 'var(--text-secondary)' }}>{item.label}</span>
-                    <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-jetbrains), monospace' }}>
+                    <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
                       {item.count} ({pct}%)
                     </span>
                   </div>
@@ -82,7 +82,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
                 <div key={item.key} style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', marginBottom: 6 }}>
                     <span style={{ color: 'var(--text-secondary)' }}>{item.label}</span>
-                    <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-jetbrains), monospace' }}>
+                    <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
                       {item.count} ({pct}%)
                     </span>
                   </div>

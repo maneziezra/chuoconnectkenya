@@ -193,7 +193,7 @@ export default async function CoursesPage({ searchParams }: Props) {
 
                       <h3
                         style={{
-                          fontFamily: 'Playfair Display, serif',
+                          fontFamily: 'var(--font-serif)',
                           fontSize: '1.2rem',
                           fontWeight: 600,
                           color: 'var(--text-primary)',
@@ -224,7 +224,7 @@ export default async function CoursesPage({ searchParams }: Props) {
                     <div style={{ padding: '16px 24px', background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
                       <div style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>
                         Min KUCCPS Score:<br />
-                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                           {course.minPoints.toFixed(1)} pts
                         </span>
                       </div>

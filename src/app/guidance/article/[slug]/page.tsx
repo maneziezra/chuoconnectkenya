@@ -71,7 +71,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       <style dangerouslySetInnerHTML={{__html: `
         .article-content h2 {
           color: var(--navy-deep);
-          font-family: 'Playfair Display', serif;
+          font-family: var(--font-serif);
           font-size: 1.75rem;
           margin-top: 48px;
           margin-bottom: 16px;

@@ -44,13 +44,13 @@ export default function LoginPage() {
     <section style={{ minHeight: '100vh', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', padding: '60px 0' }}>
       <div className="container" style={{ maxWidth: 440, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'Playfair Display, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>
             <div style={{ width: 40, height: 40, background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <GraduationCap size={20} color="var(--navy-deep)" />
             </div>
             Chuo Connect Kenya
           </div>
-          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginTop: 20, fontWeight: 700 }}>Welcome back</h1>
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginTop: 20, fontWeight: 700 }}>Welcome back</h1>
           <p style={{ color: 'var(--text-secondary)', marginTop: 8, fontSize: '0.95rem' }}>Log in to your account</p>
         </div>
 

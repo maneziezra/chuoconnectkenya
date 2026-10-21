@@ -114,7 +114,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
     return (
       <div style={{ textAlign: 'center', padding: '80px 20px' }}>
         <Scale size={64} style={{ color: 'var(--text-tertiary)', margin: '0 auto 20px', display: 'block' }} />
-        <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--text-primary)', marginBottom: 12 }}>No campuses selected yet</h2>
+        <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', marginBottom: 12 }}>No campuses selected yet</h2>
         <p style={{ color: 'var(--text-secondary)', marginBottom: 28 }}>Go to any campus profile and click "Compare" to add them here.</p>
         <Link href="/universities" className="btn btn-navy">Browse Universities</Link>
       </div>
@@ -136,7 +136,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
                   <X size={14} />
                 </button>
               </div>
-              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginTop: 8, marginBottom: 4, lineHeight: 1.3 }}>{uni.name}</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginTop: 8, marginBottom: 4, lineHeight: 1.3 }}>{uni.name}</h3>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', gap: 4 }}>
                 <MapPin size={10} /> {uni.county}
               </div>

@@ -156,7 +156,7 @@ export default async function CampusProfilePage({ params }: Props) {
                     boxShadow: '0 12px 32px rgba(0, 0, 0, 0.25)',
                   }}
                 >
-                  <div style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'JetBrains Mono, monospace', lineHeight: 1 }}>{uni.rating.toFixed(1)}</div>
+                  <div style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-mono)', lineHeight: 1 }}>{uni.rating.toFixed(1)}</div>
                   <div className="stars" style={{ margin: '4px 0', display: 'flex', justifyContent: 'center', gap: 2, color: 'var(--gold-primary)' }}>
                     <Star size={16} fill="currentColor" />
                     <Star size={16} fill="currentColor" />
@@ -357,7 +357,7 @@ export default async function CampusProfilePage({ params }: Props) {
                 }}
               >
                 <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--gold-primary)', marginBottom: 8 }}>Tuition Fees</div>
-                <div style={{ fontSize: '1.45rem', fontWeight: 700, fontFamily: 'JetBrains Mono, monospace', color: 'var(--gold-primary)', letterSpacing: '-0.02em' }}>{uni.fees}</div>
+                <div style={{ fontSize: '1.45rem', fontWeight: 700, fontFamily: 'var(--font-mono)', color: 'var(--gold-primary)', letterSpacing: '-0.02em' }}>{uni.fees}</div>
                 <p style={{ fontSize: '0.84rem', color: 'rgba(255,255,255,0.72)', marginTop: 8, lineHeight: 1.55 }}>Fees vary by programme. Contact admissions for exact figures.</p>
               </div>
 
@@ -527,7 +527,7 @@ function InfoCard({ title, icon, children }: { title: string; icon?: React.React
       }}
     >
       <h2 style={{
-        fontFamily: "'Playfair Display', serif", fontSize: '1.25rem', fontWeight: 600,
+        fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 600,
         letterSpacing: '-0.02em',
         color: 'var(--text-primary)', marginBottom: 18, paddingBottom: 14,
         borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 10}}>

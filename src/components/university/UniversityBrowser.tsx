@@ -135,7 +135,7 @@ export default function UniversityBrowser({
           overflow: 'hidden', opacity: sidebarOpen ? 1 : 0, transition: 'opacity 0.3s ease',
         }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>Filter Results</h3>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', fontWeight: 600, color: 'var(--text-primary)' }}>Filter Results</h3>
             {hasFilters && (
               <button onClick={clearFilters} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.8rem', color: 'var(--gold-primary)', fontWeight: 600 }}>
                 Clear All
@@ -251,9 +251,9 @@ export default function UniversityBrowser({
                     <div className="card-body" style={{ flex: 1 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
                         <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
-                        <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Rank #{uni.ranking}</span>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Rank #{uni.ranking}</span>
                       </div>
-                      <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.3 }}>{uni.name}</h3>
+                      <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.05rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.3 }}>{uni.name}</h3>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
                         <MapPin size={12} /> {uni.county} County · Est. {uni.established}
                       </div>

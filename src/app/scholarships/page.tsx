@@ -199,7 +199,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           {scholarships.length === 0 ? (
             <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
               <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No scholarships found</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No scholarships found</h3>
               <p style={{ color: 'var(--text-secondary)', marginBottom: 16 }}>We couldn&apos;t find any scholarships matching your filter.</p>
               <Link href="/scholarships" className="btn btn-outline btn-sm">Reset Filters</Link>
             </div>
@@ -231,7 +231,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                       </div>
                     </div>
 
-                    <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3 }}>
+                    <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 4, lineHeight: 1.3 }}>
                       {s.title}
                     </h3>
                     <div style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', marginBottom: 10 }}>
@@ -285,7 +285,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           {/* CTA */}
           <div style={{ marginTop: 60, padding: '40px', background: 'var(--bg-secondary)', borderRadius: 16, border: '2px solid var(--border-medium)', boxShadow: 'var(--shadow-neo)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
             <div style={{ position: 'relative', zIndex: 1 }}>
-              <h2 style={{ fontFamily: 'Playfair Display, serif', color: 'var(--text-primary)', marginBottom: 12 }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', marginBottom: 12 }}>
                 Represent a University Financial Aid Office or Foundation?
               </h2>
               <p style={{ color: 'var(--text-secondary)', marginBottom: 24 }}>

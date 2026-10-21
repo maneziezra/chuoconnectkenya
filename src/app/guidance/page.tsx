@@ -173,7 +173,7 @@ export default function GuidancePage() {
                 <div style={{ width: 48, height: 48, border: '2px solid var(--border-medium)', borderRadius: 10, background: 'var(--gold-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-primary)', marginBottom: 20 }}>
                   {article.icon}
                 </div>
-                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 12, lineHeight: 1.3 }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 12, lineHeight: 1.3 }}>
                   {article.title}
                 </h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 24, flex: 1 }}>

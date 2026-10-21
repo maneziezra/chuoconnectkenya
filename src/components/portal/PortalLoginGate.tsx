@@ -141,7 +141,7 @@ export default function PortalLoginGate() {
               <div>
                 <h1
                   style={{
-                    fontFamily: 'Playfair Display, serif',
+                    fontFamily: 'var(--font-serif)',
                     fontSize: '1.5rem',
                     color: 'var(--text-primary)',
                     fontWeight: 700,
@@ -275,7 +275,7 @@ export default function PortalLoginGate() {
               >
                 <TrendingUp size={13} /> B2B Admissions & Enrollment Engine
               </span>
-              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.6rem', fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 700, color: '#FFFFFF', marginBottom: 10 }}>
                 Recruit Pre-Qualified KCSE Graduates at Scale
               </h2>
               <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: 24 }}>
@@ -313,7 +313,7 @@ export default function PortalLoginGate() {
                       <span style={{ fontWeight: 700, fontSize: '0.92rem', color: '#FFFFFF', display: 'flex', alignItems: 'center', gap: 6 }}>
                         <CheckCircle2 size={15} style={{ color: 'var(--gold-primary)' }} /> {pkg.tier}
                       </span>
-                      <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.82rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
                         {pkg.price}
                       </span>
                     </div>

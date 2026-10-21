@@ -49,7 +49,7 @@ export default function ContactPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: 48 }}>
             {/* Contact Info */}
             <div>
-              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24 }}>Contact Information</h2>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24 }}>Contact Information</h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 24, marginBottom: 40 }}>
                 {[
                   { icon: <Mail size={24} />, label: 'Email', value: 'hello@chuoconnect.co.ke', href: 'mailto:hello@chuoconnect.co.ke' },
@@ -113,7 +113,7 @@ export default function ContactPage() {
                 boxShadow: 'var(--shadow-neo)'
               }}
             >
-              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24 }}>Send a Message</h2>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 24 }}>Send a Message</h2>
               <ContactFormClient />
             </div>
           </div>

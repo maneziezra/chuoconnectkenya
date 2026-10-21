@@ -2498,7 +2498,7 @@ export default async function HousingPage({ searchParams }: Props) {
         <div className="container" style={{ display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
           {/* Filters Sidebar */}
           <aside style={{ width: 280, flexShrink: 0, background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', padding: 24, border: '1px solid var(--border-light)', position: 'sticky', top: 100 }}>
-            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 20 }}>Filters</h3>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 20 }}>Filters</h3>
 
             <form action="/housing" method="GET">
               <div style={{ marginBottom: 18 }}>
@@ -2560,7 +2560,7 @@ export default async function HousingPage({ searchParams }: Props) {
             ) : housingListings.length === 0 ? (
               <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', border: '1px dashed var(--border-medium)' }}>
                 <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-                <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No housing found</h3>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', color: 'var(--text-primary)', marginBottom: 8 }}>No housing found</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>Try adjusting your filters to see more results.</p>
               </div>
             ) : (
@@ -2596,7 +2596,7 @@ export default async function HousingPage({ searchParams }: Props) {
                       </div>
                       <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-                          <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.2 }}>{h.name}</h3>
+                          <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', lineHeight: 1.2 }}>{h.name}</h3>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>
                           <MapPin size={12} /> {h.location}, {h.county}

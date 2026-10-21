@@ -24,12 +24,12 @@ export default async function Image() {
             <path d="M12 5H7.5L3.5 12L7.5 19H12" stroke="#F9FAFB" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M24 5H19.5L15.5 12L19.5 19H24" stroke="#FBBF24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
-          <div style={{ display: 'flex', fontSize: 80, fontWeight: 800, letterSpacing: '-0.03em', fontFamily: 'sans-serif' }}>
+          <div style={{ display: 'flex', fontSize: 80, fontWeight: 800, letterSpacing: '-0.03em', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
             <span style={{ color: '#F9FAFB' }}>Chuo</span>
             <span style={{ color: '#FBBF24' }}>Connect</span>
           </div>
         </div>
-        <div style={{ color: '#94A3B8', fontSize: 32, marginTop: 40, fontWeight: 500, fontFamily: 'sans-serif' }}>
+        <div style={{ color: '#94A3B8', fontSize: 32, marginTop: 40, fontWeight: 500, fontFamily: 'system-ui, -apple-system, sans-serif' }}>
           The Premier University Discovery Platform
         </div>
       </div>

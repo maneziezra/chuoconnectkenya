@@ -78,7 +78,7 @@ export default function AboutPage() {
                 padding: 40
               }}
             >
-              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 20 }}>The Problem We Solve</h2>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 20 }}>The Problem We Solve</h2>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 16 }}>
                 Choosing a university or college is one of the most important decisions in a student&apos;s life. Yet many Kenyan students lack access to comprehensive, reliable, and engaging information about campuses across the country.
               </p>
@@ -112,7 +112,7 @@ export default function AboutPage() {
                 color: 'var(--text-primary)'
               }}
             >
-              <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 20 }}>Our Solution</h2>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginBottom: 20 }}>Our Solution</h2>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 24 }}>
                 Chuo Connect Kenya serves as a centralized platform where students can explore, compare, and confidently choose their ideal campus.
               </p>
@@ -179,7 +179,7 @@ export default function AboutPage() {
               >
                 <Target size={26} style={{ color: 'var(--text-primary)' }} />
               </div>
-              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.3rem', color: 'var(--text-primary)', marginBottom: 16 }}>Our Vision</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: 'var(--text-primary)', marginBottom: 16 }}>Our Vision</h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1rem' }}>
                 To become Kenya&apos;s most trusted digital platform for discovering, exploring, and connecting students with campuses and higher education opportunities.
               </p>
@@ -209,7 +209,7 @@ export default function AboutPage() {
               >
                 <GraduationCap size={26} style={{ color: 'var(--text-primary)' }} />
               </div>
-              <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.3rem', color: 'var(--text-primary)', marginBottom: 16 }}>Our Mission</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.3rem', color: 'var(--text-primary)', marginBottom: 16 }}>Our Mission</h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8, fontSize: '1rem' }}>
                 To simplify the university selection process by providing students with accurate information, immersive campus experiences, and personalised recommendations that help them make informed educational decisions.
               </p>
@@ -222,7 +222,7 @@ export default function AboutPage() {
       <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2rem', color: 'var(--text-primary)', marginBottom: 12 }}>Who We Serve</h2>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: 'var(--text-primary)', marginBottom: 12 }}>Who We Serve</h2>
             <p style={{ color: 'var(--text-secondary)', maxWidth: 480, margin: '0 auto' }}>Our platform is built for the Kenyan education ecosystem.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
@@ -274,7 +274,7 @@ export default function AboutPage() {
             margin: '0 auto'
           }}
         >
-          <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2.5rem', color: 'var(--text-inverse)', marginBottom: 16 }}>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', color: 'var(--text-inverse)', marginBottom: 16 }}>
             Start Your Campus Journey Today
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.9)', marginBottom: 32, maxWidth: 480, margin: '0 auto 32px', fontSize: '1.1rem' }}>

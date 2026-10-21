@@ -119,7 +119,7 @@ export default async function GradeDetailPage({ params }: Props) {
                       fontSize: '0.76rem',
                       fontWeight: 700,
                       textDecoration: 'none',
-                      fontFamily: 'JetBrains Mono, monospace',
+                      fontFamily: 'var(--font-mono)',
                       background: g.slug === guide.slug ? 'var(--navy-deep)' : 'var(--bg-secondary)',
                       color: g.slug === guide.slug ? 'var(--gold-primary)' : 'var(--text-secondary)',
                       border: '1px solid var(--border-medium)',
@@ -138,7 +138,7 @@ export default async function GradeDetailPage({ params }: Props) {
                   borderRadius: 8,
                   background: 'var(--navy-deep)',
                   color: 'var(--gold-primary)',
-                  fontFamily: 'JetBrains Mono, monospace',
+                  fontFamily: 'var(--font-mono)',
                   fontWeight: 800,
                   fontSize: '0.9rem',
                 }}
@@ -249,7 +249,7 @@ export default async function GradeDetailPage({ params }: Props) {
                           </span>
                           <span
                             style={{
-                              fontFamily: 'JetBrains Mono, monospace',
+                              fontFamily: 'var(--font-mono)',
                               fontSize: '0.78rem',
                               fontWeight: 700,
                               padding: '3px 10px',
@@ -262,7 +262,7 @@ export default async function GradeDetailPage({ params }: Props) {
                           </span>
                         </div>
 
-                        <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.12rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.3 }}>
+                        <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.12rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.3 }}>
                           {course.title}
                         </h3>
                         <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: 12 }}>
@@ -371,7 +371,7 @@ export default async function GradeDetailPage({ params }: Props) {
                         </span>
                       </div>
 
-                      <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
+                      <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.08rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
                         {dip.title}
                       </h3>
                       <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.55, margin: 0 }}>

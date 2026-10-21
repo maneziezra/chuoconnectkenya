@@ -243,7 +243,7 @@ export default async function DashboardPage() {
                                 {course.clusterGroup.split(':')[0]}
                               </span>
                             </div>
-                            <h3 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.3 }}>
+                            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.3 }}>
                               {course.title}
                             </h3>
                             <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>

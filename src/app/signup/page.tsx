@@ -68,13 +68,13 @@ export default function SignupPage() {
       <div className="container" style={{ maxWidth: 480, margin: '0 auto' }}>
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'Playfair Display, serif', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-primary)' }}>
             <div style={{ width: 40, height: 40, background: 'var(--gold-glow)', border: '2px solid var(--border-medium)', borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <GraduationCap size={20} color="var(--navy-deep)" />
             </div>
             Chuo Connect Kenya
           </div>
-          <h1 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.8rem', color: 'var(--text-primary)', marginTop: 20, fontWeight: 700 }}>Create Your Account</h1>
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', color: 'var(--text-primary)', marginTop: 20, fontWeight: 700 }}>Create Your Account</h1>
           <p style={{ color: 'var(--text-secondary)', marginTop: 8, fontSize: '0.95rem' }}>Free for students. Always.</p>
         </div>
 

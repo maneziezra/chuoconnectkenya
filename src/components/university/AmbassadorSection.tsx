@@ -65,7 +65,7 @@ export default function AmbassadorSection({ universityId, initialAmbassadors }: 
   return (
     <div className="card card-body">
       <h2 style={{
-        fontFamily: 'Playfair Display, serif', fontSize: '1.15rem', fontWeight: 600,
+        fontFamily: 'var(--font-serif)', fontSize: '1.15rem', fontWeight: 600,
         color: 'var(--text-primary)', marginBottom: 8, paddingBottom: 12,
         borderBottom: '1px solid var(--border-light)',
       }}>

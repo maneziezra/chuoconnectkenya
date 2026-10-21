@@ -108,7 +108,7 @@ export default function GradesIndexPage() {
                           borderRadius: 10,
                           background: 'var(--navy-deep)',
                           color: 'var(--gold-primary)',
-                          fontFamily: 'JetBrains Mono, monospace',
+                          fontFamily: 'var(--font-mono)',
                           fontWeight: 800,
                           fontSize: '1.1rem',
                         }}
@@ -129,7 +129,7 @@ export default function GradesIndexPage() {
                       </span>
                     </div>
 
-                    <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '1.22rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.35 }}>
+                    <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.22rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, lineHeight: 1.35 }}>
                       {guide.headline}
                     </h2>
                     <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 16 }}>
@@ -151,13 +151,13 @@ export default function GradesIndexPage() {
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>KCSE Aggregate:</span>
-                        <strong style={{ color: 'var(--text-primary)', fontFamily: 'JetBrains Mono, monospace' }}>
+                        <strong style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
                           {guide.aggregateRange}
                         </strong>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Cluster / Entry Tier:</span>
-                        <strong style={{ color: 'var(--text-primary)', fontFamily: 'JetBrains Mono, monospace' }}>
+                        <strong style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
                           {guide.typicalClusterRange}
                         </strong>
                       </div>

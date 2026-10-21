@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600;700&display=swap');
+/* Apple fonts only: SF Pro (sans), New York (serif), SF Mono (mono) via system font stacks */
 
 /* ============================================
    EXECUTIVE NAVY & GOLD — DUAL THEME EDITION
@@ -6,6 +6,11 @@
    ============================================ */
 
 :root {
+  /* Apple Typography: SF Pro / New York / SF Mono */
+  --font-sans:  -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', system-ui, 'Helvetica Neue', sans-serif;
+  --font-serif: 'New York', ui-serif, 'Iowan Old Style', Georgia, serif;
+  --font-mono:  'SF Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
   /* Core Brand Colors (Constant) */
   --brand-navy: #1A2338;
   --brand-gold: #C79B37;
@@ -159,7 +164,7 @@ html {
 }
 
 body {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans);
   color: var(--text-primary);
   background-color: var(--bg-primary);
   line-height: 1.6;
@@ -196,13 +201,13 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
    TYPOGRAPHY (Apple Law 15: Optical Sizing & Tracking)
    ============================================ */
 
-.font-serif       { font-family: var(--font-instrument), serif; }
-.font-display     { font-family: var(--font-playfair), serif; }
-.font-ui          { font-family: var(--font-inter), sans-serif; }
-.font-mono        { font-family: var(--font-jetbrains), monospace; }
+.font-serif       { font-family: var(--font-serif); }
+.font-display     { font-family: var(--font-serif); }
+.font-ui          { font-family: var(--font-sans); }
+.font-mono        { font-family: var(--font-mono); }
 
 .text-hero {
-  font-family: var(--font-instrument), serif;
+  font-family: var(--font-serif);
   font-size: clamp(2.5rem, 6vw, 4.8rem);
   line-height: 1.05;
   letter-spacing: -0.028em;
@@ -211,7 +216,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
 }
 
 .text-h1 {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-serif);
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 700;
   line-height: 1.12;
@@ -221,7 +226,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
 }
 
 .text-h2 {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-serif);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 600;
   line-height: 1.22;
@@ -231,7 +236,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
 }
 
 .text-h3 {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans);
   font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.014em;
@@ -240,7 +245,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
 }
 
 .text-label {
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -304,7 +309,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
   gap: 8px;
   padding: 12px 24px;
   border-radius: var(--radius-md);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: -0.012em;
@@ -505,7 +510,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
 }
 
 .footer-heading {
-  font-family: var(--font-playfair), serif;
+  font-family: var(--font-serif);
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -645,7 +650,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
   padding: 12px 16px;
   border: 2px solid var(--border-medium);
   border-radius: var(--radius-lg);
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   color: var(--text-primary);
   background: var(--bg-secondary);
@@ -685,7 +690,7 @@ button:active, .btn:active, .card-interactive:active, a.btn:active {
 }
 
 .stat-number {
-  font-family: var(--font-jetbrains), monospace;
+  font-family: var(--font-mono);
   font-size: clamp(2rem, 4vw, 2.5rem);
   font-weight: 700;
   color: var(--text-primary);
@@ -980,7 +985,7 @@ dialog.chuo-enquiry::backdrop {
   padding: 16px 24px;
   border: none;
   cursor: pointer;
-  font-family: var(--font-inter), sans-serif;
+  font-family: var(--font-sans);
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-secondary);
