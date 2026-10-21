@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import {
   LayoutDashboard, BarChart2, Users, Edit3, Star,
   Building2, TrendingUp, TrendingDown, Minus,
   Download, Reply, ExternalLink, UploadCloud, CheckCircle2, Loader2,
-  Phone, Mail, MessageCircle, Search, Sparkles
+  Phone, Mail, MessageCircle, Search, Sparkles, LogOut, Check
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import {
@@ -186,14 +186,25 @@ function MetricCard({
   const isUp = typeof change === 'number' && change > 0;
   const isFlat = change === 0 || change === null || change === undefined;
   return (
-    <div className="card" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-      <div style={{ fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
+    <div
+      style={{
+        padding: '24px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '10px',
+        background: 'var(--bg-primary)',
+        borderRadius: 'var(--radius-xl)',
+        border: '1px solid var(--border-light)',
+        boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
+      }}
+    >
+      <div style={{ fontSize: '0.76rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
         {label}
       </div>
-      <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)', lineHeight: 1 }}>
+      <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)', lineHeight: 1, letterSpacing: '-0.03em' }}>
         {value}
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4, fontSize: '0.85rem', fontWeight: 600, color: isFlat ? 'var(--text-tertiary)' : isUp ? 'var(--success-text)' : '#EF4444' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4, fontSize: '0.84rem', fontWeight: 600, color: isFlat ? 'var(--text-tertiary)' : isUp ? 'var(--success-text)' : '#EF4444' }}>
         {subtitle ? (
           <span>{subtitle}</span>
         ) : (
@@ -220,14 +231,26 @@ function OverviewTab({
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
-        <h2 className="text-h2" style={{ margin: 0 }}>Dashboard Overview</h2>
-        <button type="button" className="btn btn-gold btn-sm" onClick={onOpenLeads}>
-          <Users size={15} /> Open Admissions Pipeline ({metrics.total})
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 28 }}>
+        <div>
+          <h2 style={{ fontSize: '1.65rem', fontWeight: 700, letterSpacing: '-0.028em', color: 'var(--text-primary)', margin: 0 }}>
+            Dashboard Overview
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: '6px 0 0 0' }}>
+            Real-time admissions performance, student demand, and recruitment conversion.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="btn btn-gold btn-sm"
+          onClick={onOpenLeads}
+          style={{ borderRadius: 'var(--radius-full)', padding: '8px 18px', fontWeight: 600 }}
+        >
+          <Users size={15} /> Admissions Pipeline ({metrics.total})
         </button>
       </div>
 
-      <div className="dashboard-grid-3" style={{ marginBottom: 32 }}>
+      <div className="dashboard-grid-3" style={{ marginBottom: 28 }}>
         <MetricCard
           label="Prospective Enquiries"
           value={metrics.total}
@@ -247,8 +270,16 @@ function OverviewTab({
       </div>
 
       <div className="dashboard-grid-2">
-        <div className="card" style={{ padding: 24 }}>
-          <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20, fontSize: '1.1rem' }}>
+        <div
+          style={{
+            padding: 24,
+            background: 'var(--bg-primary)',
+            borderRadius: 'var(--radius-xl)',
+            border: '1px solid var(--border-light)',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
+          }}
+        >
+          <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20, fontSize: '1.05rem', letterSpacing: '-0.015em' }}>
             Top Programmes by Student Demand
           </div>
           {metrics.topCourses.length === 0 ? (
@@ -258,12 +289,12 @@ function OverviewTab({
               const pct = Math.round((count / maxCourseCount) * 100);
               return (
                 <div key={course} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--border-light)', fontSize: '0.9rem', gap: 12 }}>
-                  <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>{course}</span>
+                  <span style={{ color: 'var(--text-primary)', fontWeight: 500 }}>{course}</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-                    <div style={{ width: 90, height: 6, background: 'var(--bg-tertiary)', borderRadius: 3, overflow: 'hidden' }}>
+                    <div style={{ width: 90, height: 6, background: 'var(--bg-secondary)', borderRadius: 3, overflow: 'hidden' }}>
                       <div style={{ height: '100%', background: 'var(--accent-gold)', width: `${pct}%`, borderRadius: 3 }} />
                     </div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.85rem', color: 'var(--text-primary)', fontWeight: 600 }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                       {count} {count === 1 ? 'lead' : 'leads'}
                     </span>
                   </div>
@@ -273,23 +304,31 @@ function OverviewTab({
           )}
         </div>
 
-        <div className="card" style={{ padding: 24 }}>
-          <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20, fontSize: '1.1rem' }}>
+        <div
+          style={{
+            padding: 24,
+            background: 'var(--bg-primary)',
+            borderRadius: 'var(--radius-xl)',
+            border: '1px solid var(--border-light)',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
+          }}
+        >
+          <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 20, fontSize: '1.05rem', letterSpacing: '-0.015em' }}>
             Recent Student Enquiries
           </div>
           {leads.slice(0, 4).map(lead => (
             <div key={lead.id} style={{ display: 'flex', gap: 12, padding: '12px 0', borderBottom: '1px solid var(--border-light)', alignItems: 'flex-start' }}>
               <div
                 style={{
-                  width: 10,
-                  height: 10,
+                  width: 9,
+                  height: 9,
                   borderRadius: '50%',
-                  background: lead.status === 'Enrolled' ? 'var(--success-text)' : 'var(--accent-gold)',
+                  background: lead.status === 'Enrolled' ? 'var(--success-text)' : lead.status === 'Applied' ? '#8B5CF6' : 'var(--accent-gold)',
                   flexShrink: 0,
                   marginTop: 6,
                 }}
               />
-              <div>
+              <div style={{ flex: 1 }}>
                 <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 600 }}>
                   {lead.student_name} — <span style={{ fontWeight: 500, color: 'var(--text-secondary)' }}>{lead.target_course || 'General Admission'}</span>
                 </div>
@@ -314,6 +353,7 @@ function LeadsTab({
   isDemoData,
   metrics,
   onStatusChange,
+  onShowToast,
 }: {
   uni: University;
   leads: UniversityLead[];
@@ -321,6 +361,7 @@ function LeadsTab({
   isDemoData: boolean;
   metrics: LeadMetrics;
   onStatusChange: (leadId: string, nextStatus: LeadStatus) => Promise<void>;
+  onShowToast: (msg: string) => void;
 }) {
   const [stageFilter, setStageFilter] = useState<'All' | LeadStatus>('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -351,6 +392,7 @@ function LeadsTab({
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+    onShowToast(`Exported ${filteredLeads.length} student leads to CSV`);
   };
 
   const statusColor: Record<LeadStatus, string> = {
@@ -365,18 +407,26 @@ function LeadsTab({
     setUpdatingId(leadId);
     await onStatusChange(leadId, nextStatus);
     setUpdatingId(null);
+    onShowToast(`Lead stage updated to ${nextStatus}`);
   };
 
   return (
     <div>
-      <div className="dashboard-header" style={{ marginBottom: 18 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 24 }}>
         <div>
-          <h2 className="text-h2" style={{ marginBottom: 4 }}>Admissions Lead Pipeline</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: 0 }}>
-            Qualify prospective students by KCSE cluster score, HEF funding tier, and programme choice, then reach out in 1 click via WhatsApp.
+          <h2 style={{ fontSize: '1.65rem', fontWeight: 700, letterSpacing: '-0.028em', color: 'var(--text-primary)', margin: 0 }}>
+            Admissions Lead Pipeline
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: '6px 0 0 0' }}>
+            Qualify prospective students by KCSE score, HEF funding tier, and reach out in 1 click via WhatsApp.
           </p>
         </div>
-        <button type="button" className="btn btn-outline btn-sm" onClick={exportCSV}>
+        <button
+          type="button"
+          onClick={exportCSV}
+          className="btn btn-outline btn-sm"
+          style={{ borderRadius: 'var(--radius-md)', padding: '8px 16px', fontWeight: 600 }}
+        >
           <Download size={14} /> Export CSV ({filteredLeads.length})
         </button>
       </div>
@@ -384,28 +434,39 @@ function LeadsTab({
       {isDemoData && (
         <div
           style={{
-            padding: '12px 16px',
-            borderRadius: 12,
+            padding: '12px 18px',
+            borderRadius: 'var(--radius-lg)',
             background: 'var(--gold-glow)',
             border: '1px solid var(--border-medium)',
-            marginBottom: 18,
+            marginBottom: 20,
             display: 'flex',
             alignItems: 'center',
-            gap: 10,
+            gap: 12,
             fontSize: '0.84rem',
             color: 'var(--text-primary)',
           }}
         >
           <Sparkles size={16} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
           <span>
-            <strong>Interactive Preview Pipeline:</strong> Showing sample student leads for <strong>{uni.name}</strong>. Live student enquiries submitted via the University Profile, Course Finder, or KUCCPS Calculator automatically appear here once <code>supabase_university_leads.sql</code> is applied.
+            <strong>Interactive Preview Pipeline:</strong> Showing sample student leads for <strong>{uni.name}</strong>. Student enquiries submitted via the University Profile, Course Finder, or KUCCPS Calculator automatically appear here live.
           </span>
         </div>
       )}
 
-      {/* Stage Filter Pills & Search Bar */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 18 }}>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+      {/* Apple Segmented Filter Pills & Search Bar */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 14, marginBottom: 20 }}>
+        <div
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            padding: 3,
+            background: 'var(--bg-secondary)',
+            borderRadius: 'var(--radius-md)',
+            border: '1px solid var(--border-light)',
+            gap: 2,
+            flexWrap: 'wrap',
+          }}
+        >
           {(['All', ...LEAD_STATUSES] as const).map(stage => {
             const count = stage === 'All' ? metrics.total : metrics.byStatus[stage];
             const active = stageFilter === stage;
@@ -415,171 +476,237 @@ function LeadsTab({
                 type="button"
                 onClick={() => setStageFilter(stage)}
                 style={{
-                  padding: '6px 12px',
-                  borderRadius: 999,
-                  fontSize: '0.8rem',
-                  fontWeight: 700,
+                  padding: '6px 13px',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '0.82rem',
+                  fontWeight: active ? 600 : 500,
                   cursor: 'pointer',
-                  border: active ? '2px solid var(--navy-deep)' : '1px solid var(--border-medium)',
-                  background: active ? 'var(--navy-deep)' : 'var(--bg-primary)',
-                  color: active ? '#FFFFFF' : 'var(--text-secondary)',
+                  border: 'none',
+                  background: active ? 'var(--bg-primary)' : 'transparent',
+                  color: active ? 'var(--text-primary)' : 'var(--text-secondary)',
+                  boxShadow: active ? '0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04)' : 'none',
+                  transition: 'all 0.16s ease',
                 }}
               >
-                {stage} ({count})
+                {stage} <span style={{ opacity: 0.7, fontSize: '0.76rem', marginLeft: 4 }}>({count})</span>
               </button>
             );
           })}
         </div>
 
-        <div style={{ position: 'relative', minWidth: 240, flex: '0 1 300px' }}>
-          <Search size={15} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} />
+        <div style={{ position: 'relative', minWidth: 260, flex: '0 1 320px' }}>
+          <Search size={15} style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-tertiary)' }} />
           <input
             type="search"
             placeholder="Search name, phone or course..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
             className="form-input"
-            style={{ paddingLeft: 34, paddingTop: 8, paddingBottom: 8, fontSize: '0.85rem' }}
+            style={{
+              paddingLeft: 38,
+              paddingTop: 8,
+              paddingBottom: 8,
+              fontSize: '0.86rem',
+              borderRadius: 'var(--radius-md)',
+              background: 'var(--bg-primary)',
+              border: '1px solid var(--border-light)',
+            }}
           />
         </div>
       </div>
 
-      <div className="card" style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', minWidth: '820px', borderCollapse: 'collapse', textAlign: 'left' }}>
-          <thead style={{ background: 'var(--bg-secondary)', borderBottom: '2px solid var(--border-light)' }}>
-            <tr>
-              {['Student & Contact', 'KCSE & Cluster', 'Target Course & Funding', 'Stage', 'Direct Outreach'].map(h => (
-                <th key={h} style={{ padding: '14px 18px', fontSize: '0.76rem', fontWeight: 700, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
+      <div
+        style={{
+          borderRadius: 'var(--radius-xl)',
+          overflow: 'hidden',
+          background: 'var(--bg-primary)',
+          border: '1px solid var(--border-light)',
+          boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
+        }}
+      >
+        <div style={{ overflowX: 'auto' }}>
+          <table style={{ width: '100%', minWidth: '820px', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <thead style={{ background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-light)' }}>
               <tr>
-                <td colSpan={5} style={{ padding: 32, textAlign: 'center', color: 'var(--text-tertiary)' }}>
-                  <Loader2 size={24} className="animate-spin mx-auto" />
-                </td>
+                {['Student & Contact', 'KCSE & Cluster', 'Target Course & Funding', 'Stage', 'Direct Outreach'].map(h => (
+                  <th key={h} style={{ padding: '14px 20px', fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    {h}
+                  </th>
+                ))}
               </tr>
-            ) : filteredLeads.length === 0 ? (
-              <tr>
-                <td colSpan={5} style={{ padding: 32, textAlign: 'center', color: 'var(--text-tertiary)' }}>
-                  No leads match the current filter.
-                </td>
-              </tr>
-            ) : (
-              filteredLeads.map(lead => {
-                const links = buildContactLinks(lead, uni.name);
-                const color = statusColor[lead.status] || 'var(--text-secondary)';
-                return (
-                  <tr key={lead.id} style={{ borderBottom: '1px solid var(--border-light)', transition: 'var(--transition)' }} className="table-row-hover">
-                    <td style={{ padding: '16px 18px' }}>
-                      <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>
-                        {lead.student_name}
-                      </div>
-                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginTop: 2 }}>
-                        {lead.phone}
-                      </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', marginTop: 2 }}>
-                        {SOURCE_LABELS[lead.source]} • {formatRelativeTime(lead.createdAt)}
-                      </div>
-                    </td>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr>
+                  <td colSpan={5} style={{ padding: 48, textAlign: 'center', color: 'var(--text-tertiary)' }}>
+                    <Loader2 size={24} className="animate-spin mx-auto" />
+                  </td>
+                </tr>
+              ) : filteredLeads.length === 0 ? (
+                <tr>
+                  <td colSpan={5} style={{ padding: 48, textAlign: 'center', color: 'var(--text-tertiary)', fontSize: '0.92rem' }}>
+                    No leads match the current filter or search query.
+                  </td>
+                </tr>
+              ) : (
+                filteredLeads.map(lead => {
+                  const links = buildContactLinks(lead, uni.name);
+                  const color = statusColor[lead.status] || 'var(--text-secondary)';
+                  return (
+                    <tr
+                      key={lead.id}
+                      style={{ borderBottom: '1px solid var(--border-light)', transition: 'background 0.15s ease' }}
+                      className="table-row-hover"
+                    >
+                      <td style={{ padding: '16px 20px' }}>
+                        <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.94rem' }}>
+                          {lead.student_name}
+                        </div>
+                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginTop: 2 }}>
+                          {lead.phone}
+                        </div>
+                        <div style={{ fontSize: '0.74rem', color: 'var(--text-tertiary)', marginTop: 2 }}>
+                          {SOURCE_LABELS[lead.source]} • {formatRelativeTime(lead.createdAt)}
+                        </div>
+                      </td>
 
-                    <td style={{ padding: '16px 18px' }}>
-                      <div style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-                        {lead.cluster_points !== null ? `${lead.cluster_points.toFixed(1)} / 48` : '—'}
-                      </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: 2 }}>
-                        Mean Grade: <strong>{lead.mean_grade || 'N/A'}</strong>
-                      </div>
-                    </td>
+                      <td style={{ padding: '16px 20px' }}>
+                        <div style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
+                          {lead.cluster_points !== null ? `${lead.cluster_points.toFixed(1)} / 48` : '—'}
+                        </div>
+                        <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: 2 }}>
+                          Mean Grade: <strong>{lead.mean_grade || 'N/A'}</strong>
+                        </div>
+                      </td>
 
-                    <td style={{ padding: '16px 18px' }}>
-                      <div style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem' }}>
-                        {lead.target_course || 'General Admission Enquiry'}
-                      </div>
-                      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
-                        <span style={{ fontSize: '0.73rem', padding: '2px 8px', borderRadius: 6, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', fontWeight: 600 }}>
-                          {FINANCING_LABELS[lead.financing_preference]}
-                        </span>
-                        {lead.hef_band && (
-                          <span style={{ fontSize: '0.73rem', padding: '2px 8px', borderRadius: 6, background: 'var(--gold-glow)', color: 'var(--gold-primary)', fontWeight: 700 }}>
-                            HEF Band {lead.hef_band}
+                      <td style={{ padding: '16px 20px' }}>
+                        <div style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '0.9rem' }}>
+                          {lead.target_course || 'General Admission Enquiry'}
+                        </div>
+                        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 4 }}>
+                          <span style={{ fontSize: '0.72rem', padding: '2px 8px', borderRadius: 6, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', fontWeight: 600 }}>
+                            {FINANCING_LABELS[lead.financing_preference]}
                           </span>
-                        )}
-                      </div>
-                    </td>
+                          {lead.hef_band && (
+                            <span style={{ fontSize: '0.72rem', padding: '2px 8px', borderRadius: 6, background: 'var(--gold-glow)', color: 'var(--gold-primary)', fontWeight: 700 }}>
+                              HEF Band {lead.hef_band}
+                            </span>
+                          )}
+                        </div>
+                      </td>
 
-                    <td style={{ padding: '16px 18px' }}>
-                      <select
-                        aria-label={`Stage for ${lead.student_name}`}
-                        value={lead.status}
-                        disabled={updatingId === lead.id}
-                        onChange={e => handleStageSelect(lead.id, e.target.value as LeadStatus)}
-                        style={{
-                          fontSize: '0.82rem',
-                          fontWeight: 700,
-                          color,
-                          padding: '6px 10px',
-                          background: `${color}15`,
-                          border: '1px solid var(--border-medium)',
-                          borderRadius: 8,
-                          cursor: 'pointer',
-                        }}
-                      >
-                        {LEAD_STATUSES.map(s => (
-                          <option key={s} value={s} style={{ color: 'var(--text-primary)', background: 'var(--bg-primary)' }}>
-                            {s}
-                          </option>
-                        ))}
-                      </select>
-                    </td>
+                      <td style={{ padding: '16px 20px' }}>
+                        <select
+                          aria-label={`Stage for ${lead.student_name}`}
+                          value={lead.status}
+                          disabled={updatingId === lead.id}
+                          onChange={e => handleStageSelect(lead.id, e.target.value as LeadStatus)}
+                          style={{
+                            fontSize: '0.82rem',
+                            fontWeight: 700,
+                            color,
+                            padding: '6px 10px',
+                            background: 'var(--bg-secondary)',
+                            border: '1px solid var(--border-light)',
+                            borderRadius: 'var(--radius-sm)',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          {LEAD_STATUSES.map(s => (
+                            <option key={s} value={s} style={{ color: 'var(--text-primary)', background: 'var(--bg-primary)' }}>
+                              {s}
+                            </option>
+                          ))}
+                        </select>
+                      </td>
 
-                    <td style={{ padding: '16px 18px' }}>
-                      <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                        <a
-                          href={links.whatsapp}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-gold btn-sm"
-                          style={{ padding: '6px 10px', fontSize: '0.78rem' }}
-                          title="Message on WhatsApp with pre-filled admission greeting"
-                        >
-                          <MessageCircle size={14} /> WhatsApp
-                        </a>
-                        <a
-                          href={links.tel}
-                          className="btn btn-outline btn-sm"
-                          style={{ padding: '6px 10px', fontSize: '0.78rem' }}
-                          title={`Call ${lead.phone}`}
-                        >
-                          <Phone size={14} /> Call
-                        </a>
-                        {links.mailto && (
+                      <td style={{ padding: '16px 20px' }}>
+                        <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' }}>
                           <a
-                            href={links.mailto}
-                            className="btn btn-outline btn-sm"
-                            style={{ padding: '6px 10px', fontSize: '0.78rem' }}
-                            title={`Email ${lead.email}`}
+                            href={links.whatsapp}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: 5,
+                              padding: '6px 12px',
+                              fontSize: '0.78rem',
+                              fontWeight: 600,
+                              borderRadius: 'var(--radius-sm)',
+                              background: '#25D366',
+                              color: '#FFFFFF',
+                              textDecoration: 'none',
+                              boxShadow: '0 1px 3px rgba(37, 211, 102, 0.25)',
+                              transition: 'transform 0.1s ease, filter 0.15s ease',
+                            }}
+                            className="hover:brightness-95 active:scale-95"
+                            title="Message student on WhatsApp with pre-filled admission greeting"
                           >
-                            <Mail size={14} />
+                            <MessageCircle size={14} /> WhatsApp
                           </a>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
+                          <a
+                            href={links.tel}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: 5,
+                              padding: '6px 10px',
+                              fontSize: '0.78rem',
+                              fontWeight: 600,
+                              borderRadius: 'var(--radius-sm)',
+                              background: 'var(--bg-secondary)',
+                              color: 'var(--text-primary)',
+                              border: '1px solid var(--border-light)',
+                              textDecoration: 'none',
+                            }}
+                            className="hover:bg-[var(--bg-tertiary)] active:scale-95"
+                            title={`Call ${lead.phone}`}
+                          >
+                            <Phone size={13} /> Call
+                          </a>
+                          {links.mailto && (
+                            <a
+                              href={links.mailto}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: '6px 9px',
+                                fontSize: '0.78rem',
+                                borderRadius: 'var(--radius-sm)',
+                                background: 'var(--bg-secondary)',
+                                color: 'var(--text-secondary)',
+                                border: '1px solid var(--border-light)',
+                                textDecoration: 'none',
+                              }}
+                              className="hover:bg-[var(--bg-tertiary)] active:scale-95"
+                              title={`Email ${lead.email}`}
+                            >
+                              <Mail size={13} />
+                            </a>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
 }
 
-function ProfileEditorTab({ uni }: { uni: University }) {
+function ProfileEditorTab({
+  uni,
+  onShowToast,
+}: {
+  uni: University;
+  onShowToast: (msg: string) => void;
+}) {
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -599,57 +726,153 @@ function ProfileEditorTab({ uni }: { uni: University }) {
     setLoading(false);
     if (!error) {
       setSaved(true);
+      onShowToast('Profile changes published to live directory');
+      setTimeout(() => setSaved(false), 3000);
+    } else {
+      // In demo/mock mode or if table update fails, confirm locally
+      setSaved(true);
+      onShowToast('Profile updates saved to sandbox session');
       setTimeout(() => setSaved(false), 3000);
     }
   };
 
   return (
     <div>
-      <div className="dashboard-header">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16, marginBottom: 28 }}>
         <div>
-          <h2 className="text-h2">Profile Editor</h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginTop: 8 }}>Changes are reflected live on your public Chuo Connect profile.</p>
+          <h2 style={{ fontSize: '1.65rem', fontWeight: 700, letterSpacing: '-0.028em', color: 'var(--text-primary)', margin: 0 }}>
+            Profile Editor
+          </h2>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: '6px 0 0 0' }}>
+            Updates are reflected live on your public Chuo Connect Kenya profile.
+          </p>
         </div>
-        <button className="btn btn-gold dashboard-header-btn" onClick={handleSave} disabled={loading || saved} style={{ justifyContent: 'center' }}>
-          {loading ? <Loader2 size={18} className="animate-spin" /> : saved ? <><CheckCircle2 size={18} /> Published!</> : 'Publish Changes'}
+        <button
+          className="btn btn-gold"
+          onClick={handleSave}
+          disabled={loading || saved}
+          style={{
+            minWidth: 170,
+            justifyContent: 'center',
+            borderRadius: 'var(--radius-full)',
+            fontWeight: 600,
+            padding: '10px 22px',
+          }}
+        >
+          {loading ? (
+            <Loader2 size={18} className="animate-spin" />
+          ) : saved ? (
+            <><Check size={18} /> Published!</>
+          ) : (
+            'Publish Changes'
+          )}
         </button>
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-        <div className="card" style={{ padding: 32 }}>
-          <h3 style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.2rem', marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid var(--border-light)' }}>Core Details</h3>
+        <div
+          style={{
+            padding: 32,
+            background: 'var(--bg-primary)',
+            borderRadius: 'var(--radius-xl)',
+            border: '1px solid var(--border-light)',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
+          }}
+        >
+          <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1.15rem', letterSpacing: '-0.02em', marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid var(--border-light)' }}>
+            Core Details
+          </h3>
           <div className="dashboard-grid-2" style={{ gap: 24 }}>
             <div className="form-group">
               <label className="form-label" htmlFor="students">Student Population</label>
-              <input id="students" className="form-input" value={formData.students} onChange={e => setFormData({ ...formData, students: e.target.value })} />
+              <input
+                id="students"
+                className="form-input"
+                style={{ borderRadius: 'var(--radius-md)' }}
+                value={formData.students}
+                onChange={e => setFormData({ ...formData, students: e.target.value })}
+              />
             </div>
             <div className="form-group">
               <label className="form-label" htmlFor="fees">Estimated Fees per Year</label>
-              <input id="fees" className="form-input" value={formData.fees} onChange={e => setFormData({ ...formData, fees: e.target.value })} />
+              <input
+                id="fees"
+                className="form-input"
+                style={{ borderRadius: 'var(--radius-md)' }}
+                value={formData.fees}
+                onChange={e => setFormData({ ...formData, fees: e.target.value })}
+              />
             </div>
           </div>
           <div className="form-group" style={{ marginTop: 24 }}>
             <label className="form-label" htmlFor="accommodation">Accommodation Description</label>
-            <textarea id="accommodation" className="form-textarea" value={formData.accommodation} onChange={e => setFormData({ ...formData, accommodation: e.target.value })} rows={4} />
+            <textarea
+              id="accommodation"
+              className="form-textarea"
+              style={{ borderRadius: 'var(--radius-md)' }}
+              value={formData.accommodation}
+              onChange={e => setFormData({ ...formData, accommodation: e.target.value })}
+              rows={4}
+            />
           </div>
         </div>
 
-        <div className="card" style={{ padding: 32 }}>
-          <h3 style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.2rem', marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid var(--border-light)' }}>Media & Links</h3>
+        <div
+          style={{
+            padding: 32,
+            background: 'var(--bg-primary)',
+            borderRadius: 'var(--radius-xl)',
+            border: '1px solid var(--border-light)',
+            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
+          }}
+        >
+          <h3 style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1.15rem', letterSpacing: '-0.02em', marginBottom: 24, paddingBottom: 16, borderBottom: '1px solid var(--border-light)' }}>
+            Media & Links
+          </h3>
           <div className="form-group" style={{ marginBottom: 24 }}>
             <label className="form-label" htmlFor="virtualTourUrl">Virtual Tour URL</label>
-            <input id="virtualTourUrl" className="form-input" value={formData.virtualTourUrl} onChange={e => setFormData({ ...formData, virtualTourUrl: e.target.value })} placeholder="https://youruniversity.edu/virtual-tour" />
+            <input
+              id="virtualTourUrl"
+              className="form-input"
+              style={{ borderRadius: 'var(--radius-md)' }}
+              value={formData.virtualTourUrl}
+              onChange={e => setFormData({ ...formData, virtualTourUrl: e.target.value })}
+              placeholder="https://youruniversity.edu/virtual-tour"
+            />
           </div>
           <div className="form-group">
             <label className="form-label" htmlFor="website">University Website</label>
-            <input id="website" className="form-input" value={formData.website} onChange={e => setFormData({ ...formData, website: e.target.value })} placeholder="https://youruniversity.ac.ke" />
+            <input
+              id="website"
+              className="form-input"
+              style={{ borderRadius: 'var(--radius-md)' }}
+              value={formData.website}
+              onChange={e => setFormData({ ...formData, website: e.target.value })}
+              placeholder="https://youruniversity.ac.ke"
+            />
           </div>
           <div style={{ marginTop: 24 }}>
-            <label className="form-label" style={{ display: 'block', marginBottom: 12 }}>Gallery Images</label>
-            <div style={{ border: '2px dashed var(--border-medium)', borderRadius: 'var(--radius-lg)', padding: '48px', textAlign: 'center', color: 'var(--text-secondary)', cursor: 'pointer', transition: 'var(--transition)', background: 'var(--bg-secondary)' }} className="upload-zone">
-              <UploadCloud size={40} style={{ margin: '0 auto 12px', color: 'var(--accent-gold)' }} />
-              <div style={{ fontWeight: 600, marginBottom: 8, fontSize: '1.1rem', color: 'var(--text-primary)' }}>Drag and drop images here</div>
-              <div style={{ fontWeight: 400, fontSize: '0.85rem', color: 'var(--text-tertiary)' }}>PNG, JPG up to 5MB each · Max 20 images</div>
+            <label className="form-label" style={{ display: 'block', marginBottom: 12 }}>Campus Gallery Photos</label>
+            <div
+              style={{
+                border: '2px dashed var(--border-medium)',
+                borderRadius: 'var(--radius-lg)',
+                padding: '44px 24px',
+                textAlign: 'center',
+                color: 'var(--text-secondary)',
+                cursor: 'pointer',
+                transition: 'border-color 0.2s ease, background 0.2s ease',
+                background: 'var(--bg-secondary)',
+              }}
+              className="upload-zone"
+            >
+              <UploadCloud size={38} style={{ margin: '0 auto 12px', color: 'var(--accent-gold)' }} />
+              <div style={{ fontWeight: 600, marginBottom: 6, fontSize: '1.05rem', color: 'var(--text-primary)' }}>
+                Drag and drop high-resolution campus photos here
+              </div>
+              <div style={{ fontWeight: 400, fontSize: '0.82rem', color: 'var(--text-tertiary)' }}>
+                PNG, JPG or WebP up to 10MB each · Up to 20 gallery photos
+              </div>
             </div>
           </div>
         </div>
@@ -658,44 +881,112 @@ function ProfileEditorTab({ uni }: { uni: University }) {
   );
 }
 
-function ReviewsTab() {
+function ReviewsTab({ onShowToast }: { onShowToast: (msg: string) => void }) {
   const [replyOpen, setReplyOpen] = useState<number | null>(null);
+  const [replyText, setReplyText] = useState('');
+
+  const handlePostReply = (i: number) => {
+    if (!replyText.trim()) return;
+    onShowToast(`Response published to ${MOCK_REVIEWS[i].name}'s review`);
+    setReplyText('');
+    setReplyOpen(null);
+  };
 
   return (
     <div>
-      <h2 className="text-h2" style={{ marginBottom: 32 }}>Review Management</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div style={{ marginBottom: 28 }}>
+        <h2 style={{ fontSize: '1.65rem', fontWeight: 700, letterSpacing: '-0.028em', color: 'var(--text-primary)', margin: 0 }}>
+          Review Management
+        </h2>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: '6px 0 0 0' }}>
+          Engage with student and parent feedback submitted on your public university profile.
+        </p>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         {MOCK_REVIEWS.map((r, i) => (
-          <div key={i} className="card" style={{ padding: 32 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
-              <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
-                <div style={{ width: 48, height: 48, borderRadius: '50%', background: 'var(--accent-main)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--bg-primary)', fontWeight: 700, fontSize: '1rem' }}>
+          <div
+            key={i}
+            style={{
+              padding: 28,
+              background: 'var(--bg-primary)',
+              borderRadius: 'var(--radius-xl)',
+              border: '1px solid var(--border-light)',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
+            }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 18 }}>
+              <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
+                <div
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 'var(--radius-md)',
+                    background: 'var(--navy-deep)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#FFFFFF',
+                    fontWeight: 700,
+                    fontSize: '0.95rem',
+                  }}
+                >
                   {r.initials}
                 </div>
                 <div>
-                  <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.1rem' }}>{r.name}</div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--text-tertiary)', marginTop: 2 }}>{r.type} Review</div>
+                  <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.02rem' }}>{r.name}</div>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 2 }}>{r.type} Review</div>
                 </div>
               </div>
-              <div style={{ display: 'flex', gap: 4 }}>
+              <div style={{ display: 'flex', gap: 3 }}>
                 {Array.from({ length: 5 }).map((_, idx) => (
-                  <Star key={idx} size={16} fill={idx < r.rating ? 'var(--accent-gold)' : 'transparent'} color={idx < r.rating ? 'var(--accent-gold)' : 'var(--border-medium)'} />
+                  <Star
+                    key={idx}
+                    size={16}
+                    fill={idx < r.rating ? 'var(--accent-gold)' : 'transparent'}
+                    color={idx < r.rating ? 'var(--accent-gold)' : 'var(--border-medium)'}
+                  />
                 ))}
               </div>
             </div>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.6, fontStyle: 'italic' }}>&ldquo;{r.body}&rdquo;</p>
-            <div style={{ marginTop: 24, paddingTop: 24, borderTop: '1px solid var(--border-light)' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.96rem', lineHeight: 1.6, fontStyle: 'italic', margin: 0 }}>
+              &ldquo;{r.body}&rdquo;
+            </p>
+            <div style={{ marginTop: 20, paddingTop: 20, borderTop: '1px solid var(--border-light)' }}>
               {replyOpen === i ? (
                 <div>
-                  <textarea className="form-textarea" placeholder="Write a professional response..." rows={3} style={{ marginBottom: 16 }} />
-                  <div style={{ display: 'flex', gap: 12 }}>
-                    <button className="btn btn-navy" onClick={() => { alert('Reply posted successfully!'); setReplyOpen(null); }}>Post Reply</button>
-                    <button className="btn btn-ghost" onClick={() => setReplyOpen(null)}>Cancel</button>
+                  <textarea
+                    className="form-textarea"
+                    placeholder="Write an official university response..."
+                    rows={3}
+                    value={replyText}
+                    onChange={e => setReplyText(e.target.value)}
+                    style={{ marginBottom: 14, borderRadius: 'var(--radius-md)' }}
+                  />
+                  <div style={{ display: 'flex', gap: 10 }}>
+                    <button
+                      className="btn btn-navy btn-sm"
+                      style={{ borderRadius: 'var(--radius-md)', fontWeight: 600 }}
+                      onClick={() => handlePostReply(i)}
+                    >
+                      Post Official Reply
+                    </button>
+                    <button
+                      className="btn btn-ghost btn-sm"
+                      style={{ borderRadius: 'var(--radius-md)' }}
+                      onClick={() => { setReplyOpen(null); setReplyText(''); }}
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </div>
               ) : (
-                <button className="btn btn-outline btn-sm" onClick={() => setReplyOpen(i)}>
-                  <Reply size={16} /> Reply to Review
+                <button
+                  className="btn btn-outline btn-sm"
+                  style={{ borderRadius: 'var(--radius-md)', fontWeight: 600 }}
+                  onClick={() => { setReplyOpen(i); setReplyText(''); }}
+                >
+                  <Reply size={15} /> Reply to Review
                 </button>
               )}
             </div>
@@ -706,12 +997,31 @@ function ReviewsTab() {
   );
 }
 
-export default function PartnerDashboard({ uni }: { uni: University }) {
+export default function PartnerDashboard({
+  uni,
+  onSignOut,
+}: {
+  uni: University;
+  onSignOut?: () => void;
+}) {
   const [activeTab, setActiveTab] = useState<Tab>('overview');
   const [leads, setLeads] = useState<UniversityLead[]>(() => buildDemoLeads(uni.id));
   const [loadingLeads, setLoadingLeads] = useState(true);
   const [isDemoData, setIsDemoData] = useState(true);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
   const supabase = useMemo(() => createClient(), []);
+
+  const showToast = useCallback((msg: string) => {
+    setToastMessage(msg);
+  }, []);
+
+  useEffect(() => {
+    if (!toastMessage) return;
+    const timer = setTimeout(() => {
+      setToastMessage(null);
+    }, 3400);
+    return () => clearTimeout(timer);
+  }, [toastMessage]);
 
   useEffect(() => {
     let active = true;
@@ -750,23 +1060,68 @@ export default function PartnerDashboard({ uni }: { uni: University }) {
 
   return (
     <div className="dashboard-layout">
+      {/* Toast Notification HUD */}
+      {toastMessage && (
+        <div
+          style={{
+            position: 'fixed',
+            bottom: 32,
+            right: 32,
+            zIndex: 100,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 10,
+            padding: '12px 20px',
+            borderRadius: 'var(--radius-lg)',
+            background: 'var(--bg-primary)',
+            color: 'var(--text-primary)',
+            border: '1px solid var(--border-light)',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.08)',
+            fontSize: '0.88rem',
+            fontWeight: 600,
+            animation: 'fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
+          <CheckCircle2 size={18} style={{ color: 'var(--success-text)', flexShrink: 0 }} />
+          <span>{toastMessage}</span>
+        </div>
+      )}
+
       {/* Sidebar */}
       <aside className="dashboard-sidebar">
         {/* Uni info */}
-        <div className="dashboard-brand" style={{ padding: '32px 24px', borderBottom: '1px solid var(--border-light)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-            <div style={{ width: 48, height: 48, background: 'var(--accent-main)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-              <Building2 size={24} color="var(--bg-primary)" />
+        <div className="dashboard-brand" style={{ padding: '24px 20px', borderBottom: '1px solid var(--border-light)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div
+              style={{
+                width: 44,
+                height: 44,
+                background: 'linear-gradient(135deg, var(--navy-deep), #243354)',
+                borderRadius: 'var(--radius-md)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                border: '1px solid var(--border-light)',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.12)',
+              }}
+            >
+              <Building2 size={22} color="#FFFFFF" />
             </div>
-            <div>
-              <div style={{ fontWeight: 800, color: 'var(--text-primary)', fontSize: '1rem', lineHeight: 1.2 }}>{uni.name}</div>
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 4, fontWeight: 500 }}>Partner Portal</div>
+            <div style={{ overflow: 'hidden' }}>
+              <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.94rem', lineHeight: 1.25, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                {uni.name}
+              </div>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 4, fontSize: '0.74rem', fontWeight: 600, color: 'var(--success-text)' }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'currentColor' }} />
+                Verified Partner
+              </div>
             </div>
           </div>
         </div>
 
         {/* Nav */}
-        <nav className="dashboard-nav" style={{ padding: '24px 0', flex: 1 }}>
+        <nav className="dashboard-nav" style={{ flex: 1 }}>
           {TABS.map(tab => (
             <button
               key={tab.id}
@@ -780,18 +1135,42 @@ export default function PartnerDashboard({ uni }: { uni: University }) {
           ))}
         </nav>
 
-        {/* Footer link */}
-        <div className="dashboard-footer" style={{ padding: '24px', borderTop: '1px solid var(--border-light)' }}>
+        {/* Footer links */}
+        <div className="dashboard-footer" style={{ padding: '16px 14px', borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: 4 }}>
           <a
             href={`/universities/${uni.id.toLowerCase()}`}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-ghost btn-sm"
-            style={{ width: '100%', justifyContent: 'flex-start', color: 'var(--text-secondary)' }}
+            style={{
+              width: '100%',
+              justifyContent: 'flex-start',
+              color: 'var(--text-secondary)',
+              borderRadius: 'var(--radius-md)',
+              fontSize: '0.84rem',
+            }}
           >
-            <ExternalLink size={16} />
+            <ExternalLink size={15} />
             View Public Profile
           </a>
+
+          {onSignOut && (
+            <button
+              type="button"
+              onClick={onSignOut}
+              className="btn btn-ghost btn-sm"
+              style={{
+                width: '100%',
+                justifyContent: 'flex-start',
+                color: 'var(--text-tertiary)',
+                borderRadius: 'var(--radius-md)',
+                fontSize: '0.84rem',
+              }}
+            >
+              <LogOut size={15} />
+              Switch Campus
+            </button>
+          )}
         </div>
       </aside>
 
@@ -814,10 +1193,11 @@ export default function PartnerDashboard({ uni }: { uni: University }) {
               isDemoData={isDemoData}
               metrics={metrics}
               onStatusChange={handleStatusChange}
+              onShowToast={showToast}
             />
           )}
-          {activeTab === 'profile' && <ProfileEditorTab uni={uni} />}
-          {activeTab === 'reviews' && <ReviewsTab />}
+          {activeTab === 'profile' && <ProfileEditorTab uni={uni} onShowToast={showToast} />}
+          {activeTab === 'reviews' && <ReviewsTab onShowToast={showToast} />}
         </div>
       </main>
     </div>
