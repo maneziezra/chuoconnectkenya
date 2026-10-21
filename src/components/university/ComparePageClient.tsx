@@ -180,7 +180,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
             display: 'grid',
             gridTemplateColumns: `180px repeat(${universities.length}, 1fr)`,
             gap: 0,
-            background: i % 2 === 0 ? 'white' : 'var(--bg-secondary)',
+            background: i % 2 === 0 ? 'var(--bg-primary)' : 'var(--bg-secondary)',
             borderBottom: '1px solid var(--border-light)',
           }}>
             <div style={{ padding: '14px 20px', fontSize: '0.82rem', fontWeight: 700, color: 'var(--text-tertiary)', textTransform: 'uppercase' as const, letterSpacing: '0.06em', display: 'flex', alignItems: 'center' }}>

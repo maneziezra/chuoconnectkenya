@@ -166,7 +166,7 @@ export default function UniversityBrowser({
                 <label key={f} style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer', fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
                   <div style={{
                     width: 18, height: 18, borderRadius: 4, border: facilities.includes(f) ? 'none' : '1.5px solid var(--border-medium)',
-                    background: facilities.includes(f) ? 'var(--navy-deep)' : 'white',
+                    background: facilities.includes(f) ? 'var(--navy-deep)' : 'var(--bg-primary)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, cursor: 'pointer',
                   }} onClick={() => toggleFacility(f)}>
                     {facilities.includes(f) && <Check size={11} style={{ color: '#FFFFFF' }} />}
