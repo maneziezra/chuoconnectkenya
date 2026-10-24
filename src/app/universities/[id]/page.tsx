@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {
   MapPin, Users, Calendar, Star, ArrowLeft,
   Phone, Mail, Globe, BookOpen, Dumbbell, FlaskConical,
-  Building2, Wifi, CheckCircle, Play,  Lightbulb, Scale
+  Building2, Wifi, CheckCircle, Play, Lightbulb, Scale
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 import type { University, Course, Review, Ambassador } from '@/lib/types';
@@ -28,7 +28,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!uni) return { title: 'Not Found' };
   return {
     title: `${uni.name} | Campus Profile`,
-    description: uni.overview};
+    description: uni.overview,
+  };
 }
 
 export default async function CampusProfilePage({ params }: Props) {
@@ -41,7 +42,7 @@ export default async function CampusProfilePage({ params }: Props) {
   if (!uniData) notFound();
   const uni = {
     ...uniData,
-    image: (uniData as any).coverUrl || (uniData as any).logoUrl || uniData.image || '/images/universities/uon.jpg'
+    image: (uniData as any).coverUrl || (uniData as any).logoUrl || uniData.image || '',
   } as University;
 
   const { data: dbCourses } = await supabase.from('courses').select('*').contains('universityIds', [id]);
@@ -67,104 +68,103 @@ export default async function CampusProfilePage({ params }: Props) {
     .limit(4);
   const ambassadors = (ambassadorsData || []) as Ambassador[];
 
+  const hasPhoto = Boolean(uni.image && uni.image.trim().length > 0);
+  const galleryItems = uni.gallery || universityGalleries[uni.id] || [];
+
   const TAB_SECTIONS = [
     { id: 'overview', label: 'Overview' },
-    { id: 'gallery', label: 'Gallery' },
+    ...(galleryItems.length > 0 ? [{ id: 'gallery', label: 'Gallery' }] : []),
     { id: 'reviews', label: `Reviews (${uni.reviewCount ?? reviews.length})` },
     { id: 'ambassadors', label: 'Ambassadors' },
   ];
 
   return (
     <>
-      {/* Hero Banner */}
+      {/* Editorial Hero Banner */}
       <div className="uni-hero-banner">
-        <img
-          src={uni.image}
-          alt={`${uni.name} campus`}
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(11,17,32,0.35) 0%, rgba(11,17,32,0.92) 100%)' }} />
+        {hasPhoto && (
+          <>
+            <img
+              src={uni.image}
+              alt={`${uni.name} campus`}
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.74)' }} />
+          </>
+        )}
+
         <div className="container" style={{ position: 'relative', zIndex: 2, width: '100%' }}>
           <Link
             href="/universities"
-            className="btn btn-ghost btn-sm"
+            className="btn btn-sm"
             style={{
-              color: 'rgba(255,255,255,0.9)',
-              background: 'rgba(255,255,255,0.14)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255,255,255,0.22)',
-              borderTop: '1px solid rgba(255,255,255,0.45)',
+              color: '#F4F5F7',
+              background: 'rgba(244, 245, 247, 0.14)',
               borderRadius: 'var(--radius-full)',
-              padding: '6px 14px',
-              marginBottom: 20,
+              padding: '8px 16px',
+              marginBottom: 24,
               display: 'inline-flex',
               alignItems: 'center',
               gap: 6,
-              fontSize: '0.84rem',
-              fontWeight: 500,
+              fontSize: '0.875rem',
+              fontWeight: 600,
             }}
           >
             <ArrowLeft size={15} /> Back to Directory
           </Link>
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 24, flexWrap: 'wrap' }}>
-            <div>
-              <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-                <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`} style={{ borderRadius: 'var(--radius-sm)', letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.72rem' }}>{uni.type}</span>
-                <span className="badge badge-green" style={{ borderRadius: 'var(--radius-sm)', letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.72rem' }}>Rank #{uni.ranking}</span>
+
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 28, flexWrap: 'wrap' }}>
+            <div style={{ maxWidth: 780 }}>
+              <h1 className="text-h1" style={{ color: '#F4F5F7', letterSpacing: '-0.04em', fontSize: 'clamp(1.625rem, 2.5vw, 2.25rem)' }}>{uni.name}</h1>
+              <div style={{ display: 'flex', gap: 8, marginTop: 14, flexWrap: 'wrap' }}>
+                <span className="badge badge-gold">{uni.type}</span>
+                <span className="badge badge-green tabular-nums">Rank #{uni.ranking}</span>
                 {uni.virtualTourUrl && (
                   <span
                     className="badge"
                     style={{
-                      background: 'rgba(255,255,255,0.16)',
-                      backdropFilter: 'blur(12px)',
-                      color: '#FFFFFF',
-                      border: '1px solid rgba(255,255,255,0.25)',
-                      borderRadius: 'var(--radius-sm)',
+                      background: 'rgba(244, 245, 247, 0.16)',
+                      color: '#F4F5F7',
                       display: 'flex',
                       alignItems: 'center',
                       gap: 6,
-                      fontSize: '0.72rem',
-                      letterSpacing: '0.04em',
-                      textTransform: 'uppercase',
                     }}
                   >
                     <Play size={11} fill="white" /> Virtual Tour
                   </span>
                 )}
               </div>
-              <h1 className="text-h1" style={{ color: '#FFFFFF', letterSpacing: '-0.028em' }}>{uni.name}</h1>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 12, color: 'rgba(255,255,255,0.82)', fontSize: '0.92rem', flexWrap: 'wrap' }}>
-                <span><MapPin size={14} style={{ display: 'inline', marginRight: 4 }} /> {uni.county}</span>
+              <div className="tabular-nums" style={{ display: 'flex', alignItems: 'center', gap: 18, marginTop: 14, color: 'rgba(244, 245, 247, 0.84)', fontSize: '0.94rem', flexWrap: 'wrap' }}>
+                <span><MapPin size={14} style={{ display: 'inline', marginRight: 4 }} /> {uni.county} County</span>
                 <span><Calendar size={14} style={{ display: 'inline', marginRight: 4 }} /> Est. {uni.established}</span>
                 <span><Users size={14} style={{ display: 'inline', marginRight: 4 }} /> {uni.students} students</span>
                 {uni.campusSize && <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}><Building2 size={14} /> {uni.campusSize}</span>}
               </div>
             </div>
-            <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center' }}>
+
+            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', alignItems: 'center' }}>
               {uni.rating && (
                 <div
                   style={{
-                    background: 'rgba(255,255,255,0.12)',
-                    backdropFilter: 'blur(20px) saturate(180%)',
-                    WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-                    border: '1px solid rgba(255,255,255,0.2)',
-                    borderTop: '1px solid rgba(255,255,255,0.5)',
+                    background: 'rgba(244, 245, 247, 0.12)',
                     borderRadius: 'var(--radius-lg)',
-                    padding: '16px 24px',
+                    padding: '18px 26px',
                     textAlign: 'center',
-                    boxShadow: '0 12px 32px rgba(0, 0, 0, 0.25)',
                   }}
                 >
-                  <div style={{ fontSize: '2.4rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-mono)', lineHeight: 1 }}>{uni.rating.toFixed(1)}</div>
-                  <div className="stars" style={{ margin: '4px 0', display: 'flex', justifyContent: 'center', gap: 2, color: 'var(--gold-primary)' }}>
-                    <Star size={16} fill="currentColor" />
-                    <Star size={16} fill="currentColor" />
-                    <Star size={16} fill="currentColor" />
-                    <Star size={16} fill="currentColor" />
-                    <Star size={16} fill="currentColor" />
+                  <div className="tabular-nums" style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)', letterSpacing: '-0.04em', lineHeight: 1 }}>
+                    {uni.rating.toFixed(1)}
                   </div>
-                  <div style={{ color: 'rgba(255,255,255,0.72)', fontSize: '0.8rem', letterSpacing: '-0.01em' }}>{uni.reviewCount?.toLocaleString()} reviews</div>
+                  <div style={{ margin: '6px 0', display: 'flex', justifyContent: 'center', gap: 2, color: 'var(--gold-primary)' }}>
+                    <Star size={15} fill="currentColor" />
+                    <Star size={15} fill="currentColor" />
+                    <Star size={15} fill="currentColor" />
+                    <Star size={15} fill="currentColor" />
+                    <Star size={15} fill="currentColor" />
+                  </div>
+                  <div className="tabular-nums" style={{ color: 'rgba(244, 245, 247, 0.78)', fontSize: '0.875rem' }}>
+                    {uni.reviewCount?.toLocaleString()} reviews
+                  </div>
                 </div>
               )}
               <CompareButton universityId={uni.id} universityName={uni.name} universityAbbrev={uni.abbrev} />
@@ -173,14 +173,10 @@ export default async function CampusProfilePage({ params }: Props) {
         </div>
       </div>
 
-      {/* Tab Navigation: Apple Translucent Glass Pill Bar */}
+      {/* Tab Navigation */}
       <div
         style={{
-          background: 'var(--apple-glass-bg)',
-          backdropFilter: 'blur(24px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-          borderBottom: '1px solid var(--border-light)',
-          borderTop: '1px solid var(--apple-glass-highlight)',
+          background: 'var(--bg-secondary)',
           position: 'sticky',
           top: 'var(--nav-height)',
           zIndex: 40,
@@ -192,7 +188,7 @@ export default async function CampusProfilePage({ params }: Props) {
               <a
                 key={tab.id}
                 href={`#${tab.id}`}
-                className="uni-tab-link hover-text-navy"
+                className="uni-tab-link"
               >
                 {tab.label}
               </a>
@@ -206,37 +202,45 @@ export default async function CampusProfilePage({ params }: Props) {
         <div className="container">
           <div className="uni-profile-grid">
             {/* Left: Main Content */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 36, minWidth: 0 }}>
-
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 32, minWidth: 0 }}>
               {/* Overview Section */}
               <div id="overview">
-                <InfoCard title="Overview">
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.overview}</p>
+                <InfoCard title="Institutional Overview">
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.overview}</p>
                 </InfoCard>
               </div>
 
               {/* History */}
               {uni.history && (
-                <InfoCard title="History & Background">
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.history}</p>
+                <InfoCard title="History & Charter">
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.history}</p>
                 </InfoCard>
               )}
 
               {/* Academic Programmes */}
               {uniCourses.length > 0 && (
-                <InfoCard title="Academic Programmes" icon={<BookOpen size={18} />}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <InfoCard title="Accredited Programmes" icon={<BookOpen size={18} />}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     {uniCourses.map(course => (
-                      <div key={course.id} style={{
-                        display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap',
-                        padding: '12px 16px', background: 'var(--bg-secondary)',
-                        borderRadius: 'var(--radius-md)', border: '1px solid var(--border-light)'}}>
+                      <div
+                        key={course.id}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'center',
+                          gap: 16,
+                          flexWrap: 'wrap',
+                          padding: '16px 20px',
+                          background: 'var(--bg-primary)',
+                          borderRadius: 'var(--radius-md)',
+                        }}
+                      >
                         <div>
-                          <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{course.title}</div>
-                          <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 2 }}>{course.clusterGroup} · {course.duration}</div>
+                          <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.96rem' }}>{course.title}</div>
+                          <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: 4 }}>{course.clusterGroup} · {course.duration}</div>
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span className="badge badge-gold">{course.minPoints}+ pts</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                          <span className="badge badge-gold tabular-nums">{course.minPoints}+ pts</span>
                           <ExpressInquiryModal
                             source="university_page"
                             universityId={uni.id}
@@ -256,24 +260,34 @@ export default async function CampusProfilePage({ params }: Props) {
 
               {/* Entry Requirements */}
               {uni.entryRequirements && (
-                <InfoCard title="Entry Requirements">
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.entryRequirements}</p>
+                <InfoCard title="Admission Requirements">
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.entryRequirements}</p>
                 </InfoCard>
               )}
 
               {/* Accommodation */}
-              <InfoCard title="Accommodation" icon={<Building2 size={18} />}>
-                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.accommodation}</p>
+              <InfoCard title="Student Accommodation" icon={<Building2 size={18} />}>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.accommodation}</p>
               </InfoCard>
 
               {/* Facilities */}
               <InfoCard title="Campus Facilities">
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                   {uni.facilities?.map(f => (
-                    <span key={f} style={{
-                      padding: '6px 14px', background: 'var(--navy-light)', color: 'var(--text-primary)',
-                      borderRadius: 'var(--radius-full)', fontSize: '0.85rem', fontWeight: 500,
-                      display: 'flex', alignItems: 'center', gap: 6}}>
+                    <span
+                      key={f}
+                      style={{
+                        padding: '8px 16px',
+                        background: 'var(--bg-primary)',
+                        color: 'var(--text-primary)',
+                        borderRadius: 'var(--radius-full)',
+                        fontSize: '0.86rem',
+                        fontWeight: 600,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 8,
+                      }}
+                    >
                       <CheckCircle size={14} style={{ color: 'var(--gold-primary)' }} /> {f}
                     </span>
                   ))}
@@ -282,20 +296,29 @@ export default async function CampusProfilePage({ params }: Props) {
 
               {/* Sports */}
               {uni.sportsInfo && (
-                <InfoCard title="Sports & Recreation" icon={<Dumbbell size={18} />}>
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.sportsInfo}</p>
+                <InfoCard title="Sports & Athletics" icon={<Dumbbell size={18} />}>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.sportsInfo}</p>
                 </InfoCard>
               )}
 
               {/* Clubs & Societies */}
               {uni.clubsAndSocieties && uni.clubsAndSocieties.length > 0 && (
-                <InfoCard title="Clubs & Societies">
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                <InfoCard title="Student Societies">
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
                     {uni.clubsAndSocieties.map(c => (
-                      <span key={c} style={{
-                        padding: '5px 12px', background: 'var(--gold-glow)', color: 'var(--text-primary)',
-                        borderRadius: 'var(--radius-full)', fontSize: '0.82rem', fontWeight: 500,
-                        border: '1px solid rgba(199,155,55,0.2)'}}>{c}</span>
+                      <span
+                        key={c}
+                        style={{
+                          padding: '7px 14px',
+                          background: 'var(--gold-glow)',
+                          color: 'var(--text-primary)',
+                          borderRadius: 'var(--radius-full)',
+                          fontSize: '0.84rem',
+                          fontWeight: 600,
+                        }}
+                      >
+                        {c}
+                      </span>
                     ))}
                   </div>
                 </InfoCard>
@@ -303,33 +326,35 @@ export default async function CampusProfilePage({ params }: Props) {
 
               {/* Library */}
               {uni.libraryInfo && (
-                <InfoCard title="Library" icon={<BookOpen size={18} />}>
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.libraryInfo}</p>
+                <InfoCard title="University Library" icon={<BookOpen size={18} />}>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.libraryInfo}</p>
                 </InfoCard>
               )}
 
               {/* Labs */}
               {uni.labsInfo && (
-                <InfoCard title="Laboratories" icon={<FlaskConical size={18} />}>
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.labsInfo}</p>
+                <InfoCard title="Research Laboratories" icon={<FlaskConical size={18} />}>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.labsInfo}</p>
                 </InfoCard>
               )}
 
               {/* Innovation Hub */}
               {uni.innovationHub && (
-                <InfoCard title="Innovation Hub" icon={<Wifi size={18} />}>
-                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.8 }}>{uni.innovationHub}</p>
+                <InfoCard title="Innovation & Incubation" icon={<Wifi size={18} />}>
+                  <p style={{ color: 'var(--text-secondary)', lineHeight: 1.75, maxWidth: '68ch' }}>{uni.innovationHub}</p>
                 </InfoCard>
               )}
 
-              {/* Gallery Section */}
-              <div id="gallery">
-                <GallerySection
-                  universityId={uni.id}
-                  virtualTourUrl={uni.virtualTourUrl}
-                  items={uni.gallery || universityGalleries[uni.id]}
-                />
-              </div>
+              {/* Gallery Section (Rendered when authentic campus gallery photos exist) */}
+              {galleryItems.length > 0 && (
+                <div id="gallery">
+                  <GallerySection
+                    universityId={uni.id}
+                    virtualTourUrl={uni.virtualTourUrl}
+                    items={galleryItems}
+                  />
+                </div>
+              )}
 
               {/* Reviews Section */}
               <div id="reviews">
@@ -348,32 +373,37 @@ export default async function CampusProfilePage({ params }: Props) {
               <div
                 className="card card-body"
                 style={{
-                  background: 'var(--navy-deep)',
-                  color: '#FFFFFF',
-                  borderRadius: 'var(--radius-xl)',
-                  border: '1px solid var(--border-light)',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.25)',
-                  boxShadow: '0 12px 32px -8px rgba(17, 24, 39, 0.2)',
+                  background: 'var(--brand-navy)',
+                  color: '#F6F5F2',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 28,
                 }}
               >
-                <div style={{ fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'var(--gold-primary)', marginBottom: 8 }}>Tuition Fees</div>
-                <div style={{ fontSize: '1.45rem', fontWeight: 700, fontFamily: 'var(--font-mono)', color: 'var(--gold-primary)', letterSpacing: '-0.02em' }}>{uni.fees}</div>
-                <p style={{ fontSize: '0.84rem', color: 'rgba(255,255,255,0.72)', marginTop: 8, lineHeight: 1.55 }}>Fees vary by programme. Contact admissions for exact figures.</p>
+                <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--gold-primary)', marginBottom: 8 }}>
+                  Annual Tuition Range
+                </div>
+                <div className="tabular-nums" style={{ fontSize: '1.5rem', fontWeight: 800, fontFamily: 'var(--font-sans)', color: 'var(--gold-primary)', letterSpacing: '-0.03em' }}>
+                  {uni.fees}
+                </div>
+                <p style={{ fontSize: '0.86rem', color: 'rgba(246, 245, 242, 0.78)', marginTop: 10, lineHeight: 1.55 }}>
+                  Fees depend on degree cluster and HEF/HELB household band allocation.
+                </p>
               </div>
 
               {/* Admission Enquiry */}
               <div
                 className="card card-body"
                 style={{
-                  borderRadius: 'var(--radius-xl)',
-                  border: '1px solid var(--gold-primary)',
-                  borderTop: '1px solid var(--apple-glass-highlight)',
-                  boxShadow: '0 8px 24px rgba(199, 155, 55, 0.12)',
+                  borderRadius: 'var(--radius-lg)',
+                  background: 'var(--bg-secondary)',
+                  padding: 28,
                 }}
               >
-                <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.05rem', letterSpacing: '-0.015em', marginBottom: 8 }}>Interested in {uni.abbrev}?</div>
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>
-                  Ask for the prospectus, exact fees or an admissions call. We pass your details to the university with your consent.
+                <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.08rem', letterSpacing: '-0.02em', marginBottom: 8 }}>
+                  Apply or Enquire at {uni.abbrev}
+                </div>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: 18, lineHeight: 1.55 }}>
+                  Request the current academic prospectus, fee structure, or direct admissions guidance.
                 </p>
                 <ExpressInquiryModal
                   source="university_page"
@@ -389,24 +419,25 @@ export default async function CampusProfilePage({ params }: Props) {
               <div
                 className="card card-body"
                 style={{
-                  borderRadius: 'var(--radius-xl)',
-                  border: '1px solid var(--border-light)',
-                  borderTop: '1px solid var(--apple-glass-highlight)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 28,
                 }}
               >
-                <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16, letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.76rem', fontWeight: 700 }}>Quick Facts</div>
+                <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 18 }}>
+                  Institutional Ledger
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {[
                     { label: 'Established', value: uni.established.toString() },
-                    { label: 'Students', value: uni.students },
+                    { label: 'Enrollment', value: uni.students },
                     { label: 'County', value: uni.county },
-                    { label: 'Ranking', value: `#${uni.ranking} in Kenya` },
-                    { label: 'Type', value: uni.type },
-                    ...(uni.campusSize ? [{ label: 'Campus Size', value: uni.campusSize }] : []),
+                    { label: 'National Rank', value: `#${uni.ranking} in Kenya` },
+                    { label: 'Charter Type', value: uni.type },
+                    ...(uni.campusSize ? [{ label: 'Campus Area', value: uni.campusSize }] : []),
                   ].map(({ label, value }) => (
                     <div key={label} className="fact-item-row">
-                      <span style={{ color: 'var(--text-tertiary)', flexShrink: 0, fontSize: '0.88rem' }}>{label}</span>
-                      <span style={{ fontWeight: 600, color: 'var(--text-primary)', textAlign: 'right', wordBreak: 'break-word', fontSize: '0.9rem' }}>{value}</span>
+                      <span style={{ color: 'var(--text-secondary)', flexShrink: 0, fontSize: '0.88rem' }}>{label}</span>
+                      <span className="tabular-nums" style={{ fontWeight: 700, color: 'var(--text-primary)', textAlign: 'right', wordBreak: 'break-word', fontSize: '0.9rem' }}>{value}</span>
                     </div>
                   ))}
                 </div>
@@ -417,12 +448,13 @@ export default async function CampusProfilePage({ params }: Props) {
                 <div
                   className="card card-body"
                   style={{
-                    borderRadius: 'var(--radius-xl)',
-                    border: '1px solid var(--border-light)',
-                    borderTop: '1px solid var(--apple-glass-highlight)',
+                    borderRadius: 'var(--radius-lg)',
+                    padding: 28,
                   }}
                 >
-                  <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 16, letterSpacing: '0.04em', textTransform: 'uppercase', fontSize: '0.76rem', fontWeight: 700 }}>Contact & Links</div>
+                  <div className="footer-heading" style={{ color: 'var(--text-primary)', marginBottom: 18 }}>
+                    Official Admissions Desk
+                  </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                     {uni.website && (
                       <a
@@ -431,7 +463,6 @@ export default async function CampusProfilePage({ params }: Props) {
                         rel="noopener noreferrer"
                         className="contact-interactive-link"
                         title="Official Website"
-                        style={{ borderRadius: 'var(--radius-md)' }}
                       >
                         <Globe size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                         <span style={{ overflowWrap: 'anywhere' }}>{uni.website.replace(/^https?:\/\//, '')}</span>
@@ -442,7 +473,6 @@ export default async function CampusProfilePage({ params }: Props) {
                         href={`mailto:${uni.contactEmail}`}
                         className="contact-interactive-link"
                         title="Email Admissions"
-                        style={{ borderRadius: 'var(--radius-md)' }}
                       >
                         <Mail size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
                         <span style={{ overflowWrap: 'anywhere' }}>{uni.contactEmail}</span>
@@ -453,10 +483,9 @@ export default async function CampusProfilePage({ params }: Props) {
                         href={`tel:${uni.contactPhone}`}
                         className="contact-interactive-link"
                         title="Call Admissions"
-                        style={{ borderRadius: 'var(--radius-md)' }}
                       >
                         <Phone size={18} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
-                        <span>{uni.contactPhone}</span>
+                        <span className="tabular-nums">{uni.contactPhone}</span>
                       </a>
                     )}
                   </div>
@@ -468,7 +497,7 @@ export default async function CampusProfilePage({ params }: Props) {
                       className="btn btn-gold"
                       style={{ marginTop: 18, width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}
                     >
-                      Visit Official Website
+                      Open Official Portal
                     </a>
                   )}
                 </div>
@@ -479,32 +508,36 @@ export default async function CampusProfilePage({ params }: Props) {
                 className="card card-body"
                 style={{
                   background: 'var(--gold-glow)',
-                  border: '1px solid rgba(199,155,55,0.25)',
-                  borderTop: '1px solid var(--apple-glass-highlight)',
-                  borderRadius: 'var(--radius-xl)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 28,
                 }}
               >
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8, letterSpacing: '-0.015em' }}>
-                  <Lightbulb size={18} style={{ color: 'var(--gold-primary)' }} /> Get Personalised Recommendations
+                  <Lightbulb size={18} style={{ color: 'var(--gold-primary)' }} /> Check Cluster Eligibility
                 </div>
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Enter your KCSE grades to see if you qualify for programmes here.</p>
-                <Link href="/calculator" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}>Check Eligibility</Link>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: 18, lineHeight: 1.55 }}>
+                  Enter your KCSE subject grades to calculate weighted KUCCPS cluster points for {uni.abbrev}.
+                </p>
+                <Link href="/calculator" className="btn btn-navy" style={{ width: '100%', justifyContent: 'center', borderRadius: 'var(--radius-md)' }}>
+                  Calculate Cluster Points
+                </Link>
               </div>
 
               {/* Compare CTA */}
               <div
                 className="card card-body"
                 style={{
-                  background: 'var(--navy-light)',
-                  border: '1px solid var(--border-light)',
-                  borderTop: '1px solid var(--apple-glass-highlight)',
-                  borderRadius: 'var(--radius-xl)',
+                  background: 'var(--bg-secondary)',
+                  borderRadius: 'var(--radius-lg)',
+                  padding: 28,
                 }}
               >
                 <div style={{ fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 8, letterSpacing: '-0.015em' }}>
-                  <Scale size={18} style={{ color: 'var(--gold-primary)' }} /> Compare This Campus
+                  <Scale size={18} style={{ color: 'var(--gold-primary)' }} /> Compare Side by Side
                 </div>
-                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginBottom: 16, lineHeight: 1.6 }}>Add to your comparison list to evaluate against other institutions side-by-side.</p>
+                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', marginBottom: 18, lineHeight: 1.55 }}>
+                  Add {uni.abbrev} to your comparison sheet to evaluate fees, facilities, and rankings.
+                </p>
                 <CompareButton universityId={uni.id} universityName={uni.name} universityAbbrev={uni.abbrev} fullWidth />
               </div>
             </div>
@@ -520,21 +553,27 @@ function InfoCard({ title, icon, children }: { title: string; icon?: React.React
     <div
       className="card card-body"
       style={{
-        borderRadius: 'var(--radius-xl)',
-        border: '1px solid var(--border-light)',
-        borderTop: '1px solid var(--apple-glass-highlight)',
-        boxShadow: 'var(--shadow-sm)',
+        borderRadius: 'var(--radius-lg)',
+        padding: 32,
       }}
     >
-      <h2 style={{
-        fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 600,
-        letterSpacing: '-0.02em',
-        color: 'var(--text-primary)', marginBottom: 18, paddingBottom: 14,
-        borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 10}}>
+      <h2
+        style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          letterSpacing: '-0.025em',
+          color: 'var(--text-primary)',
+          marginBottom: 16,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+        }}
+      >
         {icon && <span style={{ color: 'var(--gold-primary)', display: 'flex', alignItems: 'center' }}>{icon}</span>}
         {title}
       </h2>
-      <div style={{ lineHeight: 1.75 }}>
+      <div style={{ lineHeight: 1.7 }}>
         {children}
       </div>
     </div>

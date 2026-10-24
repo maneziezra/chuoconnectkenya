@@ -82,35 +82,37 @@ export default function AmbassadorSection({ universityId, initialAmbassadors }: 
               background: 'var(--bg-secondary)', borderRadius: 'var(--radius-lg)',
               border: '1px solid var(--border-light)', overflow: 'hidden',
             }}>
-              <div style={{ padding: 20, display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                <div style={{
-                  width: 52, height: 52, borderRadius: '50%', flexShrink: 0,
-                  background: 'linear-gradient(135deg, var(--navy-deep), var(--navy-mid))',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: '1.2rem', fontWeight: 700, color: 'var(--gold-primary)',
-                }}>
-                  {amb.avatar ? (
-                    <img src={amb.avatar} alt={amb.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
-                  ) : amb.name.charAt(0)}
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{amb.name}</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 2 }}>{amb.course} · Year {amb.year}</div>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.6 }}>{amb.bio}</p>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
-                    {amb.topics?.map(t => (
-                      <span key={t} style={{
-                        fontSize: '0.72rem', padding: '3px 10px', background: 'var(--gold-glow)',
-                        color: 'var(--text-primary)', borderRadius: 'var(--radius-full)',
-                        border: '1px solid rgba(199,155,55,0.2)', fontWeight: 500,
-                      }}>{t}</span>
-                    ))}
+              <div style={{ padding: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
+                  <div style={{
+                    width: 48, height: 48, borderRadius: '50%', flexShrink: 0,
+                    background: 'var(--brand-navy)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: '1.15rem', fontWeight: 700, color: 'var(--gold-primary)',
+                  }}>
+                    {amb.avatar ? (
+                      <img src={amb.avatar} alt={amb.name} style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+                    ) : amb.name.charAt(0)}
+                  </div>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem' }}>{amb.name}</div>
+                    <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginTop: 2 }}>{amb.course} · Year {amb.year}</div>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.6 }}>{amb.bio}</p>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginTop: 10 }}>
+                      {amb.topics?.map(t => (
+                        <span key={t} style={{
+                          fontSize: '0.75rem', padding: '3px 10px', background: 'var(--gold-glow)',
+                          color: 'var(--text-primary)', borderRadius: 'var(--radius-full)',
+                          border: '1px solid rgba(199,155,55,0.2)', fontWeight: 500,
+                        }}>{t}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flexShrink: 0, alignItems: 'flex-end' }}>
-                  {amb.responseTime && (
-                    <span style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', gap: 4 }}><Zap size={10} style={{ color: 'var(--gold-primary)' }} /> {amb.responseTime}</span>
-                  )}
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, flexWrap: 'wrap', paddingTop: 12, borderTop: '1px solid var(--border-light)' }}>
+                  {amb.responseTime ? (
+                    <span style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', display: 'flex', alignItems: 'center', gap: 4 }}><Zap size={11} style={{ color: 'var(--gold-primary)' }} /> {amb.responseTime}</span>
+                  ) : <span />}
                   {sent === amb.id ? (
                     <span style={{ fontSize: '0.8rem', color: 'var(--success-text)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 4 }}><Check size={14} /> Message sent!</span>
                   ) : (

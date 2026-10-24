@@ -180,7 +180,7 @@ export default function ReviewSection({ universityId, initialReviews }: Props) {
             <textarea
               value={form.body}
               onChange={e => setForm(f => ({ ...f, body: e.target.value }))}
-              placeholder="Share your experience at this campus — what you love, challenges you faced, tips for new students…"
+              placeholder="Share your experience at this campus · what you love, challenges you faced, tips for new students…"
               rows={5}
               style={{ width: '100%', padding: '12px 14px', border: '1.5px solid var(--border-light)', borderRadius: 'var(--radius-md)', fontSize: '0.9rem', background: 'var(--bg-primary)', outline: 'none', resize: 'vertical' as const }}
             />

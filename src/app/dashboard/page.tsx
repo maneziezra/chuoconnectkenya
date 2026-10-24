@@ -20,7 +20,7 @@ const GUIDANCE_CARDS = [
   {
     icon: <Award size={20} />,
     title: 'Scholarship Finder',
-    desc: 'Browse available scholarships for Kenyan students — government and private.',
+    desc: 'Browse available scholarships for Kenyan students · government and private.',
     href: '/guidance#scholarships',
   },
   {
@@ -76,16 +76,6 @@ export default async function DashboardPage() {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-              backgroundSize: '28px 28px',
-              opacity: 0.035,
-              pointerEvents: 'none',
-            }}
-          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', gap: 24, flexWrap: 'wrap' }}>
               {user ? (
@@ -456,7 +446,7 @@ export default async function DashboardPage() {
                         </h3>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>Nairobi County • Premium Hostel</div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>From KES 25,000</span>
+                          <span className="tabular-nums" style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>From KES 25,000</span>
                           <Link href="/housing" style={{ fontSize: '0.82rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
                         </div>
                       </div>
@@ -508,7 +498,7 @@ export default async function DashboardPage() {
                         </h3>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>Nairobi County • Standard Hostel</div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>From KES 15,000</span>
+                          <span className="tabular-nums" style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>From KES 15,000</span>
                           <Link href="/housing" style={{ fontSize: '0.82rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
                         </div>
                       </div>
@@ -545,27 +535,27 @@ export default async function DashboardPage() {
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {[
-                    { step: '01', text: 'Select your overall mean grade' },
-                    { step: '02', text: 'Enter your individual subject grades' },
-                    { step: '03', text: 'We compute your weighted cluster score using the official formula' },
-                    { step: '04', text: 'See every programme you qualify for across all Kenyan universities' },
+                    { step: '1', text: 'Select your overall mean grade' },
+                    { step: '2', text: 'Enter your individual subject grades' },
+                    { step: '3', text: 'We compute your weighted cluster score using the official formula' },
+                    { step: '4', text: 'See every programme you qualify for across all Kenyan universities' },
                   ].map(({ step, text }) => (
                     <div key={step} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                       <div
+                        className="tabular-nums"
                         style={{
                           width: 28,
                           height: 28,
                           background: 'var(--gold-glow)',
-                          border: '1px solid var(--border-light)',
                           borderRadius: 'var(--radius-sm)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '0.7rem',
+                          fontSize: '0.76rem',
                           fontWeight: 700,
                           flexShrink: 0,
                           color: 'var(--text-primary)',
-                          fontFamily: 'var(--font-mono)',
+                          fontFamily: 'var(--font-sans)',
                         }}
                       >
                         {step}

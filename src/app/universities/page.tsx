@@ -3,12 +3,11 @@ import { createClient } from '@/lib/supabase/server';
 import type { University } from '@/lib/types';
 import { universitiesData } from '@/lib/data/universities';
 import UniversityBrowser from '@/components/university/UniversityBrowser';
-import { GraduationCap } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Explore Universities in Kenya',
+  title: 'Directory of Accredited Kenyan Universities & TVETs',
   description:
-    'Browse and compare all accredited universities and colleges in Kenya. Filter by county, type, ranking, fees, facilities, accommodation and more.',
+    'Browse and compare 68 accredited Kenyan public and private universities, national polytechnics, and TVET colleges across all 47 counties.',
 };
 
 export default async function UniversitiesPage({
@@ -24,7 +23,7 @@ export default async function UniversitiesPage({
     const { data: profile } = await supabase.from('student_profiles').select('high_school').eq('user_id', user.id).single();
     if (profile?.high_school) userHighSchool = profile.high_school;
   }
-  
+
   const { data } = await supabase.from('universities').select('*').order('ranking', { ascending: true });
   const dbIds = new Set((data || []).map((u: any) => u.id));
   const mergedUnis = [
@@ -32,102 +31,63 @@ export default async function UniversitiesPage({
     ...universitiesData.filter(u => !dbIds.has(u.id))
   ].sort((a: any, b: any) => (a.ranking ?? 99) - (b.ranking ?? 99));
 
-  const universities = mergedUnis.map((u: any) => ({ 
-    ...u, 
-    image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg' 
+  const universities = mergedUnis.map((u: any) => ({
+    ...u,
+    image: u.coverUrl || u.logoUrl || u.image || '',
   })) as University[];
 
   return (
-    <div style={{ minHeight: 'calc(100vh - var(--nav-height))', paddingBottom: 80 }}>
-      {/* Hero Header with Apple Glass Squircle */}
-      <div style={{ padding: '0 20px', marginTop: '28px', maxWidth: '1400px', margin: '28px auto 0' }}>
-        <div
-          style={{
-            position: 'relative',
-            border: '1px solid var(--border-light)',
-            borderRadius: 'var(--radius-xl)',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.03)',
-            background: 'var(--bg-secondary)',
-            padding: '44px 36px',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Subtle Ambient Radial Lighting */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              width: 500,
-              height: 260,
-              background: 'radial-gradient(circle at 100% 0%, var(--gold-glow), transparent 70%)',
-              pointerEvents: 'none',
-            }}
-          />
-          <div
-            style={{
-              backgroundImage: 'radial-gradient(circle, var(--text-primary) 0.75px, transparent 0.75px)',
-              backgroundSize: '24px 24px',
-              opacity: 0.035,
-              position: 'absolute',
-              inset: 0,
-              pointerEvents: 'none',
-            }}
-          />
-
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: 740 }}>
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
-                padding: '6px 14px',
-                background: 'var(--bg-primary)',
-                border: '1px solid var(--border-light)',
-                borderRadius: 'var(--radius-full)',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
-                fontSize: '0.75rem',
-                fontWeight: 700,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                color: 'var(--accent-gold)',
-                marginBottom: 16,
-              }}
-            >
-              <GraduationCap size={13} style={{ color: 'var(--accent-gold)' }} />
-              Directory of Accredited Institutions
+    <div style={{ minHeight: 'calc(100svh - var(--nav-height))', paddingBottom: 88, background: 'var(--bg-primary)' }}>
+      {/* Editorial Report Masthead Band */}
+      <section
+        style={{
+          background: 'var(--bg-secondary)',
+          padding: 'clamp(32px, 5vw, 56px) 0',
+        }}
+      >
+        <div className="container">
+          <div className="editorial-axis-row">
+            {/* Left Margin Standfirst */}
+            <div style={{ paddingRight: 24 }}>
+              <p
+                style={{
+                  color: 'var(--text-secondary)',
+                  fontSize: '1rem',
+                  lineHeight: 1.6,
+                  maxWidth: '34ch',
+                  margin: 0,
+                }}
+              >
+                Every chartered public university, private institution, and national technical polytechnic in Kenya indexed by county, tuition band, and student rating.
+              </p>
             </div>
 
-            <h1
-              style={{
-                fontSize: 'clamp(1.85rem, 3.5vw, 2.5rem)',
-                fontWeight: 700,
-                letterSpacing: '-0.028em',
-                lineHeight: 1.15,
-                color: 'var(--text-primary)',
-                fontFamily: 'var(--font-sans)',
-                margin: '0 0 12px 0',
-              }}
-            >
-              Explore Campuses Across Kenya
-            </h1>
-
-            <p
-              style={{
-                color: 'var(--text-secondary)',
-                fontSize: '0.98rem',
-                lineHeight: 1.55,
-                margin: 0,
-                fontFamily: 'var(--font-sans)',
-              }}
-            >
-              Discover <strong style={{ color: 'var(--accent-gold)' }}>{universities.length}</strong> accredited Kenyan institutions. Filter by county, type, ranking, fees, facilities, and verified student reviews.
-            </p>
+            {/* 42% Vertical Axis Display Title */}
+            <div className="editorial-hero-title-col">
+              <h1
+                style={{
+                  fontSize: 'clamp(1.625rem, 2.2vw, 2rem)',
+                  fontWeight: 800,
+                  letterSpacing: '-0.04em',
+                  lineHeight: 1.04,
+                  color: 'var(--text-primary)',
+                  fontFamily: 'var(--font-sans)',
+                  margin: '0 0 14px 0',
+                }}
+              >
+                <span className="tabular-nums">{universities.length}</span> Accredited Campuses.
+              </h1>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                <span><strong className="tabular-nums" style={{ color: 'var(--text-primary)' }}>35</strong> Public Chartered</span>
+                <span><strong className="tabular-nums" style={{ color: 'var(--text-primary)' }}>21</strong> Private Chartered</span>
+                <span><strong className="tabular-nums" style={{ color: 'var(--text-primary)' }}>12</strong> National Polytechnics &amp; TVET</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <section style={{ maxWidth: '1400px', margin: '32px auto 0', padding: '0 20px' }}>
+      <section className="container" style={{ marginTop: 32 }}>
         <UniversityBrowser
           universities={universities}
           userHighSchool={userHighSchool}

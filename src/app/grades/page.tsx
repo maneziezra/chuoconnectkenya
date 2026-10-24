@@ -6,7 +6,7 @@ import { GRADE_GUIDES, getCoursesForGradeGuide } from '@/lib/data/gradeGuides';
 export const metadata: Metadata = {
   title: 'KCSE Mean Grade Course & Career Guides (A to D+)',
   description:
-    'Find the best KUCCPS degree, KMTC, and TVET diploma courses in Kenya for your exact KCSE Mean Grade — from A & A- to B+, B, C+, C plain, C- and D+.',
+    'Find the best KUCCPS degree, KMTC, and TVET diploma courses in Kenya for your exact KCSE Mean Grade · from A & A- to B+, B, C+, C plain, C- and D+.',
 };
 
 export default function GradesIndexPage() {
@@ -26,16 +26,6 @@ export default function GradesIndexPage() {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-              backgroundSize: '28px 28px',
-              opacity: 0.035,
-              pointerEvents: 'none',
-            }}
-          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span
               style={{
@@ -122,7 +112,7 @@ export default function GradesIndexPage() {
                           borderRadius: 'var(--radius-md)',
                           background: 'var(--accent-gold)',
                           color: 'var(--gold-contrast-text)',
-                          fontFamily: 'var(--font-mono)',
+                          fontFamily: 'var(--font-sans)',
                           fontWeight: 800,
                           fontSize: '1.05rem',
                         }}
@@ -176,13 +166,13 @@ export default function GradesIndexPage() {
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>KCSE Aggregate:</span>
-                        <strong style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
+                        <strong className="tabular-nums" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
                           {guide.aggregateRange}
                         </strong>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Cluster / Entry Tier:</span>
-                        <strong style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
+                        <strong className="tabular-nums" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
                           {guide.typicalClusterRange}
                         </strong>
                       </div>
@@ -245,7 +235,7 @@ export default function GradesIndexPage() {
                   marginBottom: 8,
                 }}
               >
-                Don’t Guess Your Cluster Points—Calculate All 8 Clusters Instantly
+                Don’t Guess Your Cluster Points · Calculate All 8 Clusters Instantly
               </h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', margin: 0, lineHeight: 1.6 }}>
                 Two students with the same Mean Grade can have a 6-point difference in weighted cluster scores depending on their 4 cluster subjects. Enter your 7–12 KCSE subjects to see your exact placement odds.

@@ -2489,16 +2489,6 @@ export default async function HousingPage({ searchParams }: Props) {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-              backgroundSize: '28px 28px',
-              opacity: 0.035,
-              pointerEvents: 'none',
-            }}
-          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span
               style={{
@@ -2578,7 +2568,7 @@ export default async function HousingPage({ searchParams }: Props) {
                   <option value="">All Universities</option>
                   {universitiesData.map(u => (
                     <option key={u.id} value={u.id}>
-                      {u.abbrev ? `${u.abbrev} — ${u.name}` : u.name}
+                      {u.abbrev ? `${u.abbrev} · ${u.name}` : u.name}
                     </option>
                   ))}
                 </select>
@@ -2643,7 +2633,7 @@ export default async function HousingPage({ searchParams }: Props) {
                   const cleanDigits = (h.contactPhone || '').replace(/\D+/g, '');
                   const waPhone = cleanDigits.startsWith('254')
                     ? cleanDigits
-                    : cleanDigits.startsWith('07') || cleanDigits.startsWith('01')
+                    : /^0[17]/.test(cleanDigits)
                     ? `254${cleanDigits.slice(1)}`
                     : null;
                   const waText = `Hi, I found ${h.name} (${h.location}) on Chuo Connect Kenya and would like to inquire about student room availability (${h.price}).`;
@@ -2746,7 +2736,7 @@ export default async function HousingPage({ searchParams }: Props) {
                           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 14 }}>
                             <div>
                               <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Starting from</div>
-                              <div style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-mono)' }}>{h.price}</div>
+                              <div className="tabular-nums" style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)' }}>{h.price}</div>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', color: h.available ? '#059669' : '#DC2626', fontWeight: 600 }}>
                               {h.available ? <><CheckCircle size={13} /> Available</> : <><XCircle size={13} /> Full</>}

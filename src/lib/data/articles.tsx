@@ -35,7 +35,7 @@ export const ARTICLES: Article[] = [
         <p>Don't rely solely on university brochures. Reach out to professionals working in the fields you are interested in. Ask them about their daily routines, the challenges they face, and whether they would recommend their career path to a young graduate.</p>
         
         <h2>Conclusion</h2>
-        <p>Your degree is an investment of time, money, and energy. Take the time to make an informed decision. Remember, no choice is entirely permanent—skills are transferable, but a strong, deliberate start makes the journey much smoother.</p>
+        <p>Your degree is an investment of time, money, and energy. Take the time to make an informed decision. Remember, no choice is entirely permanent · skills are transferable, but a strong, deliberate start makes the journey much smoother.</p>
       </>
     )
   },

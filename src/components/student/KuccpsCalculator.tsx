@@ -309,7 +309,7 @@ export default function KuccpsCalculator({
     const topClusterScore = clusterResults ? Math.max(...clusterResults.map(c => c.score)) : 0;
     const isDiploma = firstBasketItem?.course.level === 'Diploma';
 
-    let unlock = true;
+    let revealReport = true;
     try {
       const res = await fetch('/api/leads', {
         method: 'POST',
@@ -333,18 +333,18 @@ export default function KuccpsCalculator({
         const data: { error?: string; fieldErrors?: Record<string, string> } = await res.json().catch(() => ({}));
         if (res.status === 400) {
           // The student can fix this (e.g. a mistyped number), so keep the form open.
-          unlock = false;
+          revealReport = false;
           setLeadFormError(data.fieldErrors?.phone || data.fieldErrors?.studentName || data.fieldErrors?.email || data.error || 'Please check your details.');
         } else {
           // Our side failed (service down / not set up yet). The report is still theirs.
-          setLeadSendNotice(`Your report is unlocked, but we could not pass your details to the university. ${data.error ?? ''}`.trim());
+          setLeadSendNotice(`Your report is ready, but we could not pass your details to the university. ${data.error ?? ''}`.trim());
         }
       }
     } catch {
-      setLeadSendNotice('Your report is unlocked, but we could not reach our servers to pass your details to the university.');
+      setLeadSendNotice('Your report is ready, but we could not reach our servers to pass your details to the university.');
     } finally {
       setSubmittingLead(false);
-      if (unlock) setLeadUnlocked(true);
+      if (revealReport) setLeadUnlocked(true);
     }
   };
 
@@ -355,14 +355,14 @@ export default function KuccpsCalculator({
     const basketLines = BASKET_SLOTS.map(({ slot }) => {
       const item = basket[slot];
       return item
-        ? `• Choice ${slot}: ${item.course.title} (${item.universityName}) — Score: ${item.studentScore.toFixed(1)} vs Cutoff: ${item.course.minPoints.toFixed(1)}`
+        ? `• Choice ${slot}: ${item.course.title} (${item.universityName}) · Score: ${item.studentScore.toFixed(1)} vs Cutoff: ${item.course.minPoints.toFixed(1)}`
         : null;
     })
       .filter(Boolean)
       .join('\n');
 
     const text = [
-      `🎓 *My Chuo Connect KUCCPS & HEF Placement Report*`,
+      `*My Chuo Connect KUCCPS & HEF Placement Report*`,
       `• Mean Grade: *${overallGrade}* (${aggregatePoints}/84 pts)`,
       topCluster ? `• Best Cluster: *${topCluster.score.toFixed(1)}/48* (${topCluster.cluster})` : '',
       `• Estimated HEF Tier: *Band ${hefResult.band}* (${hefResult.scholarshipPct}% Gov Scholarship, ${hefResult.loanPct}% HELB Loan, ${hefResult.householdPct}% Household)`,
@@ -386,6 +386,7 @@ export default function KuccpsCalculator({
     <div>
       {/* ── TOP NAVIGATION TABS (MATCHER / HEF SIMULATOR / CHOICE BASKET) ── */}
       <div
+        data-ui="kuccps-step-tabs"
         style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
@@ -398,11 +399,10 @@ export default function KuccpsCalculator({
           onClick={() => setActiveTab('matcher')}
           style={{
             padding: '16px 18px',
-            borderRadius: 'var(--radius-xl)',
+            borderRadius: 'var(--radius-lg)',
             border: activeTab === 'matcher' ? '1.5px solid var(--accent-gold)' : '1px solid var(--border-light)',
-            background: activeTab === 'matcher' ? 'var(--accent-main)' : 'var(--bg-primary)',
+            background: activeTab === 'matcher' ? 'var(--accent-main)' : 'var(--bg-secondary)',
             color: activeTab === 'matcher' ? 'var(--text-inverse)' : 'var(--text-primary)',
-            boxShadow: activeTab === 'matcher' ? '0 4px 16px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)',
             display: 'flex',
             alignItems: 'center',
             gap: 12,
@@ -410,29 +410,14 @@ export default function KuccpsCalculator({
             textAlign: 'left',
             transition: 'transform var(--apple-press), background 0.16s ease, border-color 0.16s ease',
           }}
-          className="hover:border-[var(--accent-gold)] active:scale-[0.98]"
         >
-          <div
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 'var(--radius-md)',
-              background: activeTab === 'matcher' ? 'var(--accent-gold)' : 'var(--gold-glow)',
-              color: activeTab === 'matcher' ? 'var(--gold-contrast-text)' : 'var(--accent-gold)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <Calculator size={18} />
-          </div>
+          <Calculator size={18} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
           <div>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.8 }}>
-              Step 1 • Official Formula
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, opacity: 0.8 }}>
+              Step 1 · Official Formula
             </div>
             <div style={{ fontSize: '0.95rem', fontWeight: 700 }}>
-              Cluster & Course Matcher
+              Cluster &amp; Course Matcher
             </div>
           </div>
         </button>
@@ -442,11 +427,10 @@ export default function KuccpsCalculator({
           onClick={() => setActiveTab('hef')}
           style={{
             padding: '16px 18px',
-            borderRadius: 'var(--radius-xl)',
+            borderRadius: 'var(--radius-lg)',
             border: activeTab === 'hef' ? '1.5px solid var(--accent-gold)' : '1px solid var(--border-light)',
-            background: activeTab === 'hef' ? 'var(--accent-main)' : 'var(--bg-primary)',
+            background: activeTab === 'hef' ? 'var(--accent-main)' : 'var(--bg-secondary)',
             color: activeTab === 'hef' ? 'var(--text-inverse)' : 'var(--text-primary)',
-            boxShadow: activeTab === 'hef' ? '0 4px 16px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)',
             display: 'flex',
             alignItems: 'center',
             gap: 12,
@@ -454,26 +438,11 @@ export default function KuccpsCalculator({
             textAlign: 'left',
             transition: 'transform var(--apple-press), background 0.16s ease, border-color 0.16s ease',
           }}
-          className="hover:border-[var(--accent-gold)] active:scale-[0.98]"
         >
-          <div
-            style={{
-              width: 38,
-              height: 38,
-              borderRadius: 'var(--radius-md)',
-              background: activeTab === 'hef' ? 'var(--accent-gold)' : 'var(--gold-glow)',
-              color: activeTab === 'hef' ? 'var(--gold-contrast-text)' : 'var(--accent-gold)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <Wallet size={18} />
-          </div>
+          <Wallet size={18} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
           <div>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.8 }}>
-              Step 2 • Band {hefResult.band} ({hefResult.householdPct}% Fee)
+            <div style={{ fontSize: '0.75rem', fontWeight: 700, opacity: 0.8 }}>
+              Step 2 · Band {hefResult.band} ({hefResult.householdPct}% Fee)
             </div>
             <div style={{ fontSize: '0.95rem', fontWeight: 700 }}>
               HEF Band 1–5 Fee Simulator
@@ -486,11 +455,10 @@ export default function KuccpsCalculator({
           onClick={() => setActiveTab('basket')}
           style={{
             padding: '16px 18px',
-            borderRadius: 'var(--radius-xl)',
+            borderRadius: 'var(--radius-lg)',
             border: activeTab === 'basket' ? '1.5px solid var(--accent-gold)' : '1px solid var(--border-light)',
-            background: activeTab === 'basket' ? 'var(--accent-main)' : 'var(--bg-primary)',
+            background: activeTab === 'basket' ? 'var(--accent-main)' : 'var(--bg-secondary)',
             color: activeTab === 'basket' ? 'var(--text-inverse)' : 'var(--text-primary)',
-            boxShadow: activeTab === 'basket' ? '0 4px 16px rgba(0,0,0,0.08)' : '0 1px 3px rgba(0,0,0,0.04)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -499,27 +467,12 @@ export default function KuccpsCalculator({
             textAlign: 'left',
             transition: 'transform var(--apple-press), background 0.16s ease, border-color 0.16s ease',
           }}
-          className="hover:border-[var(--accent-gold)] active:scale-[0.98]"
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: 'var(--radius-md)',
-                background: activeTab === 'basket' ? 'var(--accent-gold)' : 'var(--gold-glow)',
-                color: activeTab === 'basket' ? 'var(--gold-contrast-text)' : 'var(--accent-gold)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <Briefcase size={18} />
-            </div>
+            <Briefcase size={18} style={{ color: 'var(--accent-gold)', flexShrink: 0 }} />
             <div>
-              <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', opacity: 0.8 }}>
-                Step 3 • Revision Simulator
+              <div style={{ fontSize: '0.75rem', fontWeight: 700, opacity: 0.8 }}>
+                Step 3 · Revision Simulator
               </div>
               <div style={{ fontSize: '0.95rem', fontWeight: 700 }}>
                 KUCCPS Basket ({basketCount}/6)
@@ -537,13 +490,10 @@ export default function KuccpsCalculator({
           {isEditingGrades ? (
             <div
               style={{
-                background: 'var(--bg-primary)',
-                border: '1px solid var(--border-light)',
-                borderTop: '1px solid var(--apple-glass-highlight)',
-                borderRadius: 'var(--radius-xl)',
+                background: 'var(--bg-secondary)',
+                borderRadius: 'var(--radius-lg)',
                 padding: 28,
                 marginBottom: 24,
-                boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: 16 }}>
@@ -602,7 +552,7 @@ export default function KuccpsCalculator({
                       }}
                     >
                       <span>{preset.label}</span>
-                      <span style={{ color: 'var(--gold-primary)', fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
+                      <span className="tabular-nums" style={{ color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)', fontWeight: 700 }}>
                         {preset.badge}
                       </span>
                     </button>
@@ -664,7 +614,7 @@ export default function KuccpsCalculator({
                         fontWeight: 700,
                       }}
                     >
-                      {degreeQualified ? '✓ Direct Degree & TVET Eligible (C+ and above)' : '✓ TVET & Diploma-to-Degree Bridge Eligible'}
+                      {degreeQualified ? 'Direct Degree & TVET Eligible (C+ and above)' : 'TVET & Diploma-to-Degree Bridge Eligible'}
                     </span>
                   </div>
                 )}
@@ -693,7 +643,7 @@ export default function KuccpsCalculator({
                         setSubjectGrades(prev => ({ ...prev, [subject]: e.target.value }));
                       }}
                     >
-                      <option value="">— Not Taken —</option>
+                      <option value=""> · Not Taken · </option>
                       {GRADES.map(g => (
                         <option key={g} value={g}>
                           {g} ({GRADE_POINTS[g]} pts)
@@ -726,9 +676,9 @@ export default function KuccpsCalculator({
 
               <p style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: 8, textAlign: 'center' }}>
                 Uses official KUCCPS formula:{' '}
-                <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 600 }}>
-                  w = √((c / 48) × (p / 84)) × 48
-                </span>{' '}
+                <code style={{ fontWeight: 600 }}>
+                  w = sqrt((c / 48) * (p / 84)) * 48
+                </code>{' '}
                 • Indicative cut-offs based on 2024 placement cycle.
               </p>
             </div>
@@ -736,7 +686,7 @@ export default function KuccpsCalculator({
             <div
               style={{
                 background: 'var(--navy-deep)',
-                borderRadius: 'var(--radius-xl)',
+                borderRadius: 'var(--radius-lg)',
                 padding: 24,
                 marginBottom: 24,
                 display: 'flex',
@@ -804,7 +754,7 @@ export default function KuccpsCalculator({
                       cursor: 'pointer',
                     }}
                   >
-                    {showReachCourses ? '✓ Including Reach (-2.0 pts)' : 'Show Reach Courses'}
+                    {showReachCourses ? 'Including Reach (-2.0 pts)' : 'Show Reach Courses'}
                   </button>
                   <button
                     type="button"
@@ -820,7 +770,7 @@ export default function KuccpsCalculator({
                       cursor: 'pointer',
                     }}
                   >
-                    {showDiplomaBridge ? '✓ Showing Diploma / TVET Pathways' : '+ View Diploma / TVET Bridge'}
+                    {showDiplomaBridge ? 'Showing Diploma / TVET Pathways' : '+ View Diploma / TVET Bridge'}
                   </button>
                 </div>
               </div>
@@ -853,7 +803,7 @@ export default function KuccpsCalculator({
                       {cr.cluster.split(':')[1] || cr.cluster}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
+                      <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
                         {cr.score.toFixed(2)} <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>/ 48</span>
                       </span>
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
@@ -876,7 +826,7 @@ export default function KuccpsCalculator({
                           background: 'var(--bg-primary)',
                           border: '1px solid var(--border-light)',
                           borderTop: '1px solid var(--apple-glass-highlight)',
-                          borderRadius: 'var(--radius-xl)',
+                          borderRadius: 'var(--radius-lg)',
                           overflow: 'hidden',
                           boxShadow: 'var(--shadow-sm)',
                         }}
@@ -902,9 +852,10 @@ export default function KuccpsCalculator({
                           </div>
                           <div style={{ textAlign: 'right' }}>
                             <span
+                              className="tabular-nums"
                               style={{
                                 color: 'var(--gold-primary)',
-                                fontFamily: 'var(--font-mono)',
+                                fontFamily: 'var(--font-sans)',
                                 fontWeight: 700,
                                 fontSize: '1.2rem',
                               }}
@@ -949,12 +900,13 @@ export default function KuccpsCalculator({
                                       {course.title}
                                     </h4>
                                     <span
+                                      className="tabular-nums"
                                       style={{
                                         padding: '3px 10px',
                                         borderRadius: 6,
                                         fontSize: '0.72rem',
                                         fontWeight: 700,
-                                        fontFamily: 'var(--font-mono)',
+                                        fontFamily: 'var(--font-sans)',
                                         background: badgeStyles.bg,
                                         color: badgeStyles.color,
                                       }}
@@ -1036,7 +988,7 @@ export default function KuccpsCalculator({
                     background: 'var(--gold-glow)',
                     border: '1px solid var(--border-light)',
                     borderTop: '1px solid var(--apple-glass-highlight)',
-                    borderRadius: 'var(--radius-xl)',
+                    borderRadius: 'var(--radius-lg)',
                     marginBottom: 24,
                   }}
                 >
@@ -1044,7 +996,7 @@ export default function KuccpsCalculator({
                     Mean Grade {overallGrade}: Direct Diploma-to-Degree & TVET Pathways Unlocked
                   </div>
                   <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
-                    While direct KUCCPS degree placement requires a minimum KCSE Mean Grade of <strong>C+ (46 points)</strong>, you qualify immediately for accredited University Diplomas and TVET programmes below—many with <strong>2nd-year BSc/BCom credit transfers</strong>.
+                    While direct KUCCPS degree placement requires a minimum KCSE Mean Grade of <strong>C+ (46 points)</strong>, you qualify immediately for accredited University Diplomas and TVET programmes below · many with <strong>2nd-year BSc/BCom credit transfers</strong>.
                   </p>
                 </div>
               )}
@@ -1057,7 +1009,7 @@ export default function KuccpsCalculator({
                     background: 'var(--bg-primary)',
                     border: '1px solid var(--border-light)',
                     borderTop: '1px solid var(--apple-glass-highlight)',
-                    borderRadius: 'var(--radius-xl)',
+                    borderRadius: 'var(--radius-lg)',
                     overflow: 'hidden',
                     boxShadow: 'var(--shadow-sm)',
                   }}
@@ -1153,7 +1105,7 @@ export default function KuccpsCalculator({
             background: 'var(--bg-primary)',
             border: '1px solid var(--border-light)',
             borderTop: '1px solid var(--apple-glass-highlight)',
-            borderRadius: 'var(--radius-xl)',
+            borderRadius: 'var(--radius-lg)',
             padding: 28,
             boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
           }}
@@ -1312,7 +1264,7 @@ export default function KuccpsCalculator({
                 <div style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase' }}>
                   Annual HELB Upkeep Stipend
                 </div>
-                <div style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-mono)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)' }}>
                   KES {hefResult.upkeepLoanKes.toLocaleString()} / yr
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
@@ -1352,19 +1304,19 @@ export default function KuccpsCalculator({
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12 }}>
               <div style={{ padding: 12, background: 'rgba(16, 185, 129, 0.14)', borderRadius: 10 }}>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)' }}>Gov. Scholarship (Free Grant)</div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#34D399', fontFamily: 'var(--font-mono)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#34D399', fontFamily: 'var(--font-sans)' }}>
                   {hefResult.scholarshipPct}%
                 </div>
               </div>
               <div style={{ padding: 12, background: 'rgba(199, 155, 55, 0.18)', borderRadius: 10 }}>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)' }}>HELB Tuition Loan</div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-mono)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)' }}>
                   {hefResult.loanPct}%
                 </div>
               </div>
               <div style={{ padding: 12, background: 'rgba(239, 68, 68, 0.18)', borderRadius: 10 }}>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)' }}>Household / Parent Fee Share</div>
-                <div style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FCA5A5', fontFamily: 'var(--font-mono)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FCA5A5', fontFamily: 'var(--font-sans)' }}>
                   {hefResult.householdPct}%
                 </div>
               </div>
@@ -1395,12 +1347,12 @@ export default function KuccpsCalculator({
                   return (
                     <tr key={course.id} style={{ borderBottom: '1px solid var(--border-light)' }}>
                       <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-primary)' }}>{course.title}</td>
-                      <td style={{ padding: '12px 14px', fontFamily: 'var(--font-mono)' }}>KES {cost.toLocaleString()}</td>
-                      <td style={{ padding: '12px 14px', fontFamily: 'var(--font-mono)', color: 'var(--success-text)' }}>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)' }}>KES {cost.toLocaleString()}</td>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)', color: 'var(--success-text)' }}>
                         KES {govKes.toLocaleString()}
                       </td>
-                      <td style={{ padding: '12px 14px', fontFamily: 'var(--font-mono)' }}>KES {loanKes.toLocaleString()}</td>
-                      <td style={{ padding: '12px 14px', fontFamily: 'var(--font-mono)', fontWeight: 700, color: 'var(--text-primary)' }}>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)' }}>KES {loanKes.toLocaleString()}</td>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)', fontWeight: 700, color: 'var(--text-primary)' }}>
                         KES {parentSemKes.toLocaleString()} / sem
                       </td>
                     </tr>
@@ -1421,7 +1373,7 @@ export default function KuccpsCalculator({
             background: 'var(--bg-primary)',
             border: '1px solid var(--border-light)',
             borderTop: '1px solid var(--apple-glass-highlight)',
-            borderRadius: 'var(--radius-xl)',
+            borderRadius: 'var(--radius-lg)',
             padding: 28,
             boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03)',
           }}
@@ -1435,7 +1387,7 @@ export default function KuccpsCalculator({
                 My KUCCPS Choice Basket & Placement Strategy Audit
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>
-                Build your 6-slot placement basket (`1a`, `1b`, `1c`, `2`, `3`, `4`) and unlock your printable placement & funding report.
+                Build your 6-slot placement basket (`1a`, `1b`, `1c`, `2`, `3`, `4`) and generate your printable placement &amp; funding report.
               </p>
             </div>
             <button
@@ -1494,7 +1446,7 @@ export default function KuccpsCalculator({
                       </>
                     ) : (
                       <p style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', margin: '12px 0' }}>
-                        {hint} — Select a course in the Matcher tab to fill this slot.
+                        {hint} · Select a course in the Matcher tab to fill this slot.
                       </p>
                     )}
                   </div>
@@ -1502,7 +1454,7 @@ export default function KuccpsCalculator({
                   {item && (
                     <div style={{ paddingTop: 10, borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: 10 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.78rem' }}>
-                        <span style={{ fontFamily: 'var(--font-mono)', fontWeight: 700 }}>
+                        <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontWeight: 700 }}>
                           {item.course.level === 'Diploma'
                             ? `Entry: mean grade ${item.course.minMeanGrade ?? 'C-'} or above`
                             : `Your Score: ${item.studentScore.toFixed(1)} vs ${item.course.minPoints.toFixed(1)}`}
@@ -1570,7 +1522,7 @@ export default function KuccpsCalculator({
             </div>
           )}
 
-          {/* Free WhatsApp / Email Lead Gate to Unlock Shareable & Printable Report */}
+          {/* Free WhatsApp / Email Lead Gate to Generate Shareable & Printable Report */}
           {!leadUnlocked ? (
             <form
               onSubmit={handleUnlockReport}
@@ -1586,7 +1538,7 @@ export default function KuccpsCalculator({
                   100% Free Student Placement Report
                 </span>
                 <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#FFFFFF', marginBottom: 8 }}>
-                  Unlock Your Printable PDF Report & WhatsApp Summary
+                  Generate Your Printable PDF Report &amp; WhatsApp Summary
                 </h3>
                 <p style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.88rem', marginBottom: 20, lineHeight: 1.6 }}>
                   Enter your details below to generate your official Chuo Connect Placement & HEF Funding Report Card and receive direct admission & scholarship alerts from your target universities.
@@ -1673,7 +1625,7 @@ export default function KuccpsCalculator({
                   </>
                 ) : (
                   <>
-                    Unlock Placement Report & Share <ArrowRight size={16} />
+                    Generate Placement Report &amp; Share <ArrowRight size={16} />
                   </>
                 )}
               </button>
@@ -1694,7 +1646,7 @@ export default function KuccpsCalculator({
             >
               <div>
                 <div style={{ color: 'var(--gold-primary)', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-                  ✓ Report Unlocked for {leadForm.fullName}
+                  Report Ready for {leadForm.fullName}
                 </div>
                 <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: '#FFFFFF', margin: '4px 0' }}>
                   Mean Grade {overallGrade} ({aggregatePoints}/84) • HEF Band {hefResult.band}

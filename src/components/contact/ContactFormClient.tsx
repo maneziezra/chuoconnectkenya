@@ -63,7 +63,7 @@ export default function ContactFormClient() {
     const waText = encodeURIComponent(
       `Hi Chuo Connect Kenya Team! My name is ${fullName}${organization ? ` from ${organization}` : ''}. Subject: ${subject}. ${message}`
     );
-    const mailSubject = encodeURIComponent(`[Chuo Connect] ${subject} — ${fullName}`);
+    const mailSubject = encodeURIComponent(`[Chuo Connect] ${subject} · ${fullName}`);
     const mailBody = encodeURIComponent(
       `Name: ${fullName}\nEmail: ${email}\nPhone: ${phone}\nOrganization: ${organization || 'N/A'}\nSubject: ${subject}\n\n${message}`
     );

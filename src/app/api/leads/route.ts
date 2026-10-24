@@ -3,7 +3,7 @@ import { createClient } from '@/lib/supabase/server';
 import { validateLeadInput } from '@/lib/utils/leads';
 
 /**
- * POST /api/leads — a student asks a university for admission information.
+ * POST /api/leads · a student asks a university for admission information.
  *
  * Open to guests (no login) by design, so it is hardened instead:
  *  - requires Content-Type: application/json (forces a CORS preflight, so other

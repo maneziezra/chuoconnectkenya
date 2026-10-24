@@ -99,7 +99,7 @@ export const universitiesData: University[] = [
     "students": "70,000+",
     "fees": "Ksh 130k – 480k / year",
     "image": "/images/universities/ku.jpg",
-    "overview": "Kenyatta University features a world-class suburban campus along Thika Superhighway, renowned for education, medicine, creative arts, and cutting-edge business studies.",
+    "overview": "Kenyatta University features a 1,000-acre suburban campus along Thika Superhighway, renowned for education, medicine, creative arts, and applied business studies.",
     "accommodation": "Nyayo, Ruwenzori, and Usambara hostels on-campus accommodating over 15,000 students.",
     "facilities": [
       "Teaching & Referral Hospital (KUTRRH)",
@@ -255,7 +255,7 @@ export const universitiesData: University[] = [
     "ranking": 7,
     "students": "26,000+",
     "fees": "Ksh 115k – 390k / year",
-    "image": "/images/universities/maseno.jpg",
+    "image": "",
     "overview": "Positioned right on the Equator in Kisumu County, Maseno University is renowned for pioneering computing and communications education, medicine, and public health.",
     "accommodation": "Equator, Siriba, and Kisumu CBD campus halls, alongside regulated student private complexes in Maseno township.",
     "facilities": [
@@ -294,7 +294,7 @@ export const universitiesData: University[] = [
     "ranking": 8,
     "students": "14,000+",
     "fees": "Ksh 130k – 420k / year",
-    "image": "/images/universities/dekut.jpg",
+    "image": "",
     "overview": "Situated against the scenic backdrop of Mount Kenya in Nyeri, DeKUT is an elite technological powerhouse spearheading advanced manufacturing, coffee technology, and mechatronics in Kenya.",
     "accommodation": "On-campus hostels for freshmen and extensive off-campus gated hostels in Nyeri and Sasini areas.",
     "facilities": [
@@ -372,7 +372,7 @@ export const universitiesData: University[] = [
     "ranking": 10,
     "students": "18,000+",
     "fees": "Ksh 115k – 360k / year",
-    "image": "/images/universities/tum.jpg",
+    "image": "",
     "overview": "Situated on Tudor Creek in the coastal city of Mombasa, TUM is Kenya's coastal beacon for marine engineering, renewable energy, and electrical technology.",
     "accommodation": "On-campus hostels in Tudor overlooking the Indian Ocean creek with breeze-cooled study areas.",
     "facilities": [
@@ -431,7 +431,7 @@ export const universitiesData: University[] = [
       "Journalism"
     ],
     "entryRequirements": "KCSE C+ with English C+; US high school diploma, IB or GCE A-Levels accepted.",
-    "sportsInfo": "World-class gymnasium, outdoor basketball courts, swimming pool, and rugby field.",
+    "sportsInfo": "Olympic-standard gymnasium, outdoor basketball courts, swimming pool, and rugby field.",
     "libraryInfo": "Fully automated library holding thousands of American and international academic journals.",
     "labsInfo": "Financially-supported innovation labs, podcasting studios, and Mac computer workstations.",
     "innovationHub": "USIU-Africa Incubation and Innovation Center nurturing student ventures.",
@@ -451,7 +451,7 @@ export const universitiesData: University[] = [
     "ranking": 12,
     "students": "25,000+",
     "fees": "Ksh 110k – 390k / year",
-    "image": "/images/universities/mmust.jpg",
+    "image": "",
     "overview": "Located in Kakamega, MMUST is renowned across East Africa for its pioneering disaster management, health sciences, and engineering programmes.",
     "accommodation": "Halls of residence on-campus with numerous licensed off-campus hostels around Kefinco and Lurambi.",
     "facilities": [
@@ -520,7 +520,7 @@ export const universitiesData: University[] = [
     "reviewCount": 950
   },
   {
-    "id": "pu",
+    "id": "pwani",
     "name": "Pwani University",
     "abbrev": "Pwani",
     "type": "Public",
@@ -529,7 +529,7 @@ export const universitiesData: University[] = [
     "ranking": 14,
     "students": "15,000+",
     "fees": "Ksh 110k – 360k / year",
-    "image": "/images/universities/pu.jpg",
+    "image": "",
     "overview": "Located in Kilifi along the scenic Kenyan coastline, Pwani University is an international hub for biosciences, tropical medicine (partnered with KEMRI-Wellcome Trust), and oceanography.",
     "accommodation": "On-campus hostels in breezy coconut-tree landscapes, minutes from Kilifi Creek and the beach.",
     "facilities": [
@@ -568,7 +568,7 @@ export const universitiesData: University[] = [
     "ranking": 15,
     "students": "22,000+",
     "fees": "Ksh 110k – 380k / year",
-    "image": "/images/universities/kisii.jpg",
+    "image": "",
     "overview": "Nestled in the lush hills of Kisii County, Kisii University is a rapidly growing public university recognized for Health Sciences, Law, Agriculture, and Information Technology.",
     "accommodation": "On-campus hostels and verified private hostels in Kisii town and surrounding suburbs.",
     "facilities": [
@@ -685,7 +685,7 @@ export const universitiesData: University[] = [
     "ranking": 18,
     "students": "20,000+",
     "fees": "Ksh 110k – 370k / year",
-    "image": "/images/universities/uoeld.jpg",
+    "image": "",
     "overview": "Located just outside Eldoret town, UoE is Kenya's leading institution for forestry, fisheries, environmental science, and agricultural engineering.",
     "accommodation": "Spacious on-campus hostels in a quiet agricultural environment with active off-campus housing.",
     "facilities": [
@@ -724,7 +724,7 @@ export const universitiesData: University[] = [
     "ranking": 19,
     "students": "16,000+",
     "fees": "Ksh 110k – 360k / year",
-    "image": "/images/universities/machakos.jpg",
+    "image": "",
     "overview": "Located in the vibrant town of Machakos, this university excels in technical education, hospitality management, mechanical engineering, and business.",
     "accommodation": "On-campus hostels for undergraduate students and accredited private housing in Machakos town.",
     "facilities": [
@@ -763,7 +763,7 @@ export const universitiesData: University[] = [
     "ranking": 20,
     "students": "12,000+",
     "fees": "Ksh 110k – 350k / year",
-    "image": "/images/universities/mut.jpg",
+    "image": "",
     "overview": "Situated on the lush hills of Murang'a, MUT is a distinguished technical and technological university focusing on software development, hospitality, and civil engineering.",
     "accommodation": "On-campus hostels and verified private hostels in Murang'a township.",
     "facilities": [
@@ -802,7 +802,7 @@ export const universitiesData: University[] = [
     "ranking": 21,
     "students": "7,500+",
     "fees": "Ksh 220k – 520k / year",
-    "image": "/images/universities/daystar.jpg",
+    "image": "",
     "overview": "Daystar University is Africa's pioneer Christian communication and liberal arts university, with a sprawling main campus in Athi River and an executive campus in Nairobi (Valley Road).",
     "accommodation": "Modern student dormitories in Athi River with full catering and laundry services.",
     "facilities": [
@@ -880,7 +880,7 @@ export const universitiesData: University[] = [
     "ranking": 23,
     "students": "16,000+",
     "fees": "Ksh 160k – 390k / year",
-    "image": "/images/universities/kca.jpg",
+    "image": "",
     "overview": "Located on Thika Road in Ruaraka, KCA University is Kenya's financial and computing powerhouse, founded by the Institute of Certified Public Accountants of Kenya (ICPAK).",
     "accommodation": "On-campus hostels and numerous student housing estates along Ruaraka and Garden Estate.",
     "facilities": [
@@ -958,7 +958,7 @@ export const universitiesData: University[] = [
     "ranking": 25,
     "students": "10,000+",
     "fees": "Ksh 180k – 460k / year",
-    "image": "/images/universities/kabarak.jpg",
+    "image": "",
     "overview": "Located on an expansive, scenic 600-acre estate near Nakuru, Kabarak is a private Christian institution noted for pharmacy, medicine, law, and music.",
     "accommodation": "Self-contained on-campus halls of residence with wholesome dining and recreational facilities.",
     "facilities": [
@@ -997,7 +997,7 @@ export const universitiesData: University[] = [
     "ranking": 26,
     "students": "11,000+",
     "fees": "Ksh 110k – 340k / year",
-    "image": "/images/universities/seku.jpg",
+    "image": "",
     "overview": "Headquartered in Kwa Vonza (Kitui County) with branches in Wote and Nairobi, SEKU leads research in dryland agriculture, geology, mineral mining, and water resources.",
     "accommodation": "Spacious on-campus hostels with panoramic views of the Yatta Plateau.",
     "facilities": [
@@ -1036,7 +1036,7 @@ export const universitiesData: University[] = [
     "ranking": 27,
     "students": "10,000+",
     "fees": "Ksh 110k – 330k / year",
-    "image": "/images/universities/laikipia.jpg",
+    "image": "",
     "overview": "Located near Nyahururu town in the central highlands, Laikipia University is widely known for education, peace and conflict studies, and sports science.",
     "accommodation": "Halls of residence on-campus with affordable private housing in Nyahururu.",
     "facilities": [
@@ -1192,7 +1192,7 @@ export const universitiesData: University[] = [
     "ranking": 31,
     "students": "8,000+",
     "fees": "Ksh 110k – 320k / year",
-    "image": "/images/universities/rongo.jpg",
+    "image": "",
     "overview": "Situated on the scenic Kitere Hill in Migori County, Rongo University is celebrated for media and communication, agricultural science, and mining technology.",
     "accommodation": "Kitere Main Campus hostels and affordable off-campus student accommodation.",
     "facilities": [
@@ -1231,7 +1231,7 @@ export const universitiesData: University[] = [
     "ranking": 32,
     "students": "6,500+",
     "fees": "Ksh 110k – 340k / year",
-    "image": "/images/universities/ttu.jpg",
+    "image": "",
     "overview": "Located in Voi along the Nairobi-Mombasa highway, TTU is Kenya's premier Home of Mining and Mineral Processing Engineering.",
     "accommodation": "On-campus hostels in Voi with scenic savannah and Tsavo ecosystem views.",
     "facilities": [
@@ -1269,7 +1269,7 @@ export const universitiesData: University[] = [
     "ranking": 33,
     "students": "9,000+",
     "fees": "Ksh 115k – 340k / year",
-    "image": "/images/universities/cuk.jpg",
+    "image": "",
     "overview": "Set in a peaceful 60-acre campus in Karen (Nairobi), CUK is Africa's foremost university in cooperative management, microfinance, and community development.",
     "accommodation": "On-campus residence halls and proximity to Karen shopping centre amenities.",
     "facilities": [
@@ -1308,7 +1308,7 @@ export const universitiesData: University[] = [
     "ranking": 34,
     "students": "10,000+",
     "fees": "Ksh 110k – 330k / year",
-    "image": "/images/universities/kibabii.jpg",
+    "image": "",
     "overview": "Located in Bungoma, Kibabii University is recognized for excellence in computer science, cybersecurity, renewable energy, and teacher education.",
     "accommodation": "On-campus hostels and numerous licensed student housing options in Bungoma and Kibabii.",
     "facilities": [
@@ -1385,7 +1385,7 @@ export const universitiesData: University[] = [
     "ranking": 36,
     "students": "8,000+",
     "fees": "Ksh 110k – 340k / year",
-    "image": "/images/universities/kirinyaga.jpg",
+    "image": "",
     "overview": "Located in Kerugoya/Kutus, Kirinyaga University is recognized for strong engineering, building construction, and health sciences.",
     "accommodation": "On-campus student residences in Kutus and modern private hostels nearby.",
     "facilities": [
@@ -1462,7 +1462,7 @@ export const universitiesData: University[] = [
     "ranking": 38,
     "students": "4,000+",
     "fees": "Ksh 100k – 310k / year",
-    "image": "/images/universities/kafu.jpg",
+    "image": "",
     "overview": "Located in the verdant hill country of Vihiga County, KAFU offers academic programmes rooted in ethical leadership, sciences, and disaster mitigation.",
     "accommodation": "On-campus hostels and verified off-campus student accommodation in Kaimosi.",
     "facilities": [
@@ -1500,7 +1500,7 @@ export const universitiesData: University[] = [
     "ranking": 39,
     "students": "5,000+",
     "fees": "Ksh 105k – 320k / year",
-    "image": "/images/universities/tmu.jpg",
+    "image": "",
     "overview": "Situated on the shores of Lake Victoria in Homa Bay, TMU focuses on blue economy, fisheries, agriculture, and educational excellence.",
     "accommodation": "On-campus hostels overlooking Lake Victoria with refreshing lake breezes.",
     "facilities": [
@@ -1539,7 +1539,7 @@ export const universitiesData: University[] = [
     "ranking": 40,
     "students": "3,800+",
     "fees": "Ksh 100k – 300k / year",
-    "image": "/images/universities/tharaka.jpg",
+    "image": "",
     "overview": "Chartered in 2022 in Tharaka-Nithi County, this university specializes in dryland mining, agriculture, and pastoral development.",
     "accommodation": "On-campus student hostels in Marimanti with affordable surrounding housing.",
     "facilities": [
@@ -1577,7 +1577,7 @@ export const universitiesData: University[] = [
     "ranking": 41,
     "students": "8,000+",
     "fees": "Ksh 80k – 200k / year",
-    "image": "/images/universities/ouk.jpg",
+    "image": "",
     "overview": "Headquartered at Konza Technopolis, the Open University of Kenya is the nation's premier virtual public university, offering 100% borderless, flexible, and affordable degree and diploma programmes nationwide.",
     "accommodation": "100% Virtual e-learning university; students study from anywhere in Kenya or across the globe.",
     "facilities": [
@@ -1615,7 +1615,7 @@ export const universitiesData: University[] = [
     "ranking": 42,
     "students": "5,000+",
     "fees": "Ksh 180k – 420k / year",
-    "image": "/images/universities/anu.jpg",
+    "image": "",
     "overview": "Set adjacent to the Nairobi National Park in Ongata Rongai, ANU provides values-based education with premier law, computer science, and business faculties.",
     "accommodation": "On-campus dormitories with wildlife views and proximity to Ongata Rongai student amenities.",
     "facilities": [
@@ -1653,7 +1653,7 @@ export const universitiesData: University[] = [
     "ranking": 43,
     "students": "9,000+",
     "fees": "Ksh 160k – 440k / year",
-    "image": "/images/universities/kemu.jpg",
+    "image": "",
     "overview": "Founded by the Methodist Church with campuses in Meru and Nairobi CBD, KeMU is prominent for Medicine, Pharmacy, Nursing, and Business Administration.",
     "accommodation": "On-campus hostels in Meru and partnerships in Nairobi.",
     "facilities": [
@@ -1691,7 +1691,7 @@ export const universitiesData: University[] = [
     "ranking": 44,
     "students": "4,500+",
     "fees": "Ksh 190k – 450k / year",
-    "image": "/images/universities/ueab.jpg",
+    "image": "",
     "overview": "Located in Nandi County, Baraton is Kenya's pioneer private chartered university, renowned worldwide for introducing modern university-level Nursing education in East Africa.",
     "accommodation": "Self-contained on-campus halls with full vegetarian dining commons and serene mountain grounds.",
     "facilities": [
@@ -1730,7 +1730,7 @@ export const universitiesData: University[] = [
     "ranking": 45,
     "students": "6,500+",
     "fees": "Ksh 160k – 410k / year",
-    "image": "/images/universities/spu.jpg",
+    "image": "",
     "overview": "Situated in the cool, picturesque highlands of Limuru, SPU is recognized for theology, communication, leadership, and community development.",
     "accommodation": "On-campus hostels in Limuru and Nairobi city campus access.",
     "facilities": [
@@ -1797,7 +1797,7 @@ export const universitiesData: University[] = [
     "reviewCount": 270
   },
   {
-    "id": "pac",
+    "id": "pu",
     "name": "Pan Africa Christian University",
     "abbrev": "PAC",
     "type": "Private",
@@ -1806,7 +1806,7 @@ export const universitiesData: University[] = [
     "ranking": 47,
     "students": "3,800+",
     "fees": "Ksh 150k – 380k / year",
-    "image": "/images/universities/pac.jpg",
+    "image": "/images/universities/pu.jpg",
     "overview": "Located along Thika Road in Roysambu (Nairobi), PAC University provides transformative leadership, counseling psychology, and business computing.",
     "accommodation": "On-campus dormitories and affordable apartments along Roysambu and Lumumba Drive.",
     "facilities": [
@@ -1844,7 +1844,7 @@ export const universitiesData: University[] = [
     "ranking": 48,
     "students": "3,200+",
     "fees": "Ksh 140k – 340k / year",
-    "image": "/images/universities/khu.jpg",
+    "image": "",
     "overview": "Situated in Kericho town, Kenya Highlands University (formerly Kenya Highlands Bible College) provides quality Christian higher education in theology, education, and business.",
     "accommodation": "On-campus hostels in a cool climate.",
     "facilities": [
@@ -1880,7 +1880,7 @@ export const universitiesData: University[] = [
     "ranking": 49,
     "students": "3,500+",
     "fees": "Ksh 150k – 370k / year",
-    "image": "/images/universities/gluk.jpg",
+    "image": "",
     "overview": "Located in Kibos (Kisumu), GLUK is noted for community-based health education, nursing, clinical medicine, and sustainable agriculture.",
     "accommodation": "Kibos campus on-site halls.",
     "facilities": [
@@ -1917,7 +1917,7 @@ export const universitiesData: University[] = [
     "ranking": 50,
     "students": "2,800+",
     "fees": "Ksh 180k – 410k / year",
-    "image": "/images/universities/aiu.jpg",
+    "image": "",
     "overview": "Located in serene Karen (Nairobi), AIU (formerly NEGST) provides graduate and undergraduate training in theology, intercultural studies, business, and education.",
     "accommodation": "On-campus apartments in Karen.",
     "facilities": [
@@ -1954,7 +1954,7 @@ export const universitiesData: University[] = [
     "ranking": 51,
     "students": "2,500+",
     "fees": "Ksh 140k – 330k / year",
-    "image": "/images/universities/scott.jpg",
+    "image": "",
     "overview": "Located in Machakos town, Scott is Kenya's oldest theological college, offering respected degrees in education, theology, and business.",
     "accommodation": "On-campus dormitories.",
     "facilities": [
@@ -1990,7 +1990,7 @@ export const universitiesData: University[] = [
     "ranking": 52,
     "students": "3,000+",
     "fees": "Ksh 120k – 310k / year",
-    "image": "/images/universities/lukenya.jpg",
+    "image": "",
     "overview": "Situated along the Athi River in Mtito Andei/Makueni, Lukenya University is Kenya's \"Green University\", championing dryland agroforestry, education, and renewable energy.",
     "accommodation": "On-campus hostels in a pristine semi-arid ecosystem.",
     "facilities": [
@@ -2026,7 +2026,7 @@ export const universitiesData: University[] = [
     "ranking": 53,
     "students": "3,200+",
     "fees": "Ksh 220k – 490k / year",
-    "image": "/images/universities/amiu.jpg",
+    "image": "",
     "overview": "Established by Amref Health Africa, AMIU is an elite institution dedicated solely to training healthcare workers, public health leaders, and health economists for the continent.",
     "accommodation": "Off-campus student housing in Langata and Nairobi West.",
     "facilities": [
@@ -2044,7 +2044,7 @@ export const universitiesData: University[] = [
     ],
     "entryRequirements": "Minimum KCSE C+ with requisite science cluster grades.",
     "sportsInfo": "Recreation center and fitness clubs.",
-    "libraryInfo": "World-class public health and epidemiological archives.",
+    "libraryInfo": "Comprehensive public health and epidemiological archives.",
     "labsInfo": "Maternal health simulation suites and diagnostic labs.",
     "innovationHub": "Amref Health Innovation Incubator.",
     "contactEmail": "admissions@amiu.ac.ke",
@@ -2063,7 +2063,7 @@ export const universitiesData: University[] = [
     "ranking": 54,
     "students": "3,000+",
     "fees": "Ksh 160k – 380k / year",
-    "image": "/images/universities/mua.jpg",
+    "image": "",
     "overview": "Sponsored by the Kenya Institute of Management (KIM), MUA focuses on leadership, governance, enterprise development, and executive management.",
     "accommodation": "Affordable hostels near South C and Kisaju campuses.",
     "facilities": [
@@ -2099,7 +2099,7 @@ export const universitiesData: University[] = [
     "ranking": 55,
     "students": "4,000+",
     "fees": "Ksh 150k – 390k / year",
-    "image": "/images/universities/umma.jpg",
+    "image": "",
     "overview": "Located in Kajiado, Umma University is Kenya's premier Islamic values-based university, renowned for Islamic Banking and Finance, Nursing, and Law.",
     "accommodation": "On-campus hostels for men and women.",
     "facilities": [
@@ -2136,8 +2136,8 @@ export const universitiesData: University[] = [
     "ranking": 56,
     "students": "2,500+",
     "fees": "Ksh 160k – 360k / year",
-    "image": "/images/universities/kwust.jpg",
-    "overview": "Located in Kasarani (Nairobi), KWUST is the first and only women's university in East and Southern Africa, empowering female leaders in science, technology, and mathematics.",
+    "image": "",
+    "overview": "Located in Kasarani (Nairobi), KWUST is the first and only women's university in East and Southern Africa, training female leaders in science, technology, and mathematics.",
     "accommodation": "Secure on-campus hostels in Kasarani.",
     "facilities": [
       "Women in Tech Center",
@@ -2173,8 +2173,8 @@ export const universitiesData: University[] = [
     "ranking": 57,
     "students": "1,500+",
     "fees": "Ksh 450k – 900k / year",
-    "image": "/images/universities/aku.jpg",
-    "overview": "Located in Parklands (Nairobi), AKU provides world-class medical postgraduate residency, nursing, and graduate journalism education affiliated with the Aga Khan University Hospital.",
+    "image": "",
+    "overview": "Located in Parklands (Nairobi), AKU provides accredited medical postgraduate residency, nursing, and graduate journalism education affiliated with the Aga Khan University Hospital.",
     "accommodation": "Resident housing in Parklands.",
     "facilities": [
       "Aga Khan Hospital",
@@ -2209,7 +2209,7 @@ export const universitiesData: University[] = [
     "ranking": 58,
     "students": "2,200+",
     "fees": "Ksh 150k – 340k / year",
-    "image": "/images/universities/piu.jpg",
+    "image": "",
     "overview": "Located in Nairobi (Ngara), PIU focuses on aviation technology, international business, and information technology.",
     "accommodation": "Nearby private student residences in Ngara and CBD.",
     "facilities": [
@@ -2322,7 +2322,7 @@ export const universitiesData: University[] = [
     "ranking": 61,
     "students": "3,000+",
     "fees": "Ksh 85k – 180k / year",
-    "image": "/images/universities/kimc.jpg",
+    "image": "",
     "overview": "Located in South B (Nairobi), KIMC is Kenya's premier national broadcast media institute, responsible for training most of the nation's top news anchors, TV producers, and sound engineers.",
     "accommodation": "On-campus hostels in South B.",
     "facilities": [
@@ -2360,7 +2360,7 @@ export const universitiesData: University[] = [
     "ranking": 62,
     "students": "11,000+",
     "fees": "Ksh 67k / year (Govt Subsidized via Capitation)",
-    "image": "/images/universities/kcnp.jpg",
+    "image": "",
     "overview": "Formerly Mombasa Polytechnic, KCNP is the Coastal region's flagship national polytechnic for marine engineering, logistics, welding, and electrical technology.",
     "accommodation": "Hostels on-campus in Mombasa and affordable private housing.",
     "facilities": [
@@ -2398,7 +2398,7 @@ export const universitiesData: University[] = [
     "ranking": 63,
     "students": "12,000+",
     "fees": "Ksh 67k / year (Govt Subsidized)",
-    "image": "/images/universities/eldoretpoly.jpg",
+    "image": "",
     "overview": "Located in Eldoret town, this national polytechnic is a powerhouse for technical engineering, agricultural mechanization, and chemical technology in the Rift Valley.",
     "accommodation": "On-campus hostels and nearby private hostels.",
     "facilities": [
@@ -2435,7 +2435,7 @@ export const universitiesData: University[] = [
     "ranking": 64,
     "students": "10,000+",
     "fees": "Ksh 67k / year (Govt Subsidized)",
-    "image": "/images/universities/kisumupoly.jpg",
+    "image": "",
     "overview": "Located along the Kisumu-Nairobi highway, Kisumu Poly excels in civil engineering, textile design, business, and information technology.",
     "accommodation": "On-campus hostels in Kisumu.",
     "facilities": [
@@ -2472,7 +2472,7 @@ export const universitiesData: University[] = [
     "ranking": 65,
     "students": "9,000+",
     "fees": "Ksh 67k / year (Govt Subsidized)",
-    "image": "/images/universities/kabetepoly.jpg",
+    "image": "",
     "overview": "Located on Waiyaki Way in Nairobi, Kabete is Kenya's oldest technical institute (founded 1924), known for heavy civil engineering, surveying, and electrical technology.",
     "accommodation": "On-campus hostels in Kabete.",
     "facilities": [
@@ -2509,7 +2509,7 @@ export const universitiesData: University[] = [
     "ranking": 66,
     "students": "8,500+",
     "fees": "Ksh 67k / year (Govt Subsidized)",
-    "image": "/images/universities/nyeripoly.jpg",
+    "image": "",
     "overview": "Situated in Nyeri town, this national polytechnic specializes in electrical engineering, agriculture, automotive mechanics, and hospitality.",
     "accommodation": "On-campus hostels in Nyeri.",
     "facilities": [
@@ -2546,7 +2546,7 @@ export const universitiesData: University[] = [
     "ranking": 67,
     "students": "8,000+",
     "fees": "Ksh 67k / year (Govt Subsidized)",
-    "image": "/images/universities/sigalagalapoly.jpg",
+    "image": "",
     "overview": "Located along the Kakamega-Kisumu highway, Sigalagala is Western Kenya's premier centre for mechatronics, mining technology, and agriculture.",
     "accommodation": "On-campus hostels in Sigalagala.",
     "facilities": [
@@ -2583,7 +2583,7 @@ export const universitiesData: University[] = [
     "ranking": 68,
     "students": "4,500+",
     "fees": "Ksh 75k – 160k / year",
-    "image": "/images/universities/rti.jpg",
+    "image": "",
     "overview": "Located in South B (Nairobi), RTI is East Africa's dedicated institution for railway engineering, transport logistics, and civil infrastructure, operated in partnership with Kenya Railways.",
     "accommodation": "On-campus hostels in South B.",
     "facilities": [

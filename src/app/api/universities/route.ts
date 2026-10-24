@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
     const localMatches = universitiesData.filter(u => idList.includes(u.id) && !seen.has(u.id));
     const combined = [...dbUnis, ...localMatches].map(u => ({
       ...u,
-      image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg',
+      image: u.coverUrl || u.logoUrl || u.image || '',
     }));
 
     return NextResponse.json(combined);
@@ -43,10 +43,8 @@ export async function GET(request: NextRequest) {
 
   const allUnis = mergedUnis.map((u: any) => ({
     ...u,
-    image: u.coverUrl || u.logoUrl || u.image || '/images/universities/uon.jpg',
+    image: u.coverUrl || u.logoUrl || u.image || '',
   }));
 
   return NextResponse.json(allUnis);
 }
-
-

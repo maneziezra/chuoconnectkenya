@@ -120,7 +120,7 @@ export default async function GradeDetailPage({ params }: Props) {
                       fontSize: '0.76rem',
                       fontWeight: 700,
                       textDecoration: 'none',
-                      fontFamily: 'var(--font-mono)',
+                      fontFamily: 'var(--font-sans)',
                       background: g.slug === guide.slug ? 'var(--accent-gold)' : 'var(--bg-secondary)',
                       color: g.slug === guide.slug ? 'var(--gold-contrast-text)' : 'var(--text-secondary)',
                       border: '1px solid var(--border-light)',
@@ -140,7 +140,7 @@ export default async function GradeDetailPage({ params }: Props) {
                   borderRadius: 'var(--radius-md)',
                   background: 'var(--accent-gold)',
                   color: 'var(--gold-contrast-text)',
-                  fontFamily: 'var(--font-mono)',
+                  fontFamily: 'var(--font-sans)',
                   fontWeight: 800,
                   fontSize: '0.88rem',
                 }}
@@ -296,7 +296,7 @@ export default async function GradeDetailPage({ params }: Props) {
                           </span>
                           <span
                             style={{
-                              fontFamily: 'var(--font-mono)',
+                              fontFamily: 'var(--font-sans)',
                               fontSize: '0.78rem',
                               fontWeight: 700,
                               padding: '3px 10px',
@@ -505,7 +505,7 @@ export default async function GradeDetailPage({ params }: Props) {
               }}
             >
               <HelpCircle size={20} style={{ color: 'var(--gold-primary)' }} />
-              Frequently Asked Questions — KCSE Grade {guide.gradeLabel}
+              Frequently Asked Questions · KCSE Grade {guide.gradeLabel}
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               {guide.faqs.map((faq, idx) => (

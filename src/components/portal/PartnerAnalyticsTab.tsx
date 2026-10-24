@@ -152,7 +152,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
                 <div key={item.key} style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.86rem', marginBottom: 6 }}>
                     <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>{item.label}</span>
-                    <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
+                    <span className="tabular-nums" style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
                       {item.count} ({pct}%)
                     </span>
                   </div>
@@ -161,7 +161,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
                       style={{
                         height: '100%',
                         width: `${pct}%`,
-                        background: 'linear-gradient(90deg, var(--gold-primary), #E5B242)',
+                        background: 'var(--gold-primary)',
                         borderRadius: 'var(--radius-full)',
                         transition: 'width 0.5s ease',
                       }}
@@ -191,13 +191,13 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
             </div>
             {metrics.byFinancing.map((item, idx) => {
               const pct = metrics.total > 0 ? Math.round((item.count / totalLeads) * 100) : 0;
-              const barColors = ['#3B82F6', 'var(--gold-primary)', '#10B981', '#8B5CF6'];
+              const barColors = ['var(--brand-navy)', 'var(--gold-primary)', 'var(--success-text)', 'var(--info-text)'];
               const color = barColors[idx % barColors.length];
               return (
                 <div key={item.key} style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.86rem', marginBottom: 6 }}>
                     <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>{item.label}</span>
-                    <span style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)' }}>
+                    <span className="tabular-nums" style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
                       {item.count} ({pct}%)
                     </span>
                   </div>

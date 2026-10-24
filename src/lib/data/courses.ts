@@ -237,7 +237,7 @@ export const coursesData: Course[] = [
   },
   {
     id: 'bcom-uon',
-    title: 'Bachelor of Commerce (BCom — Finance, Accounting & FinTech)',
+    title: 'Bachelor of Commerce (BCom · Finance, Accounting & FinTech)',
     clusterGroup: 'Cluster 4: Business & Economics',
     minPoints: 31.5,
     duration: '4 Years',
@@ -276,7 +276,7 @@ export const coursesData: Course[] = [
   },
   {
     id: 'edu-ku',
-    title: 'Bachelor of Education (Science / Arts — TSC Accredited)',
+    title: 'Bachelor of Education (Science / Arts · TSC Accredited)',
     clusterGroup: 'Cluster 19: Education & Teaching',
     minPoints: 27.5,
     duration: '4 Years',

@@ -111,8 +111,8 @@ export default function GallerySection({ universityId, virtualTourUrl, items }: 
             {item.caption && (
               <div style={{
                 position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 18px',
-                background: 'linear-gradient(to top, rgba(11,17,32,0.92) 0%, rgba(11,17,32,0.5) 70%, transparent 100%)',
-                color: '#FFFFFF', fontSize: '0.84rem', fontWeight: 500, lineHeight: 1.45,
+                background: 'rgba(18, 20, 23, 0.84)',
+                color: '#F6F5F2', fontSize: '0.84rem', fontWeight: 500, lineHeight: 1.45,
                 letterSpacing: '-0.01em'}}>
                 {item.caption}
               </div>

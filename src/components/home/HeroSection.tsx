@@ -1,545 +1,407 @@
 'use client';
 
-import { motion, type Variants } from 'framer-motion';
+import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { ArrowRight, GraduationCap, CheckCircle, Users, BookOpen, MapPin, TrendingUp } from 'lucide-react';
+import { ArrowRight, Calculator, MapPin, CheckCircle } from 'lucide-react';
+import { universitiesData } from '@/lib/data/universities';
+import { GRADE_GUIDES, getCoursesForGradeGuide } from '@/lib/data/gradeGuides';
 
-/* ─────────────────────────────────────────────
-   DATA
-   ───────────────────────────────────────────── */
-
-const SOCIAL_PROOF = [
-  { value: '70+', label: 'Universities', icon: BookOpen },
-  { value: '2,500+', label: 'Courses', icon: GraduationCap },
-  { value: '10K+', label: 'Students', icon: Users },
-];
-
-/* ─────────────────────────────────────────────
-   APPLE SPRING ANIMATIONS (Law 4 & 5)
-   Critically damped spring: [0.16, 1, 0.3, 1]
-   ───────────────────────────────────────────── */
-
-const stagger: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
-};
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 22 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] },
-  },
-};
-
-const scaleIn: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  show: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1], delay: 0.5 + i * 0.08 },
-  }),
-};
-
-const imageReveal: Variants = {
-  hidden: { opacity: 0, scale: 0.94, y: 16 },
-  show: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.35 },
-  },
-};
+const COUNTIES_QUICK = ['All', 'Nairobi', 'Kiambu', 'Nakuru', 'Uasin Gishu', 'Mombasa', 'Kisumu', 'Nyeri'];
 
 export default function HeroSection() {
+  const [selectedGradeSlug, setSelectedGradeSlug] = useState<string>('b-plus');
+  const [selectedCounty, setSelectedCounty] = useState<string>('All');
+
+  const activeGuide = useMemo(
+    () => GRADE_GUIDES.find(g => g.slug === selectedGradeSlug) || GRADE_GUIDES[2],
+    [selectedGradeSlug]
+  );
+
+  const sampleCourses = useMemo(() => {
+    const { degreeCourses, diplomaCourses } = getCoursesForGradeGuide(activeGuide);
+    return (activeGuide.isDegreeEligible ? degreeCourses : diplomaCourses).slice(0, 3);
+  }, [activeGuide]);
+
+  const matchingInstitutions = useMemo(() => {
+    return universitiesData
+      .filter(u => {
+        if (selectedCounty !== 'All' && u.county.toLowerCase() !== selectedCounty.toLowerCase()) {
+          return false;
+        }
+        if (activeGuide.isDegreeEligible) {
+          return u.type === 'Public' || u.type === 'Private' || u.type === 'Technical';
+        }
+        return u.type === 'TVET' || u.type === 'Technical' || ['mku', 'kca', 'zetech', 'kabarak', 'tuk', 'tum', 'jkuat', 'ku'].includes(u.id);
+      })
+      .slice(0, 4);
+  }, [activeGuide, selectedCounty]);
+
   return (
-    <section style={{ padding: '0 20px 20px', background: 'var(--bg-primary)' }}>
-      <div
-        className="hero-container"
-        style={{
-          position: 'relative',
-          minHeight: 'calc(100vh - 84px)',
-          display: 'flex',
-          alignItems: 'center',
-          overflow: 'hidden',
-          borderRadius: 'var(--radius-xl)',
-          border: '1px solid var(--border-light)',
-          borderTop: '1px solid var(--apple-glass-highlight)',
-          boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
-          background: 'var(--bg-secondary)',
-        }}
-      >
-        {/* Subtle dot grid texture */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-            backgroundSize: '28px 28px',
-            opacity: 0.035,
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
-
-        {/* Content grid */}
-        <div
-          style={{
-            position: 'relative',
-            zIndex: 1,
-            width: '100%',
-            maxWidth: 1360,
-            margin: '0 auto',
-            padding: '80px 40px 60px',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 60,
-            alignItems: 'center',
-          }}
-          className="hero-grid"
-        >
-          {/* ── LEFT: Text ── */}
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            animate="show"
-          >
-            {/* Eyebrow tag: Apple glass pill */}
-            <motion.div variants={fadeUp}>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  padding: '5px 14px 5px 6px',
-                  borderRadius: 'var(--radius-full)',
-                  border: '1px solid var(--border-light)',
-                  borderTop: '1px solid var(--apple-glass-highlight)',
-                  background: 'var(--apple-glass-bg)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
-                  boxShadow: 'var(--shadow-sm)',
-                  marginBottom: 28,
-                }}
-              >
-                <span
-                  style={{
-                    background: 'var(--gold-primary)',
-                    color: 'var(--gold-contrast-text)',
-                    fontWeight: 800,
-                    fontSize: '0.65rem',
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                    padding: '3px 8px',
-                    borderRadius: 'var(--radius-sm)',
-                  }}
-                >
-                  NEW
-                </span>
-                <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
-                  2026 KUCCPS intake is live
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Headline — Law 15: Optical Sizing (-0.035em) */}
-            <motion.h1
-              variants={fadeUp}
+    <section style={{ background: 'var(--bg-primary)' }}>
+      <div className="container" style={{ paddingTop: 'clamp(28px, 4vw, 52px)', paddingBottom: 'clamp(56px, 7vw, 96px)' }}>
+        {/* 1. Standfirst on Left Margin + Monumental Display Title on 42% Vertical Axis */}
+        <div className="editorial-axis-row" style={{ marginBottom: 'clamp(32px, 4.5vw, 52px)' }}>
+          {/* Left Column (0% -> 42%): Standfirst + Primary Actions */}
+          <div style={{ paddingRight: 28, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 24 }}>
+            <p
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                fontWeight: 800,
-                lineHeight: 1.06,
-                letterSpacing: '-0.035em',
+                fontSize: '1.25rem',
+                lineHeight: 1.45,
                 color: 'var(--text-primary)',
+                fontWeight: 500,
+                maxWidth: '32ch',
+                letterSpacing: '-0.015em',
+                margin: 0,
+              }}
+            >
+              Calculate your exact 48-point KUCCPS cluster weight, estimate HEF household bands, and compare all 68 accredited Kenyan universities and national polytechnics.
+            </p>
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+              <Link href="/calculator" className="btn btn-gold">
+                <Calculator size={16} /> Calculate Cluster Points
+              </Link>
+              <Link href="/universities" className="btn btn-outline">
+                Explore 68 Campuses <ArrowRight size={15} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Column (42% Axis -> 100%): Monumental 2-Line Display Title */}
+          <div className="editorial-hero-title-col">
+            <h1
+              style={{
                 fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(2.25rem, 5vw, 4.5rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.05em',
+                lineHeight: 0.94,
+                color: 'var(--text-primary)',
+                margin: 0,
               }}
             >
-              Your future starts{' '}
+              Every Kenyan
               <br />
-              with the right{' '}
-              <span
-                style={{
-                  color: 'var(--gold-primary)',
-                  position: 'relative',
-                  display: 'inline-block',
-                }}
-              >
-                campus
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.8, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                  style={{
-                    position: 'absolute',
-                    bottom: 2,
-                    left: 0,
-                    right: 0,
-                    height: 4,
-                    background: 'var(--gold-primary)',
-                    borderRadius: 'var(--radius-sm)',
-                    transformOrigin: 'left',
-                    opacity: 0.35,
-                  }}
-                />
-              </span>
-            </motion.h1>
+              <span style={{ color: 'var(--accent-gold)' }}>Campus Indexed.</span>
+            </h1>
+          </div>
+        </div>
 
-            {/* Subtitle — comfortable body leading (1.62) */}
-            <motion.p
-              variants={fadeUp}
+        {/* 2. Gutterless 6x2 Mosaic Masthead */}
+        <div className="editorial-mosaic" style={{ marginBottom: 'clamp(64px, 8vw, 104px)' }}>
+          {/* Tile 1: UoN Photo */}
+          <Link href="/universities/uon" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+            <img
+              src="/images/universities/uon.jpg"
+              alt="University of Nairobi Main Campus"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
+              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>UoN Nairobi</span>
+            </div>
+          </Link>
+
+          {/* Tile 2: Tonal Figure Block */}
+          <div style={{ background: 'var(--brand-navy)', color: '#F4F5F7', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--gold-primary)' }}>
+              68 Campuses
+            </div>
+            <div style={{ fontSize: '0.875rem', color: 'rgba(244, 245, 247, 0.78)' }}>
+              CUE &amp; TVETA Registry
+            </div>
+          </div>
+
+          {/* Tile 3: Strathmore Photo */}
+          <Link href="/universities/strath" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+            <img
+              src="/images/universities/strath.jpg"
+              alt="Strathmore University Madaraka Campus"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.35)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
+              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>Strathmore</span>
+            </div>
+          </Link>
+
+          {/* Tile 4: Tonal Stone Tile */}
+          <div style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
+              48.0 Max
+            </div>
+            <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+              KUCCPS Cluster Scale
+            </div>
+          </div>
+
+          {/* Tile 5: JKUAT Photo */}
+          <Link href="/universities/jkuat" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+            <img
+              src="/images/universities/jkuat.jpg"
+              alt="JKUAT Juja Main Campus"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
+              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>JKUAT Juja</span>
+            </div>
+          </Link>
+
+          {/* Tile 6: Accent Gold Tile */}
+          <Link href="/calculator" style={{ background: 'var(--accent-gold)', color: '#141619', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+            <div style={{ fontSize: '1rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+              Cluster Engine
+            </div>
+            <div style={{ fontSize: '0.875rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+              Open <ArrowRight size={14} />
+            </div>
+          </Link>
+
+          {/* Tile 7: Tonal Tertiary Tile */}
+          <div style={{ background: 'var(--bg-tertiary)', color: 'var(--text-primary)', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
+              47 Counties
+            </div>
+            <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+              National Footprint
+            </div>
+          </div>
+
+          {/* Tile 8: Kenyatta University Photo */}
+          <Link href="/universities/ku" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+            <img
+              src="/images/universities/ku.jpg"
+              alt="Kenyatta University Main Campus"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
+              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>KU Kahawa</span>
+            </div>
+          </Link>
+
+          {/* Tile 9: HEF Funding Tile */}
+          <Link href="/scholarships" style={{ background: '#1F2636', color: '#F4F5F7', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--gold-primary)' }}>
+              Band 1–5
+            </div>
+            <div style={{ fontSize: '0.875rem', color: 'rgba(244, 245, 247, 0.78)' }}>
+              HEF Means Estimator
+            </div>
+          </Link>
+
+          {/* Tile 10: Egerton University Photo */}
+          <Link href="/universities/egerton" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+            <img
+              src="/images/universities/egerton.jpg"
+              alt="Egerton University Njoro Campus"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
+              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>Egerton</span>
+            </div>
+          </Link>
+
+          {/* Tile 11: Tonal Secondary Tile */}
+          <Link href="/housing" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
+            <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
+              Hostel Index
+            </div>
+            <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+              Verified Campus Rent
+            </div>
+          </Link>
+
+          {/* Tile 12: Moi University Photo */}
+          <Link href="/universities/moi" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+            <img
+              src="/images/universities/moi.jpg"
+              alt="Moi University Eldoret Campus"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
+              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>Moi Eldoret</span>
+            </div>
+          </Link>
+        </div>
+
+        {/* 3. THE LIVE THING: Interactive KCSE Mean Grade & County Placement Ledger */}
+        <div className="editorial-axis-row">
+          {/* Left 42% Heading + Interactive Controls */}
+          <div style={{ paddingRight: 28 }}>
+            <h2
               style={{
-                marginTop: 20,
-                fontSize: 'clamp(0.98rem, 1.3vw, 1.1rem)',
-                fontWeight: 450,
-                lineHeight: 1.62,
-                color: 'var(--text-secondary)',
-                maxWidth: 460,
-                letterSpacing: '-0.005em',
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.04em',
+                lineHeight: 1.04,
+                color: 'var(--text-primary)',
+                marginBottom: 14,
               }}
             >
-              Compare every university, course, and student review in Kenya. 
-              Get matched to your best-fit campus in minutes — not months.
-            </motion.p>
+              Select KCSE Mean Grade.
+            </h2>
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 24, maxWidth: '38ch' }}>
+              Choose your KCSE mean grade and county below to inspect eligible degree or TVET diploma placement pathways immediately.
+            </p>
 
-            {/* CTAs — Law 1 & 10: Instant Tactile Feedback */}
-            <motion.div
-              variants={fadeUp}
-              style={{
-                marginTop: 32,
-                display: 'flex',
-                gap: 12,
-                flexWrap: 'wrap',
-              }}
-            >
-              <motion.div whileTap={{ scale: 0.975 }} transition={{ duration: 0.08 }}>
-                <Link
-                  href="/universities"
-                  className="btn btn-gold"
-                  style={{
-                    padding: '14px 28px',
-                    fontSize: '0.95rem',
-                    borderRadius: 'var(--radius-md)',
-                    boxShadow: 'var(--shadow-md)',
-                  }}
-                >
-                  Explore Universities
-                  <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-              </motion.div>
-              <motion.div whileTap={{ scale: 0.975 }} transition={{ duration: 0.08 }}>
-                <Link
-                  href="/calculator"
-                  className="btn btn-outline"
-                  style={{
-                    padding: '14px 28px',
-                    fontSize: '0.95rem',
-                    borderRadius: 'var(--radius-md)',
-                  }}
-                >
-                  <GraduationCap size={16} aria-hidden="true" />
-                  Check My Points
-                </Link>
-              </motion.div>
-            </motion.div>
+            <div data-ui="grade-selector-controls">
+              {/* Grade Selector Pills */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 20 }} role="group" aria-label="KCSE Mean Grade">
+                {GRADE_GUIDES.map(g => {
+                  const active = g.slug === selectedGradeSlug;
+                  return (
+                    <button
+                      key={g.slug}
+                      type="button"
+                      onClick={() => setSelectedGradeSlug(g.slug)}
+                      style={{
+                        padding: '10px 15px',
+                        borderRadius: 'var(--radius-sm)',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontFamily: 'var(--font-sans)',
+                        fontWeight: 700,
+                        fontSize: '0.875rem',
+                        background: active ? 'var(--brand-navy)' : 'var(--bg-secondary)',
+                        color: active ? '#F4F5F7' : 'var(--text-primary)',
+                        transition: 'background-color 0.15s ease, color 0.15s ease, transform 0.08s ease',
+                      }}
+                    >
+                      {g.gradeLabel}
+                    </button>
+                  );
+                })}
+              </div>
 
-            {/* Social proof strip — Squircle icons & optical numbers */}
-            <motion.div
-              variants={fadeUp}
-              style={{
-                marginTop: 44,
-                display: 'flex',
-                gap: 32,
-                flexWrap: 'wrap',
-              }}
-            >
-              {SOCIAL_PROOF.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  custom={i}
-                  variants={scaleIn}
-                  initial="hidden"
-                  animate="show"
-                  style={{ display: 'flex', alignItems: 'center', gap: 12 }}
-                >
-                  <div
-                    style={{
-                      width: 42,
-                      height: 42,
-                      borderRadius: 'var(--radius-md)',
-                      border: '1px solid var(--border-light)',
-                      borderTop: '1px solid var(--apple-glass-highlight)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      background: 'var(--bg-primary)',
-                      boxShadow: 'var(--shadow-sm)',
-                    }}
-                  >
-                    <item.icon size={19} style={{ color: 'var(--accent-gold)' }} />
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '1.18rem', fontWeight: 800, color: 'var(--text-primary)', lineHeight: 1.1, letterSpacing: '-0.025em' }}>
-                      {item.value}
-                    </div>
-                    <div style={{ fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-tertiary)', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
-                      {item.label}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+              {/* County Filter Pills */}
+              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: 8 }}>
+                Filter by County
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {COUNTIES_QUICK.map(c => {
+                  const active = c === selectedCounty;
+                  return (
+                    <button
+                      key={c}
+                      type="button"
+                      onClick={() => setSelectedCounty(c)}
+                      style={{
+                        padding: '7px 13px',
+                        borderRadius: 'var(--radius-full)',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: '0.875rem',
+                        fontWeight: 600,
+                        background: active ? 'var(--accent-gold)' : 'var(--bg-secondary)',
+                        color: active ? '#141619' : 'var(--text-secondary)',
+                      }}
+                    >
+                      {c}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
 
-          {/* ── RIGHT: Image Collage ── */}
-          <motion.div
-            variants={imageReveal}
-            initial="hidden"
-            animate="show"
+          {/* Right 58% Live Output Sheet */}
+          <div
+            data-ui="live-placement-ledger"
             style={{
-              position: 'relative',
-              height: '100%',
-              minHeight: 480,
+              background: 'var(--bg-secondary)',
+              borderRadius: 'var(--radius-lg)',
+              padding: 'clamp(20px, 3vw, 32px)',
             }}
-            className="hero-image-grid"
           >
-            {/* Main large image */}
-            <div
-              className="hero-main-img"
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                right: '35%',
-                bottom: '18%',
-                borderRadius: 'var(--radius-lg)',
-                border: '1px solid var(--border-light)',
-                borderTop: '1px solid var(--apple-glass-highlight)',
-                boxShadow: '0 20px 40px -10px rgba(26, 35, 56, 0.16)',
-                overflow: 'hidden',
-                zIndex: 2,
-              }}
-            >
-              <Image
-                src="/images/hero-campus.jpg"
-                alt="Modern university campus"
-                fill
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 900px) 100vw, 40vw"
-                style={{ objectFit: 'cover' }}
-              />
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 20 }}>
+              <div>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                  <span className={`badge ${activeGuide.isDegreeEligible ? 'badge-green' : 'badge-gold'}`}>
+                    {activeGuide.isDegreeEligible ? 'Direct Degree Entry (C+ and above)' : 'TVET & Diploma Bridge Pathway'}
+                  </span>
+                  <span className="badge badge-navy tabular-nums">{activeGuide.aggregateRange}</span>
+                </div>
+                <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)' }}>
+                  {activeGuide.headline}
+                </div>
+              </div>
+              <Link href={`/grades/${activeGuide.slug}`} className="btn btn-outline btn-sm">
+                Grade {activeGuide.gradeLabel} Guide <ArrowRight size={14} />
+              </Link>
             </div>
 
-            {/* Stacked side image */}
-            <motion.div
-              className="hero-collage-item"
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                position: 'absolute',
-                top: '8%',
-                right: 0,
-                width: '38%',
-                aspectRatio: '3/4',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-light)',
-                borderTop: '1px solid var(--apple-glass-highlight)',
-                boxShadow: '0 16px 32px -8px rgba(26, 35, 56, 0.14)',
-                overflow: 'hidden',
-                zIndex: 3,
-              }}
-            >
-              <Image
-                src="/images/universities/strath.jpg"
-                alt="Strathmore University"
-                fill
-                sizes="20vw"
-                style={{ objectFit: 'cover' }}
-              />
-              <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0,
-                padding: '10px 12px',
-                background: 'linear-gradient(transparent, rgba(17, 24, 39, 0.88))',
-              }}>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.02em' }}>
-                  Strathmore
+            {/* Recommended Programmes for Selected Grade (Full-width ledger rows, not boxed card grid) */}
+            <div style={{ marginBottom: 20 }}>
+              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: 8 }}>
+                Top Eligible Programmes for Grade {activeGuide.gradeLabel}
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {sampleCourses.map(course => (
+                  <div
+                    key={course.id}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      flexWrap: 'wrap',
+                      gap: 8,
+                      background: 'var(--bg-primary)',
+                      padding: '10px 14px',
+                      borderRadius: 'var(--radius-sm)',
+                    }}
+                  >
+                    <span style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--text-primary)' }}>
+                      {course.title}
+                    </span>
+                    <span className="tabular-nums" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
+                      {course.level} · {course.level === 'Degree' ? `Cutoff ${course.minPoints.toFixed(1)} pts` : `Min Grade ${course.minMeanGrade || 'C-'}`}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Matching Campuses in Selected County */}
+            <div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)' }}>
+                  Matching Accredited Institutions {selectedCounty !== 'All' ? `in ${selectedCounty}` : 'Across Kenya'}
                 </span>
+                <Link href={`/universities${selectedCounty !== 'All' ? `?county=${encodeURIComponent(selectedCounty)}` : ''}`} style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
+                  View All 68 →
+                </Link>
               </div>
-            </motion.div>
 
-            {/* Bottom wide image */}
-            <motion.div
-              className="hero-collage-item"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              style={{
-                position: 'absolute',
-                bottom: 0,
-                left: '5%',
-                right: '10%',
-                height: '30%',
-                borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-light)',
-                borderTop: '1px solid var(--apple-glass-highlight)',
-                boxShadow: '0 16px 32px -8px rgba(26, 35, 56, 0.14)',
-                overflow: 'hidden',
-                zIndex: 4,
-              }}
-            >
-              <Image
-                src="/images/universities/uon.jpg"
-                alt="University of Nairobi"
-                fill
-                sizes="30vw"
-                style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
-              />
-              <div style={{
-                position: 'absolute', bottom: 0, left: 0, right: 0,
-                padding: '10px 14px',
-                background: 'linear-gradient(transparent, rgba(17, 24, 39, 0.88))',
-              }}>
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '0.02em' }}>
-                  University of Nairobi
-                </span>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 8 }}>
+                {matchingInstitutions.map(uni => (
+                  <Link
+                    key={uni.id}
+                    href={`/universities/${uni.id}`}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                      padding: '10px 14px',
+                      background: 'var(--bg-primary)',
+                      borderRadius: 'var(--radius-sm)',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <div style={{ minWidth: 0 }}>
+                      <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                        {uni.abbrev} · {uni.name}
+                      </div>
+                      <div className="tabular-nums" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                        <MapPin size={12} /> {uni.county} · Rank #{uni.ranking}
+                      </div>
+                    </div>
+                    <CheckCircle size={15} style={{ color: 'var(--accent-gold)', flexShrink: 0, marginLeft: 8 }} />
+                  </Link>
+                ))}
               </div>
-            </motion.div>
-
-            {/* Floating review card — Apple Translucent Glass */}
-            <motion.div
-              className="hero-collage-item"
-              initial={{ opacity: 0, scale: 0.85, y: 24 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
-              whileInView={{
-                y: [0, -6, 0],
-                transition: { duration: 3.2, repeat: Infinity, ease: 'easeInOut' },
-              }}
-              style={{
-                position: 'absolute',
-                bottom: '35%',
-                right: '-5%',
-                background: 'var(--apple-glass-bg)',
-                backdropFilter: 'blur(24px) saturate(180%)',
-                WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                border: '1px solid var(--border-light)',
-                borderTop: '1px solid var(--apple-glass-highlight)',
-                boxShadow: '0 20px 40px -10px rgba(11, 17, 32, 0.18)',
-                borderRadius: 'var(--radius-md)',
-                padding: '14px 18px',
-                zIndex: 10,
-                maxWidth: 210,
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6 }}>
-                <TrendingUp size={14} aria-hidden="true" style={{ color: 'var(--gold-primary)' }} />
-                <span style={{ fontSize: '0.72rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '0.02em' }}>Trending Now</span>
-              </div>
-              <div style={{ fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-secondary)', lineHeight: 1.45 }}>
-                Computer Science at JKUAT — most searched this week
-              </div>
-            </motion.div>
-
-            {/* Location pin pill */}
-            <motion.div
-              className="hero-collage-item"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              whileInView={{
-                y: [0, -4, 0],
-                transition: { duration: 2.8, repeat: Infinity, ease: 'easeInOut', delay: 0.4 },
-              }}
-              style={{
-                position: 'absolute',
-                top: '5%',
-                right: '42%',
-                background: 'var(--gold-primary)',
-                border: '1px solid rgba(255, 255, 255, 0.5)',
-                borderRadius: 'var(--radius-sm)',
-                padding: '6px 12px',
-                zIndex: 10,
-                display: 'flex',
-                alignItems: 'center',
-                gap: 5,
-                boxShadow: '0 6px 16px rgba(199, 155, 55, 0.35)',
-              }}
-            >
-              <MapPin size={12} aria-hidden="true" style={{ color: 'var(--gold-contrast-text)' }} />
-              <span style={{ fontSize: '0.68rem', fontWeight: 800, color: 'var(--gold-contrast-text)', letterSpacing: '0.03em' }}>
-                47 Counties
-              </span>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
-
-      {/* Trust bar below hero island */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 1.3, ease: [0.16, 1, 0.3, 1] }}
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          gap: 32,
-          flexWrap: 'wrap',
-          padding: '22px 0 4px',
-        }}
-      >
-        {['KUCCPS Aligned', 'Free for Students', '100% Verified Reviews'].map((badge) => (
-          <div
-            key={badge}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 7,
-              color: 'var(--text-tertiary)',
-              fontSize: '0.82rem',
-              fontWeight: 600,
-              letterSpacing: '0.02em',
-            }}
-          >
-            <CheckCircle size={15} aria-hidden="true" style={{ color: 'var(--gold-primary)' }} />
-            {badge}
-          </div>
-        ))}
-      </motion.div>
-
-      <style>{`
-        @media (max-width: 900px) {
-          .hero-container {
-            align-items: flex-start !important;
-            height: auto !important;
-          }
-          .hero-grid {
-            grid-template-columns: 1fr !important;
-            padding: 40px 18px 32px !important;
-            gap: 32px !important;
-          }
-          .hero-image-grid {
-            min-height: 280px !important;
-            height: 280px !important;
-          }
-          .hero-collage-item {
-            display: none !important;
-          }
-          .hero-main-img {
-            right: 0 !important;
-            bottom: 0 !important;
-            box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.15) !important;
-          }
-        }
-        @media (max-width: 600px) {
-          .hero-image-grid {
-            min-height: 240px !important;
-            height: 240px !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

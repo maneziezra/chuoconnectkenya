@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const CATEGORY_CONFIG: Record<string, { label: string; color: string; bg: string; icon: React.ReactNode }> = {
   academic: { label: 'Academic', color: '#1D4ED8', bg: '#DBEAFE', icon: <BookOpen size={14} /> },
   sports: { label: 'Sports', color: 'var(--success-text)', bg: 'var(--success-bg)', icon: <Trophy size={14} /> },
-  cultural: { label: 'Cultural', color: '#7C3AED', bg: '#EDE9FE', icon: <Globe size={14} /> },
+  cultural: { label: 'Cultural', color: 'var(--info-text)', bg: 'var(--info-bg)', icon: <Globe size={14} /> },
   career: { label: 'Career Fair', color: '#B45309', bg: 'var(--warning-bg)', icon: <Briefcase size={14} /> },
   social: { label: 'Student Life', color: '#DB2777', bg: '#FCE7F3', icon: <PartyPopper size={14} /> },
   admission: { label: 'Open Day', color: '#C79B37', bg: 'rgba(199,155,55,0.15)', icon: <GraduationCap size={14} /> },
@@ -125,16 +125,6 @@ export default async function EventsPage() {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-              backgroundSize: '28px 28px',
-              opacity: 0.035,
-              pointerEvents: 'none',
-            }}
-          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span
               style={{

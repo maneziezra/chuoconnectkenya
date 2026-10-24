@@ -105,7 +105,7 @@ export const GRADE_GUIDES: GradeGuide[] = [
     metaDescription:
       'Discover top degree courses for KCSE Grade B plain and B- (Minus) in Kenya: IT, Business, Education, Clinical Medicine, Quantity Surveying, and Media.',
     summary:
-      'KCSE Mean Grades B (60–66 pts) and B- (53–59 pts) unlock hundreds of high-employability degree programmes in Computing & IT, Commerce, Education, Clinical Health Sciences, Agriculture, and Media.',
+      'KCSE Mean Grades B (60-66 pts) and B- (53-59 pts) qualify you for hundreds of high-employability degree programmes in Computing & IT, Commerce, Education, Clinical Health Sciences, Agriculture, and Media.',
     strategyAdvice: [
       'Focus on specialized applied degrees such as BSc Information Technology, BBIT, Bachelor of Education (Science/Arts), BCom, Environmental Health, and Agribusiness.',
       'Consider chartered private universities (KCA, Mount Kenya University, Zetech, USIU, Daystar, Africa Nazarene) where you are eligible for HELB loans and fast-tracked intakes.',
@@ -142,7 +142,7 @@ export const GRADE_GUIDES: GradeGuide[] = [
     summary:
       'Congratulations! A KCSE Mean Grade of C+ (46–52 aggregate points) meets the statutory Commission for University Education (CUE) cutoff for direct Bachelor’s degree entry at all Kenyan public and private universities.',
     strategyAdvice: [
-      'Because C+ is the entry threshold for degree programmes, competition is high for low-cutoff courses—target programmes with indicative cutoffs between 24.0 and 32.0 points.',
+      'Because C+ is the entry threshold for degree programmes, competition is high for low-cutoff courses · target programmes with indicative cutoffs between 24.0 and 32.0 points.',
       'Check subject cluster weights carefully: if you scored a B or B+ in Mathematics or English, your weighted cluster score in Computing, Business, or Arts will be significantly higher than your mean grade.',
       'Include direct-entry degree programmes at universities like KCA, MKU, Zetech, Masinde Muliro (MMUST), Kisii, Chuka, and Pwani University for near-guaranteed placement.',
     ],
@@ -152,7 +152,7 @@ export const GRADE_GUIDES: GradeGuide[] = [
       {
         question: 'Does a C+ guarantee KUCCPS degree placement?',
         answer:
-          'Every C+ student is eligible for a degree, provided you select at least one course whose cluster cutoff is at or below your weighted cluster score—or apply directly to a chartered private university.',
+          'Every C+ student is eligible for a degree, provided you select at least one course whose cluster cutoff is at or below your weighted cluster score · or apply directly to a chartered private university.',
       },
       {
         question: 'Can I do Computer Science or IT with a C+?',
@@ -177,7 +177,7 @@ export const GRADE_GUIDES: GradeGuide[] = [
     summary:
       'With a KCSE Mean Grade of C plain (39–45 points), you qualify for premier KMTC medical diplomas, Technical University (TUK/TUM) engineering diplomas, and University Bridge Diplomas that grant credit exemptions into 2nd Year of a Bachelor’s degree.',
     strategyAdvice: [
-      'A 2-year University Diploma at JKUAT, KCA, MKU, Zetech, or TUK allows you to transition into Year 2 of a Bachelor’s degree—meaning you graduate in nearly the same total timeframe.',
+      'A 2-year University Diploma at JKUAT, KCA, MKU, Zetech, or TUK allows you to transition into Year 2 of a Bachelor’s degree · meaning you graduate in nearly the same total timeframe.',
       'If you have C plain in Biology and Chemistry, KMTC and MKU Health Diplomas (Clinical Medicine, Registered Nursing, Pharmaceutical Technology) offer some of the highest graduate employment rates in Kenya.',
       'Apply both on the KUCCPS TVET portal and directly to university diploma intakes (January, May, or September) to start immediately.',
     ],
@@ -245,10 +245,10 @@ export const GRADE_GUIDES: GradeGuide[] = [
     metaDescription:
       'Scored a D+ or D plain in KCSE? Discover accredited Certificate-to-Diploma-to-Degree pathways in ICT, Engineering, Healthcare, Plumbing, Automotive & Business in Kenya.',
     summary:
-      'Kenya’s Competency-Based Education and Training (CBET) and TVET progression framework ensures that a D+ or D in KCSE is a stepping stone—not a dead end. Start with a 1-year Craft Certificate to unlock Diploma and Degree progression.',
+      'Kenya’s Competency-Based Education and Training (CBET) and TVET progression framework ensures that a D+ or D in KCSE is a stepping stone, not a dead end. Start with a 1-year Craft Certificate to qualify for Diploma and Degree progression.',
     strategyAdvice: [
       'Enrol in a 1-year Craft Certificate (Level 5) in ICT, Business, Electrical Installation, Automotive Engineering, or Community Health.',
-      'Once you pass your Certificate, you automatically qualify to join a 2-year Diploma—even without retaking KCSE.',
+      'Once you pass your Certificate, you automatically qualify to join a 2-year Diploma · even without retaking KCSE.',
       'Hands-on technical certificates (Electrical, Solar PV, Plumbing, Software & Networking, Culinary Arts) have some of the fastest self-employment and industry placement rates in Kenya.',
     ],
     hefFundingNote:

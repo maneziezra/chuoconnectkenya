@@ -9,7 +9,7 @@ import SaveCourseButton from '@/components/student/SaveCourseButton';
 import ExpressInquiryModal from '@/components/university/ExpressInquiryModal';
 
 export const metadata: Metadata = {
-  title: 'Course Finder — Accredited Degree Programmes in Kenya',
+  title: 'Course Finder · Accredited Degree Programmes in Kenya',
   description: 'Browse accredited degree programmes in Kenya. Filter by KUCCPS cluster group, minimum cluster points, career outcomes, and university.',
 };
 
@@ -80,29 +80,6 @@ export default async function CoursesPage({ searchParams }: Props) {
             overflow: 'hidden',
           }}
         >
-          {/* Subtle Ambient Radial Lighting */}
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              right: 0,
-              width: 500,
-              height: 260,
-              background: 'radial-gradient(circle at 100% 0%, var(--gold-glow), transparent 70%)',
-              pointerEvents: 'none',
-            }}
-          />
-          <div
-            style={{
-              backgroundImage: 'radial-gradient(circle, var(--text-primary) 0.75px, transparent 0.75px)',
-              backgroundSize: '24px 24px',
-              opacity: 0.035,
-              position: 'absolute',
-              inset: 0,
-              pointerEvents: 'none',
-            }}
-          />
-
           <div style={{ position: 'relative', zIndex: 1, maxWidth: 840 }}>
             <div
               style={{
@@ -331,7 +308,7 @@ export default async function CoursesPage({ searchParams }: Props) {
                       <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                         Min KUCCPS Score
                       </div>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                      <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                         {course.minPoints.toFixed(1)} pts
                       </span>
                     </div>

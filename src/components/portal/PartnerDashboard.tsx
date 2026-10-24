@@ -201,7 +201,7 @@ function MetricCard({
       <div style={{ fontSize: '0.76rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
         {label}
       </div>
-      <div style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-mono)', lineHeight: 1, letterSpacing: '-0.03em' }}>
+      <div className="tabular-nums" style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)', lineHeight: 1, letterSpacing: '-0.03em' }}>
         {value}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4, fontSize: '0.84rem', fontWeight: 600, color: isFlat ? 'var(--text-tertiary)' : isUp ? 'var(--success-text)' : '#EF4444' }}>
@@ -259,12 +259,12 @@ function OverviewTab({
         />
         <MetricCard
           label="Avg KCSE Cluster Score"
-          value={metrics.avgClusterPoints !== null ? `${metrics.avgClusterPoints} / 48` : '—'}
+          value={metrics.avgClusterPoints !== null ? `${metrics.avgClusterPoints} / 48` : ' · '}
           subtitle="Self-reported across student enquiries"
         />
         <MetricCard
           label="Application Conversion"
-          value={metrics.conversionPct !== null ? `${metrics.conversionPct}%` : '—'}
+          value={metrics.conversionPct !== null ? `${metrics.conversionPct}%` : ' · '}
           subtitle={`${metrics.byStatus.Applied} Applied • ${metrics.byStatus.Enrolled} Enrolled`}
         />
       </div>
@@ -294,7 +294,7 @@ function OverviewTab({
                     <div style={{ width: 90, height: 6, background: 'var(--bg-secondary)', borderRadius: 3, overflow: 'hidden' }}>
                       <div style={{ height: '100%', background: 'var(--accent-gold)', width: `${pct}%`, borderRadius: 3 }} />
                     </div>
-                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
+                    <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                       {count} {count === 1 ? 'lead' : 'leads'}
                     </span>
                   </div>
@@ -323,14 +323,14 @@ function OverviewTab({
                   width: 9,
                   height: 9,
                   borderRadius: '50%',
-                  background: lead.status === 'Enrolled' ? 'var(--success-text)' : lead.status === 'Applied' ? '#8B5CF6' : 'var(--accent-gold)',
+                  background: lead.status === 'Enrolled' ? 'var(--success-text)' : lead.status === 'Applied' ? 'var(--info-text)' : 'var(--accent-gold)',
                   flexShrink: 0,
                   marginTop: 6,
                 }}
               />
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: '0.9rem', color: 'var(--text-primary)', fontWeight: 600 }}>
-                  {lead.student_name} — <span style={{ fontWeight: 500, color: 'var(--text-secondary)' }}>{lead.target_course || 'General Admission'}</span>
+                  {lead.student_name} · <span style={{ fontWeight: 500, color: 'var(--text-secondary)' }}>{lead.target_course || 'General Admission'}</span>
                 </div>
                 <div style={{ fontSize: '0.78rem', color: 'var(--text-tertiary)', marginTop: 4 }}>
                   {lead.mean_grade ? `Mean ${lead.mean_grade} • ` : ''}
@@ -397,8 +397,8 @@ function LeadsTab({
 
   const statusColor: Record<LeadStatus, string> = {
     New: 'var(--gold-primary)',
-    Contacted: '#3B82F6',
-    Applied: '#8B5CF6',
+    Contacted: 'var(--info-text)',
+    Applied: 'var(--brand-navy)',
     Enrolled: 'var(--success-text)',
     'Not interested': 'var(--text-tertiary)',
   };
@@ -562,7 +562,7 @@ function LeadsTab({
                         <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.94rem' }}>
                           {lead.student_name}
                         </div>
-                        <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-mono)', marginTop: 2 }}>
+                        <div className="tabular-nums" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)', marginTop: 2 }}>
                           {lead.phone}
                         </div>
                         <div style={{ fontSize: '0.74rem', color: 'var(--text-tertiary)', marginTop: 2 }}>
@@ -571,8 +571,8 @@ function LeadsTab({
                       </td>
 
                       <td style={{ padding: '16px 20px' }}>
-                        <div style={{ fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
-                          {lead.cluster_points !== null ? `${lead.cluster_points.toFixed(1)} / 48` : '—'}
+                        <div className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
+                          {lead.cluster_points !== null ? `${lead.cluster_points.toFixed(1)} / 48` : ' · '}
                         </div>
                         <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: 2 }}>
                           Mean Grade: <strong>{lead.mean_grade || 'N/A'}</strong>
@@ -1096,7 +1096,7 @@ export default function PartnerDashboard({
               style={{
                 width: 44,
                 height: 44,
-                background: 'linear-gradient(135deg, var(--navy-deep), #243354)',
+                background: 'var(--brand-navy)',
                 borderRadius: 'var(--radius-md)',
                 display: 'flex',
                 alignItems: 'center',

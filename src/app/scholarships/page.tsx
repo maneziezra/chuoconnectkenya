@@ -79,16 +79,6 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-              backgroundSize: '28px 28px',
-              opacity: 0.035,
-              position: 'absolute',
-              inset: 0,
-              pointerEvents: 'none',
-            }}
-          />
           <div className="container" style={{ position: 'relative', zIndex: 1 }}>
             <span
               style={{

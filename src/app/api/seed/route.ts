@@ -121,7 +121,7 @@ const MOCK_EVENTS: Partial<Event>[] = [
   {
     universityName: 'Egerton University',
     title: 'Agricultural Innovation Expo', category: 'academic',
-    description: 'Showcasing cutting-edge agricultural research, innovations, and business opportunities in Kenya\'s food sector.',
+    description: 'Showcasing applied agricultural research, field innovations, and business opportunities in Kenya\'s food sector.',
     date: '2025-10-03T08:00:00Z', location: 'Egerton University, Nakuru',
   },
 ];

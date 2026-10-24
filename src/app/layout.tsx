@@ -6,7 +6,7 @@ import Footer from '@/components/layout/Footer';
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://chuoconnectkenya.vercel.app'),
   title: {
-    default: 'Chuo Connect Kenya — University Intelligence Platform',
+    default: 'Chuo Connect Kenya · University Intelligence Platform',
     template: '%s | Chuo Connect Kenya',
   },
   description:

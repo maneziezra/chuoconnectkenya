@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { GraduationCap, Target, Users, MessageCircle, Star, Search, Building2, Scale, Video, Bot, FileText, Repeat, UsersRound, Building } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Us — Mission & Vision',
+  title: 'About Us · Mission & Vision',
   description: "Chuo Connect Kenya is Kenya's premier campus discovery platform helping students find the right university through immersive profiles, smart search, and student ambassadors.",
 };
 
@@ -27,16 +27,6 @@ export default function AboutPage() {
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-              backgroundSize: '28px 28px',
-              opacity: 0.035,
-              pointerEvents: 'none',
-            }}
-          />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <span
               style={{

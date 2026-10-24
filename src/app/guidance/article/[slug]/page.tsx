@@ -43,16 +43,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             overflow: 'hidden',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage: 'radial-gradient(circle, var(--navy-deep) 0.8px, transparent 0.8px)',
-              backgroundSize: '28px 28px',
-              opacity: 0.035,
-              pointerEvents: 'none',
-            }}
-          />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <Link 
               href="/guidance" 

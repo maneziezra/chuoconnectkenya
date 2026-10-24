@@ -362,7 +362,7 @@ export function calculateHefBand(input: HefInput): HefBandResult {
   const BAND_SPECS: Record<1 | 2 | 3 | 4 | 5, HefBandResult> = {
     1: {
       band: 1,
-      bandLabel: 'Band 1 — Maximum Government Support',
+      bandLabel: 'Band 1 · Maximum Government Support',
       tierDescription: 'Households with monthly income up to KES 5,995 or high vulnerability indicators.',
       scholarshipPct: 70,
       loanPct: 25,
@@ -371,7 +371,7 @@ export function calculateHefBand(input: HefInput): HefBandResult {
     },
     2: {
       band: 2,
-      bandLabel: 'Band 2 — High Affirmative Support',
+      bandLabel: 'Band 2 · High Affirmative Support',
       tierDescription: 'Low-income households earning up to KES 23,670/month.',
       scholarshipPct: 60,
       loanPct: 30,
@@ -380,7 +380,7 @@ export function calculateHefBand(input: HefInput): HefBandResult {
     },
     3: {
       band: 3,
-      bandLabel: 'Band 3 — Balanced Shared Funding',
+      bandLabel: 'Band 3 · Balanced Shared Funding',
       tierDescription: 'Lower-middle income households earning KES 23,671 – 70,000/month.',
       scholarshipPct: 50,
       loanPct: 30,
@@ -389,7 +389,7 @@ export function calculateHefBand(input: HefInput): HefBandResult {
     },
     4: {
       band: 4,
-      bandLabel: 'Band 4 — Moderate Loan & Scholarship',
+      bandLabel: 'Band 4 · Moderate Loan & Scholarship',
       tierDescription: 'Middle-income households earning KES 70,001 – 120,000/month.',
       scholarshipPct: 40,
       loanPct: 30,
@@ -398,7 +398,7 @@ export function calculateHefBand(input: HefInput): HefBandResult {
     },
     5: {
       band: 5,
-      bandLabel: 'Band 5 — Standard Cost-Sharing Tier',
+      bandLabel: 'Band 5 · Standard Cost-Sharing Tier',
       tierDescription: 'Households with monthly income above KES 120,000.',
       scholarshipPct: 30,
       loanPct: 30,

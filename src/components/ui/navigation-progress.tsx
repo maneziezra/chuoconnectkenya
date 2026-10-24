@@ -82,11 +82,10 @@ function NavigationProgressInner() {
         style={{
           height: '100%',
           width: '100%',
-          background: 'linear-gradient(90deg, var(--brand-navy), var(--accent-gold), #F59E0B)',
-          boxShadow: '0 0 12px var(--accent-gold)',
+          background: 'var(--accent-gold)',
           transformOrigin: 'left center',
           transform: `scaleX(${progress / 100})`,
-          transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease',
+          transition: 'transform 0.22s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease',
           opacity: progress >= 100 ? 0 : 1,
         }}
       />
