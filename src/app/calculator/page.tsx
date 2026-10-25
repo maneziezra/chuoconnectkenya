@@ -48,7 +48,7 @@ export default async function CalculatorPage() {
                   letterSpacing: '-0.035em',
                   lineHeight: 1.08,
                   color: 'var(--text-primary)',
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   margin: 0,
                 }}
               >

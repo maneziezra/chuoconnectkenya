@@ -44,13 +44,13 @@ export default function LoginPage() {
     <section style={{ minHeight: '100vh', background: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', padding: '60px 20px' }}>
       <div className="container" style={{ maxWidth: 440, margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)' }}>
             <div style={{ width: 42, height: 42, background: 'var(--gold-glow)', border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <GraduationCap size={22} style={{ color: 'var(--gold-primary)' }} />
             </div>
             Chuo Connect Kenya
           </div>
-          <h1 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.85rem', letterSpacing: '-0.03em', color: 'var(--text-primary)', marginTop: 20, fontWeight: 800 }}>Welcome back</h1>
+          <h1 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.85rem', letterSpacing: '-0.03em', color: 'var(--text-primary)', marginTop: 20, fontWeight: 800 }}>Welcome back</h1>
           <p style={{ color: 'var(--text-secondary)', marginTop: 6, fontSize: '0.95rem' }}>Log in to your student account</p>
         </div>
 

@@ -552,7 +552,7 @@ export default function KuccpsCalculator({
                       }}
                     >
                       <span>{preset.label}</span>
-                      <span className="tabular-nums" style={{ color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)', fontWeight: 700 }}>
+                      <span className="tabular-nums" style={{ color: 'var(--gold-primary)', fontFamily: 'var(--font-serif)', fontWeight: 700 }}>
                         {preset.badge}
                       </span>
                     </button>
@@ -803,7 +803,7 @@ export default function KuccpsCalculator({
                       {cr.cluster.split(':')[1] || cr.cluster}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                      <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
+                      <span className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, color: 'var(--gold-primary)' }}>
                         {cr.score.toFixed(2)} <span style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>/ 48</span>
                       </span>
                       <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
@@ -855,7 +855,7 @@ export default function KuccpsCalculator({
                               className="tabular-nums"
                               style={{
                                 color: 'var(--gold-primary)',
-                                fontFamily: 'var(--font-sans)',
+                                fontFamily: 'var(--font-serif)',
                                 fontWeight: 700,
                                 fontSize: '1.2rem',
                               }}
@@ -906,7 +906,7 @@ export default function KuccpsCalculator({
                                         borderRadius: 6,
                                         fontSize: '0.72rem',
                                         fontWeight: 700,
-                                        fontFamily: 'var(--font-sans)',
+                                        fontFamily: 'var(--font-serif)',
                                         background: badgeStyles.bg,
                                         color: badgeStyles.color,
                                       }}
@@ -1264,7 +1264,7 @@ export default function KuccpsCalculator({
                 <div style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase' }}>
                   Annual HELB Upkeep Stipend
                 </div>
-                <div className="tabular-nums" style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-serif)' }}>
                   KES {hefResult.upkeepLoanKes.toLocaleString()} / yr
                 </div>
                 <div style={{ fontSize: '0.72rem', color: 'rgba(255,255,255,0.6)' }}>
@@ -1304,19 +1304,19 @@ export default function KuccpsCalculator({
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 12 }}>
               <div style={{ padding: 12, background: 'rgba(16, 185, 129, 0.14)', borderRadius: 10 }}>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)' }}>Gov. Scholarship (Free Grant)</div>
-                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#34D399', fontFamily: 'var(--font-sans)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#34D399', fontFamily: 'var(--font-serif)' }}>
                   {hefResult.scholarshipPct}%
                 </div>
               </div>
               <div style={{ padding: 12, background: 'rgba(199, 155, 55, 0.18)', borderRadius: 10 }}>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)' }}>HELB Tuition Loan</div>
-                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-serif)' }}>
                   {hefResult.loanPct}%
                 </div>
               </div>
               <div style={{ padding: 12, background: 'rgba(239, 68, 68, 0.18)', borderRadius: 10 }}>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.8)' }}>Household / Parent Fee Share</div>
-                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FCA5A5', fontFamily: 'var(--font-sans)' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.3rem', fontWeight: 700, color: '#FCA5A5', fontFamily: 'var(--font-serif)' }}>
                   {hefResult.householdPct}%
                 </div>
               </div>
@@ -1347,12 +1347,12 @@ export default function KuccpsCalculator({
                   return (
                     <tr key={course.id} style={{ borderBottom: '1px solid var(--border-light)' }}>
                       <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-primary)' }}>{course.title}</td>
-                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)' }}>KES {cost.toLocaleString()}</td>
-                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)', color: 'var(--success-text)' }}>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-serif)' }}>KES {cost.toLocaleString()}</td>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-serif)', color: 'var(--success-text)' }}>
                         KES {govKes.toLocaleString()}
                       </td>
-                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)' }}>KES {loanKes.toLocaleString()}</td>
-                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-sans)', fontWeight: 700, color: 'var(--text-primary)' }}>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-serif)' }}>KES {loanKes.toLocaleString()}</td>
+                      <td className="tabular-nums" style={{ padding: '12px 14px', fontFamily: 'var(--font-serif)', fontWeight: 700, color: 'var(--text-primary)' }}>
                         KES {parentSemKes.toLocaleString()} / sem
                       </td>
                     </tr>
@@ -1454,7 +1454,7 @@ export default function KuccpsCalculator({
                   {item && (
                     <div style={{ paddingTop: 10, borderTop: '1px solid var(--border-light)', display: 'flex', flexDirection: 'column', gap: 10 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.78rem' }}>
-                        <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontWeight: 700 }}>
+                        <span className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontWeight: 700 }}>
                           {item.course.level === 'Diploma'
                             ? `Entry: mean grade ${item.course.minMeanGrade ?? 'C-'} or above`
                             : `Your Score: ${item.studentScore.toFixed(1)} vs ${item.course.minPoints.toFixed(1)}`}

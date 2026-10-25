@@ -90,7 +90,7 @@ export default function GuidancePage() {
               style={{
                 color: 'var(--text-primary)',
                 marginBottom: 12,
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
@@ -123,7 +123,7 @@ export default function GuidancePage() {
               <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 20 }}>
                 <Rocket size={22} style={{ color: 'var(--gold-primary)' }} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.65, margin: 0 }}>
                 To become Kenya&apos;s most trusted digital platform for discovering, exploring, and connecting students with campuses and higher education opportunities.
               </p>
@@ -142,7 +142,7 @@ export default function GuidancePage() {
               <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 20 }}>
                 <Target size={22} style={{ color: 'var(--gold-primary)' }} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.65, margin: 0 }}>
                 To simplify the university selection process by providing students with accurate information, immersive campus experiences, and personalized recommendations to help them make informed educational decisions.
               </p>
@@ -156,7 +156,7 @@ export default function GuidancePage() {
                 <div style={{ padding: 8, background: 'rgba(220, 38, 38, 0.1)', color: '#dc2626', borderRadius: '50%' }}>
                   <AlertCircle size={22} />
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>The Challenge</h3>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>The Challenge</h3>
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: 16 }}>
                 Existing platforms primarily focus on admission requirements or course listings, leaving students without insight into campus life, facilities, student experiences, accommodation, and overall suitability.
@@ -174,7 +174,7 @@ export default function GuidancePage() {
                 <div style={{ padding: 8, background: 'rgba(16, 185, 129, 0.1)', color: 'var(--success-text)', borderRadius: '50%' }}>
                   <CheckCircle2 size={22} />
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>Our Solution</h3>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)' }}>Our Solution</h3>
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: 16 }}>
                 Chuo Connect Kenya serves as a centralized platform focusing on helping students answer one fundamental question: <strong style={{ color: 'var(--text-primary)' }}>“Which campus is the best fit for me?”</strong>
@@ -194,7 +194,7 @@ export default function GuidancePage() {
       <section className="section" style={{ background: 'var(--bg-secondary)', borderTop: '1px solid var(--border-light)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 14 }}>Core Platform Features</h2>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 14 }}>Core Platform Features</h2>
             <p style={{ color: 'var(--text-secondary)', maxWidth: 600, margin: '0 auto', fontSize: '0.98rem' }}>
               Everything you need to confidently choose the right campus for your academic and personal goals.
             </p>
@@ -217,7 +217,7 @@ export default function GuidancePage() {
                 <div style={{ width: 44, height: 44, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-primary)', marginBottom: 18 }}>
                   {feat.icon}
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 8 }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 8 }}>
                   {feat.title}
                 </h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, margin: 0 }}>
@@ -233,7 +233,7 @@ export default function GuidancePage() {
       <section className="section">
         <div className="container">
           <div style={{ marginBottom: 32 }}>
-            <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 6 }}>Student Success Guides</h2>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.6rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 6 }}>Student Success Guides</h2>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>Expert resources to navigate your academic journey.</p>
           </div>
 
@@ -254,7 +254,7 @@ export default function GuidancePage() {
                 <div style={{ width: 44, height: 44, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--gold-primary)', marginBottom: 18 }}>
                   {article.icon}
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 10, lineHeight: 1.3 }}>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 10, lineHeight: 1.3 }}>
                   {article.title}
                 </h3>
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 20, flex: 1 }}>
@@ -292,7 +292,7 @@ export default function GuidancePage() {
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--gold-primary)', fontWeight: 700, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 10 }}>
                 <GraduationCap size={18} /> Still not sure where to start?
               </div>
-              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 12 }}>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 12 }}>
                 Let our engine guide you.
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>

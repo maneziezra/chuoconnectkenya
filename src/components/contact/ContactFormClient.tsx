@@ -89,7 +89,7 @@ export default function ContactFormClient() {
         </div>
         <h3
           style={{
-            fontFamily: 'var(--font-sans)',
+            fontFamily: 'var(--font-serif)',
             fontSize: '1.45rem',
             fontWeight: 800,
             letterSpacing: '-0.025em',
@@ -135,7 +135,7 @@ export default function ContactFormClient() {
             fontSize: '0.85rem',
             cursor: 'pointer',
             textDecoration: 'underline',
-            fontFamily: 'var(--font-sans)',
+            fontFamily: 'var(--font-serif)',
           }}
         >
           Send another message

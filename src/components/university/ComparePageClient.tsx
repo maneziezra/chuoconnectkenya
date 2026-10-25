@@ -19,7 +19,7 @@ const COMPARE_ROWS = [
     label: 'Student Rating',
     key: 'rating',
     format: (v: unknown) => v ? (
-      <span className="tabular-nums" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 700, fontFamily: 'var(--font-sans)' }}>
+      <span className="tabular-nums" style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontWeight: 700, fontFamily: 'var(--font-serif)' }}>
         {(v as number).toFixed(1)} <Star size={13} fill="var(--accent-gold)" color="var(--accent-gold)" />
       </span>
     ) : 'N/A'
@@ -142,7 +142,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
         </div>
         <h2
           style={{
-            fontFamily: 'var(--font-sans)',
+            fontFamily: 'var(--font-serif)',
             fontSize: '1.5rem',
             fontWeight: 700,
             letterSpacing: '-0.025em',
@@ -239,7 +239,7 @@ export default function ComparePageClient({ initialUniversities }: Props) {
 
                 <h3
                   style={{
-                    fontFamily: 'var(--font-sans)',
+                    fontFamily: 'var(--font-serif)',
                     fontSize: '1.02rem',
                     fontWeight: 700,
                     letterSpacing: '-0.02em',

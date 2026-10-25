@@ -53,7 +53,7 @@ export default function GradesIndexPage() {
               style={{
                 color: 'var(--text-primary)',
                 marginBottom: 12,
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
@@ -112,7 +112,7 @@ export default function GradesIndexPage() {
                           borderRadius: 'var(--radius-md)',
                           background: 'var(--accent-gold)',
                           color: 'var(--gold-contrast-text)',
-                          fontFamily: 'var(--font-sans)',
+                          fontFamily: 'var(--font-serif)',
                           fontWeight: 800,
                           fontSize: '1.05rem',
                         }}
@@ -136,7 +136,7 @@ export default function GradesIndexPage() {
 
                     <h2
                       style={{
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontSize: '1.2rem',
                         fontWeight: 700,
                         letterSpacing: '-0.02em',
@@ -166,13 +166,13 @@ export default function GradesIndexPage() {
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>KCSE Aggregate:</span>
-                        <strong className="tabular-nums" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
+                        <strong className="tabular-nums" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
                           {guide.aggregateRange}
                         </strong>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>Cluster / Entry Tier:</span>
-                        <strong className="tabular-nums" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
+                        <strong className="tabular-nums" style={{ color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
                           {guide.typicalClusterRange}
                         </strong>
                       </div>
@@ -228,7 +228,7 @@ export default function GradesIndexPage() {
               <h3
                 style={{
                   fontSize: '1.35rem',
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontWeight: 700,
                   letterSpacing: '-0.02em',
                   color: 'var(--text-primary)',

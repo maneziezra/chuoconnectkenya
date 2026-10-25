@@ -81,7 +81,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
             <h1
               style={{
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2rem, 4vw, 2.8rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.035em',

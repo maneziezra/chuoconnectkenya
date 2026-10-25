@@ -51,7 +51,7 @@ export default function ContactPage() {
             </div>
             <h1
               style={{
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2rem, 4.5vw, 3rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.035em',
@@ -85,7 +85,7 @@ export default function ContactPage() {
               <div>
                 <h2
                   style={{
-                    fontFamily: 'var(--font-sans)',
+                    fontFamily: 'var(--font-serif)',
                     fontSize: '1.5rem',
                     fontWeight: 700,
                     letterSpacing: '-0.025em',
@@ -206,7 +206,7 @@ export default function ContactPage() {
                 </div>
                 <h3
                   style={{
-                    fontFamily: 'var(--font-sans)',
+                    fontFamily: 'var(--font-serif)',
                     fontWeight: 700,
                     fontSize: '1.15rem',
                     letterSpacing: '-0.02em',
@@ -256,7 +256,7 @@ export default function ContactPage() {
             >
               <h2
                 style={{
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontSize: '1.5rem',
                   fontWeight: 700,
                   letterSpacing: '-0.025em',

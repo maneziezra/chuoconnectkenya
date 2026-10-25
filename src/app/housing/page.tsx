@@ -2516,7 +2516,7 @@ export default async function HousingPage({ searchParams }: Props) {
               style={{
                 color: 'var(--text-primary)',
                 marginBottom: 12,
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
@@ -2550,7 +2550,7 @@ export default async function HousingPage({ searchParams }: Props) {
           >
             <h3
               style={{
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: '1.15rem',
                 fontWeight: 700,
                 letterSpacing: '-0.02em',
@@ -2623,7 +2623,7 @@ export default async function HousingPage({ searchParams }: Props) {
             ) : housingListings.length === 0 ? (
               <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-primary)', borderRadius: 'var(--radius-xl)', border: '1px dashed var(--border-medium)' }}>
                 <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>No housing found</h3>
+                <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>No housing found</h3>
                 <p style={{ color: 'var(--text-secondary)' }}>Try adjusting your filters to see more results.</p>
               </div>
             ) : (
@@ -2704,7 +2704,7 @@ export default async function HousingPage({ searchParams }: Props) {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
                           <h3
                             style={{
-                              fontFamily: 'var(--font-sans)',
+                              fontFamily: 'var(--font-serif)',
                               fontSize: '1.12rem',
                               fontWeight: 700,
                               letterSpacing: '-0.02em',
@@ -2736,7 +2736,7 @@ export default async function HousingPage({ searchParams }: Props) {
                           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: 14 }}>
                             <div>
                               <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)' }}>Starting from</div>
-                              <div className="tabular-nums" style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)' }}>{h.price}</div>
+                              <div className="tabular-nums" style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--gold-primary)', fontFamily: 'var(--font-serif)' }}>{h.price}</div>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: '0.75rem', color: h.available ? '#059669' : '#DC2626', fontWeight: 600 }}>
                               {h.available ? <><CheckCircle size={13} /> Available</> : <><XCircle size={13} /> Full</>}

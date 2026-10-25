@@ -112,7 +112,7 @@ export default function Navbar({ user }: { user: any }) {
             >
               CC
             </span>
-            <span style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.035em', fontFamily: 'var(--font-sans)' }}>
+            <span style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.035em', fontFamily: 'var(--font-serif)' }}>
               <span style={{ color: 'var(--text-primary)' }}>Chuo</span>
               <span style={{ color: 'var(--accent-gold)' }}>Connect</span>
             </span>

@@ -120,7 +120,7 @@ export default async function DashboardPage() {
                         color: 'var(--text-primary)',
                         marginBottom: 8,
                         fontSize: '1.85rem',
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontWeight: 700,
                         letterSpacing: '-0.025em',
                       }}
@@ -193,7 +193,7 @@ export default async function DashboardPage() {
                       style={{
                         color: 'var(--text-primary)',
                         marginBottom: 12,
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontSize: 'clamp(1.9rem, 3.5vw, 2.5rem)',
                         fontWeight: 800,
                         letterSpacing: '-0.03em',
@@ -236,7 +236,7 @@ export default async function DashboardPage() {
                 style={{
                   fontSize: '1.15rem',
                   fontWeight: 700,
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   letterSpacing: '-0.02em',
                   color: 'var(--text-primary)',
                   marginBottom: 20,
@@ -309,7 +309,7 @@ export default async function DashboardPage() {
                       style={{
                         color: 'var(--text-primary)',
                         fontSize: '1.45rem',
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontWeight: 700,
                         letterSpacing: '-0.025em',
                       }}
@@ -341,7 +341,7 @@ export default async function DashboardPage() {
                             </div>
                             <h3
                               style={{
-                                fontFamily: 'var(--font-sans)',
+                                fontFamily: 'var(--font-serif)',
                                 fontSize: '1.1rem',
                                 fontWeight: 700,
                                 letterSpacing: '-0.02em',
@@ -382,7 +382,7 @@ export default async function DashboardPage() {
                       style={{
                         color: 'var(--text-primary)',
                         fontSize: '1.45rem',
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontWeight: 700,
                         letterSpacing: '-0.025em',
                         display: 'flex',
@@ -436,7 +436,7 @@ export default async function DashboardPage() {
                           style={{
                             fontSize: '1.05rem',
                             fontWeight: 700,
-                            fontFamily: 'var(--font-sans)',
+                            fontFamily: 'var(--font-serif)',
                             letterSpacing: '-0.02em',
                             color: 'var(--text-primary)',
                             marginBottom: 4,
@@ -446,7 +446,7 @@ export default async function DashboardPage() {
                         </h3>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>Nairobi County • Premium Hostel</div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span className="tabular-nums" style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>From KES 25,000</span>
+                          <span className="tabular-nums" style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>From KES 25,000</span>
                           <Link href="/housing" style={{ fontSize: '0.82rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
                         </div>
                       </div>
@@ -488,7 +488,7 @@ export default async function DashboardPage() {
                           style={{
                             fontSize: '1.05rem',
                             fontWeight: 700,
-                            fontFamily: 'var(--font-sans)',
+                            fontFamily: 'var(--font-serif)',
                             letterSpacing: '-0.02em',
                             color: 'var(--text-primary)',
                             marginBottom: 4,
@@ -498,7 +498,7 @@ export default async function DashboardPage() {
                         </h3>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-tertiary)', marginBottom: 12 }}>Nairobi County • Standard Hostel</div>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span className="tabular-nums" style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>From KES 15,000</span>
+                          <span className="tabular-nums" style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>From KES 15,000</span>
                           <Link href="/housing" style={{ fontSize: '0.82rem', color: 'var(--gold-primary)', fontWeight: 600, textDecoration: 'none' }}>View details →</Link>
                         </div>
                       </div>
@@ -555,7 +555,7 @@ export default async function DashboardPage() {
                           fontWeight: 700,
                           flexShrink: 0,
                           color: 'var(--text-primary)',
-                          fontFamily: 'var(--font-sans)',
+                          fontFamily: 'var(--font-serif)',
                         }}
                       >
                         {step}

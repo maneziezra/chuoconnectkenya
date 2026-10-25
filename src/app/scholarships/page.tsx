@@ -106,7 +106,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
               style={{
                 color: 'var(--text-primary)',
                 marginBottom: 12,
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2rem, 3.8vw, 2.8rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
@@ -144,7 +144,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--gold-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
                 <Wallet size={15} /> Means Testing Instrument (Bands 1–5)
               </div>
-              <h2 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-sans)', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 6 }}>
+              <h2 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-serif)', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 6 }}>
                 Estimate Your Government HEF Scholarship % & HELB Upkeep Stipend
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: 0, lineHeight: 1.55 }}>
@@ -204,7 +204,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
           {scholarships.length === 0 ? (
             <div style={{ padding: '80px 20px', textAlign: 'center', background: 'var(--bg-secondary)', borderRadius: 'var(--radius-xl)', border: '1px dashed var(--border-medium)' }}>
               <Search size={32} style={{ margin: '0 auto 16px', color: 'var(--text-tertiary)' }} />
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>No scholarships found</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>No scholarships found</h3>
               <p style={{ color: 'var(--text-secondary)', marginBottom: 16 }}>We couldn&apos;t find any scholarships matching your filter.</p>
               <Link href="/scholarships" className="btn btn-outline btn-sm" style={{ borderRadius: 'var(--radius-md)' }}>Reset Filters</Link>
             </div>
@@ -248,7 +248,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
 
                     <h3
                       style={{
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontSize: '1.12rem',
                         fontWeight: 700,
                         letterSpacing: '-0.02em',
@@ -336,7 +336,7 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
             <div style={{ position: 'relative', zIndex: 1, maxWidth: 640, margin: '0 auto' }}>
               <h2
                 style={{
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontSize: '1.5rem',
                   fontWeight: 700,
                   letterSpacing: '-0.025em',

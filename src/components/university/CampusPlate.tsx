@@ -214,7 +214,7 @@ export default function CampusPlate({
 
         <div
           style={{
-            fontFamily: 'var(--font-sans)',
+            fontFamily: 'var(--font-serif)',
             fontSize: isHero
               ? 'clamp(3.25rem, 6.5vw, 5.5rem)'
               : isCompact

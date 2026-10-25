@@ -201,7 +201,7 @@ function MetricCard({
       <div style={{ fontSize: '0.76rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-secondary)' }}>
         {label}
       </div>
-      <div className="tabular-nums" style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)', lineHeight: 1, letterSpacing: '-0.03em' }}>
+      <div className="tabular-nums" style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-serif)', lineHeight: 1, letterSpacing: '-0.03em' }}>
         {value}
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 4, fontSize: '0.84rem', fontWeight: 600, color: isFlat ? 'var(--text-tertiary)' : isUp ? 'var(--success-text)' : '#EF4444' }}>
@@ -294,7 +294,7 @@ function OverviewTab({
                     <div style={{ width: 90, height: 6, background: 'var(--bg-secondary)', borderRadius: 3, overflow: 'hidden' }}>
                       <div style={{ height: '100%', background: 'var(--accent-gold)', width: `${pct}%`, borderRadius: 3 }} />
                     </div>
-                    <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
+                    <span className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                       {count} {count === 1 ? 'lead' : 'leads'}
                     </span>
                   </div>
@@ -562,7 +562,7 @@ function LeadsTab({
                         <div style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.94rem' }}>
                           {lead.student_name}
                         </div>
-                        <div className="tabular-nums" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-sans)', marginTop: 2 }}>
+                        <div className="tabular-nums" style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', fontFamily: 'var(--font-serif)', marginTop: 2 }}>
                           {lead.phone}
                         </div>
                         <div style={{ fontSize: '0.74rem', color: 'var(--text-tertiary)', marginTop: 2 }}>
@@ -571,7 +571,7 @@ function LeadsTab({
                       </td>
 
                       <td style={{ padding: '16px 20px' }}>
-                        <div className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
+                        <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)' }}>
                           {lead.cluster_points !== null ? `${lead.cluster_points.toFixed(1)} / 48` : ' · '}
                         </div>
                         <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)', marginTop: 2 }}>

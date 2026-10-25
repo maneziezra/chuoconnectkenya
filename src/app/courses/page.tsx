@@ -110,7 +110,7 @@ export default async function CoursesPage({ searchParams }: Props) {
                 letterSpacing: '-0.028em',
                 lineHeight: 1.15,
                 color: 'var(--text-primary)',
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 margin: '0 0 12px 0',
               }}
             >
@@ -123,7 +123,7 @@ export default async function CoursesPage({ searchParams }: Props) {
                 fontSize: '0.98rem',
                 lineHeight: 1.55,
                 marginBottom: 24,
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
               }}
             >
               Explore accredited undergraduate and diploma programmes across Kenyan universities. Review KUCCPS weighted cluster cutoffs, verified career pathways, and connect with admissions officers.
@@ -209,7 +209,7 @@ export default async function CoursesPage({ searchParams }: Props) {
               margin: '0 auto',
             }}
           >
-            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, fontFamily: 'var(--font-sans)' }}>
+            <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8, fontFamily: 'var(--font-serif)' }}>
               No courses matched &ldquo;{q || cluster}&rdquo;
             </h3>
             <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', marginBottom: 20 }}>
@@ -260,7 +260,7 @@ export default async function CoursesPage({ searchParams }: Props) {
 
                     <h3
                       style={{
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontSize: '1.08rem',
                         fontWeight: 700,
                         letterSpacing: '-0.02em',
@@ -308,7 +308,7 @@ export default async function CoursesPage({ searchParams }: Props) {
                       <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                         Min KUCCPS Score
                       </div>
-                      <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                      <span className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)' }}>
                         {course.minPoints.toFixed(1)} pts
                       </span>
                     </div>

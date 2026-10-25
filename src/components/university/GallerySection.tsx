@@ -33,7 +33,7 @@ export default function GallerySection({ universityId, virtualTourUrl, items }: 
   return (
     <div className="card card-body" style={{ borderRadius: 'var(--radius-xl)' }}>
       <h2 style={{
-        fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700,
+        fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700,
         letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 12, paddingBottom: 14,
         borderBottom: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: 10}}>
         <span style={{ color: 'var(--gold-primary)', display: 'flex', alignItems: 'center' }}><Camera size={20} /></span>

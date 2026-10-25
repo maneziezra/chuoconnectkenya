@@ -34,7 +34,7 @@ export default function PrivacyPage() {
           </span>
           <h1
             style={{
-              fontFamily: 'var(--font-sans)',
+              fontFamily: 'var(--font-serif)',
               fontSize: '2.2rem',
               fontWeight: 800,
               letterSpacing: '-0.03em',
@@ -51,21 +51,21 @@ export default function PrivacyPage() {
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: 28, color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.96rem' }}>
           <section>
-            <h2 style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
               1. Information We Collect
             </h2>
             <p>We collect information you provide directly to us, such as when you create an account, update your profile (including your KCSE Index Number), or save courses and universities to your dashboard.</p>
           </section>
           
           <section>
-            <h2 style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
               2. How We Use Your Information
             </h2>
             <p>Your information is used to personalize your university recommendations, calculate your cluster points accurately, and allow partner universities to reach out if you express interest in their programs.</p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
               3. Data Security
             </h2>
             <p>We implement industry-standard security measures to protect your personal data. We do not sell your personal information to third parties.</p>

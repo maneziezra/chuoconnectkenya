@@ -54,7 +54,7 @@ export default function AboutPage() {
               style={{
                 color: 'var(--text-primary)',
                 marginBottom: 16,
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(2.1rem, 4vw, 3rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
@@ -86,7 +86,7 @@ export default function AboutPage() {
                 flexDirection: 'column',
               }}
             >
-              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.45rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 16 }}>The Problem We Solve</h2>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 16 }}>The Problem We Solve</h2>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 16, fontSize: '0.94rem' }}>
                 Choosing a university or college is one of the most important decisions in a student&apos;s life. Yet many Kenyan students lack access to comprehensive, reliable, and engaging information about campuses across the country.
               </p>
@@ -123,7 +123,7 @@ export default function AboutPage() {
                 flexDirection: 'column',
               }}
             >
-              <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.45rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 16 }}>Our Solution</h2>
+              <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 16 }}>Our Solution</h2>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 24, fontSize: '0.94rem' }}>
                 Chuo Connect Kenya serves as a centralized platform where students can explore, compare, and confidently choose their ideal campus.
               </p>
@@ -193,7 +193,7 @@ export default function AboutPage() {
               >
                 <Target size={24} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>
                 To become Kenya&apos;s most trusted digital platform for discovering, exploring, and connecting students with campuses and higher education opportunities.
               </p>
@@ -225,7 +225,7 @@ export default function AboutPage() {
               >
                 <GraduationCap size={24} />
               </div>
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
               <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>
                 To simplify the university selection process by providing students with accurate information, immersive campus experiences, and personalised recommendations that help them make informed educational decisions.
               </p>
@@ -238,7 +238,7 @@ export default function AboutPage() {
       <section className="section" style={{ background: 'var(--bg-secondary)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.8rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 10 }}>Who We Serve</h2>
+            <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.8rem', fontWeight: 700, letterSpacing: '-0.025em', color: 'var(--text-primary)', marginBottom: 10 }}>Who We Serve</h2>
             <p style={{ color: 'var(--text-secondary)', maxWidth: 480, margin: '0 auto', fontSize: '0.95rem' }}>Our platform is built for the Kenyan higher education ecosystem.</p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24 }}>
@@ -278,7 +278,7 @@ export default function AboutPage() {
                 >
                   {u.icon}
                 </div>
-                <h4 style={{ fontWeight: 700, fontFamily: 'var(--font-sans)', letterSpacing: '-0.015em', color: 'var(--text-primary)', marginBottom: 6, fontSize: '1rem' }}>{u.title}</h4>
+                <h4 style={{ fontWeight: 700, fontFamily: 'var(--font-serif)', letterSpacing: '-0.015em', color: 'var(--text-primary)', marginBottom: 6, fontSize: '1rem' }}>{u.title}</h4>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>{u.desc}</p>
               </div>
             ))}
@@ -301,7 +301,7 @@ export default function AboutPage() {
             margin: '0 auto',
           }}
         >
-          <h2 style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--text-primary)', marginBottom: 14 }}>
+          <h2 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--text-primary)', marginBottom: 14 }}>
             Start Your Campus Journey Today
           </h2>
           <p style={{ color: 'var(--text-secondary)', marginBottom: 32, maxWidth: 520, margin: '0 auto 32px', fontSize: '1.05rem', lineHeight: 1.6 }}>

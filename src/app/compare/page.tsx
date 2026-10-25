@@ -52,7 +52,7 @@ export default async function ComparePage({ searchParams }: Props) {
                   letterSpacing: '-0.05em',
                   lineHeight: 0.94,
                   color: 'var(--text-primary)',
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   margin: 0,
                 }}
               >

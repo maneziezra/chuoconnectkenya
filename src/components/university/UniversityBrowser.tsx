@@ -153,7 +153,7 @@ export default function UniversityBrowser({
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Filter Registry</h3>
+              <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)' }}>Filter Registry</h3>
               {hasFilters && (
                 <button onClick={clearFilters} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '0.82rem', color: 'var(--accent-gold)', fontWeight: 600 }}>
                   Reset All
@@ -322,11 +322,11 @@ export default function UniversityBrowser({
                     <div className="card-body" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                         <span className={`badge ${uni.type === 'Public' ? 'badge-navy' : 'badge-gold'}`}>{uni.type}</span>
-                        <span className="tabular-nums" style={{ fontFamily: 'var(--font-sans)', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-tertiary)' }}>
+                        <span className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '0.78rem', fontWeight: 600, color: 'var(--text-tertiary)' }}>
                           Rank #{uni.ranking}
                         </span>
                       </div>
-                      <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.28 }}>
+                      <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.1rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 6, lineHeight: 1.28 }}>
                         {uni.name}
                       </h3>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: '0.84rem', color: 'var(--text-secondary)', marginBottom: 14 }}>

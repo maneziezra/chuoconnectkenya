@@ -19,9 +19,39 @@ const PARTNERS = [
   { id: 'tuk', shortName: 'Technical University of Kenya', established: 1961, county: 'Nairobi' },
 ];
 
+const CAMPUS_PREVIEWS = [
+  {
+    id: 'uon',
+    label: 'UoN Nairobi',
+    name: 'University of Nairobi',
+    tag: 'Flagship Public Charter',
+    est: 'Est. 1970 · Nairobi County · CUE Chartered',
+    image: '/images/universities/uon.jpg',
+  },
+  {
+    id: 'strath',
+    label: 'Strathmore',
+    name: 'Strathmore University',
+    tag: 'Flagship Private Charter',
+    est: 'Est. 1961 · Madaraka · CUE Chartered',
+    image: '/images/universities/strath.jpg',
+  },
+  {
+    id: 'jkuat',
+    label: 'JKUAT Juja',
+    name: 'JKUAT Juja',
+    tag: 'Technology & Engineering Charter',
+    est: 'Est. 1994 · Kiambu County · CUE Chartered',
+    image: '/images/universities/jkuat.jpg',
+  },
+];
+
 export default function HeroSection() {
+  const [activeCampusIndex, setActiveCampusIndex] = useState<number>(0);
   const [selectedGradeSlug, setSelectedGradeSlug] = useState<string>('b-plus');
   const [selectedCounty, setSelectedCounty] = useState<string>('All');
+
+  const activeCampus = CAMPUS_PREVIEWS[activeCampusIndex];
 
   const activeGuide = useMemo(
     () => GRADE_GUIDES.find(g => g.slug === selectedGradeSlug) || GRADE_GUIDES[2],
@@ -53,16 +83,16 @@ export default function HeroSection() {
         
         {/* 1. AMPEROS HERO CARD */}
         <article className="amperos-hero-card">
-          {/* Media Backdrop (Authentic UoN Campus Architecture) */}
+          {/* Media Backdrop (Authentic Kenyan Campus Architecture) */}
           <div className="amperos-hero-media">
             <img
-              src="/images/universities/uon.jpg"
-              alt="University of Nairobi Main Campus Plaza"
+              src={activeCampus.image}
+              alt={`${activeCampus.name} campus architecture`}
               className="amperos-hero-img"
             />
             <div className="amperos-hero-scrim" />
             
-            {/* Provenance Tag */}
+            {/* Interactive Architectural Provenance Plaque & Campus Switcher */}
             <div
               style={{
                 position: 'absolute',
@@ -72,27 +102,54 @@ export default function HeroSection() {
                 display: 'none',
                 flexDirection: 'column',
                 alignItems: 'flex-end',
-                gap: 4,
+                gap: 10,
               }}
               className="md:flex"
             >
-              <span
-                style={{
-                  fontSize: '0.84rem',
-                  fontWeight: 700,
-                  color: '#fcf7f4',
-                  letterSpacing: '-0.01em',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 6,
-                }}
-              >
-                <ShieldCheck size={14} style={{ color: 'var(--brand-gold)' }} />
-                University of Nairobi · Flagship Campus
-              </span>
-              <span className="tabular-nums" style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.76)' }}>
-                Est. 1970 · Nairobi County · CUE Chartered
-              </span>
+              {/* Campus Selector Pills */}
+              <div style={{ display: 'flex', gap: 6, background: 'rgba(35, 18, 11, 0.65)', padding: 4, borderRadius: 'var(--radius-full)' }}>
+                {CAMPUS_PREVIEWS.map((c, i) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    onClick={() => setActiveCampusIndex(i)}
+                    style={{
+                      padding: '4px 12px',
+                      borderRadius: 'var(--radius-full)',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: '0.84rem',
+                      fontWeight: 600,
+                      background: activeCampusIndex === i ? '#fff5f0' : 'transparent',
+                      color: activeCampusIndex === i ? '#23120b' : 'rgba(252, 247, 244, 0.75)',
+                      transition: 'background-color 0.16s ease, color 0.16s ease',
+                    }}
+                  >
+                    {c.label}
+                  </button>
+                ))}
+              </div>
+
+              {/* Provenance Badge */}
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3 }}>
+                <span
+                  style={{
+                    fontSize: '0.84rem',
+                    fontWeight: 700,
+                    color: '#fcf7f4',
+                    letterSpacing: '-0.01em',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                  }}
+                >
+                  <ShieldCheck size={14} style={{ color: 'var(--brand-gold)' }} />
+                  {activeCampus.name} · {activeCampus.tag}
+                </span>
+                <span className="tabular-nums" style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.76)' }}>
+                  {activeCampus.est}
+                </span>
+              </div>
             </div>
           </div>
 
@@ -107,6 +164,34 @@ export default function HeroSection() {
             <p className="amperos-hero-standfirst">
               Chuo Connect indexes official KUCCPS cluster cutoff weights, simulates household fees under HEF Bands 1 to 5, and verifies degree &amp; TVET bridge pathways across 68 accredited Kenyan institutions.
             </p>
+
+            {/* Benchmark Metrics Strip */}
+            <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', padding: '12px 0 4px' }}>
+              <div>
+                <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 400, color: '#fcf7f4', lineHeight: 1 }}>
+                  48.0
+                </div>
+                <div style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.72)', marginTop: 4 }}>
+                  KUCCPS Cluster Scale
+                </div>
+              </div>
+              <div>
+                <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 400, color: '#fcf7f4', lineHeight: 1 }}>
+                  68
+                </div>
+                <div style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.72)', marginTop: 4 }}>
+                  Campuses Indexed
+                </div>
+              </div>
+              <div>
+                <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 400, color: '#fcf7f4', lineHeight: 1 }}>
+                  5 Bands
+                </div>
+                <div style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.72)', marginTop: 4 }}>
+                  HEF Means Testing
+                </div>
+              </div>
+            </div>
 
             {/* Dual Amperos Action CTAs */}
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, marginTop: 4 }}>
@@ -225,7 +310,7 @@ export default function HeroSection() {
                         borderRadius: 'var(--radius-sm)',
                         border: 'none',
                         cursor: 'pointer',
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontWeight: 700,
                         fontSize: '0.875rem',
                         background: active ? 'var(--brand-navy)' : 'var(--bg-secondary)',

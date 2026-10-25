@@ -120,7 +120,7 @@ export default async function GradeDetailPage({ params }: Props) {
                       fontSize: '0.76rem',
                       fontWeight: 700,
                       textDecoration: 'none',
-                      fontFamily: 'var(--font-sans)',
+                      fontFamily: 'var(--font-serif)',
                       background: g.slug === guide.slug ? 'var(--accent-gold)' : 'var(--bg-secondary)',
                       color: g.slug === guide.slug ? 'var(--gold-contrast-text)' : 'var(--text-secondary)',
                       border: '1px solid var(--border-light)',
@@ -140,7 +140,7 @@ export default async function GradeDetailPage({ params }: Props) {
                   borderRadius: 'var(--radius-md)',
                   background: 'var(--accent-gold)',
                   color: 'var(--gold-contrast-text)',
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontWeight: 800,
                   fontSize: '0.88rem',
                 }}
@@ -169,7 +169,7 @@ export default async function GradeDetailPage({ params }: Props) {
                 color: 'var(--text-primary)',
                 marginBottom: 14,
                 maxWidth: 860,
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
@@ -209,7 +209,7 @@ export default async function GradeDetailPage({ params }: Props) {
                 boxShadow: 'var(--shadow-sm)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.05rem', marginBottom: 14, fontFamily: 'var(--font-sans)', letterSpacing: '-0.015em' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--text-primary)', fontSize: '1.05rem', marginBottom: 14, fontFamily: 'var(--font-serif)', letterSpacing: '-0.015em' }}>
                 <Sparkles size={18} style={{ color: 'var(--gold-primary)' }} />
                 KUCCPS Revision Strategy for Grade {guide.gradeLabel}
               </div>
@@ -231,7 +231,7 @@ export default async function GradeDetailPage({ params }: Props) {
                 boxShadow: 'var(--shadow-sm)',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--gold-primary)', fontSize: '1.02rem', marginBottom: 12, fontFamily: 'var(--font-sans)', letterSpacing: '-0.015em' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontWeight: 700, color: 'var(--gold-primary)', fontSize: '1.02rem', marginBottom: 12, fontFamily: 'var(--font-serif)', letterSpacing: '-0.015em' }}>
                 <Wallet size={18} />
                 HEF Band 1–5 Scholarship & HELB Loan Eligibility
               </div>
@@ -251,7 +251,7 @@ export default async function GradeDetailPage({ params }: Props) {
                 <h2
                   style={{
                     fontSize: '1.5rem',
-                    fontFamily: 'var(--font-sans)',
+                    fontFamily: 'var(--font-serif)',
                     fontWeight: 700,
                     letterSpacing: '-0.025em',
                     color: 'var(--text-primary)',
@@ -296,7 +296,7 @@ export default async function GradeDetailPage({ params }: Props) {
                           </span>
                           <span
                             style={{
-                              fontFamily: 'var(--font-sans)',
+                              fontFamily: 'var(--font-serif)',
                               fontSize: '0.78rem',
                               fontWeight: 700,
                               padding: '3px 10px',
@@ -312,7 +312,7 @@ export default async function GradeDetailPage({ params }: Props) {
 
                         <h3
                           style={{
-                            fontFamily: 'var(--font-sans)',
+                            fontFamily: 'var(--font-serif)',
                             fontSize: '1.15rem',
                             fontWeight: 700,
                             letterSpacing: '-0.02em',
@@ -392,7 +392,7 @@ export default async function GradeDetailPage({ params }: Props) {
               <h2
                 style={{
                   fontSize: '1.45rem',
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontWeight: 700,
                   letterSpacing: '-0.025em',
                   color: 'var(--text-primary)',
@@ -443,7 +443,7 @@ export default async function GradeDetailPage({ params }: Props) {
 
                       <h3
                         style={{
-                          fontFamily: 'var(--font-sans)',
+                          fontFamily: 'var(--font-serif)',
                           fontSize: '1.12rem',
                           fontWeight: 700,
                           letterSpacing: '-0.02em',
@@ -494,7 +494,7 @@ export default async function GradeDetailPage({ params }: Props) {
             <h2
               style={{
                 fontSize: '1.35rem',
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontWeight: 700,
                 letterSpacing: '-0.02em',
                 marginBottom: 20,
@@ -521,7 +521,7 @@ export default async function GradeDetailPage({ params }: Props) {
                   <h3
                     style={{
                       fontSize: '1rem',
-                      fontFamily: 'var(--font-sans)',
+                      fontFamily: 'var(--font-serif)',
                       fontWeight: 700,
                       letterSpacing: '-0.015em',
                       color: 'var(--text-primary)',

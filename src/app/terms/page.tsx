@@ -34,7 +34,7 @@ export default function TermsPage() {
           </span>
           <h1
             style={{
-              fontFamily: 'var(--font-sans)',
+              fontFamily: 'var(--font-serif)',
               fontSize: '2.2rem',
               fontWeight: 800,
               letterSpacing: '-0.03em',
@@ -51,21 +51,21 @@ export default function TermsPage() {
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: 28, color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.96rem' }}>
           <section>
-            <h2 style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
               1. Acceptance of Terms
             </h2>
             <p>By accessing and using Chuo Connect, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not use our platform.</p>
           </section>
           
           <section>
-            <h2 style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
               2. User Accounts
             </h2>
             <p>You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account. You must provide accurate and complete information when creating an account.</p>
           </section>
 
           <section>
-            <h2 style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
+            <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: 10 }}>
               3. Platform Guidelines
             </h2>
             <p>Chuo Connect provides tools for university discovery and comparison. The data provided is for informational purposes only. We strive for accuracy but do not guarantee that all information (such as fee structures or course availability) is perfectly up-to-date with individual institutions.</p>

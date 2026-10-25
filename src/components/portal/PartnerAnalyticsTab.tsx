@@ -16,7 +16,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
   return (
     <div>
       <div style={{ marginBottom: 24 }}>
-        <h2 style={{ fontFamily: 'var(--font-sans)', color: 'var(--text-primary)', fontSize: '1.65rem', fontWeight: 700, letterSpacing: '-0.028em', margin: '0 0 6px 0' }}>
+        <h2 style={{ fontFamily: 'var(--font-serif)', color: 'var(--text-primary)', fontSize: '1.65rem', fontWeight: 700, letterSpacing: '-0.028em', margin: '0 0 6px 0' }}>
           Enquiry & Audience Analytics
         </h2>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>
@@ -152,7 +152,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
                 <div key={item.key} style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.86rem', marginBottom: 6 }}>
                     <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>{item.label}</span>
-                    <span className="tabular-nums" style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
+                    <span className="tabular-nums" style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
                       {item.count} ({pct}%)
                     </span>
                   </div>
@@ -197,7 +197,7 @@ export default function PartnerAnalyticsTab({ metrics }: { metrics: LeadMetrics 
                 <div key={item.key} style={{ marginBottom: 16 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.86rem', marginBottom: 6 }}>
                     <span style={{ color: 'var(--text-secondary)', fontWeight: 500 }}>{item.label}</span>
-                    <span className="tabular-nums" style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-sans)' }}>
+                    <span className="tabular-nums" style={{ fontWeight: 700, color: 'var(--text-primary)', fontFamily: 'var(--font-serif)' }}>
                       {item.count} ({pct}%)
                     </span>
                   </div>

@@ -152,7 +152,7 @@ export default async function CampusProfilePage({ params }: Props) {
                     textAlign: 'center',
                   }}
                 >
-                  <div className="tabular-nums" style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--gold-primary)', fontFamily: 'var(--font-sans)', letterSpacing: '-0.04em', lineHeight: 1 }}>
+                  <div className="tabular-nums" style={{ fontSize: '2.4rem', fontWeight: 800, color: 'var(--gold-primary)', fontFamily: 'var(--font-serif)', letterSpacing: '-0.04em', lineHeight: 1 }}>
                     {uni.rating.toFixed(1)}
                   </div>
                   <div style={{ margin: '6px 0', display: 'flex', justifyContent: 'center', gap: 2, color: 'var(--gold-primary)' }}>
@@ -382,7 +382,7 @@ export default async function CampusProfilePage({ params }: Props) {
                 <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--gold-primary)', marginBottom: 8 }}>
                   Annual Tuition Range
                 </div>
-                <div className="tabular-nums" style={{ fontSize: '1.5rem', fontWeight: 800, fontFamily: 'var(--font-sans)', color: 'var(--gold-primary)', letterSpacing: '-0.03em' }}>
+                <div className="tabular-nums" style={{ fontSize: '1.5rem', fontWeight: 800, fontFamily: 'var(--font-serif)', color: 'var(--gold-primary)', letterSpacing: '-0.03em' }}>
                   {uni.fees}
                 </div>
                 <p style={{ fontSize: '0.86rem', color: 'rgba(246, 245, 242, 0.78)', marginTop: 10, lineHeight: 1.55 }}>
@@ -559,7 +559,7 @@ function InfoCard({ title, icon, children }: { title: string; icon?: React.React
     >
       <h2
         style={{
-          fontFamily: 'var(--font-sans)',
+          fontFamily: 'var(--font-serif)',
           fontSize: '1.25rem',
           fontWeight: 700,
           letterSpacing: '-0.025em',

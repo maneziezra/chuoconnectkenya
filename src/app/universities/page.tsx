@@ -71,7 +71,7 @@ export default async function UniversitiesPage({
                   letterSpacing: '-0.04em',
                   lineHeight: 1.04,
                   color: 'var(--text-primary)',
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   margin: '0 0 14px 0',
                 }}
               >

@@ -97,7 +97,7 @@ export default function HomePage() {
             </p>
             <h2
               style={{
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.04em',
@@ -141,7 +141,7 @@ export default function HomePage() {
                 <div style={{ position: 'relative', zIndex: 2, color: '#F4F5F7' }}>
                   <h3
                     style={{
-                      fontFamily: 'var(--font-sans)',
+                      fontFamily: 'var(--font-serif)',
                       fontSize: 'clamp(1.375rem, 1.9vw, 1.75rem)',
                       fontWeight: 800,
                       letterSpacing: '-0.03em',
@@ -177,7 +177,7 @@ export default function HomePage() {
             <div className="editorial-pinned-col">
               <h2
                 style={{
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
                   fontWeight: 800,
                   letterSpacing: '-0.04em',
@@ -213,7 +213,7 @@ export default function HomePage() {
                   <div style={{ padding: 'clamp(22px, 3vw, 30px)' }}>
                     <h3
                       style={{
-                        fontFamily: 'var(--font-sans)',
+                        fontFamily: 'var(--font-serif)',
                         fontSize: 'clamp(1.375rem, 1.9vw, 1.75rem)',
                         fontWeight: 800,
                         letterSpacing: '-0.03em',
@@ -267,7 +267,7 @@ export default function HomePage() {
             <div>
               <h2
                 style={{
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
                   fontWeight: 800,
                   letterSpacing: '-0.04em',
@@ -364,7 +364,7 @@ export default function HomePage() {
             </p>
             <h2
               style={{
-                fontFamily: 'var(--font-sans)',
+                fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.04em',
@@ -391,7 +391,7 @@ export default function HomePage() {
                   <span
                     className="tabular-nums"
                     style={{
-                      fontFamily: 'var(--font-sans)',
+                      fontFamily: 'var(--font-serif)',
                       fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
                       fontWeight: 800,
                       letterSpacing: '-0.045em',
@@ -465,7 +465,7 @@ export default function HomePage() {
               <div>
                 <h2
                   style={{
-                    fontFamily: 'var(--font-sans)',
+                    fontFamily: 'var(--font-serif)',
                     fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
                     fontWeight: 800,
                     letterSpacing: '-0.04em',

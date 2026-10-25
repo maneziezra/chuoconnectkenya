@@ -106,7 +106,7 @@ export default function PortalLoginGate() {
             <div>
               <h1
                 style={{
-                  fontFamily: 'var(--font-sans)',
+                  fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(1.5rem, 2.2vw, 2rem)',
                   fontWeight: 800,
                   letterSpacing: '-0.035em',
