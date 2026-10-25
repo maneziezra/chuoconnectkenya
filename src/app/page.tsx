@@ -84,13 +84,13 @@ const DECIMAL_STATS = [
 
 export default function HomePage() {
   return (
-    <div style={{ background: 'var(--bg-primary)' }}>
+    <div style={{ background: 'var(--bg-primary)', overflow: 'clip', maxWidth: '100%' }}>
       {/* 1. HERO: 42% Vertical Axis Title + Mosaic Masthead + Live Placement Ledger */}
       <HeroSection />
 
       {/* 2. SHOWCASE: Band of Unequal Panels (flex-grow: 5, 2, 3, 2) */}
-      <section style={{ paddingTop: 24 }}>
-        <div className="container" style={{ marginBottom: 32 }}>
+      <section style={{ padding: 'clamp(64px, 8vw, 112px) 0' }}>
+        <div className="container" style={{ marginBottom: 36 }}>
           <div className="editorial-axis-row">
             <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '34ch', margin: 0 }}>
               Verified Commons photography of flagship Kenyan public charters, private universities, and clinical training campuses.
@@ -306,25 +306,25 @@ export default function HomePage() {
               {/* Left 4 Input Nodes */}
               <g transform="translate(20, 20)">
                 <rect width="220" height="50" rx="8" fill="#EAECEF" />
-                <text x="18" y="30" fill="#141619" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="14" fontWeight="700">
+                <text x="18" y="30" fill="#141619" fontFamily="var(--font-sans)" fontSize="14" fontWeight="700">
                   KCSE Mean Grade (A to D+)
                 </text>
               </g>
               <g transform="translate(20, 90)">
                 <rect width="220" height="50" rx="8" fill="#EAECEF" />
-                <text x="18" y="30" fill="#141619" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="14" fontWeight="700">
+                <text x="18" y="30" fill="#141619" fontFamily="var(--font-sans)" fontSize="14" fontWeight="700">
                   4 Cluster Subject Grades
                 </text>
               </g>
               <g transform="translate(20, 160)">
                 <rect width="220" height="50" rx="8" fill="#EAECEF" />
-                <text x="18" y="30" fill="#141619" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="14" fontWeight="700">
+                <text x="18" y="30" fill="#141619" fontFamily="var(--font-sans)" fontSize="14" fontWeight="700">
                   HEF Household Band (1–5)
                 </text>
               </g>
               <g transform="translate(20, 230)">
                 <rect width="220" height="50" rx="8" fill="#EAECEF" />
-                <text x="18" y="30" fill="#141619" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="14" fontWeight="700">
+                <text x="18" y="30" fill="#141619" fontFamily="var(--font-sans)" fontSize="14" fontWeight="700">
                   County &amp; Hostel Budget
                 </text>
               </g>
@@ -332,10 +332,10 @@ export default function HomePage() {
               {/* Center Convergence Node */}
               <g transform="translate(490, 96)">
                 <rect width="240" height="108" rx="12" fill="#161B26" />
-                <text x="24" y="46" fill="#C79B37" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="13" fontWeight="700">
+                <text x="24" y="46" fill="#C79B37" fontFamily="var(--font-sans)" fontSize="13" fontWeight="700">
                   CHUOCONNECT ENGINE
                 </text>
-                <text x="24" y="72" fill="#F4F5F7" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="16" fontWeight="800">
+                <text x="24" y="72" fill="#F4F5F7" fontFamily="var(--font-sans)" fontSize="16" fontWeight="800">
                   48-Pt Cluster &amp; Fee Match
                 </text>
               </g>
@@ -343,10 +343,10 @@ export default function HomePage() {
               {/* Right Output Node */}
               <g transform="translate(810, 96)">
                 <rect width="250" height="108" rx="12" fill="#C79B37" />
-                <text x="22" y="46" fill="#141619" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="13" fontWeight="800">
+                <text x="22" y="46" fill="#141619" fontFamily="var(--font-sans)" fontSize="13" fontWeight="800">
                   VERIFIED PLACEMENT
                 </text>
-                <text x="22" y="72" fill="#141619" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif" fontSize="16" fontWeight="800">
+                <text x="22" y="72" fill="#141619" fontFamily="var(--font-sans)" fontSize="16" fontWeight="800">
                   68 Accredited Campuses
                 </text>
               </g>

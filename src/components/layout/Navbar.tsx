@@ -66,9 +66,10 @@ export default function Navbar({ user }: { user: any }) {
           top: 0,
           zIndex: 100,
           background: 'var(--bg-primary)',
-          height: 'var(--nav-height)',
+          height: 'var(--r-globalnav-height, 44px)',
           display: 'flex',
           alignItems: 'center',
+          borderBottom: '1px solid var(--border-light)',
         }}
       >
         <div
@@ -80,8 +81,8 @@ export default function Navbar({ user }: { user: any }) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '0 clamp(18px, 3.33vw, 48px)',
-            gap: 16,
+            padding: '0 clamp(16px, 3.33vw, 48px)',
+            gap: 12,
           }}
         >
           {/* Editorial Wordmark Block */}
@@ -91,7 +92,7 @@ export default function Navbar({ user }: { user: any }) {
               textDecoration: 'none',
               display: 'inline-flex',
               alignItems: 'center',
-              gap: 10,
+              gap: 8,
               flexShrink: 0,
             }}
           >
@@ -100,19 +101,19 @@ export default function Navbar({ user }: { user: any }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                width: 34,
-                height: 34,
-                borderRadius: 6,
+                width: 26,
+                height: 26,
+                borderRadius: 5,
                 background: 'var(--brand-navy)',
                 color: 'var(--gold-primary)',
                 fontWeight: 800,
-                fontSize: '0.9rem',
+                fontSize: '0.8rem',
                 letterSpacing: '-0.04em',
               }}
             >
               CC
             </span>
-            <span style={{ fontWeight: 800, fontSize: '1.15rem', letterSpacing: '-0.035em', fontFamily: 'var(--font-serif)' }}>
+            <span style={{ fontWeight: 800, fontSize: '1.05rem', letterSpacing: '-0.035em', fontFamily: 'var(--font-serif)' }}>
               <span style={{ color: 'var(--text-primary)' }}>Chuo</span>
               <span style={{ color: 'var(--accent-gold)' }}>Connect</span>
             </span>
@@ -124,10 +125,10 @@ export default function Navbar({ user }: { user: any }) {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 4,
+              gap: 2,
               background: 'var(--bg-secondary)',
-              padding: '5px 8px',
-              borderRadius: 'var(--radius-md)',
+              padding: '3px 6px',
+              borderRadius: 'var(--radius-full)',
             }}
           >
             {NAV_LINKS.map(link => (
@@ -144,14 +145,14 @@ export default function Navbar({ user }: { user: any }) {
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        gap: 6,
+                        gap: 5,
                         background: 'none',
                         border: 'none',
                         cursor: 'pointer',
-                        padding: '8px 14px',
-                        fontSize: '0.88rem',
+                        padding: '4px 10px',
+                        fontSize: '0.82rem',
                         fontWeight: 600,
-                        borderRadius: 'var(--radius-sm)',
+                        borderRadius: 'var(--radius-full)',
                         color: link.children.some(c => pathname.startsWith(c.href)) ? 'var(--text-primary)' : 'var(--text-secondary)',
                         transition: 'background-color 0.18s ease, color 0.18s ease',
                       }}
@@ -159,7 +160,7 @@ export default function Navbar({ user }: { user: any }) {
                     >
                       {link.label}
                       <ChevronDown
-                        size={14}
+                        size={12}
                         style={{
                           transition: 'transform 0.2s ease',
                           transform: dropdown === link.label ? 'rotate(180deg)' : 'none',
@@ -178,7 +179,7 @@ export default function Navbar({ user }: { user: any }) {
                             position: 'absolute',
                             top: '100%',
                             left: '50%',
-                            paddingTop: 10,
+                            paddingTop: 8,
                             zIndex: 200,
                             transform: 'translateX(-50%)',
                           }}
@@ -188,9 +189,9 @@ export default function Navbar({ user }: { user: any }) {
                               background: 'var(--bg-secondary)',
                               border: '2px solid var(--border-medium)',
                               borderRadius: 'var(--radius-md)',
-                              minWidth: 248,
+                              minWidth: 240,
                               overflow: 'hidden',
-                              padding: 8,
+                              padding: 6,
                             }}
                           >
                             {link.children.map(child => (
@@ -200,9 +201,9 @@ export default function Navbar({ user }: { user: any }) {
                                 style={{
                                   display: 'flex',
                                   alignItems: 'center',
-                                  gap: 12,
-                                  padding: '11px 14px',
-                                  fontSize: '0.88rem',
+                                  gap: 10,
+                                  padding: '9px 12px',
+                                  fontSize: '0.84rem',
                                   borderRadius: 'var(--radius-sm)',
                                   color: pathname.startsWith(child.href) ? 'var(--accent-gold)' : 'var(--text-primary)',
                                   fontWeight: pathname.startsWith(child.href) ? 700 : 500,
@@ -227,12 +228,12 @@ export default function Navbar({ user }: { user: any }) {
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: 7,
-                      fontSize: '0.88rem',
+                      gap: 6,
+                      fontSize: '0.82rem',
                       fontWeight: 600,
                       textDecoration: 'none',
-                      padding: '8px 14px',
-                      borderRadius: 'var(--radius-sm)',
+                      padding: '4px 10px',
+                      borderRadius: 'var(--radius-full)',
                       color: pathname.startsWith(link.href!) ? 'var(--text-primary)' : 'var(--text-secondary)',
                       background: pathname.startsWith(link.href!) ? 'var(--bg-primary)' : 'transparent',
                       transition: 'background-color 0.18s ease, color 0.18s ease',
@@ -248,32 +249,32 @@ export default function Navbar({ user }: { user: any }) {
           </nav>
 
           {/* Search + Actions */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <div className="desktop-nav">
               <GlobalSearch />
             </div>
 
-            <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <div className="desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               {mounted && (
                 <button
                   onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                   className="btn-ghost"
-                  style={{ padding: 9, borderRadius: '50%', display: 'flex', cursor: 'pointer' }}
+                  style={{ padding: 6, borderRadius: '50%', display: 'flex', cursor: 'pointer' }}
                   aria-label="Toggle Dark Mode"
                 >
-                  {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                  {theme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
                 </button>
               )}
 
               {user ? (
                 <>
-                  <Link href="/dashboard" className="btn btn-ghost btn-sm">Dashboard</Link>
-                  <button onClick={handleLogout} className="btn btn-outline btn-sm">Sign out</button>
+                  <Link href="/dashboard" className="btn btn-ghost" style={{ padding: '4px 10px', fontSize: '0.8rem' }}>Dashboard</Link>
+                  <button onClick={handleLogout} className="btn btn-outline" style={{ padding: '4px 10px', fontSize: '0.8rem' }}>Sign out</button>
                 </>
               ) : (
                 <>
-                  <Link href="/login" className="btn btn-ghost btn-sm">Log in</Link>
-                  <Link href="/calculator" className="btn btn-gold btn-sm">Calculate Points</Link>
+                  <Link href="/login" className="btn btn-ghost" style={{ padding: '4px 10px', fontSize: '0.8rem' }}>Log in</Link>
+                  <Link href="/calculator" className="btn btn-gold" style={{ padding: '4px 12px', fontSize: '0.8rem' }}>Calculate Points</Link>
                 </>
               )}
             </div>
@@ -289,12 +290,12 @@ export default function Navbar({ user }: { user: any }) {
                 cursor: 'pointer',
                 color: 'var(--text-primary)',
                 display: 'none',
-                padding: 10,
+                padding: 6,
                 borderRadius: 'var(--radius-sm)',
                 zIndex: 200,
               }}
             >
-              {mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+              {mobileOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
             </button>
           </div>
         </div>

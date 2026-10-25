@@ -78,15 +78,16 @@ export default function GlobalSearch() {
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 9,
-          padding: '8px 16px',
+          gap: 7,
+          padding: '4px 12px',
+          height: 28,
           borderRadius: 'var(--radius-full)',
           background: 'var(--bg-secondary)',
           border: '1px solid var(--border-light)',
           borderTop: '1px solid var(--apple-glass-highlight)',
           color: 'var(--text-secondary)',
           cursor: 'pointer',
-          fontSize: '0.875rem',
+          fontSize: '0.8125rem',
           fontWeight: 500,
           boxShadow: 'var(--shadow-sm)',
           transition: 'transform var(--apple-press), background var(--apple-ease), border-color var(--apple-ease), box-shadow var(--apple-ease)',
@@ -95,17 +96,17 @@ export default function GlobalSearch() {
         aria-label="Open search command palette"
         id="global-search-btn"
       >
-        <Search size={15} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
+        <Search size={13} style={{ color: 'var(--gold-primary)', flexShrink: 0 }} />
         <span>Search universities, courses…</span>
         <span
           style={{
             marginLeft: 6,
-            padding: '2px 7px',
+            padding: '1px 6px',
             background: 'var(--bg-primary)',
             border: '1px solid var(--border-light)',
             borderRadius: 'var(--radius-sm)',
-            fontSize: '0.72rem',
-            fontFamily: 'system-ui, -apple-system, sans-serif',
+            fontSize: '0.68rem',
+            fontFamily: 'var(--font-sans)',
             fontWeight: 600,
             color: 'var(--text-tertiary)',
             letterSpacing: '0.02em',

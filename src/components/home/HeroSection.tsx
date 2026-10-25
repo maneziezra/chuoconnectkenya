@@ -96,7 +96,7 @@ export default function HeroSection() {
             <div
               style={{
                 position: 'absolute',
-                bottom: 24,
+                bottom: 28,
                 right: 28,
                 zIndex: 4,
                 display: 'none',
@@ -165,34 +165,6 @@ export default function HeroSection() {
               Chuo Connect indexes official KUCCPS cluster cutoff weights, simulates household fees under HEF Bands 1 to 5, and verifies degree &amp; TVET bridge pathways across 68 accredited Kenyan institutions.
             </p>
 
-            {/* Benchmark Metrics Strip */}
-            <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap', padding: '12px 0 4px' }}>
-              <div>
-                <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 400, color: '#fcf7f4', lineHeight: 1 }}>
-                  48.0
-                </div>
-                <div style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.72)', marginTop: 4 }}>
-                  KUCCPS Cluster Scale
-                </div>
-              </div>
-              <div>
-                <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 400, color: '#fcf7f4', lineHeight: 1 }}>
-                  68
-                </div>
-                <div style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.72)', marginTop: 4 }}>
-                  Campuses Indexed
-                </div>
-              </div>
-              <div>
-                <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '1.45rem', fontWeight: 400, color: '#fcf7f4', lineHeight: 1 }}>
-                  5 Bands
-                </div>
-                <div style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.72)', marginTop: 4 }}>
-                  HEF Means Testing
-                </div>
-              </div>
-            </div>
-
             {/* Dual Amperos Action CTAs */}
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, marginTop: 4 }}>
               <Link href="/calculator" className="amperos-btn-primary">
@@ -206,7 +178,7 @@ export default function HeroSection() {
             </div>
 
             {/* 2026 Cycle Announcement Pill */}
-            <div style={{ marginTop: 6 }}>
+            <div style={{ marginTop: 4 }}>
               <Link href="/calculator" className="amperos-badge-pill">
                 <span className="amperos-badge-tag">
                   2026/2027 Cycle
@@ -220,8 +192,64 @@ export default function HeroSection() {
           </div>
         </article>
 
+        {/* DEDICATED ARCHITECTURAL BENCHMARK STRIP */}
+        <div
+          data-ui="hero-benchmark-strip"
+          style={{
+            marginTop: 24,
+            background: 'var(--bg-secondary)',
+            borderRadius: 'var(--radius-lg)',
+            padding: 'clamp(28px, 4vw, 44px) clamp(24px, 4vw, 48px)',
+          }}
+        >
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: 'clamp(24px, 4vw, 48px)',
+              alignItems: 'start',
+            }}
+          >
+            <div>
+              <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.1rem, 3.2vw, 2.75rem)', fontWeight: 400, color: 'var(--text-primary)', lineHeight: 1 }}>
+                48.0
+              </div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 8, letterSpacing: '-0.015em' }}>
+                KUCCPS Cluster Scale
+              </div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.5 }}>
+                Four-subject normalized weighted formula evaluated across 20 degree clusters.
+              </div>
+            </div>
+
+            <div>
+              <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.1rem, 3.2vw, 2.75rem)', fontWeight: 400, color: 'var(--text-primary)', lineHeight: 1 }}>
+                68
+              </div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 8, letterSpacing: '-0.015em' }}>
+                Chartered Campuses
+              </div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.5 }}>
+                Public universities, private charters, and national TVET polytechnics in all 47 counties.
+              </div>
+            </div>
+
+            <div>
+              <div className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(2.1rem, 3.2vw, 2.75rem)', fontWeight: 400, color: 'var(--text-primary)', lineHeight: 1 }}>
+                5 Bands
+              </div>
+              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 8, letterSpacing: '-0.015em' }}>
+                HEF Means Testing
+              </div>
+              <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.5 }}>
+                Government scholarships up to 80% with transparent household out-of-pocket tuition.
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* 2. AMPEROS TRUST & PARTNER BAR */}
-        <div data-ui="partners-trust-bar" style={{ marginTop: 28, marginBottom: 'clamp(48px, 6.5vw, 84px)', padding: '24px 0 8px' }}>
+        <div data-ui="partners-trust-bar" style={{ marginTop: 'clamp(44px, 5.5vw, 68px)', marginBottom: 'clamp(56px, 7vw, 92px)', padding: '24px 0' }}>
           <div
             style={{
               display: 'flex',
@@ -275,23 +303,23 @@ export default function HeroSection() {
         </div>
 
         {/* 3. INTERACTIVE KCSE MEAN GRADE & COUNTY PLACEMENT LEDGER */}
-        <div className="editorial-axis-row">
+        <div className="editorial-axis-row" style={{ gap: 'clamp(32px, 5vw, 64px)' }}>
           {/* Left 42% Axis: Heading & Interactive Filters */}
-          <div style={{ paddingRight: 28 }}>
+          <div style={{ paddingRight: 16 }}>
             <h2
               style={{
                 fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(1.625rem, 3vw, 2.75rem)',
+                fontSize: 'clamp(1.75rem, 3vw, 2.85rem)',
                 fontWeight: 400,
                 letterSpacing: '-0.025em',
                 lineHeight: 1.1,
                 color: 'var(--text-primary)',
-                marginBottom: 14,
+                marginBottom: 16,
               }}
             >
               Select KCSE Mean Grade.
             </h2>
-            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 24, maxWidth: '38ch' }}>
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 28, maxWidth: '38ch' }}>
               Choose your KCSE mean grade and county below to inspect eligible degree or TVET diploma placement pathways immediately.
             </p>
 
@@ -361,12 +389,12 @@ export default function HeroSection() {
             style={{
               background: 'var(--bg-secondary)',
               borderRadius: 'var(--radius-lg)',
-              padding: 'clamp(20px, 3vw, 32px)',
+              padding: 'clamp(28px, 4vw, 40px)',
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 20 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 24 }}>
               <div>
-                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                   <span className={`badge ${activeGuide.isDegreeEligible ? 'badge-green' : 'badge-gold'}`}>
                     {activeGuide.isDegreeEligible ? 'Direct Degree Entry (C+ and above)' : 'TVET & Diploma Bridge Pathway'}
                   </span>
@@ -382,11 +410,11 @@ export default function HeroSection() {
             </div>
 
             {/* Recommended Programmes for Selected Grade */}
-            <div style={{ marginBottom: 20 }}>
-              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: 8 }}>
+            <div style={{ marginBottom: 28 }}>
+              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: 10 }}>
                 Top Eligible Programmes for Grade {activeGuide.gradeLabel}
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {sampleCourses.map(course => (
                   <div
                     key={course.id}
@@ -397,7 +425,7 @@ export default function HeroSection() {
                       flexWrap: 'wrap',
                       gap: 8,
                       background: 'var(--bg-primary)',
-                      padding: '10px 14px',
+                      padding: '12px 18px',
                       borderRadius: 'var(--radius-sm)',
                     }}
                   >
@@ -414,7 +442,7 @@ export default function HeroSection() {
 
             {/* Matching Campuses in Selected County */}
             <div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                 <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)' }}>
                   Matching Accredited Institutions {selectedCounty !== 'All' ? `in ${selectedCounty}` : 'Across Kenya'}
                 </span>
@@ -423,7 +451,7 @@ export default function HeroSection() {
                 </Link>
               </div>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 8 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: 10 }}>
                 {matchingInstitutions.map(uni => (
                   <Link
                     key={uni.id}
@@ -432,7 +460,7 @@ export default function HeroSection() {
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      padding: '10px 14px',
+                      padding: '12px 18px',
                       background: 'var(--bg-primary)',
                       borderRadius: 'var(--radius-sm)',
                       textDecoration: 'none',
@@ -442,7 +470,7 @@ export default function HeroSection() {
                       <div style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--text-primary)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                         {uni.abbrev} · {uni.name}
                       </div>
-                      <div className="tabular-nums" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                      <div className="tabular-nums" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', display: 'flex', alignItems: 'center', gap: 4, marginTop: 3 }}>
                         <MapPin size={12} /> {uni.county} · Rank #{uni.ranking}
                       </div>
                     </div>
