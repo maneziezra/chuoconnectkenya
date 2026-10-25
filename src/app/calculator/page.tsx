@@ -30,37 +30,42 @@ export default async function CalculatorPage() {
   const universities = (universitiesData || []) as University[];
 
   return (
-    <div style={{ minHeight: 'calc(100svh - var(--nav-height))', paddingBottom: 88, background: 'var(--bg-primary)' }}>
-      {/* Editorial Workspace Header */}
-      <section style={{ background: 'var(--bg-secondary)', padding: '28px 0' }}>
+    <div style={{ minHeight: 'calc(100svh - var(--nav-height))', paddingBottom: 'clamp(64px, 8vw, 112px)', background: 'var(--bg-primary)' }}>
+      {/* Apple-Style Minimal Stage Header */}
+      <section style={{ padding: 'clamp(20px, 2.5vw, 32px) 0 clamp(12px, 1.5vw, 18px)', borderBottom: '1px solid var(--border-light)' }}>
         <div className="container">
-          <div className="editorial-axis-row" style={{ alignItems: 'center' }}>
-            <div style={{ paddingRight: 24 }}>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.96rem', lineHeight: 1.5, maxWidth: '34ch', margin: 0 }}>
-                Compute your official 48-point weighted cluster score across all 20 KUCCPS clusters and simulate out-of-pocket fees under HEF Bands 1 to 5.
-              </p>
-            </div>
-            <div>
-              <h1
-                style={{
-                  fontSize: 'clamp(1.5rem, 2.2vw, 2rem)',
-                  fontWeight: 800,
-                  letterSpacing: '-0.035em',
-                  lineHeight: 1.08,
-                  color: 'var(--text-primary)',
-                  fontFamily: 'var(--font-serif)',
-                  margin: 0,
-                }}
-              >
-                Cluster &amp; HEF Simulator.
-              </h1>
-            </div>
+          <div style={{ maxWidth: 760 }}>
+            <h1
+              style={{
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.35rem, 2vw, 1.85rem)',
+                fontWeight: 400,
+                letterSpacing: '-0.025em',
+                lineHeight: 1.15,
+                color: 'var(--text-primary)',
+                margin: 0,
+                marginBottom: 'var(--sk-headline-plus-first-element-margin, 0.4em)',
+              }}
+            >
+              Cluster &amp; HEF Simulator.
+            </h1>
+            <p
+              style={{
+                color: 'var(--text-secondary)',
+                fontSize: '0.9375rem',
+                lineHeight: 1.5,
+                margin: 0,
+              }}
+            >
+              Compute your official 48-point weighted cluster score across all 20 KUCCPS clusters, simulate household tuition under HEF Bands 1 to 5, and audit your 6-slot degree and TVET choice basket.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="container" style={{ marginTop: 28 }}>
-        <div style={{ maxWidth: 1120, margin: '0 auto' }}>
+      {/* Main Interactive Stage */}
+      <main className="container" style={{ marginTop: 'clamp(16px, 2vw, 24px)' }}>
+        <div style={{ maxWidth: 1140, margin: '0 auto' }}>
           <KuccpsCalculator
             courses={courses}
             universities={universities}
@@ -68,7 +73,7 @@ export default async function CalculatorPage() {
             userId={user?.id}
           />
         </div>
-      </section>
+      </main>
     </div>
   );
 }

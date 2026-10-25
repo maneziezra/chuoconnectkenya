@@ -285,6 +285,15 @@ body {
   max-width: 100%;
 }
 
+button,
+input,
+select,
+textarea,
+optgroup,
+option {
+  font-family: inherit;
+}
+
 main, section {
   overflow-x: clip;
   max-width: 100%;
