@@ -2,11 +2,22 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Calculator, MapPin, CheckCircle } from 'lucide-react';
+import { ArrowRight, Calculator, MapPin, CheckCircle, ShieldCheck } from 'lucide-react';
 import { universitiesData } from '@/lib/data/universities';
 import { GRADE_GUIDES, getCoursesForGradeGuide } from '@/lib/data/gradeGuides';
 
 const COUNTIES_QUICK = ['All', 'Nairobi', 'Kiambu', 'Nakuru', 'Uasin Gishu', 'Mombasa', 'Kisumu', 'Nyeri'];
+
+const PARTNERS = [
+  { id: 'uon', shortName: 'University of Nairobi', established: 1970, county: 'Nairobi' },
+  { id: 'strath', shortName: 'Strathmore University', established: 1961, county: 'Madaraka' },
+  { id: 'jkuat', shortName: 'JKUAT Juja', established: 1994, county: 'Kiambu' },
+  { id: 'ku', shortName: 'Kenyatta University', established: 1985, county: 'Kahawa' },
+  { id: 'usiu', shortName: 'USIU-Africa', established: 1969, county: 'Kasarani' },
+  { id: 'egerton', shortName: 'Egerton University', established: 1987, county: 'Nakuru' },
+  { id: 'moi', shortName: 'Moi University', established: 1984, county: 'Eldoret' },
+  { id: 'tuk', shortName: 'Technical University of Kenya', established: 1961, county: 'Nairobi' },
+];
 
 export default function HeroSection() {
   const [selectedGradeSlug, setSelectedGradeSlug] = useState<string>('b-plus');
@@ -38,201 +49,157 @@ export default function HeroSection() {
 
   return (
     <section style={{ background: 'var(--bg-primary)' }}>
-      <div className="container" style={{ paddingTop: 'clamp(28px, 4vw, 52px)', paddingBottom: 'clamp(56px, 7vw, 96px)' }}>
-        {/* 1. Standfirst on Left Margin + Monumental Display Title on 42% Vertical Axis */}
-        <div className="editorial-axis-row" style={{ marginBottom: 'clamp(32px, 4.5vw, 52px)' }}>
-          {/* Left Column (0% -> 42%): Standfirst + Primary Actions */}
-          <div style={{ paddingRight: 28, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 24 }}>
-            <p
-              style={{
-                fontSize: '1.25rem',
-                lineHeight: 1.45,
-                color: 'var(--text-primary)',
-                fontWeight: 500,
-                maxWidth: '32ch',
-                letterSpacing: '-0.015em',
-                margin: 0,
-              }}
-            >
-              Calculate your exact 48-point KUCCPS cluster weight, estimate HEF household bands, and compare all 68 accredited Kenyan universities and national polytechnics.
-            </p>
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-              <Link href="/calculator" className="btn btn-gold">
-                <Calculator size={16} /> Calculate Cluster Points
-              </Link>
-              <Link href="/universities" className="btn btn-outline">
-                Explore 68 Campuses <ArrowRight size={15} />
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Column (42% Axis -> 100%): Monumental 2-Line Display Title */}
-          <div className="editorial-hero-title-col">
-            <h1
-              style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(2.25rem, 5vw, 4.5rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.05em',
-                lineHeight: 0.94,
-                color: 'var(--text-primary)',
-                margin: 0,
-              }}
-            >
-              Every Kenyan
-              <br />
-              <span style={{ color: 'var(--accent-gold)' }}>Campus Indexed.</span>
-            </h1>
-          </div>
-        </div>
-
-        {/* 2. Gutterless 6x2 Mosaic Masthead */}
-        <div className="editorial-mosaic" style={{ marginBottom: 'clamp(64px, 8vw, 104px)' }}>
-          {/* Tile 1: UoN Photo */}
-          <Link href="/universities/uon" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
+      <div className="container" style={{ paddingTop: 'clamp(20px, 3.5vw, 44px)', paddingBottom: 'clamp(56px, 7vw, 96px)' }}>
+        
+        {/* 1. AMPEROS HERO CARD */}
+        <article className="amperos-hero-card">
+          {/* Media Backdrop (Authentic UoN Campus Architecture) */}
+          <div className="amperos-hero-media">
             <img
               src="/images/universities/uon.jpg"
-              alt="University of Nairobi Main Campus"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              alt="University of Nairobi Main Campus Plaza"
+              className="amperos-hero-img"
             />
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
-              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>UoN Nairobi</span>
-            </div>
-          </Link>
-
-          {/* Tile 2: Tonal Figure Block */}
-          <div style={{ background: 'var(--brand-navy)', color: '#F4F5F7', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--gold-primary)' }}>
-              68 Campuses
-            </div>
-            <div style={{ fontSize: '0.875rem', color: 'rgba(244, 245, 247, 0.78)' }}>
-              CUE &amp; TVETA Registry
+            <div className="amperos-hero-scrim" />
+            
+            {/* Provenance Tag */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: 24,
+                right: 28,
+                zIndex: 4,
+                display: 'none',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                gap: 4,
+              }}
+              className="md:flex"
+            >
+              <span
+                style={{
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  color: '#fcf7f4',
+                  letterSpacing: '-0.01em',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                }}
+              >
+                <ShieldCheck size={14} style={{ color: 'var(--brand-gold)' }} />
+                University of Nairobi · Flagship Campus
+              </span>
+              <span className="tabular-nums" style={{ fontSize: '0.84rem', color: 'rgba(252, 247, 244, 0.76)' }}>
+                Est. 1970 · Nairobi County · CUE Chartered
+              </span>
             </div>
           </div>
 
-          {/* Tile 3: Strathmore Photo */}
-          <Link href="/universities/strath" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
-            <img
-              src="/images/universities/strath.jpg"
-              alt="Strathmore University Madaraka Campus"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.35)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
-              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>Strathmore</span>
-            </div>
-          </Link>
+          {/* Left Content Column */}
+          <div className="amperos-hero-content">
+            {/* Monumental Editorial Serif Headline */}
+            <h1 className="amperos-hero-title">
+              A New Standard for Admissions.
+            </h1>
 
-          {/* Tile 4: Tonal Stone Tile */}
-          <div style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
-              48.0 Max
+            {/* Standfirst / Mission */}
+            <p className="amperos-hero-standfirst">
+              Chuo Connect indexes official KUCCPS cluster cutoff weights, simulates household fees under HEF Bands 1 to 5, and verifies degree &amp; TVET bridge pathways across 68 accredited Kenyan institutions.
+            </p>
+
+            {/* Dual Amperos Action CTAs */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12, marginTop: 4 }}>
+              <Link href="/calculator" className="amperos-btn-primary">
+                <Calculator size={16} />
+                <span>Calculate Cluster Points</span>
+              </Link>
+              <Link href="/universities" className="amperos-btn-secondary">
+                <span>Explore 68 Campuses</span>
+                <ArrowRight size={15} />
+              </Link>
             </div>
-            <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-              KUCCPS Cluster Scale
+
+            {/* 2026 Cycle Announcement Pill */}
+            <div style={{ marginTop: 6 }}>
+              <Link href="/calculator" className="amperos-badge-pill">
+                <span className="amperos-badge-tag">
+                  2026/2027 Cycle
+                </span>
+                <span className="amperos-badge-text">
+                  KUCCPS Cluster Scores &amp; HEF Band 1–5 Formula Updated
+                </span>
+                <ArrowRight size={14} style={{ color: '#fcf7f4', opacity: 0.85, flexShrink: 0 }} />
+              </Link>
             </div>
           </div>
+        </article>
 
-          {/* Tile 5: JKUAT Photo */}
-          <Link href="/universities/jkuat" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
-            <img
-              src="/images/universities/jkuat.jpg"
-              alt="JKUAT Juja Main Campus"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
-              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>JKUAT Juja</span>
-            </div>
-          </Link>
-
-          {/* Tile 6: Accent Gold Tile */}
-          <Link href="/calculator" style={{ background: 'var(--accent-gold)', color: '#141619', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
-            <div style={{ fontSize: '1rem', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-              Cluster Engine
-            </div>
-            <div style={{ fontSize: '0.875rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
-              Open <ArrowRight size={14} />
-            </div>
-          </Link>
-
-          {/* Tile 7: Tonal Tertiary Tile */}
-          <div style={{ background: 'var(--bg-tertiary)', color: 'var(--text-primary)', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
-              47 Counties
-            </div>
-            <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-              National Footprint
+        {/* 2. AMPEROS TRUST & PARTNER BAR */}
+        <div data-ui="partners-trust-bar" style={{ marginTop: 28, marginBottom: 'clamp(48px, 6.5vw, 84px)', padding: '24px 0 8px' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 32,
+              flexWrap: 'wrap',
+            }}
+          >
+            <p
+              style={{
+                fontSize: '0.875rem',
+                fontWeight: 600,
+                color: 'var(--text-secondary)',
+                maxWidth: '28ch',
+                margin: 0,
+                lineHeight: 1.45,
+              }}
+            >
+              Indexed across Kenya&apos;s chartered universities and clinical institutions
+            </p>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: 'clamp(14px, 2.5vw, 24px)',
+                flexWrap: 'wrap',
+              }}
+            >
+              {PARTNERS.map(p => (
+                <Link
+                  key={p.id}
+                  href={`/universities/${p.id}`}
+                  style={{
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'baseline',
+                    gap: 6,
+                  }}
+                >
+                  <span style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
+                    {p.shortName}
+                  </span>
+                  <span className="tabular-nums" style={{ fontSize: '0.84rem', color: 'var(--text-tertiary)' }}>
+                    ({p.county})
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
-
-          {/* Tile 8: Kenyatta University Photo */}
-          <Link href="/universities/ku" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
-            <img
-              src="/images/universities/ku.jpg"
-              alt="Kenyatta University Main Campus"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
-              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>KU Kahawa</span>
-            </div>
-          </Link>
-
-          {/* Tile 9: HEF Funding Tile */}
-          <Link href="/scholarships" style={{ background: '#1F2636', color: '#F4F5F7', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
-            <div className="tabular-nums" style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em', color: 'var(--gold-primary)' }}>
-              Band 1–5
-            </div>
-            <div style={{ fontSize: '0.875rem', color: 'rgba(244, 245, 247, 0.78)' }}>
-              HEF Means Estimator
-            </div>
-          </Link>
-
-          {/* Tile 10: Egerton University Photo */}
-          <Link href="/universities/egerton" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
-            <img
-              src="/images/universities/egerton.jpg"
-              alt="Egerton University Njoro Campus"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
-              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>Egerton</span>
-            </div>
-          </Link>
-
-          {/* Tile 11: Tonal Secondary Tile */}
-          <Link href="/housing" style={{ background: 'var(--bg-secondary)', color: 'var(--text-primary)', padding: '18px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', textDecoration: 'none' }}>
-            <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.03em' }}>
-              Hostel Index
-            </div>
-            <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-              Verified Campus Rent
-            </div>
-          </Link>
-
-          {/* Tile 12: Moi University Photo */}
-          <Link href="/universities/moi" style={{ position: 'relative', overflow: 'hidden', display: 'block' }}>
-            <img
-              src="/images/universities/moi.jpg"
-              alt="Moi University Eldoret Campus"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-            <div style={{ position: 'absolute', inset: 0, background: 'rgba(18, 20, 23, 0.38)', display: 'flex', alignItems: 'flex-end', padding: '16px 20px' }}>
-              <span style={{ color: '#F4F5F7', fontSize: '0.875rem', fontWeight: 700 }}>Moi Eldoret</span>
-            </div>
-          </Link>
         </div>
 
-        {/* 3. THE LIVE THING: Interactive KCSE Mean Grade & County Placement Ledger */}
+        {/* 3. INTERACTIVE KCSE MEAN GRADE & COUNTY PLACEMENT LEDGER */}
         <div className="editorial-axis-row">
-          {/* Left 42% Heading + Interactive Controls */}
+          {/* Left 42% Axis: Heading & Interactive Filters */}
           <div style={{ paddingRight: 28 }}>
             <h2
               style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(1.625rem, 3.05vw, 2.75rem)',
-                fontWeight: 800,
-                letterSpacing: '-0.04em',
-                lineHeight: 1.04,
+                fontFamily: 'var(--font-serif)',
+                fontSize: 'clamp(1.625rem, 3vw, 2.75rem)',
+                fontWeight: 400,
+                letterSpacing: '-0.025em',
+                lineHeight: 1.1,
                 color: 'var(--text-primary)',
                 marginBottom: 14,
               }}
@@ -303,7 +270,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Right 58% Live Output Sheet */}
+          {/* Right 58% Axis: Live Output Ledger */}
           <div
             data-ui="live-placement-ledger"
             style={{
@@ -329,7 +296,7 @@ export default function HeroSection() {
               </Link>
             </div>
 
-            {/* Recommended Programmes for Selected Grade (Full-width ledger rows, not boxed card grid) */}
+            {/* Recommended Programmes for Selected Grade */}
             <div style={{ marginBottom: 20 }}>
               <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: 8 }}>
                 Top Eligible Programmes for Grade {activeGuide.gradeLabel}
