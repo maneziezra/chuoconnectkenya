@@ -73,8 +73,8 @@ export default async function CoursesPage({ searchParams }: Props) {
           style={{
             position: 'relative',
             border: '1px solid var(--border-light)',
+            borderTop: '1px solid var(--apple-glass-highlight)',
             borderRadius: 'var(--radius-xl)',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 10px 30px rgba(0,0,0,0.03)',
             background: 'var(--bg-secondary)',
             padding: '44px 36px',
             overflow: 'hidden',
@@ -90,17 +90,14 @@ export default async function CoursesPage({ searchParams }: Props) {
                 background: 'var(--bg-primary)',
                 border: '1px solid var(--border-light)',
                 borderRadius: 'var(--radius-full)',
-                boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
                 fontSize: '0.75rem',
-                fontWeight: 700,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
+                fontWeight: 600,
                 color: 'var(--accent-gold)',
                 marginBottom: 16,
               }}
             >
               <BookOpen size={13} style={{ color: 'var(--accent-gold)' }} />
-              Course Directory ({allCourses.length} Accredited Programmes)
+              {allCourses.length} Programmes Indexed
             </div>
 
             <h1
@@ -114,19 +111,18 @@ export default async function CoursesPage({ searchParams }: Props) {
                 margin: '0 0 12px 0',
               }}
             >
-              Find Your Degree Programme
+              Accredited Programmes.
             </h1>
 
             <p
               style={{
                 color: 'var(--text-secondary)',
                 fontSize: '0.98rem',
-                lineHeight: 1.55,
+                lineHeight: 1.5,
                 marginBottom: 24,
-                fontFamily: 'var(--font-serif)',
               }}
             >
-              Explore accredited undergraduate and diploma programmes across Kenyan universities. Review KUCCPS weighted cluster cutoffs, verified career pathways, and connect with admissions officers.
+              Filter accredited degree and diploma programmes by cluster, cutoff points, and career outcomes.
             </p>
 
             {/* Apple Filter & Search Controls */}
@@ -147,7 +143,6 @@ export default async function CoursesPage({ searchParams }: Props) {
                     color: 'var(--text-primary)',
                     fontSize: '0.88rem',
                     outline: 'none',
-                    boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
                   }}
                 />
               </div>
@@ -164,7 +159,6 @@ export default async function CoursesPage({ searchParams }: Props) {
                   color: 'var(--text-primary)',
                   fontSize: '0.88rem',
                   outline: 'none',
-                  boxShadow: '0 1px 2px rgba(0,0,0,0.03)',
                   cursor: 'pointer',
                 }}
               >
@@ -235,7 +229,6 @@ export default async function CoursesPage({ searchParams }: Props) {
                     borderRadius: 'var(--radius-xl)',
                     border: '1px solid var(--border-light)',
                     background: 'var(--bg-primary)',
-                    boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 6px 20px rgba(0,0,0,0.03)',
                   }}
                 >
                   <div style={{ padding: '24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
@@ -305,7 +298,7 @@ export default async function CoursesPage({ searchParams }: Props) {
                     }}
                   >
                     <div>
-                      <div style={{ fontSize: '0.72rem', color: 'var(--text-tertiary)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--text-tertiary)', fontWeight: 500 }}>
                         Min KUCCPS Score
                       </div>
                       <span className="tabular-nums" style={{ fontFamily: 'var(--font-serif)', fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)' }}>

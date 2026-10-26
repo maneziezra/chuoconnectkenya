@@ -57,7 +57,7 @@ export default async function CalculatorPage() {
                 margin: 0,
               }}
             >
-              Compute your official 48-point weighted cluster score across all 20 KUCCPS clusters, simulate household tuition under HEF Bands 1 to 5, and audit your 6-slot degree and TVET choice basket.
+              Official 48-point KUCCPS cluster scores, HEF Band 1–5 tuition estimates, and your 6-choice placement basket.
             </p>
           </div>
         </div>

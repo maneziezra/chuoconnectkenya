@@ -37,11 +37,11 @@ export default async function ComparePage({ searchParams }: Props) {
         <div className="container">
           <div className="editorial-axis-row">
             <div style={{ paddingRight: 24 }}>
-              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--accent-gold)', marginBottom: 10 }}>
-                Side-by-Side Workspace
+              <div style={{ fontSize: '0.82rem', fontWeight: 600, color: 'var(--accent-gold)', marginBottom: 8 }}>
+                Side-by-Side Analysis
               </div>
               <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.5, maxWidth: '30ch', margin: 0 }}>
-                Compare up to three Kenyan institutions across annual tuition, hostel capacity, national ranking, and accredited facilities.
+                Compare up to three institutions across tuition, rankings, and campus facilities.
               </p>
             </div>
             <div>

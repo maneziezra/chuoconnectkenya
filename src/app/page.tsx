@@ -46,40 +46,40 @@ const FEATURE_ROWS = [
   {
     title: '48-Point Cluster Engine',
     summary:
-      'Every degree programme in Kenya uses the official four-subject weighted formula alongside your 84-point KCSE aggregate. Our calculator runs all 20 subject clusters simultaneously and flags where your subject combination qualifies.',
+      'Calculate your exact weighted score across all 20 clusters in seconds.',
     image: '/images/universities/ku.jpg',
     caption: 'Kenyatta University Main Campus · Kahawa, Nairobi',
     href: '/calculator',
     cta: 'Open Cluster Calculator',
-    specs: ['All 20 KUCCPS Subject Clusters', 'C+ Degree & C-/D+ TVET Bridging', '2026 Cut-Off Comparison'],
+    specs: ['All 20 Clusters', 'Degree & TVET Bridging', '2026 Cutoffs'],
   },
   {
-    title: 'HEF Household Estimator',
+    title: 'HEF Funding Simulator',
     summary:
-      'Under the Higher Education Funding (HEF) model, government scholarships and HELB loans are allocated across five household bands. Estimate your exact out-of-pocket household contribution before submitting your revision choices.',
+      'Simulate government scholarships, HELB loans, and family tuition across Bands 1 to 5.',
     image: '/images/universities/moi.jpg',
     caption: 'Moi University Main Campus · Kesses, Uasin Gishu',
     href: '/scholarships',
     cta: 'Inspect HEF Bands & Bursaries',
-    specs: ['Bands 1 to 5 Means Testing', 'Government Scholarship % Split', 'Equity, Elimu & Mastercard Grants'],
+    specs: ['Bands 1 to 5', 'Scholarship & Loan Split', 'Family Out-of-Pocket'],
   },
   {
-    title: 'Verified Campus Hostels',
+    title: 'Verified Student Hostels',
     summary:
-      'Tuition is only half the budget. Compare vetted private student residences (Qwetu, Qejani, and gated hostel courts) alongside on-campus accommodation rates, Wi-Fi reliability, and walking distance to lecture halls.',
+      'Compare verified student hostels, rates, and walking distance to campus.',
     image: '/images/universities/egerton.jpg',
     caption: 'Egerton University Main Campus · Njoro, Nakuru',
     href: '/housing',
     cta: 'Browse Verified Student Hostels',
-    specs: ['Monthly Rent Ledger by Campus', 'Walking Distance & Security Audits', 'Direct Caretaker Inquiry'],
+    specs: ['Monthly Rent by Campus', 'Walking Distance', 'Direct Caretaker Booking'],
   },
 ];
 
 const DECIMAL_STATS = [
-  { figure: '68.0', unit: 'Institutions', label: 'Chartered public & private universities, technical universities, and national polytechnics indexed across the republic.' },
-  { figure: '47.0', unit: 'Counties', label: 'Complete geographic coverage from Nairobi and Mombasa to Garissa, Turkana, and Kilifi.' },
-  { figure: '44.5', unit: 'Cluster Points', label: 'Typical top-tier cutoff for Bachelor of Medicine & Bachelor of Surgery (MBChB) at flagship campuses.' },
-  { figure: '80.0', unit: 'Percent Grant', label: 'Maximum HEF government scholarship allocation for Band 1 households at public universities.' },
+  { figure: '68.0', unit: 'Institutions', label: 'Chartered universities and national polytechnics across Kenya.' },
+  { figure: '47.0', unit: 'Counties', label: 'Campuses in every county nationwide.' },
+  { figure: '44.5', unit: 'Cluster Points', label: 'Peak Medicine & Surgery (MBChB) cutoff.' },
+  { figure: '80.0', unit: 'Percent Grant', label: 'Maximum Band 1 government scholarship.' },
 ];
 
 export default function HomePage() {
@@ -92,8 +92,8 @@ export default function HomePage() {
       <section style={{ padding: 'clamp(64px, 8vw, 112px) 0' }}>
         <div className="container" style={{ marginBottom: 36 }}>
           <div className="editorial-axis-row">
-            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '34ch', margin: 0 }}>
-              Verified Commons photography of flagship Kenyan public charters, private universities, and clinical training campuses.
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.5, maxWidth: '34ch', margin: 0 }}>
+              Explore Kenya&apos;s leading chartered universities and clinical institutes.
             </p>
             <h2
               style={{
@@ -106,7 +106,7 @@ export default function HomePage() {
                 margin: 0,
               }}
             >
-              Flagship Kenyan Campuses.
+              Flagship Campuses.
             </h2>
           </div>
         </div>
@@ -186,13 +186,13 @@ export default function HomePage() {
                   marginBottom: 20,
                 }}
               >
-                KUCCPS &amp; HEF Architecture.
+                Precision Admissions.
               </h2>
-              <p style={{ fontSize: '1rem', lineHeight: 1.6, color: 'rgba(244, 245, 247, 0.78)', maxWidth: '34ch', marginBottom: 28 }}>
-                Every figure on ChuoConnect is anchored to Commission for University Education (CUE) charters, TVETA registries, and official KUCCPS cluster formulas.
+              <p style={{ fontSize: '1rem', lineHeight: 1.5, color: 'rgba(244, 245, 247, 0.78)', maxWidth: '34ch', marginBottom: 28 }}>
+                Official cutoffs, government scholarships, and student housing. Verified.
               </p>
               <Link href="/compare?ids=uon,strath,jkuat" className="btn btn-gold">
-                Compare Flagship Campuses <ArrowRight size={15} />
+                Compare Campuses <ArrowRight size={15} />
               </Link>
             </div>
 
@@ -260,8 +260,8 @@ export default function HomePage() {
         <div className="container">
           <div className="editorial-axis-row" style={{ marginBottom: 48 }}>
             <div style={{ paddingRight: 28 }}>
-              <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '34ch', margin: 0 }}>
-                Four student inputs converge into a single verified admission, tuition band, and hostel recommendation.
+              <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.5, maxWidth: '34ch', margin: 0 }}>
+                Four student inputs, matched to accredited programmes in one click.
               </p>
             </div>
             <div>
@@ -276,7 +276,7 @@ export default function HomePage() {
                   margin: 0,
                 }}
               >
-                KCSE Slip to Admission.
+                KCSE Slip to Campus.
               </h2>
             </div>
           </div>
@@ -359,8 +359,8 @@ export default function HomePage() {
       <section className="section" style={{ background: 'var(--bg-primary)' }}>
         <div className="container">
           <div className="editorial-axis-row" style={{ marginBottom: 40 }}>
-            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '34ch', margin: 0 }}>
-              Key national placement figures aligned on the decimal from official CUE, TVETA, KUCCPS, and HEF schedules.
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.5, maxWidth: '34ch', margin: 0 }}>
+              Official data from CUE, TVETA, KUCCPS, and HEF.
             </p>
             <h2
               style={{
@@ -373,7 +373,7 @@ export default function HomePage() {
                 margin: 0,
               }}
             >
-              National Placement Figures.
+              By the Numbers.
             </h2>
           </div>
 
@@ -458,8 +458,8 @@ export default function HomePage() {
           <div className="container">
             <div className="editorial-axis-row">
               <div style={{ paddingRight: 28 }}>
-                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, maxWidth: '32ch', margin: 0 }}>
-                  Free for all Kenyan KCSE candidates, parents, and high school career masters preparing for 2026 / 2027 placement.
+                <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.5, maxWidth: '32ch', margin: 0 }}>
+                  Built for every student, parent, and educator in Kenya.
                 </p>
               </div>
               <div>
@@ -474,7 +474,7 @@ export default function HomePage() {
                     marginBottom: 28,
                   }}
                 >
-                  Verify Your Placement Early.
+                  Verify Your Placement.
                 </h2>
                 <Link
                   href="/calculator"
@@ -489,7 +489,7 @@ export default function HomePage() {
                     borderBottom: '4px solid var(--accent-gold)',
                   }}
                 >
-                  Calculate Your Exact Cluster Points <ArrowRight size={20} />
+                  Calculate Your Points <ArrowRight size={20} />
                 </Link>
               </div>
             </div>

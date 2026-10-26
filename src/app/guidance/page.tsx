@@ -57,7 +57,6 @@ export default function GuidancePage() {
             border: '1px solid var(--border-light)',
             borderTop: '1px solid var(--apple-glass-highlight)',
             borderRadius: 'var(--radius-xl)',
-            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
             background: 'var(--bg-secondary)',
             padding: '44px 36px',
             overflow: 'hidden',
@@ -74,17 +73,15 @@ export default function GuidancePage() {
                 border: '1px solid var(--border-light)',
                 borderTop: '1px solid var(--apple-glass-highlight)',
                 borderRadius: 'var(--radius-full)',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
+                fontSize: '0.75rem',
+                fontWeight: 600,
                 color: 'var(--text-primary)',
                 marginBottom: 16,
                 backdropFilter: 'blur(16px)',
               }}
             >
               <Compass size={13} style={{ color: 'var(--gold-primary)' }} />
-              About & Guidance
+              Admissions &amp; Guidance
             </span>
             <h1
               style={{
@@ -96,10 +93,10 @@ export default function GuidancePage() {
                 letterSpacing: '-0.03em',
               }}
             >
-              Connecting Students to Campuses Across Kenya
+              Guidance &amp; Admissions.
             </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 680, lineHeight: 1.6 }}>
-              Choosing a university is one of life&apos;s most important decisions. We aim to be Kenya&apos;s premier Campus Discovery Platform, enabling students to explore, compare, and connect with higher education institutions.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 680, lineHeight: 1.5 }}>
+              Expert placement guidance, campus comparisons, and admissions resources.
             </p>
           </div>
         </div>
@@ -117,15 +114,14 @@ export default function GuidancePage() {
                 borderRadius: 'var(--radius-xl)',
                 border: '1px solid var(--border-light)',
                 borderTop: '1px solid var(--apple-glass-highlight)',
-                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 20 }}>
                 <Rocket size={22} style={{ color: 'var(--gold-primary)' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Vision</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.65, margin: 0 }}>
-                To become Kenya&apos;s most trusted digital platform for discovering, exploring, and connecting students with campuses and higher education opportunities.
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.5, margin: 0 }}>
+                Kenya&apos;s authoritative platform for university admissions, cutoffs, and campus discovery.
               </p>
             </div>
 
@@ -136,15 +132,14 @@ export default function GuidancePage() {
                 borderRadius: 'var(--radius-xl)',
                 border: '1px solid var(--border-light)',
                 borderTop: '1px solid var(--apple-glass-highlight)',
-                boxShadow: 'var(--shadow-sm)',
               }}
             >
               <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, border: '1px solid var(--border-light)', borderRadius: 'var(--radius-md)', background: 'var(--gold-glow)', color: 'var(--text-primary)', marginBottom: 20 }}>
                 <Target size={22} style={{ color: 'var(--gold-primary)' }} />
               </div>
               <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 12 }}>Our Mission</h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.65, margin: 0 }}>
-                To simplify the university selection process by providing students with accurate information, immersive campus experiences, and personalized recommendations to help them make informed educational decisions.
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.5, margin: 0 }}>
+                Accurate data, immersive campus profiles, and transparent funding calculations for every student.
               </p>
             </div>
 

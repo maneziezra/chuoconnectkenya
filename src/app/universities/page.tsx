@@ -53,12 +53,12 @@ export default async function UniversitiesPage({
                 style={{
                   color: 'var(--text-secondary)',
                   fontSize: '1rem',
-                  lineHeight: 1.6,
+                  lineHeight: 1.5,
                   maxWidth: '34ch',
                   margin: 0,
                 }}
               >
-                Every chartered public university, private institution, and national technical polytechnic in Kenya indexed by county, tuition band, and student rating.
+                Explore chartered public, private, and national polytechnic campuses across all 47 counties.
               </p>
             </div>
 

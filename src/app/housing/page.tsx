@@ -2483,7 +2483,6 @@ export default async function HousingPage({ searchParams }: Props) {
             border: '1px solid var(--border-light)',
             borderTop: '1px solid var(--apple-glass-highlight)',
             borderRadius: 'var(--radius-xl)',
-            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
             background: 'var(--bg-secondary)',
             padding: '44px 36px',
             overflow: 'hidden',
@@ -2500,17 +2499,15 @@ export default async function HousingPage({ searchParams }: Props) {
                 border: '1px solid var(--border-light)',
                 borderTop: '1px solid var(--apple-glass-highlight)',
                 borderRadius: 'var(--radius-full)',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
+                fontSize: '0.75rem',
+                fontWeight: 600,
                 color: 'var(--text-primary)',
                 marginBottom: 16,
                 backdropFilter: 'blur(16px)',
               }}
             >
               <Home size={13} style={{ color: 'var(--gold-primary)' }} />
-              Student Accommodation
+              Verified Residences
             </span>
             <h1
               style={{
@@ -2522,10 +2519,10 @@ export default async function HousingPage({ searchParams }: Props) {
                 letterSpacing: '-0.03em',
               }}
             >
-              Find Your Perfect Student Home
+              Student Housing.
             </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 680, lineHeight: 1.6 }}>
-              Explore verified hostels, apartments, and shared spaces near your campus. Filter by university, amenities, county, and price with direct WhatsApp booking.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 680, lineHeight: 1.5 }}>
+              Verified hostels and student apartments near Kenyan campuses.
             </p>
           </div>
         </div>
@@ -2543,7 +2540,6 @@ export default async function HousingPage({ searchParams }: Props) {
               padding: 24,
               border: '1px solid var(--border-light)',
               borderTop: '1px solid var(--apple-glass-highlight)',
-              boxShadow: 'var(--shadow-sm)',
               position: 'sticky',
               top: 100,
             }}
@@ -2667,15 +2663,13 @@ export default async function HousingPage({ searchParams }: Props) {
                             right: 12,
                             padding: '4px 11px',
                             borderRadius: 'var(--radius-full)',
-                            fontSize: '0.72rem',
-                            fontWeight: 700,
-                            letterSpacing: '0.03em',
+                            fontSize: '0.75rem',
+                            fontWeight: 600,
                             background: 'var(--apple-glass-bg)',
                             backdropFilter: 'blur(16px)',
                             border: '1px solid var(--border-light)',
                             borderTop: '1px solid var(--apple-glass-highlight)',
                             color: 'var(--text-primary)',
-                            boxShadow: 'var(--shadow-sm)',
                           }}
                         >
                           {TYPE_LABELS[h.type]}
@@ -2688,12 +2682,11 @@ export default async function HousingPage({ searchParams }: Props) {
                               left: 10,
                               padding: '3px 10px',
                               borderRadius: 'var(--radius-sm)',
-                              fontSize: '0.72rem',
-                              fontWeight: 700,
+                              fontSize: '0.75rem',
+                              fontWeight: 600,
                               background: 'var(--bg-primary)',
                               border: '1px solid var(--border-light)',
                               color: 'var(--gold-primary)',
-                              boxShadow: 'var(--shadow-sm)',
                             }}
                           >
                             Near {uniObj.abbrev || uniObj.name}

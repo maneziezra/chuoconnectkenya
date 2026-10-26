@@ -584,7 +584,7 @@ export default function KuccpsCalculator({
                   }}
                 >
                   <Sparkles size={14} style={{ color: 'var(--accent-gold)' }} />
-                  <span>Instant sample KCSE profiles:</span>
+                  <span>Presets:</span>
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                   {DEMO_PRESETS.map((preset) => (
@@ -653,7 +653,7 @@ export default function KuccpsCalculator({
               >
                 <div>
                   <div style={{ fontSize: '0.8125rem', fontWeight: 500, color: 'var(--text-secondary)' }}>
-                    Computed KCSE Mean Grade (Best 7 Subjects)
+                    KCSE Mean Grade (Best 7)
                   </div>
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 12, marginTop: 4 }}>
                     <span
@@ -691,7 +691,7 @@ export default function KuccpsCalculator({
                         fontWeight: 600,
                       }}
                     >
-                      {degreeQualified ? 'Direct Degree & TVET Eligible (C+ and above)' : 'TVET & Diploma Bridge Eligible'}
+                      {degreeQualified ? 'Degree & TVET Eligible' : 'TVET & Diploma Eligible'}
                     </span>
                   </div>
                 )}
@@ -752,7 +752,7 @@ export default function KuccpsCalculator({
               )}
 
               <p style={{ fontSize: '0.8125rem', color: 'var(--text-tertiary)', marginTop: 8, textAlign: 'center', margin: 0 }}>
-                Uses official KUCCPS formula: <code style={{ fontWeight: 600 }}>w = sqrt((c / 48) * (p / 84)) * 48</code> · Indicative cut-offs based on latest placement cycle.
+                Official KUCCPS formula: <code style={{ fontWeight: 600 }}>w = √(c/48 × p/84) × 48</code>.
               </p>
             </div>
           ) : (
@@ -829,11 +829,10 @@ export default function KuccpsCalculator({
                     }}
                   >
                     <TrendingUp size={22} style={{ color: 'var(--accent-gold)' }} />
-                    Your 8 Cluster Scores &amp; Matched Programmes
+                    Weighted Scores &amp; Programmes
                   </h2>
                   <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: 4, margin: '4px 0 0' }}>
-                    Matched across <strong>{totalQualifyingCount} degree programmes</strong> · Showing HEF{' '}
-                    <strong>Band {hefResult.band} ({hefResult.householdPct}% family share)</strong> estimates.
+                    {totalQualifyingCount} qualifying programmes · Band {hefResult.band} ({hefResult.householdPct}% family fee).
                   </p>
                 </div>
 
@@ -854,7 +853,7 @@ export default function KuccpsCalculator({
                       transition: 'transform var(--apple-press)',
                     }}
                   >
-                    {showReachCourses ? 'Including Reach (-2.0 pts)' : 'Show Reach Courses'}
+                    {showReachCourses ? 'Reach Included' : 'Include Reach'}
                   </button>
                   <button
                     type="button"
@@ -871,7 +870,7 @@ export default function KuccpsCalculator({
                       transition: 'transform var(--apple-press)',
                     }}
                   >
-                    {showDiplomaBridge ? 'Showing TVET / Diploma Pathways' : '+ View Diploma / TVET Bridge'}
+                    {showDiplomaBridge ? 'TVET Pathways Active' : 'TVET Pathways'}
                   </button>
                 </div>
               </div>
@@ -1110,10 +1109,10 @@ export default function KuccpsCalculator({
                   }}
                 >
                   <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '1.05rem', marginBottom: 6 }}>
-                    Mean Grade {overallGrade}: Direct Diploma &amp; TVET Pathways Unlocked
+                    Grade {overallGrade}: Diploma &amp; TVET Pathways
                   </div>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.6 }}>
-                    Direct KUCCPS degree placement requires a minimum KCSE Mean Grade of <strong>C+ (46 points)</strong>. You qualify immediately for accredited University Diplomas and TVET programmes below, many with credit transfer into degree programmes.
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
+                    Direct degree entry requires C+. You qualify immediately for accredited TVET and diploma pathways below with degree transfer.
                   </p>
                 </div>
               )}
@@ -1143,10 +1142,10 @@ export default function KuccpsCalculator({
                   >
                     <div>
                       <h3 style={{ margin: 0, color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.05rem' }}>
-                        Accredited Diploma-to-Degree Progression Pathways (C, C-, D+)
+                        Diploma-to-Degree Pathways
                       </h3>
                       <div style={{ color: 'var(--text-tertiary)', fontSize: '0.8125rem', marginTop: 2 }}>
-                        TVET &amp; University Bridge Programmes
+                        Accredited TVET and diploma programmes.
                       </div>
                     </div>
                     <span
@@ -1256,10 +1255,10 @@ export default function KuccpsCalculator({
         >
           <div style={{ marginBottom: 24 }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 600, color: 'var(--text-primary)', margin: '0 0 8px' }}>
-              HEF Funding &amp; HELB Loan Simulator
+              HEF Funding Simulator
             </h2>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.6, margin: 0 }}>
-              Under Kenya&apos;s Student-Centred Funding Model, your university funding is split into a <strong>Government Scholarship</strong>, a <strong>HELB Tuition &amp; Upkeep Loan</strong>, and a <strong>Household Contribution</strong> across 5 Means-Tested Bands.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.5, margin: 0 }}>
+              Tuition is divided into Government Scholarships, HELB Loans, and Household Contributions across 5 means-tested bands.
             </p>
           </div>
 
@@ -1525,10 +1524,10 @@ export default function KuccpsCalculator({
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 16, marginBottom: 24 }}>
             <div>
               <h2 style={{ fontSize: '1.4rem', fontWeight: 600, color: 'var(--text-primary)', margin: '0 0 6px' }}>
-                My KUCCPS Choice Basket &amp; Strategy Audit
+                KUCCPS Choice Basket
               </h2>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', margin: 0 }}>
-                Build your 6-slot placement basket (1a, 1b, 1c, 2, 3, 4) and generate your placement and funding report.
+                Build your 6-choice basket (1a–1c, 2, 3, 4) and export your placement report.
               </p>
             </div>
             <button
@@ -1537,7 +1536,7 @@ export default function KuccpsCalculator({
               className="btn btn-outline btn-sm"
               style={{ borderRadius: 'var(--radius-full, 9999px)', transition: 'transform var(--apple-press)' }}
             >
-              + Add More Courses from Matcher
+              Add Programmes
             </button>
           </div>
 
@@ -1587,7 +1586,7 @@ export default function KuccpsCalculator({
                       </>
                     ) : (
                       <p style={{ fontSize: '0.82rem', color: 'var(--text-tertiary)', margin: '12px 0' }}>
-                        {hint} · Select a course in the Matcher tab to fill this slot.
+                        {hint} · Select a course in Step 1 to fill this slot.
                       </p>
                     )}
                   </div>
@@ -1646,13 +1645,13 @@ export default function KuccpsCalculator({
             <div>
               <div style={{ fontWeight: 600, color: 'var(--text-primary)', fontSize: '0.95rem', marginBottom: 4 }}>
                 {Object.values(basket).some(b => b?.odds.status === 'safe')
-                  ? 'Strong Balanced Basket Strategy'
-                  : 'Placement Strategy Tip: Add at least one SAFE Backup Choice'}
+                  ? 'Balanced Basket Strategy'
+                  : 'Strategy Advisory: Add a Safe Choice'}
               </div>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', margin: 0, lineHeight: 1.5 }}>
                 {Object.values(basket).some(b => b?.odds.status === 'safe')
-                  ? 'Your basket includes at least one programme where your weighted cluster score is +2.0 points above the cutoff, protecting you from unplaced first-revision outcomes.'
-                  : 'To avoid missing out during the first KUCCPS revision, ensure Choice 3 or Choice 4 has a cutoff at least 2.0 points below your cluster score.'}
+                  ? 'At least one programme is +2.0 points above cutoff, ensuring placement protection.'
+                  : 'Ensure Choice 3 or 4 is at least 2.0 points below your cluster score to secure admission.'}
               </p>
             </div>
           </div>
@@ -1678,10 +1677,10 @@ export default function KuccpsCalculator({
             >
               <div style={{ maxWidth: 640 }}>
                 <h3 style={{ fontSize: '1.35rem', fontWeight: 600, color: '#FFFFFF', margin: '0 0 8px' }}>
-                  Generate Your Placement Report &amp; WhatsApp Summary
+                  Export Placement Report
                 </h3>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.88rem', marginBottom: 20, lineHeight: 1.6 }}>
-                  Enter your details below to generate your official Chuo Connect Placement &amp; HEF Funding Report Card and receive direct admission &amp; scholarship alerts from your target universities.
+                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.88rem', marginBottom: 20, lineHeight: 1.5 }}>
+                  Enter your details to generate your placement report and receive verified admission updates on WhatsApp.
                 </p>
               </div>
 

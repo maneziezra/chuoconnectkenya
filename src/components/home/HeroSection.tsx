@@ -162,7 +162,7 @@ export default function HeroSection() {
 
             {/* Standfirst / Mission */}
             <p className="amperos-hero-standfirst">
-              Chuo Connect indexes official KUCCPS cluster cutoff weights, simulates household fees under HEF Bands 1 to 5, and verifies degree &amp; TVET bridge pathways across 68 accredited Kenyan institutions.
+              Official KUCCPS cutoffs, HEF tuition bands, and degree pathways for all 68 Kenyan institutions.
             </p>
 
             {/* Dual Amperos Action CTAs */}
@@ -184,7 +184,7 @@ export default function HeroSection() {
                   2026/2027 Cycle
                 </span>
                 <span className="amperos-badge-text">
-                  KUCCPS Cluster Scores &amp; HEF Band 1–5 Formula Updated
+                  Updated KUCCPS cutoffs &amp; HEF bands
                 </span>
                 <ArrowRight size={14} style={{ color: '#fcf7f4', opacity: 0.85, flexShrink: 0 }} />
               </Link>
@@ -215,10 +215,10 @@ export default function HeroSection() {
                 48.0
               </div>
               <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 8, letterSpacing: '-0.015em' }}>
-                KUCCPS Cluster Scale
+                KUCCPS Scale
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.5 }}>
-                Four-subject normalized weighted formula evaluated across 20 degree clusters.
+                Official 20-cluster weighted formula.
               </div>
             </div>
 
@@ -227,10 +227,10 @@ export default function HeroSection() {
                 68
               </div>
               <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 8, letterSpacing: '-0.015em' }}>
-                Chartered Campuses
+                Institutions
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.5 }}>
-                Public universities, private charters, and national TVET polytechnics in all 47 counties.
+                Universities and polytechnics nationwide.
               </div>
             </div>
 
@@ -239,10 +239,10 @@ export default function HeroSection() {
                 5 Bands
               </div>
               <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginTop: 8, letterSpacing: '-0.015em' }}>
-                HEF Means Testing
+                HEF Funding
               </div>
               <div style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginTop: 6, lineHeight: 1.5 }}>
-                Government scholarships up to 80% with transparent household out-of-pocket tuition.
+                Up to 80% scholarship. Clear family fee.
               </div>
             </div>
           </div>
@@ -269,7 +269,7 @@ export default function HeroSection() {
                 lineHeight: 1.45,
               }}
             >
-              Indexed across Kenya&apos;s chartered universities and clinical institutions
+              68 accredited institutions nationwide
             </p>
             <div
               style={{
@@ -317,10 +317,10 @@ export default function HeroSection() {
                 marginBottom: 16,
               }}
             >
-              Select KCSE Mean Grade.
+              Explore by Grade.
             </h2>
-            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: 28, maxWidth: '38ch' }}>
-              Choose your KCSE mean grade and county below to inspect eligible degree or TVET diploma placement pathways immediately.
+            <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: 24, maxWidth: '38ch' }}>
+              Select your KCSE grade and county to view matching programmes.
             </p>
 
             <div data-ui="grade-selector-controls">
@@ -396,12 +396,12 @@ export default function HeroSection() {
               <div>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                   <span className={`badge ${activeGuide.isDegreeEligible ? 'badge-green' : 'badge-gold'}`}>
-                    {activeGuide.isDegreeEligible ? 'Direct Degree Entry (C+ and above)' : 'TVET & Diploma Bridge Pathway'}
+                    {activeGuide.isDegreeEligible ? 'Degree Eligible (C+)' : 'TVET & Diploma Eligible'}
                   </span>
                   <span className="badge badge-navy tabular-nums">{activeGuide.aggregateRange}</span>
                 </div>
-                <div style={{ fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-primary)' }}>
-                  {activeGuide.headline}
+                <div style={{ fontSize: '1.25rem', fontWeight: 600, letterSpacing: '-0.025em', color: 'var(--text-primary)' }}>
+                  {activeGuide.isDegreeEligible ? `Degree Programmes for Grade ${activeGuide.gradeLabel}` : `TVET Pathways for Grade ${activeGuide.gradeLabel}`}
                 </div>
               </div>
               <Link href={`/grades/${activeGuide.slug}`} className="btn btn-outline btn-sm">
@@ -411,8 +411,8 @@ export default function HeroSection() {
 
             {/* Recommended Programmes for Selected Grade */}
             <div style={{ marginBottom: 28 }}>
-              <div style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: 10 }}>
-                Top Eligible Programmes for Grade {activeGuide.gradeLabel}
+              <div style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: 10 }}>
+                Top Programmes · Grade {activeGuide.gradeLabel}
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {sampleCourses.map(course => (
@@ -429,11 +429,11 @@ export default function HeroSection() {
                       borderRadius: 'var(--radius-sm)',
                     }}
                   >
-                    <span style={{ fontWeight: 700, fontSize: '0.875rem', color: 'var(--text-primary)' }}>
+                    <span style={{ fontWeight: 600, fontSize: '0.875rem', color: 'var(--text-primary)' }}>
                       {course.title}
                     </span>
-                    <span className="tabular-nums" style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
-                      {course.level} · {course.level === 'Degree' ? `Cutoff ${course.minPoints.toFixed(1)} pts` : `Min Grade ${course.minMeanGrade || 'C-'}`}
+                    <span className="tabular-nums" style={{ fontSize: '0.8125rem', color: 'var(--text-secondary)' }}>
+                      {course.level} · {course.level === 'Degree' ? `Cutoff ${course.minPoints.toFixed(1)} pts` : `Min ${course.minMeanGrade || 'C-'}`}
                     </span>
                   </div>
                 ))}
@@ -443,10 +443,10 @@ export default function HeroSection() {
             {/* Matching Campuses in Selected County */}
             <div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-                <span style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--text-secondary)' }}>
-                  Matching Accredited Institutions {selectedCounty !== 'All' ? `in ${selectedCounty}` : 'Across Kenya'}
+                <span style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--text-secondary)' }}>
+                  Accredited Institutions {selectedCounty !== 'All' ? `(${selectedCounty})` : ''}
                 </span>
-                <Link href={`/universities${selectedCounty !== 'All' ? `?county=${encodeURIComponent(selectedCounty)}` : ''}`} style={{ fontSize: '0.875rem', fontWeight: 700, color: 'var(--accent-gold)' }}>
+                <Link href={`/universities${selectedCounty !== 'All' ? `?county=${encodeURIComponent(selectedCounty)}` : ''}`} style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--accent-gold)' }}>
                   View All 68 →
                 </Link>
               </div>

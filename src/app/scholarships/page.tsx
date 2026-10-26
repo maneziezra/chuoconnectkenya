@@ -73,7 +73,6 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
             border: '1px solid var(--border-light)',
             borderTop: '1px solid var(--apple-glass-highlight)',
             borderRadius: 'var(--radius-xl)',
-            boxShadow: '0 20px 48px -12px rgba(26, 35, 56, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04)',
             background: 'var(--bg-secondary)',
             padding: '44px 36px',
             overflow: 'hidden',
@@ -90,17 +89,15 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                 border: '1px solid var(--border-light)',
                 borderTop: '1px solid var(--apple-glass-highlight)',
                 borderRadius: 'var(--radius-full)',
-                fontSize: '0.72rem',
-                fontWeight: 700,
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
+                fontSize: '0.75rem',
+                fontWeight: 600,
                 color: 'var(--text-primary)',
                 marginBottom: 16,
                 backdropFilter: 'blur(16px)',
               }}
             >
               <GraduationCap size={13} style={{ color: 'var(--gold-primary)' }} />
-              2026 Student Funding Hub
+              Student Funding Directory
             </span>
             <h1
               style={{
@@ -112,10 +109,10 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                 letterSpacing: '-0.03em',
               }}
             >
-              Scholarships, HEF Grants & Bursaries
+              Scholarships &amp; Funding.
             </h1>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 640, lineHeight: 1.6 }}>
-              Explore verified Government HEF Band 1–5 scholarships, HELB loans, corporate foundations, and direct university merit waivers for Kenyan students.
+            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', maxWidth: 640, lineHeight: 1.5 }}>
+              Government HEF grants, HELB loans, and verified university scholarships.
             </p>
           </div>
         </div>
@@ -137,22 +134,21 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
               alignItems: 'center',
               flexWrap: 'wrap',
               gap: 20,
-              boxShadow: 'var(--shadow-sm)',
             }}
           >
             <div style={{ maxWidth: 640 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--gold-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 6 }}>
-                <Wallet size={15} /> Means Testing Instrument (Bands 1–5)
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: 'var(--gold-primary)', fontSize: '0.75rem', fontWeight: 600, marginBottom: 6 }}>
+                <Wallet size={15} /> HEF Funding Model
               </div>
               <h2 style={{ fontSize: '1.25rem', fontFamily: 'var(--font-serif)', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--text-primary)', marginBottom: 6 }}>
-                Estimate Your Government HEF Scholarship % & HELB Upkeep Stipend
+                Estimate Your HEF Band &amp; Household Tuition
               </h2>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: 0, lineHeight: 1.55 }}>
-                Find out whether you fall into Band 1 (70% Free Gov Scholarship + KES 60k Upkeep) through Band 5 and see your exact per-semester household fee before applying.
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', margin: 0, lineHeight: 1.5 }}>
+                Check your exact scholarship percentage and out-of-pocket family fee before applying.
               </p>
             </div>
             <Link href="/calculator" className="btn btn-gold" style={{ borderRadius: 'var(--radius-md)' }}>
-              <Calculator size={16} /> Open HEF Fee Simulator
+              <Calculator size={16} /> Open HEF Simulator
             </Link>
           </div>
 
@@ -176,7 +172,6 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                       transition: 'all var(--apple-ease)',
                       background: isActive ? 'var(--accent-gold)' : 'var(--bg-secondary)',
                       color: isActive ? 'var(--gold-contrast-text)' : 'var(--text-primary)',
-                      boxShadow: isActive ? 'var(--shadow-sm)' : 'none',
                     }}
                   >
                     {cat === 'All' ? 'All Funding' : CATEGORY_LABELS[cat]}
@@ -231,10 +226,8 @@ export default async function ScholarshipsPage({ searchParams }: Props) {
                           padding: '3px 10px',
                           borderRadius: 'var(--radius-full)',
                           border: '1px solid var(--border-light)',
-                          fontSize: '0.72rem',
-                          fontWeight: 700,
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.04em',
+                          fontSize: '0.75rem',
+                          fontWeight: 600,
                           background: catStyle.bg,
                           color: catStyle.color,
                         }}
